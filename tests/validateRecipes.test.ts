@@ -17,6 +17,11 @@ describe('validateRecipes & seeded week-current.json', () => {
     expect(weekData.breakfast_ids).toHaveLength(3);
     expect(weekData.lunch_ids).toHaveLength(3);
     expect(weekData.snack_ids).toHaveLength(2);
+
+    for (const r of weekData.recipes) {
+      expect(['breakfast', 'lunch', 'snack', 'dinner']).toContain(r.meal_slot);
+      expect(r.age_adaptations['6_9m'].cut_shape).toBeDefined();
+    }
   });
 
   it('rejects non-metric units', () => {

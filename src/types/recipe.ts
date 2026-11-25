@@ -18,7 +18,20 @@ export type Allergen =
   | 'fish'
   | 'shellfish'
   | 'soy'
-  | 'wheat';
+  | 'wheat'
+  | 'sesame';
+
+export type CutShape =
+  | 'finger-strip'
+  | 'pincer-dice'
+  | 'quartered-lengthwise'
+  | 'smashed-flat'
+  | 'flaked-fine'
+  | 'fork-mash';
+
+export type MealSlotType = 'breakfast' | 'lunch' | 'snack' | 'dinner';
+
+export type EnabledSlots = Record<MealSlotType, boolean>;
 
 export interface Ingredient {
   canonical_id: string;
@@ -38,12 +51,14 @@ export interface RecipeStep {
 export interface AgeAdaptation {
   cut_and_texture: string;
   serving_note: string;
+  cut_shape?: CutShape;
 }
 
 export interface Recipe {
   id: string;
   title: string;
   image_url: string;
+  meal_slot?: MealSlotType;
   prep_minutes: number;
   cook_minutes: number;
   base_servings: number;
@@ -53,8 +68,6 @@ export interface Recipe {
   steps: RecipeStep[];
   age_adaptations: Record<BracketKey, AgeAdaptation>;
 }
-
-export type MealSlotType = 'breakfast' | 'lunch' | 'snack' | 'dinner';
 
 export type DayPlan = Record<MealSlotType, string>;
 
@@ -115,6 +128,7 @@ export type TriedFoodReaction = 'loved' | 'neutral' | 'watch';
 export interface TriedFoodEntry {
   triedAt: string;
   reaction?: TriedFoodReaction;
+  exposures?: number;
 }
 
 export interface CustomFirstFood {
@@ -122,4 +136,3 @@ export interface CustomFirstFood {
   name: string;
   category: FirstFoodCategory;
 }
-

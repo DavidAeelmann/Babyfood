@@ -1,5 +1,7 @@
 import { Baby } from 'lucide-react';
 import { BRACKET_KEYS, BRACKET_META } from '../lib/constants';
+import { inferCutShape } from '../lib/cutShape';
+import { CutShapeDiagram } from './CutShapeDiagram';
 import type { AgeAdaptation, BracketKey } from '../types/recipe';
 
 interface ChildPrepCardProps {
@@ -37,13 +39,15 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
         <div className="space-y-2.5">
           {orderedActive.map((key) => {
             const ad = adaptations[key];
+            const cutShape = inferCutShape(ad, key);
+
             return (
               <div
                 key={key}
                 data-testid={`child-prep-bracket-${key}`}
                 className="rounded-xl border border-[#DCEADF] bg-white p-3"
               >
-                <div className="mb-1 flex items-center justify-between gap-2">
+                <div className="mb-2 flex items-center justify-between gap-2">
                   <span className="rounded-full bg-[#2F6F4E] px-2.5 py-0.5 text-[11px] font-bold text-white">
                     {BRACKET_META[key].label}
                   </span>
@@ -51,13 +55,19 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
                     {BRACKET_META[key].weight}× portion
                   </span>
                 </div>
-                <p className="text-xs font-medium leading-relaxed text-[#1C2420]">
-                  {ad.cut_and_texture}
-                </p>
-                <p className="mt-1 text-[11px] leading-relaxed text-[#5C6862]">
-                  <strong className="font-semibold text-[#2F6F4E]">Note:</strong>{' '}
-                  {ad.serving_note}
-                </p>
+
+                <div className="flex items-start gap-3">
+                  <CutShapeDiagram shape={cutShape} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-medium leading-relaxed text-[#1C2420]">
+                      {ad.cut_and_texture}
+                    </p>
+                    <p className="mt-1 text-[11px] leading-relaxed text-[#5C6862]">
+                      <strong className="font-semibold text-[#2F6F4E]">Note:</strong>{' '}
+                      {ad.serving_note}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}

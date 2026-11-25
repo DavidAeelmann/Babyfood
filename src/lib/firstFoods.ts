@@ -1,4 +1,4 @@
-import type { FirstFoodCategory, FirstFoodItem } from '../types/recipe';
+import type { Allergen, FirstFoodCategory, FirstFoodItem, Recipe } from '../types/recipe';
 
 export const FIRST_FOOD_CATEGORIES: FirstFoodCategory[] = [
   'Vegetables',
@@ -9,8 +9,20 @@ export const FIRST_FOOD_CATEGORIES: FirstFoodCategory[] = [
   'Allergens',
 ];
 
+export const TOP_9_ALLERGENS: Allergen[] = [
+  'dairy',
+  'egg',
+  'peanut',
+  'tree_nut',
+  'fish',
+  'shellfish',
+  'soy',
+  'wheat',
+  'sesame',
+];
+
 export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
-  // Vegetables
+  // === VEGETABLES (25) ===
   {
     id: 'sweet_potato',
     name: 'Sweet Potato',
@@ -80,11 +92,139 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     name: 'Avocado',
     ptName: 'Abacate',
     category: 'Vegetables',
-    prep6m: 'Ripe spear rolled in hemp/oats for grip, or mashed.',
+    prep6m: 'Ripe spear rolled in oats for grip, or mashed onto toast.',
     canonicalIds: ['avocado'],
   },
+  {
+    id: 'onion',
+    name: 'Yellow Onion',
+    ptName: 'Cebola',
+    category: 'Vegetables',
+    prep6m: 'Cooked completely soft in soups, stews, and sauces.',
+    canonicalIds: ['yellow_onion'],
+  },
+  {
+    id: 'garlic',
+    name: 'Garlic',
+    ptName: 'Alho',
+    category: 'Vegetables',
+    prep6m: 'Roasted or sautéed soft in olive oil for gentle flavor.',
+    canonicalIds: ['garlic_clove'],
+  },
+  {
+    id: 'peas',
+    name: 'Green Peas',
+    ptName: 'Ervilhas',
+    category: 'Vegetables',
+    prep6m: 'Always smashed or puréed (never whole round peas).',
+    canonicalIds: ['green_peas', 'peas'],
+  },
+  {
+    id: 'green_beans',
+    name: 'Green Beans',
+    ptName: 'Feijão-verde',
+    category: 'Vegetables',
+    prep6m: 'Steamed very soft whole pods for palmar grasp.',
+    canonicalIds: ['green_beans'],
+  },
+  {
+    id: 'bell_pepper',
+    name: 'Red Bell Pepper',
+    ptName: 'Pimento vermelho',
+    category: 'Vegetables',
+    prep6m: 'Roasted and peeled soft strips.',
+    canonicalIds: ['bell_pepper'],
+  },
+  {
+    id: 'potato',
+    name: 'White Potato',
+    ptName: 'Batata',
+    category: 'Vegetables',
+    prep6m: 'Soft boiled wedges or mashed with olive oil.',
+    canonicalIds: ['potato'],
+  },
+  {
+    id: 'parsnip',
+    name: 'Parsnip',
+    ptName: 'Pastinaga',
+    category: 'Vegetables',
+    prep6m: 'Roasted soft finger-length batons.',
+    canonicalIds: ['parsnip'],
+  },
+  {
+    id: 'sweet_corn',
+    name: 'Sweet Corn',
+    ptName: 'Milho doce',
+    category: 'Vegetables',
+    prep6m: 'Blended into creamy chowder or cornmeal fritters (never whole kernels).',
+    canonicalIds: ['sweet_corn'],
+  },
+  {
+    id: 'eggplant',
+    name: 'Eggplant',
+    ptName: 'Beringela',
+    category: 'Vegetables',
+    prep6m: 'Roasted peeled soft strips until creamy inside.',
+    canonicalIds: ['eggplant'],
+  },
+  {
+    id: 'mushroom',
+    name: 'Mushrooms',
+    ptName: 'Cogumelos',
+    category: 'Vegetables',
+    prep6m: 'Finely minced and sautéed soft into sauces or eggs.',
+    canonicalIds: ['mushroom'],
+  },
+  {
+    id: 'beetroot',
+    name: 'Beetroot',
+    ptName: 'Beterraba',
+    category: 'Vegetables',
+    prep6m: 'Steamed or roasted until fork-tender, cut into strips.',
+    canonicalIds: ['beetroot'],
+  },
+  {
+    id: 'asparagus',
+    name: 'Asparagus',
+    ptName: 'Espargos',
+    category: 'Vegetables',
+    prep6m: 'Steamed very soft thick spears.',
+    canonicalIds: ['asparagus'],
+  },
+  {
+    id: 'cucumber',
+    name: 'Cucumber',
+    ptName: 'Pepino',
+    category: 'Vegetables',
+    prep6m: 'Peeled soft center spears or finely grated into yogurt.',
+    canonicalIds: ['cucumber'],
+  },
+  {
+    id: 'kale',
+    name: 'Kale / Greens',
+    ptName: 'Couve',
+    category: 'Vegetables',
+    prep6m: 'Steamed tender and finely shredded into soups.',
+    canonicalIds: ['kale'],
+  },
+  {
+    id: 'leek',
+    name: 'Leek',
+    ptName: 'Alho-francês',
+    category: 'Vegetables',
+    prep6m: 'Braised completely soft in soup or risotto.',
+    canonicalIds: ['leek'],
+  },
+  {
+    id: 'turnip',
+    name: 'Turnip',
+    ptName: 'Nabo',
+    category: 'Vegetables',
+    prep6m: 'Simmered soft in vegetable soup purée.',
+    canonicalIds: ['turnip'],
+  },
 
-  // Fruits
+  // === FRUITS (23) ===
   {
     id: 'banana',
     name: 'Banana',
@@ -98,7 +238,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     name: 'Pear',
     ptName: 'Pera',
     category: 'Fruits',
-    prep6m: 'Very ripe peeled wedges or lightly steamed soft slices.',
+    prep6m: 'Very ripe peeled wedges or lightly steamed/grated soft slices.',
     canonicalIds: ['pear'],
   },
   {
@@ -133,8 +273,144 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     prep6m: 'Always mashed or flattened completely (never whole round).',
     canonicalIds: ['blueberries', 'blueberry'],
   },
+  {
+    id: 'strawberry',
+    name: 'Strawberry',
+    ptName: 'Morango',
+    category: 'Fruits',
+    prep6m: 'Large ripe whole berries (easy to hold) or mashed into yogurt.',
+    canonicalIds: ['strawberry'],
+  },
+  {
+    id: 'raspberry',
+    name: 'Raspberry',
+    ptName: 'Framboesa',
+    category: 'Fruits',
+    prep6m: 'Lightly mashed or whole ripe berries (soft & collapsible).',
+    canonicalIds: ['raspberry'],
+  },
+  {
+    id: 'blackberry',
+    name: 'Blackberry',
+    ptName: 'Amora',
+    category: 'Fruits',
+    prep6m: 'Mashed or quartered soft ripe berries.',
+    canonicalIds: ['blackberry'],
+  },
+  {
+    id: 'plum',
+    name: 'Plum',
+    ptName: 'Ameixa',
+    category: 'Fruits',
+    prep6m: 'Very ripe pitted halves or steamed wedges.',
+    canonicalIds: ['plum'],
+  },
+  {
+    id: 'apricot',
+    name: 'Apricot',
+    ptName: 'Alperce',
+    category: 'Fruits',
+    prep6m: 'Ripe pitted halves or poached soft slices.',
+    canonicalIds: ['apricot'],
+  },
+  {
+    id: 'kiwi',
+    name: 'Kiwi',
+    ptName: 'Kiwi',
+    category: 'Fruits',
+    prep6m: 'Peeled ripe wedges or mashed.',
+    canonicalIds: ['kiwi'],
+  },
+  {
+    id: 'orange',
+    name: 'Orange',
+    ptName: 'Laranja',
+    category: 'Fruits',
+    prep6m: 'Supremed segments (membranes and seeds removed).',
+    canonicalIds: ['orange'],
+  },
+  {
+    id: 'lemon',
+    name: 'Lemon',
+    ptName: 'Limão',
+    category: 'Fruits',
+    prep6m: 'Fresh juice squeezed over fish, veggies, or avocado.',
+    canonicalIds: ['lemon'],
+  },
+  {
+    id: 'melon',
+    name: 'Cantaloupe / Melon',
+    ptName: 'Melão',
+    category: 'Fruits',
+    prep6m: 'Very ripe, juicy thin finger-length slices.',
+    canonicalIds: ['melon'],
+  },
+  {
+    id: 'watermelon',
+    name: 'Watermelon',
+    ptName: 'Melancia',
+    category: 'Fruits',
+    prep6m: 'Seedless thin rectangular strips.',
+    canonicalIds: ['watermelon'],
+  },
+  {
+    id: 'papaya',
+    name: 'Papaya',
+    ptName: 'Papaia',
+    category: 'Fruits',
+    prep6m: 'Ripe peeled soft spears or mashed.',
+    canonicalIds: ['papaya'],
+  },
+  {
+    id: 'nectarine',
+    name: 'Nectarine',
+    ptName: 'Nectarina',
+    category: 'Fruits',
+    prep6m: 'Very ripe peeled wedges or steamed slices.',
+    canonicalIds: ['nectarine'],
+  },
+  {
+    id: 'pineapple',
+    name: 'Pineapple',
+    ptName: 'Ananás',
+    category: 'Fruits',
+    prep6m: 'Very ripe soft core-free spears or finely minced.',
+    canonicalIds: ['pineapple'],
+  },
+  {
+    id: 'fig',
+    name: 'Fresh Fig',
+    ptName: 'Figo',
+    category: 'Fruits',
+    prep6m: 'Quartered very ripe soft fresh figs.',
+    canonicalIds: ['fig'],
+  },
+  {
+    id: 'grapes',
+    name: 'Grapes',
+    ptName: 'Uvas',
+    category: 'Fruits',
+    prep6m: 'Always quartered lengthwise or mashed (never whole grapes).',
+    canonicalIds: ['grapes', 'grape'],
+  },
+  {
+    id: 'cherries',
+    name: 'Cherries',
+    ptName: 'Cerejas',
+    category: 'Fruits',
+    prep6m: 'Pitted and quartered/mashed completely.',
+    canonicalIds: ['cherries'],
+  },
+  {
+    id: 'prunes',
+    name: 'Prunes',
+    ptName: 'Ameixas secas',
+    category: 'Fruits',
+    prep6m: 'Stewed and puréed into oatmeal for digestion.',
+    canonicalIds: ['prunes'],
+  },
 
-  // Proteins & Iron
+  // === PROTEINS & IRON (20) ===
   {
     id: 'salmon',
     name: 'Salmon',
@@ -152,6 +428,33 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     allergen: 'fish',
     prep6m: 'Moist flakes checked thoroughly for bones.',
     canonicalIds: ['cod_fillet'],
+  },
+  {
+    id: 'sardines',
+    name: 'Sardines',
+    ptName: 'Sardinha',
+    category: 'Proteins & Iron',
+    allergen: 'fish',
+    prep6m: 'Bone-checked low-sodium mashed sardines.',
+    canonicalIds: ['sardines'],
+  },
+  {
+    id: 'trout',
+    name: 'Trout',
+    ptName: 'Truta',
+    category: 'Proteins & Iron',
+    allergen: 'fish',
+    prep6m: 'Finely flaked and deboned.',
+    canonicalIds: ['trout'],
+  },
+  {
+    id: 'shrimp',
+    name: 'Shrimp / Prawns',
+    ptName: 'Camarão',
+    category: 'Proteins & Iron',
+    allergen: 'shellfish',
+    prep6m: 'Finely minced and mixed into soft fritters or patties.',
+    canonicalIds: ['shrimp'],
   },
   {
     id: 'chicken',
@@ -178,12 +481,36 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     canonicalIds: ['ground_beef'],
   },
   {
+    id: 'lamb',
+    name: 'Lamb',
+    ptName: 'Borrego',
+    category: 'Proteins & Iron',
+    prep6m: 'Slow-braised shredded strips or minced in stew.',
+    canonicalIds: ['ground_lamb'],
+  },
+  {
+    id: 'pork',
+    name: 'Pork Tenderloin',
+    ptName: 'Lombo de porco',
+    category: 'Proteins & Iron',
+    prep6m: 'Slow-cooked moist shredded strips.',
+    canonicalIds: ['pork_tenderloin'],
+  },
+  {
     id: 'red_lentils',
     name: 'Red Lentils',
     ptName: 'Lentilhas vermelhas',
     category: 'Proteins & Iron',
     prep6m: 'Simmered until creamy and spoonable.',
     canonicalIds: ['red_lentils'],
+  },
+  {
+    id: 'green_lentils',
+    name: 'Brown/Green Lentils',
+    ptName: 'Lentilhas verdes',
+    category: 'Proteins & Iron',
+    prep6m: 'Simmered very soft and lightly mashed.',
+    canonicalIds: ['green_lentils'],
   },
   {
     id: 'chickpeas',
@@ -193,23 +520,88 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     prep6m: 'Always mashed or flattened (never whole round chickpeas).',
     canonicalIds: ['canned_chickpeas'],
   },
+  {
+    id: 'black_beans',
+    name: 'Black Beans',
+    ptName: 'Feijão preto',
+    category: 'Proteins & Iron',
+    prep6m: 'Smashed flat or puréed until creamy.',
+    canonicalIds: ['black_beans'],
+  },
+  {
+    id: 'white_beans',
+    name: 'Cannellini / White Beans',
+    ptName: 'Feijão branco',
+    category: 'Proteins & Iron',
+    prep6m: 'Smashed flat or blended into soup.',
+    canonicalIds: ['white_beans'],
+  },
+  {
+    id: 'kidney_beans',
+    name: 'Red Kidney Beans',
+    ptName: 'Feijão encarnado',
+    category: 'Proteins & Iron',
+    prep6m: 'Mashed into chili or soft patties.',
+    canonicalIds: ['kidney_beans'],
+  },
+  {
+    id: 'hummus',
+    name: 'Hummus (Sesame)',
+    ptName: 'Húmus',
+    category: 'Proteins & Iron',
+    allergen: 'sesame',
+    prep6m: 'Low-salt homemade hummus spread thinly on toast strips.',
+    canonicalIds: ['hummus', 'tahini'],
+  },
+  {
+    id: 'hemp_seeds',
+    name: 'Hemp Hearts',
+    ptName: 'Sementes de cânhamo',
+    category: 'Proteins & Iron',
+    prep6m: 'Sprinkled on avocado or banana spears for grip + omega-3.',
+    canonicalIds: ['hemp_seeds'],
+  },
+  {
+    id: 'chia_seeds',
+    name: 'Chia Seeds (Soaked)',
+    ptName: 'Sementes de chia',
+    category: 'Proteins & Iron',
+    prep6m: 'Always pre-soaked into pudding or porridge (never dry).',
+    canonicalIds: ['chia_seeds'],
+  },
+  {
+    id: 'liver_pate',
+    name: 'Chicken Liver (Iron)',
+    ptName: 'Fígado de frango',
+    category: 'Proteins & Iron',
+    prep6m: 'Finely puréed once weekly for bioavailable heme iron.',
+    canonicalIds: ['chicken_liver'],
+  },
 
-  // Grains
+  // === GRAINS (13) ===
   {
     id: 'oats',
     name: 'Rolled Oats',
     ptName: 'Aveia',
     category: 'Grains',
-    prep6m: 'Soft porridge or bound into soft meatballs/pancakes.',
+    prep6m: 'Soft porridge or bound into soft meatballs, muffins, or pancakes.',
     canonicalIds: ['rolled_oats'],
   },
   {
     id: 'rice',
-    name: 'Rice',
-    ptName: 'Arroz',
+    name: 'Basmati Rice',
+    ptName: 'Arroz basmati',
     category: 'Grains',
     prep6m: 'Soft-cooked rice mixed with dal or sauce for easy scooping.',
     canonicalIds: ['basmati_rice'],
+  },
+  {
+    id: 'brown_rice',
+    name: 'Brown Rice',
+    ptName: 'Arroz integral',
+    category: 'Grains',
+    prep6m: 'Cooked extra soft or mashed slightly into stews.',
+    canonicalIds: ['brown_rice'],
   },
   {
     id: 'pasta',
@@ -222,21 +614,88 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   },
   {
     id: 'bread',
-    name: 'Crusty Bread (Wheat)',
-    ptName: 'Pão',
+    name: 'Sourdough Bread (Wheat)',
+    ptName: 'Pão de fermentação lenta',
     category: 'Grains',
     allergen: 'wheat',
-    prep6m: 'Lightly toasted finger-length strip dipped in juices or yogurt.',
+    prep6m: 'Lightly toasted finger-length strip dipped in juices or avocado.',
     canonicalIds: ['sourdough_bread'],
   },
+  {
+    id: 'quinoa',
+    name: 'Quinoa',
+    ptName: 'Quinoa',
+    category: 'Grains',
+    prep6m: 'Rinsed well and simmered soft into veggie patties or bowls.',
+    canonicalIds: ['quinoa'],
+  },
+  {
+    id: 'couscous',
+    name: 'Couscous (Wheat)',
+    ptName: 'Cuscuz',
+    category: 'Grains',
+    allergen: 'wheat',
+    prep6m: 'Steamed fluffy and bound with yogurt or olive oil.',
+    canonicalIds: ['couscous'],
+  },
+  {
+    id: 'polenta',
+    name: 'Polenta / Cornmeal',
+    ptName: 'Polenta',
+    category: 'Grains',
+    prep6m: 'Soft warm porridge or chilled & baked into finger strips.',
+    canonicalIds: ['polenta'],
+  },
+  {
+    id: 'millet',
+    name: 'Millet',
+    ptName: 'Milheto',
+    category: 'Grains',
+    prep6m: 'Simmered into creamy baby porridge.',
+    canonicalIds: ['millet'],
+  },
+  {
+    id: 'buckwheat',
+    name: 'Buckwheat',
+    ptName: 'Trigo-sarraceno',
+    category: 'Grains',
+    prep6m: 'Cooked soft or used in baby pancakes (gluten-free).',
+    canonicalIds: ['buckwheat'],
+  },
+  {
+    id: 'barley',
+    name: 'Pearl Barley',
+    ptName: 'Cevada',
+    category: 'Grains',
+    allergen: 'wheat',
+    prep6m: 'Simmered until very tender in vegetable broth.',
+    canonicalIds: ['barley'],
+  },
+  {
+    id: 'farro',
+    name: 'Spelt / Farro',
+    ptName: 'Espelta',
+    category: 'Grains',
+    allergen: 'wheat',
+    prep6m: 'Cooked soft and mashed slightly.',
+    canonicalIds: ['farro'],
+  },
+  {
+    id: 'rice_cakes',
+    name: 'Unsalted Rice Cakes',
+    ptName: 'Bolachas de arroz sem sal',
+    category: 'Grains',
+    prep6m: 'Spread thinly with mashed avocado or yogurt.',
+    canonicalIds: ['rice_cakes'],
+  },
 
-  // Dairy & Fats
+  // === DAIRY & FATS (11) ===
   {
     id: 'olive_oil',
     name: 'Extra-Virgin Olive Oil',
-    ptName: 'Azeite',
+    ptName: 'Azeite virgem extra',
     category: 'Dairy & Fats',
-    prep6m: 'Drizzle on veggies and purées for healthy fats.',
+    prep6m: 'Drizzle on veggies and purées for brain-building healthy fats.',
     canonicalIds: ['olive_oil'],
   },
   {
@@ -262,7 +721,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     ptName: 'Requeijão / Ricotta',
     category: 'Dairy & Fats',
     allergen: 'dairy',
-    prep6m: 'Mixed into warm pasta or spread thinly on toast strips.',
+    prep6m: 'Mixed into warm pasta, eggs, or spread thinly on toast strips.',
     canonicalIds: ['ricotta_cheese'],
   },
   {
@@ -271,18 +730,71 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     ptName: 'Queijo cheddar suave',
     category: 'Dairy & Fats',
     allergen: 'dairy',
-    prep6m: 'Melted into warm pasta or finely grated.',
+    prep6m: 'Melted into warm pasta or baked into soft zucchini fritters.',
     canonicalIds: ['cheddar_cheese'],
   },
+  {
+    id: 'mozzarella',
+    name: 'Fresh Mozzarella (Low-Salt)',
+    ptName: 'Mozzarella fresca',
+    category: 'Dairy & Fats',
+    allergen: 'dairy',
+    prep6m: 'Shredded finely or melted into warm dishes.',
+    canonicalIds: ['mozzarella'],
+  },
+  {
+    id: 'unsalted_butter',
+    name: 'Unsalted Butter',
+    ptName: 'Manteiga sem sal',
+    category: 'Dairy & Fats',
+    allergen: 'dairy',
+    prep6m: 'Melted into mash, porridge, or steamed veggies.',
+    canonicalIds: ['unsalted_butter'],
+  },
+  {
+    id: 'kefir',
+    name: 'Plain Whole Kefir',
+    ptName: 'Kefir natural',
+    category: 'Dairy & Fats',
+    allergen: 'dairy',
+    prep6m: 'Offered in an open cup or mixed with mashed fruit.',
+    canonicalIds: ['kefir'],
+  },
+  {
+    id: 'cottage_cheese',
+    name: 'Cottage Cheese (Low-Salt)',
+    ptName: 'Queijo fresco batido',
+    category: 'Dairy & Fats',
+    allergen: 'dairy',
+    prep6m: 'Whipped smooth for easy spoon-feeding.',
+    canonicalIds: ['cottage_cheese'],
+  },
+  {
+    id: 'ghee',
+    name: 'Ghee',
+    ptName: 'Ghee',
+    category: 'Dairy & Fats',
+    allergen: 'dairy',
+    prep6m: 'Cook veggies gently in ghee for aroma and fat.',
+    canonicalIds: ['ghee'],
+  },
+  {
+    id: 'cinnamon',
+    name: 'Ceylon Cinnamon',
+    ptName: 'Canela',
+    category: 'Dairy & Fats',
+    prep6m: 'Pinch in porridge, muffins, or baked fruit for flavor without sugar.',
+    canonicalIds: ['ground_cinnamon'],
+  },
 
-  // Common Allergens (early introduction)
+  // === TOP-9 ALLERGENS & EARLY INTRO (8) ===
   {
     id: 'egg',
     name: 'Egg (Well-Cooked)',
     ptName: 'Ovo bem cozinhado',
     category: 'Allergens',
     allergen: 'egg',
-    prep6m: 'Well-cooked omelet strips or baked into meatballs.',
+    prep6m: 'Well-cooked omelet strips, mashed hard-boiled egg, or baked in muffins.',
     canonicalIds: ['egg'],
   },
   {
@@ -291,25 +803,104 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
     ptName: 'Manteiga de amendoim',
     category: 'Allergens',
     allergen: 'peanut',
-    prep6m: 'Always thin 1 tsp smooth peanut butter with warm water, breastmilk, or yogurt (never thick globs).',
+    prep6m: 'Always thin 1 tsp smooth peanut butter with warm water or yogurt (never thick globs).',
     canonicalIds: ['peanut_butter'],
   },
   {
     id: 'almond_butter',
-    name: 'Tree Nut Butter (Thinned)',
+    name: 'Almond Butter (Thinned)',
     ptName: 'Manteiga de amêndoa',
     category: 'Allergens',
     allergen: 'tree_nut',
-    prep6m: 'Always thin smooth nut butter into oatmeal or yogurt.',
+    prep6m: 'Always thin smooth almond butter into warm oatmeal or yogurt.',
     canonicalIds: ['almond_butter'],
   },
   {
+    id: 'cashew_butter',
+    name: 'Cashew Butter (Thinned)',
+    ptName: 'Manteiga de caju',
+    category: 'Allergens',
+    allergen: 'tree_nut',
+    prep6m: 'Stir 1/2 tsp thinned into warm fruit purée or porridge.',
+    canonicalIds: ['cashew_butter'],
+  },
+  {
+    id: 'walnut_ground',
+    name: 'Finely Ground Walnuts',
+    ptName: 'Nozes moídas',
+    category: 'Allergens',
+    allergen: 'tree_nut',
+    prep6m: 'Only finely ground flour/meal mixed into porridge or muffins (never whole nuts).',
+    canonicalIds: ['walnut_meal'],
+  },
+  {
     id: 'soy_tofu',
-    name: 'Soy / Tofu (Unsalted)',
-    ptName: 'Soja / Tofu',
+    name: 'Tofu / Soy (Unsalted)',
+    ptName: 'Tofu / Soja',
     category: 'Allergens',
     allergen: 'soy',
-    prep6m: 'Soft plain tofu strips (avoid soy sauce for <12m).',
+    prep6m: 'Soft plain steamed tofu strips (avoid soy sauce for <12m).',
     canonicalIds: ['tofu'],
   },
+  {
+    id: 'edamame_mashed',
+    name: 'Edamame (Mashed)',
+    ptName: 'Edamame esmagado',
+    category: 'Allergens',
+    allergen: 'soy',
+    prep6m: 'Shelled and mashed completely into a spread (never whole beans).',
+    canonicalIds: ['edamame'],
+  },
+  {
+    id: 'tahini_sesame',
+    name: 'Tahini / Sesame Paste',
+    ptName: 'Tahini (Sésamo)',
+    category: 'Allergens',
+    allergen: 'sesame',
+    prep6m: 'Thin 1/2 tsp smooth tahini with warm water or lemon into mash.',
+    canonicalIds: ['tahini'],
+  },
 ];
+
+export function getRecipeMatchingFirstFoods(recipe: Recipe): FirstFoodItem[] {
+  const recipeCanonicalIds = new Set(recipe.ingredients.map((i) => i.canonical_id));
+  const recipeAllergens = new Set(recipe.allergens);
+
+  return FIRST_FOODS_CATALOG.filter((food) => {
+    if (food.canonicalIds.some((cid) => recipeCanonicalIds.has(cid))) {
+      return true;
+    }
+    if (food.allergen && recipeAllergens.has(food.allergen)) {
+      // Match specific allergen foods only if ingredient matches OR allergen is present cleanly
+      return food.canonicalIds.some((cid) => recipeCanonicalIds.has(cid));
+    }
+    return false;
+  });
+}
+
+export function getTriedAllergenExposures(
+  triedFoods: Record<string, { exposures?: number }>,
+): Record<Allergen, number> {
+  const counts: Record<Allergen, number> = {
+    dairy: 0,
+    egg: 0,
+    peanut: 0,
+    tree_nut: 0,
+    fish: 0,
+    shellfish: 0,
+    soy: 0,
+    wheat: 0,
+    sesame: 0,
+  };
+
+  for (const food of FIRST_FOODS_CATALOG) {
+    if (!food.allergen) continue;
+    const entry = triedFoods[food.id];
+    if (entry) {
+      const exp = Math.max(1, entry.exposures ?? 1);
+      counts[food.allergen] = Math.min(3, counts[food.allergen] + exp);
+    }
+  }
+
+  return counts;
+}

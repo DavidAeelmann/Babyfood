@@ -1,12 +1,20 @@
-import { AISLE_ORDER, ALLERGEN_KEYS, BRACKET_KEYS, METRIC_UNITS } from '../src/lib/constants';
+import {
+  AISLE_ORDER,
+  ALLERGEN_KEYS,
+  BRACKET_KEYS,
+  CUT_SHAPES,
+  MEAL_SLOTS,
+  METRIC_UNITS,
+} from '../src/lib/constants';
 
 const ageAdaptationSchema = {
   type: 'object',
   additionalProperties: false,
-  required: ['cut_and_texture', 'serving_note'],
+  required: ['cut_and_texture', 'serving_note', 'cut_shape'],
   properties: {
     cut_and_texture: { type: 'string' },
     serving_note: { type: 'string' },
+    cut_shape: { type: 'string', enum: [...CUT_SHAPES] },
   },
 };
 
@@ -52,6 +60,7 @@ export const weekGenerationJsonSchema = {
           'id',
           'title',
           'image_url',
+          'meal_slot',
           'prep_minutes',
           'cook_minutes',
           'base_servings',
@@ -65,6 +74,7 @@ export const weekGenerationJsonSchema = {
           id: { type: 'string' },
           title: { type: 'string' },
           image_url: { type: 'string' },
+          meal_slot: { type: 'string', enum: [...MEAL_SLOTS] },
           prep_minutes: { type: 'number' },
           cook_minutes: { type: 'number' },
           base_servings: { type: 'number' },

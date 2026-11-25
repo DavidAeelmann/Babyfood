@@ -19,7 +19,7 @@ export function buildWeeklyPrompt(weekId: string): string {
     `4. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
     `5. Every recipe must have base_servings: 4, min_age_months: 6, and ZERO honey anywhere when min_age_months < 12.`,
     `6. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce (like soy sauce) is added.`,
-    `7. Every recipe must provide age_adaptations for all 5 brackets: 6_9m, 9_12m, 12_24m, 2_4y, 4y_plus.`,
+    `7. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash).`,
     `8. Any round choking hazard (cherry tomatoes, chickpeas, grapes, blueberries, peas, corn kernels, etc.) MUST include explicit prep instructions (quartered, mashed, flattened, smashed) in 6_9m, 9_12m, and 12_24m.`,
   ].join('\n');
 }

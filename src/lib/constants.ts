@@ -1,4 +1,12 @@
-import type { Aisle, Allergen, BracketKey, HouseholdConfig } from '../types/recipe';
+import type {
+  Aisle,
+  Allergen,
+  BracketKey,
+  CutShape,
+  EnabledSlots,
+  HouseholdConfig,
+  MealSlotType,
+} from '../types/recipe';
 
 export const ADULT_WEIGHT = 1.0;
 
@@ -56,7 +64,7 @@ export const AISLE_ORDER: Aisle[] = [
 ];
 
 export const ALLERGEN_LABELS: Record<Allergen, string> = {
-  dairy: 'Dairy',
+  dairy: 'Milk / Dairy',
   egg: 'Egg',
   peanut: 'Peanut',
   tree_nut: 'Tree Nut',
@@ -64,6 +72,7 @@ export const ALLERGEN_LABELS: Record<Allergen, string> = {
   shellfish: 'Shellfish',
   soy: 'Soy',
   wheat: 'Wheat',
+  sesame: 'Sesame',
 };
 
 export const ALLERGEN_KEYS: Allergen[] = [
@@ -75,7 +84,31 @@ export const ALLERGEN_KEYS: Allergen[] = [
   'shellfish',
   'soy',
   'wheat',
+  'sesame',
 ];
+
+export const CUT_SHAPES: CutShape[] = [
+  'finger-strip',
+  'pincer-dice',
+  'quartered-lengthwise',
+  'smashed-flat',
+  'flaked-fine',
+  'fork-mash',
+];
+
+export const MEAL_SLOTS: MealSlotType[] = [
+  'breakfast',
+  'lunch',
+  'snack',
+  'dinner',
+];
+
+export const DEFAULT_ENABLED_SLOTS: EnabledSlots = {
+  breakfast: false,
+  lunch: false,
+  snack: false,
+  dinner: true,
+};
 
 export const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
 

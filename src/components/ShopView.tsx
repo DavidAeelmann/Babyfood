@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from 'react';
-import { Check, Eye, EyeOff, Plus, Trash2 } from 'lucide-react';
+import { Check, Eye, EyeOff, Plus, Share2, Trash2 } from 'lucide-react';
 import { AISLE_ORDER } from '../lib/constants';
 import { formatQuantity, groupGroceriesByAisle } from '../lib/groceryAggregator';
 import type { Aisle, CustomGroceryItem, GroceryItem } from '../types/recipe';
@@ -15,6 +15,7 @@ interface ShopViewProps {
   onAddCustomItem: (name: string, aisle: Aisle) => void;
   onToggleCustomItem: (id: string) => void;
   onRemoveCustomItem: (id: string) => void;
+  onOpenShare: () => void;
 }
 
 export function ShopView({
@@ -28,6 +29,7 @@ export function ShopView({
   onAddCustomItem,
   onToggleCustomItem,
   onRemoveCustomItem,
+  onOpenShare,
 }: ShopViewProps) {
   const [customName, setCustomName] = useState('');
   const [customAisle, setCustomAisle] = useState<Aisle>('Produce');
@@ -77,14 +79,26 @@ export function ShopView({
 
   return (
     <section className="mx-auto max-w-md px-4 pt-4 pb-24">
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <div>
-          <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
-            Grocery List
-          </h2>
-          <p className="tabular-nums text-xs text-[#5C6862]">
-            {totalCount - checkedCount} of {totalCount} items left
-          </p>
+      <div className="mb-3 space-y-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <div>
+            <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
+              Grocery List
+            </h2>
+            <p className="tabular-nums text-xs text-[#5C6862]">
+              {totalCount - checkedCount} of {totalCount} items left
+            </p>
+          </div>
+
+          <button
+            type="button"
+            data-testid="shop-share-btn"
+            onClick={onOpenShare}
+            className="inline-flex min-h-[38px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white shadow-xs hover:bg-[#25593E]"
+          >
+            <Share2 className="h-3.5 w-3.5" />
+            <span>Share with Partner</span>
+          </button>
         </div>
 
         <div className="flex items-center gap-1.5">
@@ -92,7 +106,7 @@ export function ShopView({
             type="button"
             data-testid="toggle-pantry-btn"
             onClick={() => onSetHidePantry(!hidePantryStaples)}
-            className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border px-2.5 text-xs font-semibold transition-colors ${
+            className={`inline-flex min-h-[34px] items-center gap-1.5 whitespace-nowrap rounded-xl border px-2.5 text-xs font-semibold transition-colors ${
               hidePantryStaples
                 ? 'border-[#2F6F4E] bg-[#E8F2EC] text-[#2F6F4E]'
                 : 'border-[#E0DAD0] bg-white text-[#5C6862]'
@@ -112,7 +126,7 @@ export function ShopView({
             <button
               type="button"
               onClick={onClearChecked}
-              className="min-h-[38px] rounded-xl border border-[#E0DAD0] bg-white px-2.5 text-xs font-semibold text-[#5C6862] hover:bg-[#F2EFE9]"
+              className="min-h-[34px] whitespace-nowrap rounded-xl border border-[#E0DAD0] bg-white px-2.5 text-xs font-semibold text-[#5C6862] hover:bg-[#F2EFE9]"
             >
               Uncheck ({checkedCount})
             </button>

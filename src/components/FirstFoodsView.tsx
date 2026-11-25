@@ -8,8 +8,13 @@ import {
   Sprout,
   Trash2,
 } from 'lucide-react';
-import { DAY_LABELS } from '../lib/constants';
-import { FIRST_FOODS_CATALOG, FIRST_FOOD_CATEGORIES } from '../lib/firstFoods';
+import { ALLERGEN_LABELS, DAY_LABELS } from '../lib/constants';
+import {
+  FIRST_FOODS_CATALOG,
+  FIRST_FOOD_CATEGORIES,
+  TOP_9_ALLERGENS,
+  getTriedAllergenExposures,
+} from '../lib/firstFoods';
 import type {
   CustomFirstFood,
   FirstFoodCategory,
@@ -20,11 +25,12 @@ import type {
 
 type FilterMode = 'all' | 'to_try' | 'in_plan' | 'tried' | 'allergens';
 
-interface FirstFoodsViewProps {
+export interface FirstFoodsViewProps {
   plannedRecipes: Recipe[];
   triedFoods: Record<string, TriedFoodEntry>;
   customFirstFoods: CustomFirstFood[];
   onToggleFood: (foodId: string) => void;
+  onIncrementExposure: (foodId: string) => void;
   onSetReaction: (foodId: string, reaction: TriedFoodReaction) => void;
   onAddCustomFood: (name: string, category: FirstFoodCategory) => void;
   onRemoveCustomFood: (id: string) => void;
@@ -46,6 +52,7 @@ export function FirstFoodsView({
   triedFoods,
   customFirstFoods,
   onToggleFood,
+  onIncrementExposure,
   onSetReaction,
   onAddCustomFood,
   onRemoveCustomFood,
@@ -56,28 +63,51 @@ export function FirstFoodsView({
   const [customCategory, setCustomCategory] =
     useState<FirstFoodCategory>('Fruits');
 
-  // Map each catalog food to which planned days feature it
   const foodPlanMatches = useMemo(() => {
-    const map = new Map<string, Array<{ day: string; recipeId: string }>>();
+    const map = new Map<string, Array<{ label: string; recipeId: string }>>();
+    const uniqueRecipes: Array<{ recipe: Recipe; dayIdx: number }> = [];
+    const seenRecipeIds = new Set<string>();
+
+    plannedRecipes.forEach((recipe, idx) => {
+      if (seenRecipeIds.has(recipe.id)) return;
+      seenRecipeIds.add(recipe.id);
+      uniqueRecipes.push({ recipe, dayIdx: idx });
+    });
+
     for (const food of FIRST_FOODS_CATALOG) {
-      const matches: Array<{ day: string; recipeId: string }> = [];
-      plannedRecipes.forEach((recipe, idx) => {
+      const matches: Array<{ label: string; recipeId: string }> = [];
+      for (const { recipe, dayIdx } of uniqueRecipes) {
         const hasMatch = recipe.ingredients.some((ing) =>
           food.canonicalIds.includes(ing.canonical_id),
         );
         if (hasMatch) {
-          matches.push({
-            day: DAY_LABELS[idx] ?? `D${idx + 1}`,
-            recipeId: recipe.id,
-          });
+          const label =
+            dayIdx < 7
+              ? DAY_LABELS[dayIdx]
+              : recipe.meal_slot === 'breakfast'
+                ? 'Breakfast'
+                : recipe.meal_slot === 'lunch'
+                  ? 'Lunch'
+                  : recipe.meal_slot === 'snack'
+                    ? 'Snack'
+                    : 'Meal';
+          matches.push({ label, recipeId: recipe.id });
         }
-      });
+      }
       if (matches.length > 0) {
-        map.set(food.id, matches);
+        map.set(food.id, matches.slice(0, 4));
       }
     }
     return map;
   }, [plannedRecipes]);
+
+  const allergenExposures = useMemo(
+    () => getTriedAllergenExposures(triedFoods),
+    [triedFoods],
+  );
+  const triedAllergensCount = TOP_9_ALLERGENS.filter(
+    (a) => allergenExposures[a] > 0,
+  ).length;
 
   const totalCount = FIRST_FOODS_CATALOG.length + customFirstFoods.length;
   const triedCount =
@@ -133,7 +163,7 @@ export function FirstFoodsView({
             </span>
             <div>
               <h2 className="text-base font-bold text-[#1C2420]">
-                António&apos;s First Foods
+                100 First Foods &amp; Top-9 Allergens
               </h2>
               <p className="text-xs text-[#44594E]">
                 Introdução alimentar tracker
@@ -143,7 +173,7 @@ export function FirstFoodsView({
 
           <span
             data-testid="first-foods-progress"
-            className="tabular-nums rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#2F6F4E]"
+            className="tabular-nums shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#2F6F4E]"
           >
             {triedCount}/{totalCount} tried
           </span>
@@ -156,12 +186,44 @@ export function FirstFoodsView({
           />
         </div>
 
+        {/* Top-9 Allergen 3-Day Exposure Tracker */}
+        <div className="mt-3 rounded-xl bg-white/85 p-2.5">
+          <div className="mb-1.5 flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#1C2420]">
+              Top-9 Allergens ({triedAllergensCount}/9)
+            </span>
+            <span className="text-[10px] font-medium text-[#5C6862]">
+              3-day exposure goal
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {TOP_9_ALLERGENS.map((allergen) => {
+              const count = allergenExposures[allergen];
+              return (
+                <span
+                  key={allergen}
+                  data-testid={`allergen-exposure-${allergen}`}
+                  className={`tabular-nums rounded-full px-2 py-0.5 text-[10px] font-semibold ${
+                    count >= 3
+                      ? 'bg-[#2F6F4E] text-white'
+                      : count > 0
+                        ? 'bg-[#FDF0EB] text-[#B84C27]'
+                        : 'bg-[#F2EFE9] text-[#5C6862]'
+                  }`}
+                >
+                  {ALLERGEN_LABELS[allergen].split(' ')[0]} {count}/3
+                </span>
+              );
+            })}
+          </div>
+        </div>
+
         {untriedInPlanCount > 0 && (
           <p className="mt-2.5 flex items-center gap-1.5 text-xs font-medium text-[#2F6F4E]">
             <Sparkles className="h-3.5 w-3.5 shrink-0" />
             <span>
               <strong>{untriedInPlanCount}</strong> untried foods are already in
-              this week&apos;s dinners!
+              this week&apos;s plan!
             </span>
           </p>
         )}
@@ -171,9 +233,9 @@ export function FirstFoodsView({
       <div className="no-scrollbar mb-3 flex items-center gap-1.5 overflow-x-auto pb-1">
         {(
           [
-            { key: 'all', label: 'All' },
+            { key: 'all', label: 'All (100)' },
             { key: 'to_try', label: 'To Try' },
-            { key: 'in_plan', label: `In This Week's Plan (${untriedInPlanCount})` },
+            { key: 'in_plan', label: `In Plan (${untriedInPlanCount})` },
             { key: 'tried', label: 'Tried' },
             { key: 'allergens', label: 'Allergens' },
           ] as Array<{ key: FilterMode; label: string }>
@@ -206,7 +268,7 @@ export function FirstFoodsView({
           type="text"
           value={customName}
           onChange={(e) => setCustomName(e.target.value)}
-          placeholder="Add food (e.g. Papaia, Chuchu)"
+          placeholder="Add custom food (e.g. Chuchu)"
           aria-label="Custom first food name"
           className="min-h-[40px] min-w-0 flex-1 rounded-xl bg-[#FAF8F5] px-3 text-sm text-[#1C2420] placeholder:text-[#8A948E] focus:outline-2 focus:outline-[#2F6F4E]"
         />
@@ -257,6 +319,7 @@ export function FirstFoodsView({
                   const entry = triedFoods[food.id];
                   const isTried = Boolean(entry);
                   const planDays = foodPlanMatches.get(food.id);
+                  const exposures = entry?.exposures ?? (isTried ? 1 : 0);
 
                   return (
                     <li
@@ -295,7 +358,7 @@ export function FirstFoodsView({
                             {food.allergen && (
                               <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[10px] font-semibold text-[#B84C27]">
                                 <ShieldAlert className="h-2.5 w-2.5" />
-                                Allergen
+                                {ALLERGEN_LABELS[food.allergen]}
                               </span>
                             )}
                           </div>
@@ -304,7 +367,6 @@ export function FirstFoodsView({
                             {food.prep6m}
                           </p>
 
-                          {/* On this week's menu */}
                           {planDays && planDays.length > 0 && (
                             <div className="mt-2 flex flex-wrap items-center gap-1">
                               <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#2F6F4E]">
@@ -318,13 +380,12 @@ export function FirstFoodsView({
                                   onClick={() => onOpenCook(m.recipeId)}
                                   className="rounded-full bg-[#E8F2EC] px-2 py-0.5 text-[11px] font-semibold text-[#2F6F4E] hover:bg-[#D5E9DD]"
                                 >
-                                  {m.day} →
+                                  {m.label} →
                                 </button>
                               ))}
                             </div>
                           )}
 
-                          {/* Reaction selector when tried */}
                           {isTried && (
                             <div className="mt-2 flex flex-wrap items-center gap-1.5">
                               {REACTION_OPTIONS.map((opt) => (
@@ -341,6 +402,18 @@ export function FirstFoodsView({
                                   {opt.label}
                                 </button>
                               ))}
+
+                              {food.allergen && (
+                                <button
+                                  type="button"
+                                  data-testid={`exposure-btn-${food.id}`}
+                                  onClick={() => onIncrementExposure(food.id)}
+                                  className="tabular-nums rounded-full bg-[#E8F2EC] px-2.5 py-0.5 text-[11px] font-bold text-[#2F6F4E]"
+                                >
+                                  Day {exposures}/3 +
+                                </button>
+                              )}
+
                               <span className="ml-auto text-[10px] text-[#8A948E]">
                                 {entry?.triedAt}
                               </span>

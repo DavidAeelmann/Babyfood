@@ -42,13 +42,35 @@ async function main() {
   await page.goto(URL, { waitUntil: 'networkidle' });
   await page.waitForSelector('[data-testid="week-grid-view"]');
 
-  // 1. Compact Week View screenshot, slot re-simulate, Favorite/Block, & overflow check
-  await assertNoOverflow(page, 'Week Grid View');
+  // 1. Default state: Dinners enabled by default; Breakfast/Lunch/Snack collapsed
+  await assertNoOverflow(page, 'Default Week View (Dinners)');
+  const lunchVisibleDefault = await page.isVisible('[data-testid="week-slot-0-lunch"]');
+  if (lunchVisibleDefault) {
+    throw new Error('Expected Lunch slot to be collapsed/off by default');
+  }
+
+  // Expand Meal Slots & enable Breakfasts, Lunches, Snacks
+  await page.click('[data-testid="meal-slots-toggle-bar"]');
+  await page.click('[data-testid="slot-toggle-breakfast"]');
+  await page.click('[data-testid="slot-toggle-lunch"]');
+  await page.click('[data-testid="slot-toggle-snack"]');
   await page.waitForSelector('[data-testid="week-slot-0-breakfast"]');
   await page.waitForSelector('[data-testid="week-slot-0-lunch"]');
   await page.waitForSelector('[data-testid="week-slot-0-snack"]');
   await page.waitForSelector('[data-testid="week-slot-0-dinner"]');
+  await assertNoOverflow(page, 'Week Grid View (All 4 Slots)');
 
+  // Test Lock Day protects ALL 4 slots on Day 0
+  await page.click('[data-testid="lock-day-btn-0"]');
+  const breakfastDisabledWhenLocked = await page.isDisabled('[data-testid="resim-btn-0-breakfast"]');
+  const dinnerDisabledWhenLocked = await page.isDisabled('[data-testid="resim-btn-0-dinner"]');
+  if (!breakfastDisabledWhenLocked || !dinnerDisabledWhenLocked) {
+    throw new Error('Expected Lock Day to lock both Breakfast and Dinner on Day 0');
+  }
+  await page.click('[data-testid="lock-day-btn-0"]'); // unlock
+  console.log('✓ Lock Day protects all 4 slots (breakfast, lunch, snack, dinner)');
+
+  // Test slot re-simulate, Favorite, and Block
   const beforeBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
   await page.click('[data-testid="resim-btn-0-breakfast"]');
   const afterBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
@@ -64,134 +86,171 @@ async function main() {
     fullPage: false,
   });
 
-  // Switch to Photo Cards view and verify breakfasts & snacks sections
+  // Switch to Photo Cards view and verify enabled sections
   await page.click('[data-testid="view-mode-cards"]');
   await page.waitForSelector('[data-testid="meal-card-0"]');
   await assertNoOverflow(page, 'Plan Photo Cards View');
   await page.waitForSelector('[data-testid="weekly-breakfasts-section"]');
+  await page.waitForSelector('[data-testid="weekly-lunches-section"]');
   await page.waitForSelector('[data-testid="weekly-snacks-section"]');
-  const snackBtnTextBefore = await page.textContent(
-    '[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]',
-  );
-  await page.click('[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]');
-  const snackBtnTextAfter = await page.textContent(
-    '[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]',
-  );
-  if (snackBtnTextBefore === snackBtnTextAfter) {
-    throw new Error('Expected snack shop toggle to change state');
-  }
-  await page.click('[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]');
-  console.log('✓ Photo Cards, Weekly Breakfasts, & Weekly Snacks verified');
 
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_plan_390x844.png'),
     fullPage: false,
   });
 
-  // 2. Check Shop view & toggling 6_9m vs 2_4y
+  // 2. Shop View: toggling 6_9m vs 2_4y, check item, and Share with Partner QR modal
   await page.click('[data-testid="tab-shop"]');
   await page.waitForSelector('[data-testid="grocery-row-sweet_potato"]');
   await assertNoOverflow(page, 'Shop View');
 
-  // Record initial sweet_potato qty with both 6_9m and 2_4y active (default)
   const qtyBoth = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
-
-  // Toggle off 2_4y (leaving only 6_9m) -> quantity should drop
   await page.click('[data-testid="bracket-pill-2_4y"]');
   const qtyBabyOnly = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
-
-  // Toggle off 6_9m and toggle on 2_4y -> quantity should increase vs 6_9m only
   await page.click('[data-testid="bracket-pill-6_9m"]');
   await page.click('[data-testid="bracket-pill-2_4y"]');
   const qtyToddlerOnly = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
-
-  console.log(
-    `✓ Sweet potato scaled quantities: both=${qtyBoth}, 6_9m=${qtyBabyOnly}, 2_4y=${qtyToddlerOnly}`,
-  );
+  console.log(`✓ Sweet potato scaled quantities: both=${qtyBoth}, 6_9m=${qtyBabyOnly}, 2_4y=${qtyToddlerOnly}`);
   if (qtyBabyOnly === qtyToddlerOnly) {
     throw new Error('Expected sweet_potato quantity to differ between 6_9m and 2_4y');
   }
 
-  // Screenshot Shop view
+  // Check sweet_potato row before sharing
+  await page.click('[data-testid="grocery-row-sweet_potato"] button');
+
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_shop_390x844.png'),
     fullPage: false,
   });
 
-  // 3. Verify Cook View Dynamic Child Prep Card updates with brackets
+  // Open Share with Partner modal and capture magic share URL + QR SVG
+  await page.click('[data-testid="shop-share-btn"]');
+  await page.waitForSelector('[data-testid="share-modal"]');
+  await page.waitForSelector('[data-testid="share-qr-svg"] svg');
+  await assertNoOverflow(page, 'Share QR Modal');
+  const shareUrl = await page.textContent('[data-testid="share-modal"] p.font-mono');
+  if (!shareUrl || !shareUrl.includes('#s=')) {
+    throw new Error(`Expected #s= share URL, got: ${shareUrl}`);
+  }
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_share_qr_390x844.png'),
+    fullPage: false,
+  });
+  await page.click('[data-testid="share-modal"] button[aria-label="Close share modal"]');
+  console.log('✓ Share with Partner QR modal & #s= link verified');
+
+  // Verify #s= URL hydration in a brand-new clean browser context
+  const partnerContext = await browser.newContext({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+  });
+  const partnerPage = await partnerContext.newPage();
+  await partnerPage.goto(shareUrl, { waitUntil: 'networkidle' });
+  await partnerPage.waitForSelector('[data-testid="sync-notice-banner"]');
+  await partnerPage.click('[data-testid="tab-shop"]');
+  const partnerChecked = await partnerPage.getAttribute(
+    '[data-testid="grocery-row-sweet_potato"] button',
+    'aria-pressed',
+  );
+  if (partnerChecked !== 'true') {
+    throw new Error('Expected shared #s= URL to hydrate checked grocery state on partner device');
+  }
+  await partnerContext.close();
+  console.log('✓ Partner #s= URL hash hydration verified in clean context');
+
+  // 3. Cook View: SVG Cut-Shape Diagrams + Mark Tried + Hands-Free Cook Mode
   await page.click('[data-testid="tab-cook"]');
   await page.waitForSelector('[data-testid="dynamic-child-prep-card"]');
   await assertNoOverflow(page, 'Cook View');
 
-  const hasToddlerCard = await page.isVisible('[data-testid="child-prep-bracket-2_4y"]');
-  const hasBabyCard = await page.isVisible('[data-testid="child-prep-bracket-6_9m"]');
-  if (!hasToddlerCard || hasBabyCard) {
-    throw new Error(
-      `Expected only 2_4y prep card visible, got 2_4y=${hasToddlerCard}, 6_9m=${hasBabyCard}`,
-    );
-  }
-
-  // Toggle 6_9m back on -> both prep cards visible
+  // Toggle 6_9m back on so both brackets + SVG cut diagrams show
   await page.click('[data-testid="bracket-pill-6_9m"]');
-  const hasBabyCardNow = await page.isVisible('[data-testid="child-prep-bracket-6_9m"]');
-  if (!hasBabyCardNow) {
-    throw new Error('Expected 6_9m prep card to appear when 6_9m bracket toggled on');
+  await page.waitForSelector('[data-testid="child-prep-bracket-6_9m"]');
+  await page.waitForSelector('[data-testid="child-prep-bracket-2_4y"]');
+  const svgCount = await page.locator('[data-testid^="cut-shape-svg-"] svg').count();
+  if (svgCount < 2) {
+    throw new Error(`Expected >= 2 SVG cut-shape diagrams in ChildPrepCard, got ${svgCount}`);
   }
-  console.log('✓ Dynamic Child Prep Card updates live when toggling 6_9m vs 2_4y');
+  console.log(`✓ Inline SVG Cut-Shape Diagrams rendered (${svgCount} diagrams)`);
 
-  // Verify seasoning split banner is visible
-  const hasSplitBanner = await page.isVisible('[data-testid="seasoning-split-banner"]');
-  if (!hasSplitBanner) {
-    throw new Error('Expected seasoning split banner to be visible on Cook View');
+  // Verify one-tap Mark Tried updates HouseholdBar Foods: X/100 · Allergens: Y/9 badge
+  const badgeBefore = await page.textContent('[data-testid="household-first-foods-badge"]');
+  await page.click('[data-testid="mark-meal-foods-tried-btn"]');
+  const badgeAfter = await page.textContent('[data-testid="household-first-foods-badge"]');
+  if (badgeBefore === badgeAfter) {
+    throw new Error('Expected HouseholdBar Foods/Allergens badge to update after Mark Tried');
   }
+  console.log(`✓ HouseholdBar progress badge updated: "${badgeBefore?.trim()}" -> "${badgeAfter?.trim()}"`);
 
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_cook_390x844.png'),
     fullPage: false,
   });
 
-  // 4. Swap a meal on Plan tab (Week Grid) and verify Shop recalculates with zero duplicate canonical_id rows
+  // Launch Hands-Free Cook Mode, test 56px buttons & auto-parsed countdown timer
+  await page.click('[data-testid="hands-free-launch-btn"]');
+  await page.waitForSelector('[data-testid="hands-free-modal"]');
+  await assertNoOverflow(page, 'Hands-Free Cook Mode');
+
+  const nextBtnBox = await page.locator('[data-testid="hands-free-next-btn"]').boundingBox();
+  if (!nextBtnBox || nextBtnBox.height < 56) {
+    throw new Error(`Expected Hands-Free Next button height >= 56px, got ${nextBtnBox?.height}`);
+  }
+
+  // Step 1 has "15 minutes" timer -> start it and confirm countdown ticks
+  await page.waitForSelector('[data-testid^="step-timer-toggle-"]');
+  const timerBefore = await page.textContent('[data-testid^="step-timer-display-"]');
+  await page.click('[data-testid^="step-timer-toggle-"]');
+  await page.waitForTimeout(1300);
+  const timerAfter = await page.textContent('[data-testid^="step-timer-display-"]');
+  if (timerBefore === timerAfter) {
+    throw new Error(`Expected timer countdown to tick (${timerBefore} -> ${timerAfter})`);
+  }
+  console.log(`✓ Hands-Free Cook Mode timer ticks (${timerBefore} -> ${timerAfter})`);
+
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_hands_free_390x844.png'),
+    fullPage: false,
+  });
+
+  // Advance to Seasoning Split step and confirm banner, then close
+  await page.click('[data-testid="hands-free-next-btn"]');
+  await page.click('[data-testid="hands-free-next-btn"]');
+  await page.waitForSelector('[data-testid="hands-free-split-banner"]');
+  await page.click('[data-testid="close-hands-free-btn"]');
+
+  // 4. Verify First Foods Modal from HouseholdBar badge
+  await page.click('[data-testid="household-first-foods-badge"]');
+  await page.waitForSelector('[data-testid="first-foods-modal"]');
+  await page.waitForSelector('[data-testid="allergen-exposure-sesame"]');
+  await assertNoOverflow(page, 'First Foods Modal (100 Foods & Top-9 Allergens)');
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_first_foods_390x844.png'),
+    fullPage: false,
+  });
+  await page.click('[data-testid="close-first-foods-modal"]');
+
+  // 5. Swap a meal on Plan tab and verify zero duplicate canonical_id rows in Shop
   await page.click('[data-testid="tab-plan"]');
-  await page.waitForSelector('[data-testid="resim-btn-0-dinner"]');
+  await page.click('[data-testid="view-mode-week"]');
   const beforeTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
   await page.click('[data-testid="resim-btn-0-dinner"]');
   const afterTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
   if (beforeTitle === afterTitle) {
-    throw new Error('Expected meal swap on Day 0 dinner to change meal title');
+    throw new Error('Expected dinner swap on Day 0 to change meal title');
   }
-  console.log(`✓ Swapped Day 0 dinner: "${beforeTitle}" -> "${afterTitle}"`);
-
   await page.click('[data-testid="tab-shop"]');
   await page.waitForSelector('[data-testid^="grocery-row-"]');
   const rowTestIds = await page.$$eval('[data-testid^="grocery-row-"]', (els) =>
     els.map((el) => el.getAttribute('data-testid')),
   );
-  const uniqueIds = new Set(rowTestIds);
-  if (uniqueIds.size !== rowTestIds.length) {
-    throw new Error(`Duplicate grocery rows detected after swap: ${rowTestIds.length} vs ${uniqueIds.size}`);
+  if (new Set(rowTestIds).size !== rowTestIds.length) {
+    throw new Error('Duplicate grocery rows detected after swap');
   }
   console.log(`✓ Shop recalculated with ${rowTestIds.length} unique canonical_id rows`);
 
-  // 5. Verify First Foods tab (introdução alimentar)
-  await page.click('[data-testid="tab-intro"]');
-  await page.waitForSelector('[data-testid="first-foods-progress"]');
-  await assertNoOverflow(page, 'First Foods View');
-
-  const beforeProgress = await page.textContent('[data-testid="first-foods-progress"]');
-  await page.click('[data-testid="first-food-toggle-sweet_potato"]');
-  const afterProgress = await page.textContent('[data-testid="first-foods-progress"]');
-  if (beforeProgress === afterProgress) {
-    throw new Error('Expected First Foods progress to update when marking Sweet Potato tried');
-  }
-  console.log(`✓ First Foods progress updated: ${beforeProgress} -> ${afterProgress}`);
-
-  await page.screenshot({
-    path: resolve(ARTIFACT_DIR, 'mobile_first_foods_390x844.png'),
-    fullPage: false,
-  });
-
   await browser.close();
-  console.log('ALL MOBILE VERIFICATION CHECKS PASSED');
+  console.log('ALL V2 MOBILE VERIFICATION CHECKS PASSED');
 }
 
 main().catch((err) => {

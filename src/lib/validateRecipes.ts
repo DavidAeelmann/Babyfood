@@ -1,4 +1,11 @@
-import { AISLE_ORDER, ALLERGEN_KEYS, BRACKET_KEYS, METRIC_UNITS } from './constants';
+import {
+  AISLE_ORDER,
+  ALLERGEN_KEYS,
+  BRACKET_KEYS,
+  CUT_SHAPES,
+  MEAL_SLOTS,
+  METRIC_UNITS,
+} from './constants';
 import type { BracketKey, MetricUnit, Recipe, WeekData } from '../types/recipe';
 
 export interface ValidationIssue {
@@ -177,6 +184,14 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
     });
   }
 
+  if (recipe.meal_slot !== undefined && !MEAL_SLOTS.includes(recipe.meal_slot)) {
+    issues.push({
+      recipeId,
+      rule: 'schema',
+      message: `Invalid meal_slot "${recipe.meal_slot}". Allowed: ${MEAL_SLOTS.join(', ')}.`,
+    });
+  }
+
   // 3. Age adaptations for all 5 brackets
   if (!recipe.age_adaptations || typeof recipe.age_adaptations !== 'object') {
     issues.push({
@@ -196,6 +211,15 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
           recipeId,
           rule: 'adaptations',
           message: `Missing cut_and_texture or serving_note for bracket "${bracket}".`,
+        });
+      } else if (
+        adaptation.cut_shape !== undefined &&
+        !CUT_SHAPES.includes(adaptation.cut_shape)
+      ) {
+        issues.push({
+          recipeId,
+          rule: 'adaptations',
+          message: `Invalid cut_shape "${adaptation.cut_shape}" for bracket "${bracket}".`,
         });
       }
     }

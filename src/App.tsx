@@ -1,27 +1,41 @@
 import { useEffect, useMemo, useState } from 'react';
+import { CheckCircle2, X } from 'lucide-react';
 import { BottomNav, type TabKey } from './components/BottomNav';
 import { CookView } from './components/CookView';
+import { FirstFoodsModal } from './components/FirstFoodsModal';
 import { FirstFoodsView } from './components/FirstFoodsView';
 import { HouseholdBar } from './components/HouseholdBar';
 import { PlanView } from './components/PlanView';
+import { ShareModal } from './components/ShareModal';
 import { ShopView } from './components/ShopView';
 import { useMealPlanner } from './hooks/useMealPlanner';
-import { FIRST_FOODS_CATALOG } from './lib/firstFoods';
+import {
+  FIRST_FOODS_CATALOG,
+  TOP_9_ALLERGENS,
+  getTriedAllergenExposures,
+} from './lib/firstFoods';
+import { buildShareUrl } from './lib/shareSync';
 
 export function App() {
   const {
     loading,
     error,
+    syncNotice,
+    dismissSyncNotice,
     weekData,
     state,
     plannedRecipes,
     weeklyBreakfasts,
+    weeklyLunches,
     weeklySnacks,
+    activeSlotRecipes,
     groceryItems,
     recipeMap,
+    totalCatalogFoodsCount,
     setAdults,
     toggleBracket,
     toggleAllergen,
+    toggleSlotEnabled,
     toggleLock,
     swapMeal,
     shuffleUnlocked,
@@ -29,8 +43,6 @@ export function App() {
     reSimulateWeek,
     toggleFavorite,
     toggleBlocked,
-    toggleBreakfastIncluded,
-    toggleSnackIncluded,
     toggleGroceryItem,
     clearCheckedGroceries,
     setHidePantryStaples,
@@ -40,6 +52,8 @@ export function App() {
     togglePrepIngredient,
     getUntriedFoodsInRecipe,
     toggleFirstFood,
+    incrementFoodExposure,
+    markRecipeFoodsTried,
     setFirstFoodReaction,
     addCustomFirstFood,
     removeCustomFirstFood,
@@ -47,6 +61,8 @@ export function App() {
 
   const [activeTab, setActiveTab] = useState<TabKey>('plan');
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [firstFoodsModalOpen, setFirstFoodsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!selectedRecipeId && plannedRecipes.length > 0) {
@@ -81,15 +97,51 @@ export function App() {
   ]);
 
   const untriedInPlanCount = useMemo(() => {
-    const plannedCanonical = new Set(
-      plannedRecipes.flatMap((r) => r.ingredients.map((i) => i.canonical_id)),
+    const activeCanonical = new Set(
+      activeSlotRecipes.flatMap((r) => r.ingredients.map((i) => i.canonical_id)),
     );
     return FIRST_FOODS_CATALOG.filter(
       (food) =>
         !state.triedFoods[food.id] &&
-        food.canonicalIds.some((cid) => plannedCanonical.has(cid)),
+        food.canonicalIds.some((cid) => activeCanonical.has(cid)),
     ).length;
-  }, [plannedRecipes, state.triedFoods]);
+  }, [activeSlotRecipes, state.triedFoods]);
+
+  const triedFoodsCount = useMemo(() => {
+    return (
+      FIRST_FOODS_CATALOG.filter((f) => Boolean(state.triedFoods[f.id])).length +
+      state.customFirstFoods.filter((c) => Boolean(state.triedFoods[c.id])).length
+    );
+  }, [state.triedFoods, state.customFirstFoods]);
+
+  const triedAllergensCount = useMemo(() => {
+    const exposures = getTriedAllergenExposures(state.triedFoods);
+    return TOP_9_ALLERGENS.filter((a) => exposures[a] > 0).length;
+  }, [state.triedFoods]);
+
+  const shareUrl = useMemo(() => {
+    if (!shareModalOpen || !weekData || typeof window === 'undefined') return '';
+    return buildShareUrl(window.location.href, {
+      weekId: weekData.week_id,
+      household: state.household,
+      enabledSlots: state.enabledSlots,
+      weekGrid: state.weekGrid,
+      plannedIds: state.plannedIds,
+      customItems: state.customItems,
+      groceryItems,
+      checkedGroceries: state.checkedGroceries,
+    });
+  }, [
+    shareModalOpen,
+    weekData,
+    state.household,
+    state.enabledSlots,
+    state.weekGrid,
+    state.plannedIds,
+    state.customItems,
+    groceryItems,
+    state.checkedGroceries,
+  ]);
 
   const handleOpenCook = (recipeId: string) => {
     setSelectedRecipeId(recipeId);
@@ -135,21 +187,47 @@ export function App() {
       <HouseholdBar
         household={state.household}
         weekId={weekData.week_id}
+        triedFoodsCount={triedFoodsCount}
+        totalFoodsCount={totalCatalogFoodsCount}
+        triedAllergensCount={triedAllergensCount}
+        onOpenFirstFoods={() => setFirstFoodsModalOpen(true)}
         onSetAdults={setAdults}
         onToggleBracket={toggleBracket}
         onToggleAllergen={toggleAllergen}
       />
+
+      {syncNotice && (
+        <div
+          data-testid="sync-notice-banner"
+          className="mx-auto mt-2 max-w-md px-4"
+        >
+          <div className="flex items-center justify-between gap-2 rounded-xl border border-[#CFE3D6] bg-[#E8F2EC] px-3 py-2 text-xs font-semibold text-[#2F6F4E]">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              {syncNotice}
+            </span>
+            <button
+              type="button"
+              onClick={dismissSyncNotice}
+              aria-label="Dismiss sync notice"
+              className="rounded-md p-1 hover:bg-white/60"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       <main>
         {activeTab === 'plan' && (
           <PlanView
             plannedRecipes={plannedRecipes}
             weekGrid={state.weekGrid}
+            enabledSlots={state.enabledSlots}
             recipeMap={recipeMap}
             weeklyBreakfasts={weeklyBreakfasts}
-            includedBreakfastIds={state.includedBreakfastIds}
+            weeklyLunches={weeklyLunches}
             weeklySnacks={weeklySnacks}
-            includedSnackIds={state.includedSnackIds}
             lockedIndices={state.lockedIndices}
             favoriteIds={state.favoriteIds}
             blockedIds={state.blockedIds}
@@ -164,8 +242,8 @@ export function App() {
             onReSimulateWeek={reSimulateWeek}
             onToggleFavorite={toggleFavorite}
             onToggleBlocked={toggleBlocked}
-            onToggleBreakfastIncluded={toggleBreakfastIncluded}
-            onToggleSnackIncluded={toggleSnackIncluded}
+            onToggleSlotEnabled={toggleSlotEnabled}
+            onOpenShare={() => setShareModalOpen(true)}
           />
         )}
 
@@ -181,6 +259,7 @@ export function App() {
             onAddCustomItem={addCustomItem}
             onToggleCustomItem={toggleCustomItem}
             onRemoveCustomItem={removeCustomItem}
+            onOpenShare={() => setShareModalOpen(true)}
           />
         )}
 
@@ -190,20 +269,23 @@ export function App() {
             plannedRecipes={plannedRecipes}
             household={state.household}
             prepChecked={state.prepChecked[activeCookRecipe.id] ?? {}}
+            untriedFoods={getUntriedFoodsInRecipe(activeCookRecipe)}
             onSelectRecipe={setSelectedRecipeId}
             onTogglePrepIngredient={(cid) =>
               togglePrepIngredient(activeCookRecipe.id, cid)
             }
+            onMarkMealFoodsTried={markRecipeFoodsTried}
             onBackToPlan={() => handleSelectTab('plan')}
           />
         )}
 
         {activeTab === 'intro' && (
           <FirstFoodsView
-            plannedRecipes={plannedRecipes}
+            plannedRecipes={activeSlotRecipes}
             triedFoods={state.triedFoods}
             customFirstFoods={state.customFirstFoods}
             onToggleFood={toggleFirstFood}
+            onIncrementExposure={incrementFoodExposure}
             onSetReaction={setFirstFoodReaction}
             onAddCustomFood={addCustomFirstFood}
             onRemoveCustomFood={removeCustomFirstFood}
@@ -218,6 +300,28 @@ export function App() {
         remainingShopCount={remainingShopCount}
         untriedInPlanCount={untriedInPlanCount}
       />
+
+      {shareModalOpen && shareUrl && (
+        <ShareModal
+          shareUrl={shareUrl}
+          onClose={() => setShareModalOpen(false)}
+        />
+      )}
+
+      {firstFoodsModalOpen && (
+        <FirstFoodsModal
+          plannedRecipes={activeSlotRecipes}
+          triedFoods={state.triedFoods}
+          customFirstFoods={state.customFirstFoods}
+          onToggleFood={toggleFirstFood}
+          onIncrementExposure={incrementFoodExposure}
+          onSetReaction={setFirstFoodReaction}
+          onAddCustomFood={addCustomFirstFood}
+          onRemoveCustomFood={removeCustomFirstFood}
+          onOpenCook={handleOpenCook}
+          onClose={() => setFirstFoodsModalOpen(false)}
+        />
+      )}
     </div>
   );
 }

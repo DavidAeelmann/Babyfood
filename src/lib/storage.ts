@@ -1,8 +1,9 @@
-import { DEFAULT_HOUSEHOLD } from './constants';
+import { DEFAULT_ENABLED_SLOTS, DEFAULT_HOUSEHOLD } from './constants';
 import type {
   CustomFirstFood,
   CustomGroceryItem,
   DayPlan,
+  EnabledSlots,
   HouseholdConfig,
   TriedFoodEntry,
 } from '../types/recipe';
@@ -12,6 +13,7 @@ const STORAGE_KEY = 'littletable_planner_v1';
 export interface PersistedState {
   weekId: string | null;
   household: HouseholdConfig;
+  enabledSlots: EnabledSlots;
   plannedIds: string[];
   weekGrid: DayPlan[];
   includedBreakfastIds: string[];
@@ -38,6 +40,7 @@ export function getDefaultPersistedState(): PersistedState {
   return {
     weekId: null,
     household: DEFAULT_HOUSEHOLD,
+    enabledSlots: { ...DEFAULT_ENABLED_SLOTS },
     plannedIds: [],
     weekGrid: [],
     includedBreakfastIds: [],
@@ -73,6 +76,12 @@ export function loadPersistedState(): PersistedState {
         excludedAllergens: Array.isArray(parsed.household?.excludedAllergens)
           ? parsed.household.excludedAllergens
           : defaults.household.excludedAllergens,
+      },
+      enabledSlots: {
+        breakfast: Boolean(parsed.enabledSlots?.breakfast ?? defaults.enabledSlots.breakfast),
+        lunch: Boolean(parsed.enabledSlots?.lunch ?? defaults.enabledSlots.lunch),
+        snack: Boolean(parsed.enabledSlots?.snack ?? defaults.enabledSlots.snack),
+        dinner: Boolean(parsed.enabledSlots?.dinner ?? defaults.enabledSlots.dinner),
       },
       plannedIds: Array.isArray(parsed.plannedIds) ? parsed.plannedIds : [],
       weekGrid: Array.isArray(parsed.weekGrid) ? parsed.weekGrid : [],

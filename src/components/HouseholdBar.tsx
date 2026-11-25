@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Minus, Plus, ShieldAlert, Users } from 'lucide-react';
+import { Minus, Plus, ShieldAlert, Sprout, Users } from 'lucide-react';
 import {
   ALLERGEN_KEYS,
   ALLERGEN_LABELS,
@@ -12,6 +12,10 @@ import type { Allergen, BracketKey, HouseholdConfig } from '../types/recipe';
 interface HouseholdBarProps {
   household: HouseholdConfig;
   weekId?: string;
+  triedFoodsCount: number;
+  totalFoodsCount: number;
+  triedAllergensCount: number;
+  onOpenFirstFoods: () => void;
   onSetAdults: (count: number) => void;
   onToggleBracket: (bracket: BracketKey) => void;
   onToggleAllergen: (allergen: Allergen) => void;
@@ -20,6 +24,10 @@ interface HouseholdBarProps {
 export function HouseholdBar({
   household,
   weekId,
+  triedFoodsCount,
+  totalFoodsCount,
+  triedAllergensCount,
+  onOpenFirstFoods,
   onSetAdults,
   onToggleBracket,
   onToggleAllergen,
@@ -74,7 +82,7 @@ export function HouseholdBar({
         </div>
 
         {/* Second row: Adults stepper + Child bracket pills */}
-        <div className="mt-2.5 flex items-center gap-2">
+        <div className="mt-2 flex items-center gap-2">
           <div className="inline-flex shrink-0 items-center rounded-full border border-[#E0DAD0] bg-white p-0.5">
             <span className="flex items-center gap-1 pl-2 pr-1 text-[11px] font-semibold text-[#5C6862]">
               <Users className="h-3 w-3" />
@@ -131,6 +139,22 @@ export function HouseholdBar({
               );
             })}
           </div>
+        </div>
+
+        {/* Third row: Compact First Foods & Top-9 Allergen Progress Badge */}
+        <div className="mt-2 flex items-center justify-between gap-2">
+          <button
+            type="button"
+            data-testid="household-first-foods-badge"
+            onClick={onOpenFirstFoods}
+            className="tabular-nums inline-flex items-center gap-1.5 rounded-full border border-[#CFE3D6] bg-[#E8F2EC]/80 px-2.5 py-1 text-[11px] font-bold text-[#2F6F4E] transition-colors hover:bg-[#DCEADF]"
+          >
+            <Sprout className="h-3.5 w-3.5 shrink-0" />
+            <span>
+              Foods: {triedFoodsCount}/{totalFoodsCount} · Allergens:{' '}
+              {triedAllergensCount}/9
+            </span>
+          </button>
         </div>
 
         {/* Collapsible Allergen Exclusions */}

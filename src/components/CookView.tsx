@@ -1,4 +1,14 @@
-import { ArrowLeft, Check, Clock, ShieldAlert, Sun, Utensils } from 'lucide-react';
+import { useState } from 'react';
+import {
+  ArrowLeft,
+  Check,
+  Clock,
+  PlayCircle,
+  ShieldAlert,
+  Sprout,
+  Sun,
+  Utensils,
+} from 'lucide-react';
 import { DAY_LABELS } from '../lib/constants';
 import {
   formatQuantity,
@@ -8,15 +18,18 @@ import {
 import { resolveAssetUrl } from '../lib/storage';
 import { useWakeLock } from '../hooks/useWakeLock';
 import { ChildPrepCard } from './ChildPrepCard';
-import type { HouseholdConfig, Recipe } from '../types/recipe';
+import { HandsFreeCookModal } from './HandsFreeCookModal';
+import type { FirstFoodItem, HouseholdConfig, Recipe } from '../types/recipe';
 
 interface CookViewProps {
   recipe: Recipe;
   plannedRecipes: Recipe[];
   household: HouseholdConfig;
   prepChecked: Record<string, boolean>;
+  untriedFoods: FirstFoodItem[];
   onSelectRecipe: (recipeId: string) => void;
   onTogglePrepIngredient: (canonicalId: string) => void;
+  onMarkMealFoodsTried: (recipe: Recipe) => void;
   onBackToPlan: () => void;
 }
 
@@ -25,12 +38,19 @@ export function CookView({
   plannedRecipes,
   household,
   prepChecked,
+  untriedFoods,
   onSelectRecipe,
   onTogglePrepIngredient,
+  onMarkMealFoodsTried,
   onBackToPlan,
 }: CookViewProps) {
   const wakeLock = useWakeLock();
+  const [handsFreeOpen, setHandsFreeOpen] = useState(false);
   const scaleFactor = getRecipeScaleFactor(household, recipe.base_servings);
+  const showBabyNewFoods =
+    untriedFoods.length > 0 &&
+    (household.activeBrackets.includes('6_9m') ||
+      household.activeBrackets.includes('9_12m'));
 
   return (
     <section className="mx-auto max-w-md pb-24">
@@ -105,8 +125,45 @@ export function CookView({
         </div>
       </div>
 
-      <div className="space-y-5 px-4 pt-4">
-        {/* Dynamic Child Prep Card */}
+      <div className="space-y-4 px-4 pt-4">
+        {/* Hands-Free Cook Mode CTA */}
+        <button
+          type="button"
+          data-testid="hands-free-launch-btn"
+          onClick={() => setHandsFreeOpen(true)}
+          className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-[#1C2420] px-4 text-sm font-bold text-white shadow-xs transition-colors hover:bg-[#2C3731]"
+        >
+          <PlayCircle className="h-4 w-4 text-[#90CFA9]" />
+          Hands-Free Cook Mode (Timers &amp; Voice)
+        </button>
+
+        {/* New First Foods Pill & One-Tap Mark Meal Tried */}
+        {showBabyNewFoods && (
+          <div
+            data-testid="cook-new-foods-banner"
+            className="flex items-center justify-between gap-2 rounded-2xl border border-[#F5DFB8] bg-[#FEF5E6] p-3"
+          >
+            <div className="min-w-0">
+              <p className="flex items-center gap-1 text-xs font-bold text-[#9C5C00]">
+                <Sprout className="h-3.5 w-3.5 shrink-0" />
+                New foods in this meal:
+              </p>
+              <p className="truncate text-xs text-[#6F4300]">
+                {untriedFoods.map((f) => f.name).join(', ')}
+              </p>
+            </div>
+            <button
+              type="button"
+              data-testid="mark-meal-foods-tried-btn"
+              onClick={() => onMarkMealFoodsTried(recipe)}
+              className="shrink-0 rounded-xl bg-[#2F6F4E] px-3 py-2 text-xs font-bold text-white hover:bg-[#25593E]"
+            >
+              Mark Tried
+            </button>
+          </div>
+        )}
+
+        {/* Dynamic Child Prep Card with SVG Cut-Shape Diagrams */}
         <ChildPrepCard
           activeBrackets={household.activeBrackets}
           adaptations={recipe.age_adaptations}
@@ -215,6 +272,13 @@ export function CookView({
           })}
         </div>
       </div>
+
+      {handsFreeOpen && (
+        <HandsFreeCookModal
+          recipe={recipe}
+          onClose={() => setHandsFreeOpen(false)}
+        />
+      )}
     </section>
   );
 }

@@ -30,12 +30,25 @@ function getIsoWeekId(date = new Date()): string {
 }
 
 function normalizeWeekData(data: WeekData, weekId: string): WeekData {
+  const bSet = new Set(data.breakfast_ids ?? []);
+  const lSet = new Set(data.lunch_ids ?? []);
+  const sSet = new Set(data.snack_ids ?? []);
+
   return {
     ...data,
     week_id: weekId,
     generated_at: new Date().toISOString(),
     recipes: data.recipes.map((r) => ({
       ...r,
+      meal_slot:
+        r.meal_slot ??
+        (bSet.has(r.id)
+          ? 'breakfast'
+          : lSet.has(r.id)
+            ? 'lunch'
+            : sSet.has(r.id)
+              ? 'snack'
+              : 'dinner'),
       image_url: `meals/${r.id}.webp`,
     })),
   };

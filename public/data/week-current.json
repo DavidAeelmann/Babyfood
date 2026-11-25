@@ -33,44 +33,117 @@
       "cook_minutes": 25,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["fish"],
+      "allergens": [
+        "fish"
+      ],
       "ingredients": [
-        { "canonical_id": "salmon_fillet", "name": "Salmon fillets", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 600, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "dried_thyme", "name": "Dried thyme", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "salmon_fillet",
+          "name": "Salmon fillets",
+          "quantity": 600,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes",
+          "quantity": 600,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Broccoli florets",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Lemon",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "dried_thyme",
+          "name": "Dried thyme",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 200°C. Cut sweet potatoes into thick wedges and toss with 1 tbsp olive oil and dried thyme on a lined baking tray. Roast 15 minutes.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Place salmon fillets on the tray, drizzle with remaining olive oil, minced garlic, and lemon juice. Add broccoli florets around the salmon and bake 12 minutes until salmon flakes easily.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Set aside baby and toddler portions of salmon, sweet potato, and steamed-soft broccoli before salting.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season remaining adult portions with flaky sea salt and black pepper, then serve warm with lemon wedges.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 200°C. Cut sweet potatoes into thick wedges and toss with 1 tbsp olive oil and dried thyme on a lined baking tray. Roast 15 minutes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Place salmon fillets on the tray, drizzle with remaining olive oil, minced garlic, and lemon juice. Add broccoli florets around the salmon and bake 12 minutes until salmon flakes easily.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Set aside baby and toddler portions of salmon, sweet potato, and steamed-soft broccoli before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season remaining adult portions with flaky sea salt and black pepper, then serve warm with lemon wedges.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Flake salmon finely, checking carefully for pin bones. Serve soft sweet potato wedges as finger-length strips or lightly mashed with olive oil.",
-          "serving_note": "Zero added salt. Steam broccoli until easily squished between two fingers."
+          "serving_note": "Zero added salt. Steam broccoli until easily squished between two fingers.",
+          "cut_shape": "flaked-fine"
         },
         "9_12m": {
           "cut_and_texture": "Flake salmon into pea-sized moist flakes and dice roasted sweet potato into soft 1 cm cubes.",
-          "serving_note": "Zero added salt. Offer small soft broccoli florets for pincer grasp."
+          "serving_note": "Zero added salt. Offer small soft broccoli florets for pincer grasp.",
+          "cut_shape": "flaked-fine"
         },
         "12_24m": {
           "cut_and_texture": "Flake salmon into forkable chunks; cut sweet potato and broccoli into bite-sized pieces.",
-          "serving_note": "A light squeeze of lemon adds brightness without needing salt."
+          "serving_note": "A light squeeze of lemon adds brightness without needing salt.",
+          "cut_shape": "flaked-fine"
         },
         "2_4y": {
           "cut_and_texture": "Serve a small fillet portion with roasted sweet potato wedges and broccoli trees.",
-          "serving_note": "Light pinch of salt and pepper; serve dipping yogurt on the side if desired."
+          "serving_note": "Light pinch of salt and pepper; serve dipping yogurt on the side if desired.",
+          "cut_shape": "finger-strip"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small plate with whole salmon portion, wedges, and broccoli.",
-          "serving_note": "Seasoned to taste with lemon and herbs."
+          "serving_note": "Seasoned to taste with lemon and herbs.",
+          "cut_shape": "finger-strip"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "creamy-red-lentil-dal",
@@ -82,45 +155,134 @@
       "min_age_months": 6,
       "allergens": [],
       "ingredients": [
-        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "coconut_milk", "name": "Full-fat coconut milk", "quantity": 400, "unit": "ml", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 3, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 2, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "red_lentils",
+          "name": "Dried red lentils",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "coconut_milk",
+          "name": "Full-fat coconut milk",
+          "quantity": 400,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Baby spinach",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Yellow onion",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "basmati_rice",
+          "name": "Basmati rice",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ground_cumin",
+          "name": "Ground cumin",
+          "quantity": 2,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Rinse basmati rice and cook in 600 ml water until fluffy. Meanwhile, sauté diced onion and minced garlic in olive oil for 4 minutes.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Stir in ground cumin, rinsed red lentils, 1 cm sweet potato cubes, coconut milk, and 350 ml water. Simmer 18 minutes until lentils are creamy and sweet potato is fork-tender.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "Fold in baby spinach until wilted.", "is_seasoning_split_point": false },
-        { "order": 4, "text": "SEASONING SPLIT: Portion out baby and toddler servings of dal and rice before adding salt or chili.", "is_seasoning_split_point": true },
-        { "order": 5, "text": "Season the remaining pot with salt and chili flakes for adults and serve warm.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Rinse basmati rice and cook in 600 ml water until fluffy. Meanwhile, sauté diced onion and minced garlic in olive oil for 4 minutes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Stir in ground cumin, rinsed red lentils, 1 cm sweet potato cubes, coconut milk, and 350 ml water. Simmer 18 minutes until lentils are creamy and sweet potato is fork-tender.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Fold in baby spinach until wilted.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 4,
+          "text": "SEASONING SPLIT: Portion out baby and toddler servings of dal and rice before adding salt or chili.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 5,
+          "text": "Season the remaining pot with salt and chili flakes for adults and serve warm.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Mash sweet potato cubes slightly into the thick lentil purée; finely chop wilted spinach leaves.",
-          "serving_note": "Zero added salt. Serve warm on a pre-loaded spoon or mixed with soft rice."
+          "serving_note": "Zero added salt. Serve warm on a pre-loaded spoon or mixed with soft rice.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Keep dal thick enough to scoop; ensure sweet potato is soft 1 cm cubes and spinach is finely ribboned.",
-          "serving_note": "Zero added salt. Great iron-rich meal paired with soft rice."
+          "serving_note": "Zero added salt. Great iron-rich meal paired with soft rice.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Serve spoonable dal over basmati rice with soft sweet potato chunks.",
-          "serving_note": "Minimal salt; mild cumin flavor is baby-friendly."
+          "serving_note": "Minimal salt; mild cumin flavor is baby-friendly.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Serve in a shallow bowl with rice on the side for dipping or mixing.",
-          "serving_note": "Mildly seasoned; add a dollop of plain yogurt if too warm."
+          "serving_note": "Mildly seasoned; add a dollop of plain yogurt if too warm.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small bowl of dal and rice.",
-          "serving_note": "Lightly salted; optional mild spice."
+          "serving_note": "Lightly salted; optional mild spice.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "roast-chicken-root-veg-traybake",
@@ -132,42 +294,113 @@
       "min_age_months": 6,
       "allergens": [],
       "ingredients": [
-        { "canonical_id": "chicken_thigh", "name": "Boneless skinless chicken thighs", "quantity": 650, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 450, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 4, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "dried_thyme", "name": "Dried thyme", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "chicken_thigh",
+          "name": "Boneless skinless chicken thighs",
+          "quantity": 650,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Yellow onion",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "dried_thyme",
+          "name": "Dried thyme",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 200°C. Toss carrot batons, sweet potato cubes, wedged onion, and smashed garlic with olive oil and thyme on a large roasting pan.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Nestle chicken thighs among the vegetables and roast 28–30 minutes until chicken reaches 74°C and carrots are very tender.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Remove baby and toddler chicken thighs and soft-roasted vegetables to a plate before salting.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Sprinkle sea salt and cracked pepper over adult portions and drizzle with pan juices.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 200°C. Toss carrot batons, sweet potato cubes, wedged onion, and smashed garlic with olive oil and thyme on a large roasting pan.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Nestle chicken thighs among the vegetables and roast 28–30 minutes until chicken reaches 74°C and carrots are very tender.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Remove baby and toddler chicken thighs and soft-roasted vegetables to a plate before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Sprinkle sea salt and cracked pepper over adult portions and drizzle with pan juices.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Shred moist dark-meat chicken into soft strips; serve soft-roasted carrot and sweet potato as finger-length mashable strips.",
-          "serving_note": "Zero added salt. Confirm carrots squish easily between thumb and forefinger."
+          "serving_note": "Zero added salt. Confirm carrots squish easily between thumb and forefinger.",
+          "cut_shape": "flaked-fine"
         },
         "9_12m": {
           "cut_and_texture": "Finely shred or dice chicken into 1 cm moist pieces; dice soft carrots and sweet potato.",
-          "serving_note": "Zero added salt. Moisten shredded chicken with a spoon of pan juices."
+          "serving_note": "Zero added salt. Moisten shredded chicken with a spoon of pan juices.",
+          "cut_shape": "flaked-fine"
         },
         "12_24m": {
           "cut_and_texture": "Cut chicken into bite-sized tender cubes; halve carrot batons lengthwise.",
-          "serving_note": "Minimal salt; pan juices keep meat tender."
+          "serving_note": "Minimal salt; pan juices keep meat tender.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Serve sliced chicken thigh with roasted root veggie chunks.",
-          "serving_note": "Lightly seasoned."
+          "serving_note": "Lightly seasoned.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Whole or halved chicken thigh with roasted vegetables.",
-          "serving_note": "Standard small plate."
+          "serving_note": "Standard small plate.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "spinach-ricotta-penne",
@@ -177,44 +410,115 @@
       "cook_minutes": 15,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["dairy", "wheat"],
+      "allergens": [
+        "dairy",
+        "wheat"
+      ],
       "ingredients": [
-        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 360, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "ricotta_cheese", "name": "Whole-milk ricotta", "quantity": 250, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 180, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "cherry_tomatoes", "name": "Cherry tomatoes", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Penne pasta",
+          "quantity": 360,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ricotta_cheese",
+          "name": "Whole-milk ricotta",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Baby spinach",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cherry_tomatoes",
+          "name": "Cherry tomatoes",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Boil penne in unsalted water until very tender (about 11 minutes), reserving 100 ml pasta water before draining.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Meanwhile, sauté halved cherry tomatoes and minced garlic in olive oil for 6 minutes until tomatoes burst and soften. Toss in baby spinach to wilt.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "Toss warm pasta with ricotta, tomato-spinach mixture, and splashes of pasta water until creamy.", "is_seasoning_split_point": false },
-        { "order": 4, "text": "SEASONING SPLIT: Portion out baby and toddler bowls before salting or adding black pepper.", "is_seasoning_split_point": true },
-        { "order": 5, "text": "Season adult bowls with salt, black pepper, and extra olive oil.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Boil penne in unsalted water until very tender (about 11 minutes), reserving 100 ml pasta water before draining.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Meanwhile, sauté halved cherry tomatoes and minced garlic in olive oil for 6 minutes until tomatoes burst and soften. Toss in baby spinach to wilt.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Toss warm pasta with ricotta, tomato-spinach mixture, and splashes of pasta water until creamy.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 4,
+          "text": "SEASONING SPLIT: Portion out baby and toddler bowls before salting or adding black pepper.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 5,
+          "text": "Season adult bowls with salt, black pepper, and extra olive oil.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Crush and quarter all cherry tomatoes thoroughly so no round skins remain; finely chop wilted spinach. Serve whole soft penne tubes coated in ricotta.",
-          "serving_note": "Zero added salt. Penne tubes are easy for babies to palm-grasp."
+          "serving_note": "Zero added salt. Penne tubes are easy for babies to palm-grasp.",
+          "cut_shape": "quartered-lengthwise"
         },
         "9_12m": {
           "cut_and_texture": "Quarter cherry tomatoes into small soft pieces; halve penne lengthwise or into bite-sized pieces.",
-          "serving_note": "Zero added salt. Ricotta clings well to pasta for easy self-feeding."
+          "serving_note": "Zero added salt. Ricotta clings well to pasta for easy self-feeding.",
+          "cut_shape": "quartered-lengthwise"
         },
         "12_24m": {
           "cut_and_texture": "Ensure every cherry tomato is quartered; chop penne into forkable halves.",
-          "serving_note": "Minimal salt; naturally sweet burst tomatoes."
+          "serving_note": "Minimal salt; naturally sweet burst tomatoes.",
+          "cut_shape": "quartered-lengthwise"
         },
         "2_4y": {
           "cut_and_texture": "Halved or quartered cherry tomatoes with whole penne.",
-          "serving_note": "Lightly salted and peppered."
+          "serving_note": "Lightly salted and peppered.",
+          "cut_shape": "quartered-lengthwise"
         },
         "4y_plus": {
           "cut_and_texture": "Standard pasta bowl with halved tomatoes.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "mild-chickpea-coconut-curry",
@@ -226,45 +530,134 @@
       "min_age_months": 6,
       "allergens": [],
       "ingredients": [
-        { "canonical_id": "canned_chickpeas", "name": "No-salt-added chickpeas", "quantity": 480, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "coconut_milk", "name": "Full-fat coconut milk", "quantity": 400, "unit": "ml", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 120, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 1.5, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "canned_chickpeas",
+          "name": "No-salt-added chickpeas",
+          "quantity": 480,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "coconut_milk",
+          "name": "Full-fat coconut milk",
+          "quantity": 400,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Baby spinach",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "basmati_rice",
+          "name": "Basmati rice",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Yellow onion",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ground_cumin",
+          "name": "Ground cumin",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Cook basmati rice in 600 ml water. In a wide skillet, sauté finely diced onion, garlic, and thin carrot rounds in olive oil for 5 minutes.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Add cumin, drained chickpeas, and coconut milk. Simmer 15 minutes until carrots are very soft and sauce thickens.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "Stir in baby spinach until wilted.", "is_seasoning_split_point": false },
-        { "order": 4, "text": "SEASONING SPLIT: Dish out baby and toddler portions before salting.", "is_seasoning_split_point": true },
-        { "order": 5, "text": "Season adult curry with salt, lime juice, and optional chili, then serve over rice.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Cook basmati rice in 600 ml water. In a wide skillet, sauté finely diced onion, garlic, and thin carrot rounds in olive oil for 5 minutes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Add cumin, drained chickpeas, and coconut milk. Simmer 15 minutes until carrots are very soft and sauce thickens.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Stir in baby spinach until wilted.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 4,
+          "text": "SEASONING SPLIT: Dish out baby and toddler portions before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 5,
+          "text": "Season adult curry with salt, lime juice, and optional chili, then serve over rice.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Mash chickpeas completely with a fork into the coconut sauce (never serve whole chickpeas) and mash soft carrot pieces.",
-          "serving_note": "Zero added salt. Mix with soft rice for easy scooping."
+          "serving_note": "Zero added salt. Mix with soft rice for easy scooping.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Flatten every chickpea between your fingers or mash coarsely; dice soft carrots into 0.5 cm pieces.",
-          "serving_note": "Zero added salt. Flattened chickpeas are safe for pincer grasp."
+          "serving_note": "Zero added salt. Flattened chickpeas are safe for pincer grasp.",
+          "cut_shape": "smashed-flat"
         },
         "12_24m": {
           "cut_and_texture": "Lightly smash chickpeas so none are whole round spheres; cut carrots into soft bite-sized quarters.",
-          "serving_note": "Minimal salt; creamy coconut sauce is gentle."
+          "serving_note": "Minimal salt; creamy coconut sauce is gentle.",
+          "cut_shape": "quartered-lengthwise"
         },
         "2_4y": {
           "cut_and_texture": "Serve whole soft chickpeas with rice and veggies.",
-          "serving_note": "Mild curry flavor; offer yogurt if needed."
+          "serving_note": "Mild curry flavor; offer yogurt if needed.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small bowl of chickpea curry and rice.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "turkey-veggie-meatballs-mash",
@@ -274,45 +667,125 @@
       "cook_minutes": 20,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg"],
+      "allergens": [
+        "egg"
+      ],
       "ingredients": [
-        { "canonical_id": "ground_turkey", "name": "Lean ground turkey", "quantity": 550, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 650, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots (finely grated)", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 60, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "egg", "name": "Egg", "quantity": 1, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "ground_turkey",
+          "name": "Lean ground turkey",
+          "quantity": 550,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes",
+          "quantity": 650,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots (finely grated)",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Broccoli florets",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Egg",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 200°C. Mix ground turkey, finely grated carrot, rolled oats, beaten egg, minced garlic, and dried herbs. Roll into soft meatballs and bake 18–20 minutes until cooked through.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Boil peeled sweet potato cubes 15 minutes until tender; steam broccoli florets during the last 5 minutes. Mash sweet potatoes with olive oil.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Plate baby and toddler meatballs, mash, and broccoli before salting.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult sweet potato mash and meatballs with sea salt and black pepper.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 200°C. Mix ground turkey, finely grated carrot, rolled oats, beaten egg, minced garlic, and dried herbs. Roll into soft meatballs and bake 18–20 minutes until cooked through.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Boil peeled sweet potato cubes 15 minutes until tender; steam broccoli florets during the last 5 minutes. Mash sweet potatoes with olive oil.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Plate baby and toddler meatballs, mash, and broccoli before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult sweet potato mash and meatballs with sea salt and black pepper.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Cut meatballs into soft halves or thick strips; serve mashed sweet potato and very soft steamed broccoli florets.",
-          "serving_note": "Zero added salt. Grated carrot keeps meatballs moist and easy to gum."
+          "serving_note": "Zero added salt. Grated carrot keeps meatballs moist and easy to gum.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Crumble or dice meatballs into 1 cm soft bites; serve with mash and small broccoli pieces.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "flaked-fine"
         },
         "12_24m": {
           "cut_and_texture": "Quarter meatballs into forkable pieces alongside mash and broccoli.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "quartered-lengthwise"
         },
         "2_4y": {
           "cut_and_texture": "Halved meatballs with sweet potato mash and broccoli.",
-          "serving_note": "Lightly seasoned."
+          "serving_note": "Lightly seasoned.",
+          "cut_shape": "fork-mash"
         },
         "4y_plus": {
           "cut_and_texture": "Whole meatballs, mash, and broccoli.",
-          "serving_note": "Standard small plate."
+          "serving_note": "Standard small plate.",
+          "cut_shape": "fork-mash"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "sheet-pan-cod-tomatoes",
@@ -322,44 +795,118 @@
       "cook_minutes": 18,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["fish", "wheat"],
+      "allergens": [
+        "fish",
+        "wheat"
+      ],
       "ingredients": [
-        { "canonical_id": "cod_fillet", "name": "Fresh cod fillets", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "cherry_tomatoes", "name": "Cherry tomatoes", "quantity": 250, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "zucchini", "name": "Zucchini", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "sourdough_bread", "name": "Crusty sourdough loaf", "quantity": 250, "unit": "g", "aisle": "Bakery", "is_pantry_staple": false },
-        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "cod_fillet",
+          "name": "Fresh cod fillets",
+          "quantity": 600,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cherry_tomatoes",
+          "name": "Cherry tomatoes",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Zucchini",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sourdough_bread",
+          "name": "Crusty sourdough loaf",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Lemon",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 200°C. Toss sliced zucchini and halved cherry tomatoes with 1 tbsp olive oil and minced garlic on a sheet pan. Roast 8 minutes.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Nestle cod fillets onto the pan, drizzle with remaining olive oil and lemon juice, and bake 10–12 minutes until cod flakes easily.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Remove baby and toddler portions of cod, zucchini, and tomatoes before salting.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult portions with sea salt and pepper, and serve with warm sliced sourdough for dipping in the juices.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 200°C. Toss sliced zucchini and halved cherry tomatoes with 1 tbsp olive oil and minced garlic on a sheet pan. Roast 8 minutes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Nestle cod fillets onto the pan, drizzle with remaining olive oil and lemon juice, and bake 10–12 minutes until cod flakes easily.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Remove baby and toddler portions of cod, zucchini, and tomatoes before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult portions with sea salt and pepper, and serve with warm sliced sourdough for dipping in the juices.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Flake cod finely (check for bones); quarter and mash burst cherry tomatoes completely; cut soft zucchini into finger-length strips.",
-          "serving_note": "Zero added salt. Offer a lightly toasted sourdough strip dipped in tomato-olive oil juices."
+          "serving_note": "Zero added salt. Offer a lightly toasted sourdough strip dipped in tomato-olive oil juices.",
+          "cut_shape": "quartered-lengthwise"
         },
         "9_12m": {
           "cut_and_texture": "Flake cod into moist bites; quarter cherry tomatoes into small soft pieces; dice zucchini.",
-          "serving_note": "Zero added salt. Small soft bread cubes."
+          "serving_note": "Zero added salt. Small soft bread cubes.",
+          "cut_shape": "quartered-lengthwise"
         },
         "12_24m": {
           "cut_and_texture": "Quarter cherry tomatoes; serve flaky cod chunks, soft zucchini coins, and torn bread.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "quartered-lengthwise"
         },
         "2_4y": {
           "cut_and_texture": "Halved cherry tomatoes with flaky cod, zucchini, and toasted sourdough.",
-          "serving_note": "Lightly seasoned."
+          "serving_note": "Lightly seasoned.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small plate with cod, roasted veggies, and bread.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "beef-lentil-bolognese",
@@ -369,45 +916,125 @@
       "cook_minutes": 25,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["wheat"],
+      "allergens": [
+        "wheat"
+      ],
       "ingredients": [
-        { "canonical_id": "ground_beef", "name": "Lean ground beef", "quantity": 450, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 120, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "crushed_tomatoes", "name": "No-salt-added crushed tomatoes", "quantity": 400, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots (finely grated)", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 360, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "ground_beef",
+          "name": "Lean ground beef",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "red_lentils",
+          "name": "Dried red lentils",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "crushed_tomatoes",
+          "name": "No-salt-added crushed tomatoes",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots (finely grated)",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Yellow onion",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Penne pasta",
+          "quantity": 360,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Sauté finely diced onion, garlic, and grated carrot in olive oil for 4 minutes. Add ground beef and brown, breaking into fine crumbles.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Stir in rinsed red lentils, crushed tomatoes, and 250 ml water. Simmer 20 minutes until lentils dissolve into a thick, rich sauce. Cook penne in unsalted water.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Toss baby and toddler pasta with plain bolognese sauce before salting.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult bolognese with sea salt, black pepper, and fresh basil.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Sauté finely diced onion, garlic, and grated carrot in olive oil for 4 minutes. Add ground beef and brown, breaking into fine crumbles.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Stir in rinsed red lentils, crushed tomatoes, and 250 ml water. Simmer 20 minutes until lentils dissolve into a thick, rich sauce. Cook penne in unsalted water.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Toss baby and toddler pasta with plain bolognese sauce before salting.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult bolognese with sea salt, black pepper, and fresh basil.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Ensure beef is finely crumbled and lentils are completely soft; coat whole cooked penne tubes in sauce.",
-          "serving_note": "Zero added salt. High-iron beef + lentil combination."
+          "serving_note": "Zero added salt. High-iron beef + lentil combination.",
+          "cut_shape": "flaked-fine"
         },
         "9_12m": {
           "cut_and_texture": "Halve penne into bite-sized pieces tossed thickly in meaty lentil sauce.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Cut penne into forkable halves with generous sauce.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Whole penne with beef-lentil bolognese.",
-          "serving_note": "Lightly salted."
+          "serving_note": "Lightly salted.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small bowl of pasta bolognese.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "teriyaki-ginger-chicken-bowls",
@@ -417,44 +1044,117 @@
       "cook_minutes": 20,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["soy"],
+      "allergens": [
+        "soy"
+      ],
       "ingredients": [
-        { "canonical_id": "chicken_thigh", "name": "Boneless skinless chicken thighs", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 320, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots", "quantity": 200, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "soy_sauce", "name": "Low-sodium soy sauce", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "chicken_thigh",
+          "name": "Boneless skinless chicken thighs",
+          "quantity": 600,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "basmati_rice",
+          "name": "Basmati rice",
+          "quantity": 320,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Broccoli florets",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "soy_sauce",
+          "name": "Low-sodium soy sauce",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Cook basmati rice in 640 ml water. Steam broccoli florets and thin carrot rounds for 7–8 minutes until fork-tender.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Sauté diced chicken thighs and minced garlic in olive oil for 8–10 minutes until golden and cooked through (74°C) with zero soy sauce yet.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Remove all baby and toddler portions of plain garlic chicken, rice, broccoli, and soft carrots BEFORE adding soy sauce.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Pour low-sodium soy sauce over the remaining adult chicken in the skillet, toss 1 minute to glaze, and serve in bowls.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Cook basmati rice in 640 ml water. Steam broccoli florets and thin carrot rounds for 7–8 minutes until fork-tender.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Sauté diced chicken thighs and minced garlic in olive oil for 8–10 minutes until golden and cooked through (74°C) with zero soy sauce yet.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Remove all baby and toddler portions of plain garlic chicken, rice, broccoli, and soft carrots BEFORE adding soy sauce.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Pour low-sodium soy sauce over the remaining adult chicken in the skillet, toss 1 minute to glaze, and serve in bowls.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Shred plain garlic chicken into soft strips; serve very soft steamed broccoli florets and mashed/strip carrots with rice.",
-          "serving_note": "Zero soy sauce or added salt (soy sauce is added only after the split)."
+          "serving_note": "Zero soy sauce or added salt (soy sauce is added only after the split).",
+          "cut_shape": "flaked-fine"
         },
         "9_12m": {
           "cut_and_texture": "Finely dice plain chicken, soft carrots, and broccoli into 1 cm pincer-grasp bites.",
-          "serving_note": "Zero soy sauce or added salt."
+          "serving_note": "Zero soy sauce or added salt.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Cut plain chicken into bite-sized pieces alongside rice and soft veggies.",
-          "serving_note": "Keep unsalted or add just a single drop of soy sauce."
+          "serving_note": "Keep unsalted or add just a single drop of soy sauce.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Kid-sized chicken pieces glazed lightly with soy sauce, rice, and veggies.",
-          "serving_note": "Mild ginger-garlic flavor."
+          "serving_note": "Mild ginger-garlic flavor.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small teriyaki-style chicken bowl.",
-          "serving_note": "Serve with glazed chicken and steamed veggies."
+          "serving_note": "Serve with glazed chicken and steamed veggies.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "cheesy-broccoli-salmon-pasta",
@@ -464,45 +1164,124 @@
       "cook_minutes": 18,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["fish", "dairy", "wheat"],
+      "allergens": [
+        "fish",
+        "dairy",
+        "wheat"
+      ],
       "ingredients": [
-        { "canonical_id": "salmon_fillet", "name": "Salmon fillets", "quantity": 450, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
-        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 340, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 180, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "cheddar_cheese", "name": "Mild cheddar (grated)", "quantity": 80, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "salmon_fillet",
+          "name": "Salmon fillets",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Penne pasta",
+          "quantity": 340,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Broccoli florets",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Plain whole-milk Greek yogurt",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cheddar_cheese",
+          "name": "Mild cheddar (grated)",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Lemon",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Boil penne in unsalted water for 10 minutes, adding broccoli florets for the final 4 minutes. Reserve 80 ml pasta water and drain.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Meanwhile, pan-sear salmon in olive oil for 7–8 minutes until flaky; break into large flakes.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "Off the heat, stir Greek yogurt, grated cheddar, lemon juice, and pasta water into the warm pasta and broccoli, then fold in salmon.", "is_seasoning_split_point": false },
-        { "order": 4, "text": "SEASONING SPLIT: Dish out baby and toddler portions before adding salt or black pepper.", "is_seasoning_split_point": true },
-        { "order": 5, "text": "Season adult bowls with black pepper and a pinch of salt.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Boil penne in unsalted water for 10 minutes, adding broccoli florets for the final 4 minutes. Reserve 80 ml pasta water and drain.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Meanwhile, pan-sear salmon in olive oil for 7–8 minutes until flaky; break into large flakes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Off the heat, stir Greek yogurt, grated cheddar, lemon juice, and pasta water into the warm pasta and broccoli, then fold in salmon.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 4,
+          "text": "SEASONING SPLIT: Dish out baby and toddler portions before adding salt or black pepper.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 5,
+          "text": "Season adult bowls with black pepper and a pinch of salt.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Flake salmon finely (check for bones); serve whole soft penne tubes and soft broccoli florets coated in yogurt-cheddar sauce.",
-          "serving_note": "Zero added salt. Creamy yogurt sauce cools pasta quickly."
+          "serving_note": "Zero added salt. Creamy yogurt sauce cools pasta quickly.",
+          "cut_shape": "flaked-fine"
         },
         "9_12m": {
           "cut_and_texture": "Halve penne and chop broccoli into 1 cm soft bites with flaked salmon.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "flaked-fine"
         },
         "12_24m": {
           "cut_and_texture": "Cut penne into forkable pieces with tender broccoli and salmon chunks.",
-          "serving_note": "Minimal salt; cheddar adds natural savoriness."
+          "serving_note": "Minimal salt; cheddar adds natural savoriness.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Whole penne with broccoli florets and salmon.",
-          "serving_note": "Lightly peppered."
+          "serving_note": "Lightly peppered.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard small pasta bowl.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "dinner"
     },
     {
       "id": "banana-oat-baby-muffins",
@@ -512,43 +1291,110 @@
       "cook_minutes": 18,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg", "dairy"],
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
       "ingredients": [
-        { "canonical_id": "banana", "name": "Very ripe bananas", "quantity": 3, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 180, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "egg", "name": "Eggs", "quantity": 2, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 120, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "banana",
+          "name": "Very ripe bananas",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Eggs",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Plain whole-milk Greek yogurt",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "ground_cinnamon",
+          "name": "Ground cinnamon",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 180°C and line a 12-cup mini muffin tin. Blend rolled oats into a coarse oat flour.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Mash bananas until smooth, whisk in eggs, Greek yogurt, olive oil, and cinnamon, then fold in oat flour.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Fill half the muffin cups with plain batter for baby & toddler before adding any adult mix-ins (like dark chocolate chips or chopped walnuts) to the remaining batter.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Bake 16–18 minutes until springy and golden. Cool completely before serving.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 180°C and line a 12-cup mini muffin tin. Blend rolled oats into a coarse oat flour.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Mash bananas until smooth, whisk in eggs, Greek yogurt, olive oil, and cinnamon, then fold in oat flour.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Fill half the muffin cups with plain batter for baby & toddler before adding any adult mix-ins (like dark chocolate chips or chopped walnuts) to the remaining batter.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Bake 16–18 minutes until springy and golden. Cool completely before serving.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Serve plain muffin halved into soft finger-length strips for easy palmar grasp.",
-          "serving_note": "Zero added sugar, salt, or honey; naturally sweetened with ripe banana."
+          "serving_note": "Zero added sugar, salt, or honey; naturally sweetened with ripe banana.",
+          "cut_shape": "finger-strip"
         },
         "9_12m": {
           "cut_and_texture": "Tear plain muffin into 1.5 cm soft bite-sized pieces.",
-          "serving_note": "Zero added sugar or honey. Great make-ahead breakfast or snack."
+          "serving_note": "Zero added sugar or honey. Great make-ahead breakfast or snack.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Serve whole mini muffin or halved.",
-          "serving_note": "Freezes well for up to 2 months."
+          "serving_note": "Freezes well for up to 2 months.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Whole mini muffins as an afternoon snack.",
-          "serving_note": "Serve with plain yogurt or fruit."
+          "serving_note": "Serve with plain yogurt or fruit.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "2 mini muffins for snack or lunchbox.",
-          "serving_note": "Optional adult mix-ins if desired."
+          "serving_note": "Optional adult mix-ins if desired.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "snack"
     },
     {
       "id": "sweet-potato-oat-cookies",
@@ -560,40 +1406,97 @@
       "min_age_months": 6,
       "allergens": [],
       "ingredients": [
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes (steamed & mashed)", "quantity": 250, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 160, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "banana", "name": "Ripe banana", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes (steamed & mashed)",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Ripe banana",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "ground_cinnamon",
+          "name": "Ground cinnamon",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Preheat oven to 180°C and line a baking sheet with parchment. Mash steamed sweet potato and ripe banana together until smooth.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Stir in rolled oats, olive oil, and cinnamon until a soft, scoopable cookie dough forms.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Scoop half the dough onto the tray as plain baby-safe soft cookies before folding in any adult extras (like raisins or flaky sea salt) into the rest.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Flatten cookies gently to 1 cm thick and bake 14–16 minutes until set and lightly golden.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Preheat oven to 180°C and line a baking sheet with parchment. Mash steamed sweet potato and ripe banana together until smooth.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Stir in rolled oats, olive oil, and cinnamon until a soft, scoopable cookie dough forms.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Scoop half the dough onto the tray as plain baby-safe soft cookies before folding in any adult extras (like raisins or flaky sea salt) into the rest.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Flatten cookies gently to 1 cm thick and bake 14–16 minutes until set and lightly golden.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Break soft plain cookie into two wide finger-length strips; texture is soft and gums easily.",
-          "serving_note": "Zero added sugar, salt, or honey; dairy-free & egg-free."
+          "serving_note": "Zero added sugar, salt, or honey; dairy-free & egg-free.",
+          "cut_shape": "finger-strip"
         },
         "9_12m": {
           "cut_and_texture": "Break into soft 1.5 cm bite-sized pieces.",
-          "serving_note": "Zero added sugar or honey."
+          "serving_note": "Zero added sugar or honey.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Serve whole soft cookie or halved.",
-          "serving_note": "Great on-the-go stroller snack."
+          "serving_note": "Great on-the-go stroller snack.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Whole soft breakfast cookies.",
-          "serving_note": "Pair with milk or yogurt."
+          "serving_note": "Pair with milk or yogurt.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "1–2 cookies for afternoon snack.",
-          "serving_note": "Store airtight for up to 4 days."
+          "serving_note": "Store airtight for up to 4 days.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "snack"
     },
     {
       "id": "banana-cinnamon-porridge",
@@ -603,41 +1506,93 @@
       "cook_minutes": 7,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["dairy"],
+      "allergens": [
+        "dairy"
+      ],
       "ingredients": [
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 200, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "banana", "name": "Very ripe bananas", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 120, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Very ripe bananas",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Plain whole-milk Greek yogurt",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ground_cinnamon",
+          "name": "Ground cinnamon",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Simmer rolled oats with 600 ml water (or milk for 12m+) and cinnamon for 6–7 minutes, stirring until creamy.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Mash ripe bananas directly into the warm oats until naturally sweet and velvety.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Dish out baby and toddler bowls with a swirl of plain Greek yogurt before adding any adult toppings (like maple syrup or chopped nuts).", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Top adult bowls as desired and serve warm.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Simmer rolled oats with 600 ml water (or milk for 12m+) and cinnamon for 6–7 minutes, stirring until creamy.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Mash ripe bananas directly into the warm oats until naturally sweet and velvety.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Dish out baby and toddler bowls with a swirl of plain Greek yogurt before adding any adult toppings (like maple syrup or chopped nuts).",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Top adult bowls as desired and serve warm.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Thick, scoopable oat porridge swirled with plain Greek yogurt to cool quickly.",
-          "serving_note": "Zero added salt, sugar, or honey. Offer on a pre-loaded spoon."
+          "serving_note": "Zero added salt, sugar, or honey. Offer on a pre-loaded spoon.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Creamy porridge with soft diced banana pieces on the side for pincer grasp.",
-          "serving_note": "Zero added sugar or honey."
+          "serving_note": "Zero added sugar or honey.",
+          "cut_shape": "fork-mash"
         },
         "12_24m": {
           "cut_and_texture": "Warm oatmeal bowl with sliced banana and yogurt.",
-          "serving_note": "Naturally sweet; no added sugar needed."
+          "serving_note": "Naturally sweet; no added sugar needed.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Standard warm porridge bowl with banana coins.",
-          "serving_note": "Optional sprinkle of chia or cinnamon."
+          "serving_note": "Optional sprinkle of chia or cinnamon.",
+          "cut_shape": "fork-mash"
         },
         "4y_plus": {
           "cut_and_texture": "Warm oatmeal bowl with toppings.",
-          "serving_note": "Serve with fruit or yogurt."
+          "serving_note": "Serve with fruit or yogurt.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "breakfast"
     },
     {
       "id": "spinach-cheese-egg-fingers",
@@ -647,41 +1602,94 @@
       "cook_minutes": 7,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg", "dairy"],
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
       "ingredients": [
-        { "canonical_id": "egg", "name": "Eggs", "quantity": 6, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "baby_spinach", "name": "Baby spinach (finely chopped)", "quantity": 80, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "ricotta_cheese", "name": "Whole-milk ricotta", "quantity": 100, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "egg",
+          "name": "Eggs",
+          "quantity": 6,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Baby spinach (finely chopped)",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ricotta_cheese",
+          "name": "Whole-milk ricotta",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Whisk eggs with ricotta and finely chopped baby spinach until smooth.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Warm olive oil in a non-stick skillet over low-medium heat. Pour in egg mixture, cover, and cook gently for 5–6 minutes until fully set and fluffy.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Cut baby and toddler finger-length strips from the plain omelet before salting or peppering.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult portions with flaky sea salt and black pepper and serve warm.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Whisk eggs with ricotta and finely chopped baby spinach until smooth.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Warm olive oil in a non-stick skillet over low-medium heat. Pour in egg mixture, cover, and cook gently for 5–6 minutes until fully set and fluffy.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Cut baby and toddler finger-length strips from the plain omelet before salting or peppering.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult portions with flaky sea salt and black pepper and serve warm.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Cut fully cooked omelet into 2-finger-wide soft strips for easy palmar grasp.",
-          "serving_note": "Zero added salt. High-iron + vitamin C/protein breakfast."
+          "serving_note": "Zero added salt. High-iron + vitamin C/protein breakfast.",
+          "cut_shape": "finger-strip"
         },
         "9_12m": {
           "cut_and_texture": "Dice soft omelet into 1 cm bite-sized squares for pincer grasp.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Cut into forkable strips or squares.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "finger-strip"
         },
         "2_4y": {
           "cut_and_texture": "Folded omelet wedges.",
-          "serving_note": "Serve with sourdough toast if desired."
+          "serving_note": "Serve with sourdough toast if desired.",
+          "cut_shape": "finger-strip"
         },
         "4y_plus": {
           "cut_and_texture": "Standard omelet portion.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "breakfast"
     },
     {
       "id": "pear-oat-yogurt-pancakes",
@@ -691,42 +1699,102 @@
       "cook_minutes": 10,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg", "dairy"],
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
       "ingredients": [
-        { "canonical_id": "pear", "name": "Ripe pears (finely grated)", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 150, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "egg", "name": "Eggs", "quantity": 3, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 100, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Olive oil (for pan)", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "pear",
+          "name": "Ripe pears (finely grated)",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Eggs",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Plain whole-milk Greek yogurt",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Olive oil (for pan)",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Blend rolled oats into flour, then whisk with eggs, Greek yogurt, and finely grated ripe pear until a thick batter forms.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Cook small spoonfuls in a lightly oiled skillet for 2 minutes per side until golden and cooked through.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Set aside plain baby and toddler mini pancakes before adding any adult toppings (like fruit compote or maple syrup).", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Serve remaining pancakes warm for adults.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Blend rolled oats into flour, then whisk with eggs, Greek yogurt, and finely grated ripe pear until a thick batter forms.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Cook small spoonfuls in a lightly oiled skillet for 2 minutes per side until golden and cooked through.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Set aside plain baby and toddler mini pancakes before adding any adult toppings (like fruit compote or maple syrup).",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Serve remaining pancakes warm for adults.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Cut soft mini pancakes into finger-length strips; spread thinly with plain Greek yogurt.",
-          "serving_note": "Zero added sugar, salt, or honey."
+          "serving_note": "Zero added sugar, salt, or honey.",
+          "cut_shape": "finger-strip"
         },
         "9_12m": {
           "cut_and_texture": "Cut into 1.5 cm soft bite-sized squares.",
-          "serving_note": "Zero added sugar or honey."
+          "serving_note": "Zero added sugar or honey.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Serve whole mini pancakes or halved.",
-          "serving_note": "Great finger-food breakfast."
+          "serving_note": "Great finger-food breakfast.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Stack of 3 mini pancakes with yogurt.",
-          "serving_note": "Serve with soft fruit."
+          "serving_note": "Serve with soft fruit.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Standard pancake stack.",
-          "serving_note": "Optional topping for older kids."
+          "serving_note": "Optional topping for older kids.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "breakfast"
     },
     {
       "id": "avocado-egg-toast-strips",
@@ -736,42 +1804,102 @@
       "cook_minutes": 6,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg", "wheat"],
+      "allergens": [
+        "egg",
+        "wheat"
+      ],
       "ingredients": [
-        { "canonical_id": "avocado", "name": "Ripe avocados", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "egg", "name": "Eggs", "quantity": 4, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "sourdough_bread", "name": "Crusty sourdough loaf", "quantity": 240, "unit": "g", "aisle": "Bakery", "is_pantry_staple": false },
-        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "avocado",
+          "name": "Ripe avocados",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Eggs",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sourdough_bread",
+          "name": "Crusty sourdough loaf",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Lemon",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Lightly toast sourdough slices and mash ripe avocado with a squeeze of lemon juice and olive oil.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Soft-scramble or hard-boil eggs until yolks are fully set (safe for 6m+).", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Spread plain mashed avocado and egg onto baby and toddler toast strips before salting or adding chili flakes.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult avocado toast with flaky sea salt, black pepper, and chili flakes.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Lightly toast sourdough slices and mash ripe avocado with a squeeze of lemon juice and olive oil.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Soft-scramble or hard-boil eggs until yolks are fully set (safe for 6m+).",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Spread plain mashed avocado and egg onto baby and toddler toast strips before salting or adding chili flakes.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult avocado toast with flaky sea salt, black pepper, and chili flakes.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Cut lightly toasted sourdough into 2-finger-wide strips spread thinly with mashed avocado and finely mashed egg.",
-          "serving_note": "Zero added salt. Softly toasted bread is easier to gum than gummy fresh white bread."
+          "serving_note": "Zero added salt. Softly toasted bread is easier to gum than gummy fresh white bread.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Cut toast into 1.5 cm squares with diced egg and avocado.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Quartered toast with mashed avocado and sliced egg.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "quartered-lengthwise"
         },
         "2_4y": {
           "cut_and_texture": "Halved avocado toast with scrambled or boiled egg.",
-          "serving_note": "Lightly seasoned."
+          "serving_note": "Lightly seasoned.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "Full slice of avocado egg toast.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "lunch"
     },
     {
       "id": "sweet-potato-lentil-soup",
@@ -783,41 +1911,105 @@
       "min_age_months": 6,
       "allergens": [],
       "ingredients": [
-        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 500, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 150, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
-        { "canonical_id": "carrot", "name": "Carrots", "quantity": 200, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Sweet potatoes",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "red_lentils",
+          "name": "Dried red lentils",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Carrots",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Garlic cloves",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "ground_cumin",
+          "name": "Ground cumin",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Sauté diced sweet potato, carrot, and minced garlic in olive oil with cumin for 3 minutes.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Add rinsed red lentils and 800 ml water. Simmer 18 minutes until completely soft, then blend until velvety.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Ladle baby and toddler portions into bowls before adding salt or pepper.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult soup with sea salt, black pepper, and a swirl of yogurt or olive oil.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Sauté diced sweet potato, carrot, and minced garlic in olive oil with cumin for 3 minutes.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Add rinsed red lentils and 800 ml water. Simmer 18 minutes until completely soft, then blend until velvety.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Ladle baby and toddler portions into bowls before adding salt or pepper.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult soup with sea salt, black pepper, and a swirl of yogurt or olive oil.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Serve thick, warm purée on a pre-loaded spoon or as a dip for soft toast strips.",
-          "serving_note": "Zero added salt. Rich in iron and beta-carotene."
+          "serving_note": "Zero added salt. Rich in iron and beta-carotene.",
+          "cut_shape": "fork-mash"
         },
         "9_12m": {
           "cut_and_texture": "Thick spoonable soup with soft bread cubes for dipping.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "fork-mash"
         },
         "12_24m": {
           "cut_and_texture": "Warm soup bowl with a spoon.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "fork-mash"
         },
         "2_4y": {
           "cut_and_texture": "Kid-sized soup bowl with crusty bread.",
-          "serving_note": "Lightly seasoned."
+          "serving_note": "Lightly seasoned.",
+          "cut_shape": "fork-mash"
         },
         "4y_plus": {
           "cut_and_texture": "Standard soup bowl.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "fork-mash"
         }
-      }
+      },
+      "meal_slot": "lunch"
     },
     {
       "id": "zucchini-cheddar-fritters",
@@ -827,42 +2019,102 @@
       "cook_minutes": 12,
       "base_servings": 4,
       "min_age_months": 6,
-      "allergens": ["egg", "dairy"],
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
       "ingredients": [
-        { "canonical_id": "zucchini", "name": "Zucchini (finely grated)", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
-        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 100, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
-        { "canonical_id": "egg", "name": "Eggs", "quantity": 2, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "cheddar_cheese", "name": "Mild cheddar (grated)", "quantity": 70, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
-        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+        {
+          "canonical_id": "zucchini",
+          "name": "Zucchini (finely grated)",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Rolled oats",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Eggs",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cheddar_cheese",
+          "name": "Mild cheddar (grated)",
+          "quantity": 70,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Extra-virgin olive oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
       ],
       "steps": [
-        { "order": 1, "text": "Squeeze excess moisture from finely grated zucchini. Blend rolled oats into coarse flour.", "is_seasoning_split_point": false },
-        { "order": 2, "text": "Mix zucchini, oat flour, beaten eggs, and mild cheddar. Pan-fry small spoonfuls in olive oil 3 minutes per side until golden and soft inside.", "is_seasoning_split_point": false },
-        { "order": 3, "text": "SEASONING SPLIT: Set aside baby and toddler fritters before sprinkling flaky salt on adult fritters.", "is_seasoning_split_point": true },
-        { "order": 4, "text": "Season adult fritters with sea salt and serve with plain yogurt.", "is_seasoning_split_point": false }
+        {
+          "order": 1,
+          "text": "Squeeze excess moisture from finely grated zucchini. Blend rolled oats into coarse flour.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Mix zucchini, oat flour, beaten eggs, and mild cheddar. Pan-fry small spoonfuls in olive oil 3 minutes per side until golden and soft inside.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEASONING SPLIT: Set aside baby and toddler fritters before sprinkling flaky salt on adult fritters.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 4,
+          "text": "Season adult fritters with sea salt and serve with plain yogurt.",
+          "is_seasoning_split_point": false
+        }
       ],
       "age_adaptations": {
         "6_9m": {
           "cut_and_texture": "Cut soft fritters into finger-length strips for easy palmar grasp.",
-          "serving_note": "Zero added salt; mild cheddar provides gentle flavor."
+          "serving_note": "Zero added salt; mild cheddar provides gentle flavor.",
+          "cut_shape": "finger-strip"
         },
         "9_12m": {
           "cut_and_texture": "Dice fritters into 1.5 cm soft bite-sized pieces.",
-          "serving_note": "Zero added salt."
+          "serving_note": "Zero added salt.",
+          "cut_shape": "pincer-dice"
         },
         "12_24m": {
           "cut_and_texture": "Halved fritters with plain yogurt for dipping.",
-          "serving_note": "Minimal salt."
+          "serving_note": "Minimal salt.",
+          "cut_shape": "pincer-dice"
         },
         "2_4y": {
           "cut_and_texture": "Whole mini fritters.",
-          "serving_note": "Great lunchbox or quick lunch."
+          "serving_note": "Great lunchbox or quick lunch.",
+          "cut_shape": "pincer-dice"
         },
         "4y_plus": {
           "cut_and_texture": "2–3 fritters with yogurt dip.",
-          "serving_note": "Seasoned to taste."
+          "serving_note": "Seasoned to taste.",
+          "cut_shape": "pincer-dice"
         }
-      }
+      },
+      "meal_slot": "lunch"
     }
   ]
 }

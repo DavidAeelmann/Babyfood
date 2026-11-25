@@ -10,10 +10,11 @@ import {
   UtensilsCrossed,
 } from 'lucide-react';
 import { DAY_LABELS } from '../lib/constants';
-import type { DayPlan, MealSlotType, Recipe } from '../types/recipe';
+import type { DayPlan, EnabledSlots, MealSlotType, Recipe } from '../types/recipe';
 
 interface WeekGridViewProps {
   weekGrid: DayPlan[];
+  enabledSlots: EnabledSlots;
   recipeMap: Map<string, Recipe>;
   lockedIndices: number[];
   favoriteIds: string[];
@@ -59,6 +60,7 @@ const SLOT_META: Array<{
 
 export function WeekGridView({
   weekGrid,
+  enabledSlots,
   recipeMap,
   lockedIndices,
   favoriteIds,
@@ -69,6 +71,8 @@ export function WeekGridView({
   onToggleFavorite,
   onToggleBlocked,
 }: WeekGridViewProps) {
+  const activeSlotMeta = SLOT_META.filter((s) => enabledSlots[s.slot]);
+
   return (
     <div data-testid="week-grid-view" className="space-y-3">
       {weekGrid.map((dayPlan, dayIdx) => {
@@ -81,46 +85,46 @@ export function WeekGridView({
             data-testid={`week-day-card-${dayIdx}`}
             className="overflow-hidden rounded-2xl border border-[#E7E2D8] bg-white shadow-xs"
           >
-            {/* Compact Day Header */}
+            {/* Compact Day Header — Lock Day locks all slots on this day */}
             <div className="flex items-center justify-between border-b border-[#F2EFE9] bg-[#FAF8F5] px-3.5 py-2">
               <span className="text-xs font-extrabold uppercase tracking-wider text-[#1C2420]">
                 {dayLabel}
               </span>
               <button
                 type="button"
+                data-testid={`lock-day-btn-${dayIdx}`}
                 onClick={() => onToggleLock(dayIdx)}
                 aria-pressed={isLocked}
-                aria-label={isLocked ? `Unlock ${dayLabel} dinner` : `Lock ${dayLabel} dinner`}
+                aria-label={isLocked ? `Unlock ${dayLabel}` : `Lock ${dayLabel}`}
                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-colors ${
                   isLocked
                     ? 'bg-[#1C2420] text-white'
-                    : 'bg-white text-[#5C6862] border border-[#E0DAD0]'
+                    : 'border border-[#E0DAD0] bg-white text-[#5C6862]'
                 }`}
               >
                 {isLocked ? (
                   <>
                     <Lock className="h-3 w-3" />
-                    Dinner Locked
+                    Day Locked
                   </>
                 ) : (
                   <>
                     <Unlock className="h-3 w-3" />
-                    Lock Dinner
+                    Lock Day
                   </>
                 )}
               </button>
             </div>
 
-            {/* 4 Compact Meal Slots */}
+            {/* Enabled Meal Slots */}
             <ul className="divide-y divide-[#F2EFE9]">
-              {SLOT_META.map(({ slot, label, icon: Icon, pillClass }) => {
+              {activeSlotMeta.map(({ slot, label, icon: Icon, pillClass }) => {
                 const recipeId = dayPlan[slot];
                 const recipe = recipeMap.get(recipeId);
                 if (!recipe) return null;
 
                 const isFav = favoriteIds.includes(recipe.id);
                 const isBlocked = blockedIds.includes(recipe.id);
-                const slotLocked = slot === 'dinner' && isLocked;
 
                 return (
                   <li
@@ -193,7 +197,7 @@ export function WeekGridView({
                         type="button"
                         data-testid={`resim-btn-${dayIdx}-${slot}`}
                         onClick={() => onReSimulateSlot(dayIdx, slot)}
-                        disabled={slotLocked}
+                        disabled={isLocked}
                         aria-label={`Re-simulate ${dayLabel} ${label}`}
                         className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E0DAD0] bg-white text-[#2F6F4E] hover:bg-[#F2EFE9] disabled:opacity-35"
                       >
