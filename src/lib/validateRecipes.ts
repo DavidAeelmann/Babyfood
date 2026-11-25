@@ -211,7 +211,11 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
           message: `Step order mismatch at index ${idx}: expected ${idx + 1}, got ${step.order}.`,
         });
       }
-      if (recipe.min_age_months < 12 && /\b(honey|mel)\b/i.test(step.text)) {
+      const scrubbedStep = step.text.replace(
+        /\b(sem|zero|não\s+adicione|não\s+use|evite|nunca|without|no|never\s+add|avoid)\s+(?:açúcar\s+ou\s+|açúcares\s+ou\s+)?(honey|mel)\b/gi,
+        '',
+      );
+      if (recipe.min_age_months < 12 && /\b(honey|mel)\b/i.test(scrubbedStep)) {
         issues.push({
           recipeId,
           rule: 'safety_honey',

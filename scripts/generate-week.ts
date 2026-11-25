@@ -57,23 +57,46 @@ function normalizeWeekData(data: WeekData, weekId: string): WeekData {
   const lSet = new Set(data.lunch_ids ?? []);
   const sSet = new Set(data.snack_ids ?? []);
 
+  const normalizedRecipes = data.recipes.map((r) => ({
+    ...r,
+    meal_slot:
+      r.meal_slot ??
+      (bSet.has(r.id)
+        ? 'breakfast'
+        : lSet.has(r.id)
+          ? 'lunch'
+          : sSet.has(r.id)
+            ? 'snack'
+            : 'dinner'),
+    image_url: `meals/${r.id}.webp`,
+  }));
+
+  const recipeIds = new Set(normalizedRecipes.map((r) => r.id));
+  const dinnerIds = normalizedRecipes
+    .filter((r) => r.meal_slot === 'dinner')
+    .map((r) => r.id);
+
+  const planned = (data.planned_ids ?? []).filter((id) => recipeIds.has(id)).slice(0, 7);
+  for (const did of dinnerIds) {
+    if (planned.length >= 7) break;
+    if (!planned.includes(did)) planned.push(did);
+  }
+
   return {
     ...data,
     week_id: weekId,
     generated_at: new Date().toISOString(),
-    recipes: data.recipes.map((r) => ({
-      ...r,
-      meal_slot:
-        r.meal_slot ??
-        (bSet.has(r.id)
-          ? 'breakfast'
-          : lSet.has(r.id)
-            ? 'lunch'
-            : sSet.has(r.id)
-              ? 'snack'
-              : 'dinner'),
-      image_url: `meals/${r.id}.webp`,
-    })),
+    planned_ids: planned,
+    breakfast_ids: normalizedRecipes
+      .filter((r) => r.meal_slot === 'breakfast')
+      .map((r) => r.id),
+    lunch_ids: normalizedRecipes
+      .filter((r) => r.meal_slot === 'lunch')
+      .map((r) => r.id),
+    snack_ids: normalizedRecipes
+      .filter((r) => r.meal_slot === 'snack')
+      .map((r) => r.id),
+    recipes: normalizedRecipes,
   };
 }
 
