@@ -3,6 +3,7 @@ import type { MealSlotType, Recipe } from '../types/recipe';
 export type DiversityTier =
   | 'base_staple'
   | 'flexible_staple'
+  | 'weekly_anchor_protein'
   | 'distinctive_protein'
   | 'distinctive_ingredient';
 
@@ -57,11 +58,6 @@ const DISTINCTIVE_INGREDIENT_MAP: Record<string, { key: string; family?: string 
   leek: { key: 'leek' },
   mushrooms: { key: 'mushrooms' },
   avocado: { key: 'avocado' },
-  mango: { key: 'mango' },
-  blueberries: { key: 'blueberries', family: 'berries' },
-  raspberries: { key: 'raspberries', family: 'berries' },
-  pear: { key: 'pear' },
-  quince_apple: { key: 'quince_apple' },
   dates: { key: 'dates' },
   medjool_dates: { key: 'dates' },
   coconut_milk: { key: 'coconut_milk' },
@@ -86,6 +82,19 @@ const STRUCTURAL_EVERYDAY_KEYS = new Set([
   'oat_flour',
   'greek_yogurt',
   'milk',
+  'bread',
+  'pasta',
+]);
+
+const FRUIT_KEYS = new Set([
+  'banana',
+  'apple',
+  'orange',
+  'mango',
+  'blueberries',
+  'raspberries',
+  'pear',
+  'quince_apple',
 ]);
 
 const RICE_VARIETY_KEYS = new Set([
@@ -118,6 +127,7 @@ const FLEXIBLE_STAPLE_MAP: Record<string, string> = {
   rolled_oats: 'rolled_oats',
   oat_flour: 'oat_flour',
   greek_yogurt: 'greek_yogurt',
+  plain_yogurt: 'greek_yogurt',
   milk: 'milk',
   ricotta_cheese: 'ricotta',
   ricotta_requeijao: 'ricotta',
@@ -125,6 +135,11 @@ const FLEXIBLE_STAPLE_MAP: Record<string, string> = {
   banana: 'banana',
   apple: 'apple',
   orange: 'orange',
+  mango: 'mango',
+  blueberries: 'blueberries',
+  raspberries: 'raspberries',
+  pear: 'pear',
+  quince_apple: 'quince_apple',
 };
 
 export function classifyIngredientForDiversity(
@@ -156,7 +171,7 @@ export function classifyIngredientForDiversity(
     return { key: 'cod', tier: 'distinctive_protein', family: 'fish' };
   }
   if (id === 'salmon_fillet' || id === 'salmon') {
-    return { key: 'salmon', tier: 'distinctive_protein', family: 'fish' };
+    return { key: 'salmon', tier: 'weekly_anchor_protein', family: 'fish' };
   }
   if (id === 'canned_tuna' || id === 'canned_tuna_water') {
     return { key: 'tuna', tier: 'distinctive_protein', family: 'fish' };
@@ -165,7 +180,7 @@ export function classifyIngredientForDiversity(
     return { key: 'squid', tier: 'distinctive_protein', family: 'seafood' };
   }
   if (id === 'chicken_breast' || id === 'chicken_thigh') {
-    return { key: 'chicken', tier: 'distinctive_protein', family: 'poultry' };
+    return { key: 'chicken', tier: 'weekly_anchor_protein', family: 'poultry' };
   }
   if (id === 'ground_turkey' || id === 'turkey_breast') {
     return { key: 'turkey', tier: 'distinctive_protein', family: 'poultry' };
@@ -267,7 +282,8 @@ export function scoreDiversityPenalty(
         targetSlot === 'dinner' &&
         entry.slot === 'dinner' &&
         gap === 1 &&
-        item.tier === 'distinctive_protein' &&
+        (item.tier === 'distinctive_protein' ||
+          item.tier === 'weekly_anchor_protein') &&
         item.family
       ) {
         adjacentDinnerFamilies.add(item.family);
@@ -290,6 +306,26 @@ export function scoreDiversityPenalty(
     const slotCount = slotCounts.get(item.key) ?? 0;
     const weekCount = weekCounts.get(item.key) ?? 0;
     const gap = minDayGap.get(item.key);
+
+    if (item.tier === 'weekly_anchor_protein') {
+      // Safe weekly anchor proteins (salmon, chicken): gentle if repeated across slots, avoid 3+ total or back-to-back dinner
+      if (slotCount >= 2) {
+        penalty -= 18 * (slotCount - 1);
+      } else if (slotCount === 1) {
+        penalty -= 6;
+      } else if (weekCount >= 2) {
+        penalty -= 12 * (weekCount - 1);
+      }
+      if (gap === 0) {
+        penalty -= 6;
+      } else if (gap === 1 && targetSlot === 'dinner') {
+        penalty -= 4;
+      }
+      if (item.family && adjacentDinnerFamilies.has(item.family)) {
+        penalty -= 2;
+      }
+      continue;
+    }
 
     if (item.tier === 'distinctive_protein') {
       if (slotCount >= 1) {
@@ -326,13 +362,16 @@ export function scoreDiversityPenalty(
       continue;
     }
 
-    // flexible_staple: allow everyday foods, different rices, oats, eggs, and basics comfortably
+    // flexible_staple: allow fruit, yoghurt, bread, pasta, eggs, oats, and different rices comfortably
     if (RICE_VARIETY_KEYS.has(item.key)) {
       if (slotCount >= 2) penalty -= 8 * (slotCount - 1);
       if (gap === 1 && slotCount >= 1) penalty -= 3;
+    } else if (FRUIT_KEYS.has(item.key)) {
+      if (slotCount >= 3) penalty -= 2 * (slotCount - 2);
+      if (weekCount >= 5) penalty -= 2 * (weekCount - 4);
     } else if (STRUCTURAL_EVERYDAY_KEYS.has(item.key)) {
       if (slotCount >= 4) penalty -= 2 * (slotCount - 3);
-      if (weekCount >= 7) penalty -= 2 * (weekCount - 6);
+      if (weekCount >= 8) penalty -= 2 * (weekCount - 7);
     } else {
       if (slotCount >= 2) penalty -= 4 * (slotCount - 1);
       if (weekCount >= 3) penalty -= 4 * (weekCount - 2);
@@ -341,6 +380,48 @@ export function scoreDiversityPenalty(
   }
 
   return penalty;
+}
+
+/**
+ * Encourages every week to include core safe family anchors when missing so far:
+ * fruit, yoghurt, bread, salmon, chicken, pasta, and eggs.
+ */
+export function scoreWeeklyAnchorBonus(
+  candidate: Recipe,
+  existingEntries: WeekPlanEntry[],
+): number {
+  if (existingEntries.length < 2) return 0;
+
+  const presentKeys = new Set<string>();
+  let hasFruit = false;
+
+  for (const entry of existingEntries) {
+    for (const item of getRecipeClassifiedIngredients(entry.recipe)) {
+      presentKeys.add(item.key);
+      if (FRUIT_KEYS.has(item.key)) hasFruit = true;
+    }
+  }
+
+  let bonus = 0;
+  for (const item of getRecipeClassifiedIngredients(candidate)) {
+    if (item.key === 'salmon' && !presentKeys.has('salmon')) {
+      bonus += 5;
+    } else if (item.key === 'chicken' && !presentKeys.has('chicken')) {
+      bonus += 5;
+    } else if (item.key === 'pasta' && !presentKeys.has('pasta')) {
+      bonus += 3.5;
+    } else if (item.key === 'bread' && !presentKeys.has('bread')) {
+      bonus += 3;
+    } else if (item.key === 'greek_yogurt' && !presentKeys.has('greek_yogurt')) {
+      bonus += 2.5;
+    } else if (item.key === 'egg' && !presentKeys.has('egg')) {
+      bonus += 2.5;
+    } else if (FRUIT_KEYS.has(item.key) && !hasFruit) {
+      bonus += 2.5;
+      hasFruit = true;
+    }
+  }
+  return Math.min(5, bonus);
 }
 
 export function countWeekIngredientFrequency(
@@ -401,8 +482,9 @@ export function selectDiverseSlotIds(params: {
     for (const candidate of pool) {
       const base = scoreBase(candidate);
       const div = scoreDiversityPenalty(candidate, workingEntries, slot, dayIdx);
+      const anchor = scoreWeeklyAnchorBonus(candidate, workingEntries);
       const noise = jitter > 0 ? Math.random() * jitter : 0;
-      const total = base + div + noise;
+      const total = base + div + anchor + noise;
       if (total > bestScore) {
         bestScore = total;
         bestRecipe = candidate;

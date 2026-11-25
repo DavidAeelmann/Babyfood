@@ -149,5 +149,52 @@ describe('mealDiversity culinary rules', () => {
     const simFreq = countWeekIngredientFrequency(simAll);
     expect(simFreq.sweet_potato?.count ?? 0).toBeLessThanOrEqual(2);
     expect(simFreq.hake?.count ?? 0).toBeLessThanOrEqual(2);
+
+    // Every simulated 4-slot week should include the 7 core weekly anchors:
+    // fruit, yoghurt, bread, salmon, chicken, pasta, eggs
+    expect(simFreq.salmon?.count ?? 0).toBeGreaterThanOrEqual(1);
+    expect(simFreq.chicken?.count ?? 0).toBeGreaterThanOrEqual(1);
+    expect(simFreq.pasta?.count ?? 0).toBeGreaterThanOrEqual(1);
+    expect(simFreq.bread?.count ?? 0).toBeGreaterThanOrEqual(1);
+    expect(simFreq.greek_yogurt?.count ?? 0).toBeGreaterThanOrEqual(1);
+    expect(simFreq.egg?.count ?? 0).toBeGreaterThanOrEqual(1);
+    const fruitCount =
+      (simFreq.banana?.count ?? 0) +
+      (simFreq.apple?.count ?? 0) +
+      (simFreq.pear?.count ?? 0) +
+      (simFreq.mango?.count ?? 0) +
+      (simFreq.blueberries?.count ?? 0) +
+      (simFreq.raspberries?.count ?? 0);
+    expect(fruitCount).toBeGreaterThanOrEqual(1);
+  });
+
+  it('allows repeating safe weekly anchors (fruit, yoghurt, bread, salmon, chicken, pasta, eggs) cleanly', () => {
+    const breakfast1 = makeTestRecipe('b1', 'Papas Iogurte e Manga', 'breakfast', [
+      { canonical_id: 'greek_yogurt' },
+      { canonical_id: 'mango' },
+      { canonical_id: 'egg' },
+    ]);
+    const lunch1 = makeTestRecipe('l1', 'Tosta com Ovo e Frango', 'lunch', [
+      { canonical_id: 'sourdough_bread' },
+      { canonical_id: 'chicken_breast' },
+      { canonical_id: 'egg' },
+    ]);
+    const dinner1 = makeTestRecipe('d1', 'Massa com Salmão', 'dinner', [
+      { canonical_id: 'salmon_fillet' },
+      { canonical_id: 'pasta_penne' },
+    ]);
+    const snack1 = makeTestRecipe('s1', 'Iogurte e Banana', 'snack', [
+      { canonical_id: 'greek_yogurt' },
+      { canonical_id: 'banana' },
+      { canonical_id: 'whole_wheat_bread' },
+    ]);
+
+    const existing: WeekPlanEntry[] = [
+      { recipe: breakfast1, slot: 'breakfast', dayIndex: 0 },
+      { recipe: lunch1, slot: 'lunch', dayIndex: 1 },
+      { recipe: dinner1, slot: 'dinner', dayIndex: 2 },
+    ];
+    // Repeating yoghurt + bread + fruit across another slot scores 0 penalty
+    expect(scoreDiversityPenalty(snack1, existing, 'snack', 4)).toBe(0);
   });
 });
