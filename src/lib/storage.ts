@@ -12,6 +12,7 @@ export interface PersistedState {
   weekId: string | null;
   household: HouseholdConfig;
   plannedIds: string[];
+  includedBreakfastIds: string[];
   includedSnackIds: string[];
   lockedIndices: number[];
   checkedGroceries: Record<string, boolean>;
@@ -34,6 +35,7 @@ export function getDefaultPersistedState(): PersistedState {
     weekId: null,
     household: DEFAULT_HOUSEHOLD,
     plannedIds: [],
+    includedBreakfastIds: [],
     includedSnackIds: [],
     lockedIndices: [],
     checkedGroceries: {},
@@ -66,6 +68,9 @@ export function loadPersistedState(): PersistedState {
           : defaults.household.excludedAllergens,
       },
       plannedIds: Array.isArray(parsed.plannedIds) ? parsed.plannedIds : [],
+      includedBreakfastIds: Array.isArray(parsed.includedBreakfastIds)
+        ? parsed.includedBreakfastIds
+        : [],
       includedSnackIds: Array.isArray(parsed.includedSnackIds)
         ? parsed.includedSnackIds
         : [],

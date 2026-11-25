@@ -10,6 +10,11 @@
     "turkey-veggie-meatballs-mash",
     "sheet-pan-cod-tomatoes"
   ],
+  "breakfast_ids": [
+    "banana-cinnamon-porridge",
+    "spinach-cheese-egg-fingers",
+    "pear-oat-yogurt-pancakes"
+  ],
   "snack_ids": [
     "banana-oat-baby-muffins",
     "sweet-potato-oat-cookies"
@@ -582,6 +587,139 @@
         "4y_plus": {
           "cut_and_texture": "1–2 cookies for afternoon snack.",
           "serving_note": "Store airtight for up to 4 days."
+        }
+      }
+    },
+    {
+      "id": "banana-cinnamon-porridge",
+      "title": "Warm Banana & Cinnamon Oat Porridge",
+      "image_url": "meals/banana-cinnamon-porridge.webp",
+      "prep_minutes": 3,
+      "cook_minutes": 7,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["dairy"],
+      "ingredients": [
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 200, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "banana", "name": "Very ripe bananas", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 120, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Simmer rolled oats with 600 ml water (or milk for 12m+) and cinnamon for 6–7 minutes, stirring until creamy.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Mash ripe bananas directly into the warm oats until naturally sweet and velvety.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Dish out baby and toddler bowls with a swirl of plain Greek yogurt before adding any adult toppings (like maple syrup or chopped nuts).", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Top adult bowls as desired and serve warm.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Thick, scoopable oat porridge swirled with plain Greek yogurt to cool quickly.",
+          "serving_note": "Zero added salt, sugar, or honey. Offer on a pre-loaded spoon."
+        },
+        "9_12m": {
+          "cut_and_texture": "Creamy porridge with soft diced banana pieces on the side for pincer grasp.",
+          "serving_note": "Zero added sugar or honey."
+        },
+        "12_24m": {
+          "cut_and_texture": "Warm oatmeal bowl with sliced banana and yogurt.",
+          "serving_note": "Naturally sweet; no added sugar needed."
+        },
+        "2_4y": {
+          "cut_and_texture": "Standard warm porridge bowl with banana coins.",
+          "serving_note": "Optional sprinkle of chia or cinnamon."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Warm oatmeal bowl with toppings.",
+          "serving_note": "Serve with fruit or yogurt."
+        }
+      }
+    },
+    {
+      "id": "spinach-cheese-egg-fingers",
+      "title": "Soft Spinach & Ricotta Egg Fingers",
+      "image_url": "meals/spinach-cheese-egg-fingers.webp",
+      "prep_minutes": 5,
+      "cook_minutes": 7,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg", "dairy"],
+      "ingredients": [
+        { "canonical_id": "egg", "name": "Eggs", "quantity": 6, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "baby_spinach", "name": "Baby spinach (finely chopped)", "quantity": 80, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "ricotta_cheese", "name": "Whole-milk ricotta", "quantity": 100, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Whisk eggs with ricotta and finely chopped baby spinach until smooth.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Warm olive oil in a non-stick skillet over low-medium heat. Pour in egg mixture, cover, and cook gently for 5–6 minutes until fully set and fluffy.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Cut baby and toddler finger-length strips from the plain omelet before salting or peppering.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult portions with flaky sea salt and black pepper and serve warm.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Cut fully cooked omelet into 2-finger-wide soft strips for easy palmar grasp.",
+          "serving_note": "Zero added salt. High-iron + vitamin C/protein breakfast."
+        },
+        "9_12m": {
+          "cut_and_texture": "Dice soft omelet into 1 cm bite-sized squares for pincer grasp.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Cut into forkable strips or squares.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Folded omelet wedges.",
+          "serving_note": "Serve with sourdough toast if desired."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard omelet portion.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "pear-oat-yogurt-pancakes",
+      "title": "3-Ingredient Pear & Oat Mini Pancakes",
+      "image_url": "meals/pear-oat-yogurt-pancakes.webp",
+      "prep_minutes": 5,
+      "cook_minutes": 10,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg", "dairy"],
+      "ingredients": [
+        { "canonical_id": "pear", "name": "Ripe pears (finely grated)", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 150, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "egg", "name": "Eggs", "quantity": 3, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 100, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil (for pan)", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Blend rolled oats into flour, then whisk with eggs, Greek yogurt, and finely grated ripe pear until a thick batter forms.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Cook small spoonfuls in a lightly oiled skillet for 2 minutes per side until golden and cooked through.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Set aside plain baby and toddler mini pancakes before adding any adult toppings (like fruit compote or maple syrup).", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Serve remaining pancakes warm for adults.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Cut soft mini pancakes into finger-length strips; spread thinly with plain Greek yogurt.",
+          "serving_note": "Zero added sugar, salt, or honey."
+        },
+        "9_12m": {
+          "cut_and_texture": "Cut into 1.5 cm soft bite-sized squares.",
+          "serving_note": "Zero added sugar or honey."
+        },
+        "12_24m": {
+          "cut_and_texture": "Serve whole mini pancakes or halved.",
+          "serving_note": "Great finger-food breakfast."
+        },
+        "2_4y": {
+          "cut_and_texture": "Stack of 3 mini pancakes with yogurt.",
+          "serving_note": "Serve with soft fruit."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard pancake stack.",
+          "serving_note": "Optional topping for older kids."
         }
       }
     }

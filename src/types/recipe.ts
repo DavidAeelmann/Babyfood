@@ -58,6 +58,7 @@ export interface WeekData {
   week_id: string;
   generated_at: string;
   planned_ids: string[];
+  breakfast_ids?: string[];
   snack_ids?: string[];
   recipes: Recipe[];
 }

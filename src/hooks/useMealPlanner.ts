@@ -58,6 +58,7 @@ export function useMealPlanner() {
             ...prev,
             weekId: data.week_id,
             plannedIds: [...data.planned_ids],
+            includedBreakfastIds: [...(data.breakfast_ids ?? [])],
             includedSnackIds: [...(data.snack_ids ?? [])],
             lockedIndices: [],
             checkedGroceries: {},
@@ -86,9 +87,24 @@ export function useMealPlanner() {
     return map;
   }, [weekData]);
 
-  const snackIdSet = useMemo(() => {
-    return new Set(weekData?.snack_ids ?? []);
+  const nonDinnerIdSet = useMemo(() => {
+    return new Set([
+      ...(weekData?.breakfast_ids ?? []),
+      ...(weekData?.snack_ids ?? []),
+    ]);
   }, [weekData]);
+
+  const weeklyBreakfasts = useMemo(() => {
+    return (weekData?.breakfast_ids ?? [])
+      .map((id) => recipeMap.get(id))
+      .filter((r): r is Recipe => Boolean(r));
+  }, [weekData, recipeMap]);
+
+  const includedBreakfasts = useMemo(() => {
+    return weeklyBreakfasts.filter((b) =>
+      state.includedBreakfastIds.includes(b.id),
+    );
+  }, [weeklyBreakfasts, state.includedBreakfastIds]);
 
   const weeklySnacks = useMemo(() => {
     return (weekData?.snack_ids ?? [])
@@ -108,10 +124,10 @@ export function useMealPlanner() {
 
   const groceryItems = useMemo(() => {
     return aggregateGroceries(
-      [...plannedRecipes, ...includedSnacks],
+      [...plannedRecipes, ...includedBreakfasts, ...includedSnacks],
       state.household,
     );
-  }, [plannedRecipes, includedSnacks, state.household]);
+  }, [plannedRecipes, includedBreakfasts, includedSnacks, state.household]);
 
   const isRecipeSafe = useCallback(
     (recipe: Recipe) => {
@@ -173,7 +189,7 @@ export function useMealPlanner() {
       setState((prev) => {
         const currentId = prev.plannedIds[dayIndex];
         const inPlan = new Set(prev.plannedIds);
-        const dinnerPool = weekData.recipes.filter((r) => !snackIdSet.has(r.id));
+        const dinnerPool = weekData.recipes.filter((r) => !nonDinnerIdSet.has(r.id));
         const safeBench = dinnerPool.filter(
           (r) => !inPlan.has(r.id) && isRecipeSafe(r),
         );
@@ -191,7 +207,7 @@ export function useMealPlanner() {
         return { ...prev, plannedIds: nextPlanned };
       });
     },
-    [weekData, snackIdSet, isRecipeSafe],
+    [weekData, nonDinnerIdSet, isRecipeSafe],
   );
 
   const shuffleUnlocked = useCallback(() => {
@@ -201,7 +217,7 @@ export function useMealPlanner() {
       const lockedIds = new Set(
         prev.plannedIds.filter((_, idx) => lockedSet.has(idx)),
       );
-      const dinnerPool = weekData.recipes.filter((r) => !snackIdSet.has(r.id));
+      const dinnerPool = weekData.recipes.filter((r) => !nonDinnerIdSet.has(r.id));
 
       const safeCandidates = dinnerPool.filter(
         (r) => !lockedIds.has(r.id) && isRecipeSafe(r),
@@ -226,7 +242,7 @@ export function useMealPlanner() {
 
       return { ...prev, plannedIds: nextPlanned };
     });
-  }, [weekData, snackIdSet, isRecipeSafe]);
+  }, [weekData, nonDinnerIdSet, isRecipeSafe]);
 
   const toggleGroceryItem = useCallback((key: string) => {
     setState((prev) => ({
@@ -376,6 +392,16 @@ export function useMealPlanner() {
     });
   }, []);
 
+  const toggleBreakfastIncluded = useCallback((breakfastId: string) => {
+    setState((prev) => {
+      const exists = prev.includedBreakfastIds.includes(breakfastId);
+      const next = exists
+        ? prev.includedBreakfastIds.filter((id) => id !== breakfastId)
+        : [...prev.includedBreakfastIds, breakfastId];
+      return { ...prev, includedBreakfastIds: next };
+    });
+  }, []);
+
   const toggleSnackIncluded = useCallback((snackId: string) => {
     setState((prev) => {
       const exists = prev.includedSnackIds.includes(snackId);
@@ -392,6 +418,7 @@ export function useMealPlanner() {
     weekData,
     state,
     plannedRecipes,
+    weeklyBreakfasts,
     weeklySnacks,
     groceryItems,
     isRecipeSafe,
@@ -401,6 +428,7 @@ export function useMealPlanner() {
     toggleLock,
     swapMeal,
     shuffleUnlocked,
+    toggleBreakfastIncluded,
     toggleSnackIncluded,
     toggleGroceryItem,
     clearCheckedGroceries,

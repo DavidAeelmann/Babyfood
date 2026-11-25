@@ -44,6 +44,7 @@ async function main() {
 
   // 1. Plan view screenshot & overflow check
   await assertNoOverflow(page, 'Plan View');
+  await page.waitForSelector('[data-testid="weekly-breakfasts-section"]');
   await page.waitForSelector('[data-testid="weekly-snacks-section"]');
   const snackBtnTextBefore = await page.textContent(
     '[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]',
