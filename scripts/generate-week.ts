@@ -14,11 +14,34 @@ import {
   buildWeeklyPrompt,
   generateWeekWithLlm,
   getLlmProvider,
+  type WeeklyPromptPreferences,
 } from './providers/llm';
 import type { WeekData } from '../src/types/recipe';
 
 const WEEK_JSON_PATH = resolve(process.cwd(), 'public/data/week-current.json');
 const MEALS_DIR = resolve(process.cwd(), 'public/meals');
+
+function loadPreferences(): WeeklyPromptPreferences | undefined {
+  if (process.env.MEAL_PREFERENCES_JSON?.trim()) {
+    try {
+      return JSON.parse(process.env.MEAL_PREFERENCES_JSON) as WeeklyPromptPreferences;
+    } catch {
+      console.warn('Warning: invalid MEAL_PREFERENCES_JSON ignored.');
+    }
+  }
+  const argPath = process.argv.find((a) => a.startsWith('--preferences='))?.split('=')[1];
+  const prefPath = argPath
+    ? resolve(process.cwd(), argPath)
+    : resolve(process.cwd(), 'public/data/preferences.json');
+  if (existsSync(prefPath)) {
+    try {
+      return JSON.parse(readFileSync(prefPath, 'utf-8')) as WeeklyPromptPreferences;
+    } catch {
+      console.warn(`Warning: failed parsing ${prefPath}`);
+    }
+  }
+  return undefined;
+}
 
 function getIsoWeekId(date = new Date()): string {
   const utc = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -100,6 +123,7 @@ async function main() {
 
   const weekId = getIsoWeekId();
   const provider = getLlmProvider();
+  const preferences = loadPreferences();
   console.log(`Generating weekly meal plan for ${weekId} (provider=${mockMode ? 'mock' : provider})...`);
 
   let candidate: WeekData;
@@ -108,7 +132,7 @@ async function main() {
     candidate = JSON.parse(readFileSync(WEEK_JSON_PATH, 'utf-8')) as WeekData;
     candidate = normalizeWeekData(candidate, weekId);
   } else {
-    let prompt = buildWeeklyPrompt(weekId);
+    let prompt = buildWeeklyPrompt(weekId, preferences);
     let attempts = 0;
     const maxAttempts = 3;
 
@@ -136,7 +160,7 @@ async function main() {
       const errorSummary = validation.issues
         .map((i) => `- [${i.recipeId}] (${i.rule}): ${i.message}`)
         .join('\n');
-      prompt = `${buildWeeklyPrompt(weekId)}\n\nPREVIOUS OUTPUT FAILED VALIDATION. FIX ALL OF THESE ISSUES:\n${errorSummary}`;
+      prompt = `${buildWeeklyPrompt(weekId, preferences)}\n\nPREVIOUS OUTPUT FAILED VALIDATION. FIX ALL OF THESE ISSUES:\n${errorSummary}`;
     }
   }
 

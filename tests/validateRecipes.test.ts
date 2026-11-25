@@ -8,15 +8,15 @@ const weekPath = resolve(process.cwd(), 'public/data/week-current.json');
 const weekData = JSON.parse(readFileSync(weekPath, 'utf-8')) as WeekData;
 
 describe('validateRecipes & seeded week-current.json', () => {
-  it('validates the seeded 38-recipe week-current.json with zero issues', () => {
+  it('validates the seeded 64-recipe week-current.json with zero issues', () => {
     const result = validateWeekData(weekData);
     expect(result.issues).toEqual([]);
     expect(result.valid).toBe(true);
-    expect(weekData.recipes).toHaveLength(38);
+    expect(weekData.recipes).toHaveLength(64);
     expect(weekData.planned_ids).toHaveLength(7);
-    expect(weekData.breakfast_ids).toHaveLength(7);
-    expect(weekData.lunch_ids).toHaveLength(8);
-    expect(weekData.snack_ids).toHaveLength(7);
+    expect(weekData.breakfast_ids).toHaveLength(12);
+    expect(weekData.lunch_ids).toHaveLength(14);
+    expect(weekData.snack_ids).toHaveLength(12);
 
     for (const r of weekData.recipes) {
       expect(['breakfast', 'lunch', 'snack', 'dinner']).toContain(r.meal_slot);

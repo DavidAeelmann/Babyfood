@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '0 6 * * 0' # Every Sunday at 06:00 UTC
   workflow_dispatch:
+    inputs:
+      preferences_json:
+        description: 'JSON copiado de Preferências (Favoritas & Bloqueadas) opcional'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -25,12 +30,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate weekly meal plan and photos
+      - name: Generate weekly meal plan and photos (when API key is configured)
         env:
           LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'gemini' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: npm run generate-week
+          MEAL_PREFERENCES_JSON: ${{ inputs.preferences_json }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
+            echo "::notice::GEMINI_API_KEY ou OPENAI_API_KEY ainda não configurada nos Secrets do repositório. A manter week-current.json validado."
+            exit 0
+          fi
+          npm run generate-week
 
       - name: Run deterministic recipe validator
         run: npm run generate-week -- --validate-only
@@ -50,5 +61,5 @@ jobs:
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "chore(meals): refresh weekly meal plan"
+          git commit -m "chore(meals): refresh weekly meal plan (PT-PT)"
           git push

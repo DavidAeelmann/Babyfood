@@ -5,6 +5,11 @@ import {
   getRecipeMatchingFirstFoods,
 } from '../lib/firstFoods';
 import { aggregateGroceries } from '../lib/groceryAggregator';
+import {
+  createCustomRecipeFromInput,
+  getSamplingWeight,
+  scoreRecipeAlignment,
+} from '../lib/preferences';
 import { decodeCheckedBitmask, decodeShareHash } from '../lib/shareSync';
 import {
   loadPersistedState,
@@ -91,11 +96,16 @@ export function useMealPlanner() {
             : null;
 
         setState((prev) => {
-          const validIds = new Set(data.recipes.map((r) => r.id));
+          const validIds = new Set([
+            ...data.recipes.map((r) => r.id),
+            ...prev.customRecipes.map((r) => r.id),
+          ]);
 
           // Hydrate from shared URL hash (#s=...) when present and matching recipes exist
           if (shared && shared.w === data.week_id) {
-            const localMap = new Map(data.recipes.map((r) => [r.id, r]));
+            const localMap = new Map(
+              [...data.recipes, ...prev.customRecipes].map((r) => [r.id, r]),
+            );
             const sharedPlanned = shared.p.filter((id) => validIds.has(id));
             const nextGrid =
               shared.g.length === 7
@@ -163,7 +173,7 @@ export function useMealPlanner() {
           }
 
           // Week rollover or first load: preserve householdConfig, enabledSlots,
-          // hidePantryStaples, customItems, triedFoods, and favorite/blocked preferences.
+          // hidePantryStaples, customItems, triedFoods, customRecipes, and favorite/blocked preferences.
           return {
             ...prev,
             weekId: data.week_id,
@@ -205,28 +215,41 @@ export function useMealPlanner() {
     };
   }, []);
 
+  const allRecipes = useMemo(() => {
+    return [...state.customRecipes, ...(weekData?.recipes ?? [])];
+  }, [state.customRecipes, weekData]);
+
   const recipeMap = useMemo(() => {
     const map = new Map<string, Recipe>();
-    for (const r of weekData?.recipes ?? []) {
+    for (const r of allRecipes) {
       map.set(r.id, r);
     }
     return map;
-  }, [weekData]);
+  }, [allRecipes]);
 
   const weeklyBreakfasts = useMemo(() => {
-    if (!weekData) return [];
-    return getRecipesBySlot(weekData, 'breakfast');
-  }, [weekData]);
+    if (!weekData) return state.customRecipes.filter((r) => r.meal_slot === 'breakfast');
+    return [
+      ...state.customRecipes.filter((r) => r.meal_slot === 'breakfast'),
+      ...getRecipesBySlot(weekData, 'breakfast'),
+    ];
+  }, [weekData, state.customRecipes]);
 
   const weeklyLunches = useMemo(() => {
-    if (!weekData) return [];
-    return getRecipesBySlot(weekData, 'lunch');
-  }, [weekData]);
+    if (!weekData) return state.customRecipes.filter((r) => r.meal_slot === 'lunch');
+    return [
+      ...state.customRecipes.filter((r) => r.meal_slot === 'lunch'),
+      ...getRecipesBySlot(weekData, 'lunch'),
+    ];
+  }, [weekData, state.customRecipes]);
 
   const weeklySnacks = useMemo(() => {
-    if (!weekData) return [];
-    return getRecipesBySlot(weekData, 'snack');
-  }, [weekData]);
+    if (!weekData) return state.customRecipes.filter((r) => r.meal_slot === 'snack');
+    return [
+      ...state.customRecipes.filter((r) => r.meal_slot === 'snack'),
+      ...getRecipesBySlot(weekData, 'snack'),
+    ];
+  }, [weekData, state.customRecipes]);
 
   const plannedRecipes = useMemo(() => {
     return state.plannedIds
@@ -347,38 +370,50 @@ export function useMealPlanner() {
 
   const getSlotPool = useCallback(
     (slot: MealSlotType): Recipe[] => {
-      if (!weekData) return [];
+      const customFor = (s: MealSlotType) =>
+        state.customRecipes.filter((r) => r.meal_slot === s);
+
+      if (!weekData) {
+        return slot === 'breakfast' || slot === 'snack'
+          ? [...customFor('breakfast'), ...customFor('snack')]
+          : [...customFor('dinner'), ...customFor('lunch')];
+      }
       if (slot === 'breakfast' || slot === 'snack') {
         return [
+          ...customFor('breakfast'),
+          ...customFor('snack'),
           ...getRecipesBySlot(weekData, 'breakfast'),
           ...getRecipesBySlot(weekData, 'snack'),
         ];
       }
       return [
+        ...customFor('dinner'),
+        ...customFor('lunch'),
         ...getRecipesBySlot(weekData, 'dinner'),
         ...getRecipesBySlot(weekData, 'lunch'),
       ];
     },
-    [weekData],
+    [weekData, state.customRecipes],
   );
 
   const getPickerOptionsForSlot = useCallback(
     (slot: MealSlotType): Recipe[] => {
       const pool = getSlotPool(slot);
       const blockedSet = new Set(state.blockedIds);
-      const favSet = new Set(state.favoriteIds);
 
       return pool
         .filter((r) => !blockedSet.has(r.id))
         .sort((a, b) => {
-          const favDiff = Number(favSet.has(b.id)) - Number(favSet.has(a.id));
-          if (favDiff !== 0) return favDiff;
+          const alignDiff =
+            scoreRecipeAlignment(b, state.favoriteIds, state.blockedIds, recipeMap) -
+            scoreRecipeAlignment(a, state.favoriteIds, state.blockedIds, recipeMap);
+          if (alignDiff !== 0) return alignDiff;
           const safeDiff = Number(isRecipeSafe(b)) - Number(isRecipeSafe(a));
           if (safeDiff !== 0) return safeDiff;
           return a.title.localeCompare(b.title);
         });
     },
-    [getSlotPool, state.blockedIds, state.favoriteIds, isRecipeSafe],
+    [getSlotPool, state.blockedIds, state.favoriteIds, recipeMap, isRecipeSafe],
   );
 
   const clearSlot = useCallback((dayIndex: number, slot: MealSlotType) => {
@@ -421,7 +456,6 @@ export function useMealPlanner() {
         if (prev.lockedIndices.includes(dayIndex)) return prev;
         const pool = getSlotPool(slot);
         const blockedSet = new Set(prev.blockedIds);
-        const favSet = new Set(prev.favoriteIds);
         const nonBlocked = pool.filter(
           (r) => !blockedSet.has(r.id) && isRecipeSafe(r),
         );
@@ -432,7 +466,7 @@ export function useMealPlanner() {
 
         const weighted: Recipe[] = [];
         for (const r of finalPool) {
-          const weight = favSet.has(r.id) ? 3 : 1;
+          const weight = getSamplingWeight(r, prev.favoriteIds, prev.blockedIds, recipeMap);
           for (let w = 0; w < weight; w += 1) weighted.push(r);
         }
         const picked = weighted[Math.floor(Math.random() * weighted.length)];
@@ -448,7 +482,7 @@ export function useMealPlanner() {
         return { ...prev, weekGrid: nextGrid, plannedIds: nextPlanned };
       });
     },
-    [weekData, getSlotPool, isRecipeSafe],
+    [weekData, getSlotPool, isRecipeSafe, recipeMap],
   );
 
   const swapMeal = useCallback(
@@ -459,7 +493,6 @@ export function useMealPlanner() {
         const currentId = prev.plannedIds[dayIndex];
         const inPlan = new Set(prev.plannedIds);
         const blockedSet = new Set(prev.blockedIds);
-        const favSet = new Set(prev.favoriteIds);
         const dinnerPool = getSlotPool('dinner').filter(
           (r) => !blockedSet.has(r.id),
         );
@@ -468,7 +501,9 @@ export function useMealPlanner() {
         );
         const anyBench = dinnerPool.filter((r) => !inPlan.has(r.id));
         const pool = (safeBench.length > 0 ? safeBench : anyBench).sort(
-          (a, b) => Number(favSet.has(b.id)) - Number(favSet.has(a.id)),
+          (a, b) =>
+            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) -
+            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap),
         );
 
         if (pool.length === 0) return prev;
@@ -485,7 +520,7 @@ export function useMealPlanner() {
         return { ...prev, plannedIds: nextPlanned, weekGrid: nextGrid };
       });
     },
-    [weekData, getSlotPool, isRecipeSafe],
+    [weekData, getSlotPool, isRecipeSafe, recipeMap],
   );
 
   const shuffleUnlocked = useCallback(() => {
@@ -493,7 +528,6 @@ export function useMealPlanner() {
     setState((prev) => {
       const lockedSet = new Set(prev.lockedIndices);
       const blockedSet = new Set(prev.blockedIds);
-      const favSet = new Set(prev.favoriteIds);
       const lockedIds = new Set(
         prev.plannedIds.filter((_, idx) => lockedSet.has(idx)),
       );
@@ -508,15 +542,20 @@ export function useMealPlanner() {
         (r) => !lockedIds.has(r.id) && !safeCandidates.includes(r),
       );
 
-      const sortWithFavBias = (list: Recipe[]) =>
+      const sortWithBias = (list: Recipe[]) =>
         [...list].sort((a, b) => {
-          const favDiff = Number(favSet.has(b.id)) - Number(favSet.has(a.id));
-          return favDiff !== 0 ? favDiff : Math.random() - 0.5;
+          const scoreA =
+            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap) +
+            (Math.random() - 0.5) * 4;
+          const scoreB =
+            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) +
+            (Math.random() - 0.5) * 4;
+          return scoreB - scoreA;
         });
 
       const pool = [
-        ...sortWithFavBias(safeCandidates),
-        ...sortWithFavBias(fallbackCandidates),
+        ...sortWithBias(safeCandidates),
+        ...sortWithBias(fallbackCandidates),
       ];
 
       let poolCursor = 0;
@@ -537,7 +576,7 @@ export function useMealPlanner() {
 
       return { ...prev, plannedIds: nextPlanned, weekGrid: nextGrid };
     });
-  }, [weekData, getSlotPool, isRecipeSafe]);
+  }, [weekData, getSlotPool, isRecipeSafe, recipeMap]);
 
   const reSimulateSlot = useCallback(
     (dayIndex: number, slot: MealSlotType) => {
@@ -552,13 +591,6 @@ export function useMealPlanner() {
           prev.weekGrid[dayIndex]?.[slot] ?? prev.plannedIds[dayIndex];
 
         const blockedSet = new Set(prev.blockedIds);
-        const favSet = new Set(prev.favoriteIds);
-        const favIngredients = new Set(
-          prev.favoriteIds.flatMap(
-            (fid) => recipeMap.get(fid)?.ingredients.map((i) => i.canonical_id) ?? [],
-          ),
-        );
-
         const eligible = pool.filter(
           (r) => r.id !== currentId && !blockedSet.has(r.id) && isRecipeSafe(r),
         );
@@ -568,15 +600,11 @@ export function useMealPlanner() {
         const candidates =
           eligible.length > 0 ? eligible : fallback.length > 0 ? fallback : pool;
 
-        const scored = [...candidates].sort((a, b) => {
-          const scoreA =
-            (favSet.has(a.id) ? 10 : 0) +
-            a.ingredients.filter((i) => favIngredients.has(i.canonical_id)).length;
-          const scoreB =
-            (favSet.has(b.id) ? 10 : 0) +
-            b.ingredients.filter((i) => favIngredients.has(i.canonical_id)).length;
-          return scoreB - scoreA;
-        });
+        const scored = [...candidates].sort(
+          (a, b) =>
+            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) -
+            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap),
+        );
 
         const currentIdx = scored.findIndex((r) => r.id === currentId);
         const picked = scored[(currentIdx + 1) % scored.length] ?? scored[0];
@@ -602,7 +630,6 @@ export function useMealPlanner() {
     setState((prev) => {
       const lockedSet = new Set(prev.lockedIndices);
       const blockedSet = new Set(prev.blockedIds);
-      const favSet = new Set(prev.favoriteIds);
 
       const pickWeighted = (slot: MealSlotType, dayIdx: number, currentId: string) => {
         // Lock Day protects ALL slots on locked days
@@ -620,7 +647,7 @@ export function useMealPlanner() {
 
         const weighted: Recipe[] = [];
         for (const r of finalPool) {
-          const weight = favSet.has(r.id) ? 3 : 1;
+          const weight = getSamplingWeight(r, prev.favoriteIds, prev.blockedIds, recipeMap);
           for (let w = 0; w < weight; w += 1) weighted.push(r);
         }
         return weighted[Math.floor(Math.random() * weighted.length)].id;
@@ -853,6 +880,25 @@ export function useMealPlanner() {
     });
   }, []);
 
+  const addCustomRecipe = useCallback(
+    (input: {
+      title: string;
+      slot: MealSlotType;
+      prepMinutes: number;
+      cookMinutes: number;
+      ingredientsText: string;
+      toddlerNote: string;
+    }): Recipe => {
+      const created = createCustomRecipeFromInput(input);
+      setState((prev) => ({
+        ...prev,
+        customRecipes: [created, ...prev.customRecipes],
+      }));
+      return created;
+    },
+    [],
+  );
+
   const dismissSyncNotice = useCallback(() => {
     setSyncNotice(null);
   }, []);
@@ -866,6 +912,7 @@ export function useMealPlanner() {
     syncNotice,
     dismissSyncNotice,
     weekData,
+    allRecipes,
     state,
     plannedRecipes,
     weeklyBreakfasts,
@@ -888,6 +935,7 @@ export function useMealPlanner() {
     clearSlot,
     assignSlotMeal,
     addRandomSlotMeal,
+    addCustomRecipe,
     getPickerOptionsForSlot,
     toggleFavorite,
     toggleBlocked,

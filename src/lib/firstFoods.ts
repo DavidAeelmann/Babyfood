@@ -26,7 +26,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'sweet_potato',
     name: 'Batata-doce',
-    ptName: 'Sweet Potato',
+    ptName: 'Batata-doce',
     category: 'Vegetables',
     prep6m: 'Assada em tiras macias da largura de 2 dedos ou em puré com azeite.',
     canonicalIds: ['sweet_potato'],
@@ -34,7 +34,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'carrot',
     name: 'Cenoura',
-    ptName: 'Carrot',
+    ptName: 'Cenoura',
     category: 'Vegetables',
     prep6m: 'Cozida a vapor ou estufada até desfazer entre dois dedos (em tiras).',
     canonicalIds: ['carrot'],
@@ -42,7 +42,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'broccoli',
     name: 'Brócolos',
-    ptName: 'Broccoli',
+    ptName: 'Brócolos',
     category: 'Vegetables',
     prep6m: 'Floretes cozidos a vapor bem macios com o pé para agarrar facilmente.',
     canonicalIds: ['broccoli_florets'],
@@ -50,7 +50,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'zucchini',
     name: 'Curgete',
-    ptName: 'Zucchini',
+    ptName: 'Curgete',
     category: 'Vegetables',
     prep6m: 'Em tiras com casca cozidas a vapor ou assadas, macias por dentro.',
     canonicalIds: ['zucchini'],
@@ -58,7 +58,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'spinach',
     name: 'Espinafres',
-    ptName: 'Spinach',
+    ptName: 'Espinafres',
     category: 'Vegetables',
     prep6m: 'Salteados ou cozidos na sopa e picados finamente.',
     canonicalIds: ['baby_spinach'],
@@ -66,7 +66,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'tomato',
     name: 'Tomate',
-    ptName: 'Tomato',
+    ptName: 'Tomate',
     category: 'Vegetables',
     prep6m: 'Tomate-cereja cortado em quartos e esmagado (nunca inteiro).',
     canonicalIds: ['cherry_tomatoes', 'crushed_tomatoes'],
@@ -74,7 +74,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'butternut_squash',
     name: 'Abóbora-manteiga',
-    ptName: 'Butternut Squash',
+    ptName: 'Abóbora-manteiga',
     category: 'Vegetables',
     prep6m: 'Assada em palitos macios ou em creme de legumes sem sal.',
     canonicalIds: ['butternut_squash', 'pumpkin'],
@@ -82,7 +82,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cauliflower',
     name: 'Couve-flor',
-    ptName: 'Cauliflower',
+    ptName: 'Couve-flor',
     category: 'Vegetables',
     prep6m: 'Floretes cozidos até ficarem muito macios nas gengivas.',
     canonicalIds: ['cauliflower'],
@@ -90,7 +90,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'avocado',
     name: 'Abacate',
-    ptName: 'Avocado',
+    ptName: 'Abacate',
     category: 'Vegetables',
     prep6m: 'Em tiras maduras passadas por aveia para dar aderência, ou esmagado.',
     canonicalIds: ['avocado'],
@@ -98,7 +98,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'onion',
     name: 'Cebola',
-    ptName: 'Yellow Onion',
+    ptName: 'Cebola',
     category: 'Vegetables',
     prep6m: 'Bem cozinhada em sopas, estufados e refogados suaves.',
     canonicalIds: ['yellow_onion'],
@@ -106,7 +106,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'garlic',
     name: 'Alho',
-    ptName: 'Garlic',
+    ptName: 'Alho',
     category: 'Vegetables',
     prep6m: 'Assado ou estufado em azeite para aromatizar sem usar sal.',
     canonicalIds: ['garlic_clove'],
@@ -114,7 +114,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'peas',
     name: 'Ervilhas',
-    ptName: 'Green Peas',
+    ptName: 'Ervilhas',
     category: 'Vegetables',
     prep6m: 'Sempre esmagadas com garfo ou em puré (nunca ervilhas redondas inteiras).',
     canonicalIds: ['green_peas', 'peas'],
@@ -122,7 +122,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'green_beans',
     name: 'Feijão-verde',
-    ptName: 'Green Beans',
+    ptName: 'Feijão-verde',
     category: 'Vegetables',
     prep6m: 'Vagens cozidas até ficarem bem macias, fáceis de agarrar.',
     canonicalIds: ['green_beans'],
@@ -130,7 +130,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'bell_pepper',
     name: 'Pimento vermelho',
-    ptName: 'Red Bell Pepper',
+    ptName: 'Pimento vermelho',
     category: 'Vegetables',
     prep6m: 'Assado e sem pele, cortado em tiras macias.',
     canonicalIds: ['bell_pepper'],
@@ -138,7 +138,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'potato',
     name: 'Batata branca',
-    ptName: 'White Potato',
+    ptName: 'Batata branca',
     category: 'Vegetables',
     prep6m: 'Cozida em gomos macios ou em puré com azeite virgem extra.',
     canonicalIds: ['potato'],
@@ -146,7 +146,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'parsnip',
     name: 'Pastinaga',
-    ptName: 'Parsnip',
+    ptName: 'Pastinaga',
     category: 'Vegetables',
     prep6m: 'Assada em palitos macios com azeite.',
     canonicalIds: ['parsnip'],
@@ -154,7 +154,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'sweet_corn',
     name: 'Milho doce',
-    ptName: 'Sweet Corn',
+    ptName: 'Milho doce',
     category: 'Vegetables',
     prep6m: 'Triturado em sopa ou pataniscas (nunca grãos inteiros).',
     canonicalIds: ['sweet_corn'],
@@ -162,7 +162,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'eggplant',
     name: 'Beringela',
-    ptName: 'Eggplant',
+    ptName: 'Beringela',
     category: 'Vegetables',
     prep6m: 'Assada sem casca em tiras cremosas.',
     canonicalIds: ['eggplant'],
@@ -170,7 +170,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'mushroom',
     name: 'Cogumelos',
-    ptName: 'Mushrooms',
+    ptName: 'Cogumelos',
     category: 'Vegetables',
     prep6m: 'Picados finamente e salteados até ficarem bem macios.',
     canonicalIds: ['mushroom'],
@@ -178,7 +178,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'beetroot',
     name: 'Beterraba',
-    ptName: 'Beetroot',
+    ptName: 'Beterraba',
     category: 'Vegetables',
     prep6m: 'Cozida ou assada até ficar muito macia, em palitos.',
     canonicalIds: ['beetroot'],
@@ -186,7 +186,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'asparagus',
     name: 'Espargos',
-    ptName: 'Asparagus',
+    ptName: 'Espargos',
     category: 'Vegetables',
     prep6m: 'Talos grossos cozidos a vapor até ficarem tenros.',
     canonicalIds: ['asparagus'],
@@ -194,7 +194,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cucumber',
     name: 'Pepino',
-    ptName: 'Cucumber',
+    ptName: 'Pepino',
     category: 'Vegetables',
     prep6m: 'Sem casca em tiras do centro macio ou ralado em iogurte.',
     canonicalIds: ['cucumber'],
@@ -202,7 +202,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'kale',
     name: 'Couve-galega / Lombarda',
-    ptName: 'Kale / Greens',
+    ptName: 'Couve-galega / Lombarda',
     category: 'Vegetables',
     prep6m: 'Cozida muito tenra e cortada em juliana fininha no caldo verde.',
     canonicalIds: ['kale'],
@@ -210,7 +210,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'leek',
     name: 'Alho-francês',
-    ptName: 'Leek',
+    ptName: 'Alho-francês',
     category: 'Vegetables',
     prep6m: 'Estufado ou cozido na sopa até ficar completamente macio.',
     canonicalIds: ['leek'],
@@ -218,7 +218,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'turnip',
     name: 'Nabo / Chuchu',
-    ptName: 'Turnip / Chayote',
+    ptName: 'Nabo / Chuchu',
     category: 'Vegetables',
     prep6m: 'Cozido na sopa de legumes e triturado em creme.',
     canonicalIds: ['turnip'],
@@ -236,7 +236,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'pear',
     name: 'Pera Rocha',
-    ptName: 'Pear',
+    ptName: 'Pera Rocha',
     category: 'Fruits',
     prep6m: 'Bem madura sem casca em gomos, ralada ou cozida a vapor.',
     canonicalIds: ['pear'],
@@ -244,7 +244,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'apple',
     name: 'Maçã',
-    ptName: 'Apple',
+    ptName: 'Maçã',
     category: 'Fruits',
     prep6m: 'Assada ou cozida a vapor em palitos macios (nunca crua aos cubos).',
     canonicalIds: ['apple'],
@@ -252,7 +252,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'peach',
     name: 'Pêssego',
-    ptName: 'Peach',
+    ptName: 'Pêssego',
     category: 'Fruits',
     prep6m: 'Muito maduro e descascado, em metades ou gomos.',
     canonicalIds: ['peach'],
@@ -260,7 +260,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'mango',
     name: 'Manga',
-    ptName: 'Mango',
+    ptName: 'Manga',
     category: 'Fruits',
     prep6m: 'Em palitos maduros ou caroço com alguma polpa para chupar.',
     canonicalIds: ['mango'],
@@ -268,7 +268,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'blueberries',
     name: 'Mirtilos',
-    ptName: 'Blueberries',
+    ptName: 'Mirtilos',
     category: 'Fruits',
     prep6m: 'Sempre esmagados ou achatados completamente (nunca inteiros).',
     canonicalIds: ['blueberries', 'blueberry'],
@@ -276,7 +276,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'strawberry',
     name: 'Morango',
-    ptName: 'Strawberry',
+    ptName: 'Morango',
     category: 'Fruits',
     prep6m: 'Morangos grandes e maduros inteiros (para agarrar) ou esmagados.',
     canonicalIds: ['strawberry'],
@@ -284,7 +284,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'raspberry',
     name: 'Framboesa',
-    ptName: 'Raspberry',
+    ptName: 'Framboesa',
     category: 'Fruits',
     prep6m: 'Ligeiramente esmagada ou inteira bem madura.',
     canonicalIds: ['raspberry'],
@@ -292,7 +292,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'blackberry',
     name: 'Amora',
-    ptName: 'Blackberry',
+    ptName: 'Amora',
     category: 'Fruits',
     prep6m: 'Esmagada ou cortada ao meio se for grande e rija.',
     canonicalIds: ['blackberry'],
@@ -300,7 +300,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'plum',
     name: 'Ameixa',
-    ptName: 'Plum',
+    ptName: 'Ameixa',
     category: 'Fruits',
     prep6m: 'Sem caroço, muito madura ou cozida em gomos macios.',
     canonicalIds: ['plum'],
@@ -308,7 +308,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'apricot',
     name: 'Alperce',
-    ptName: 'Apricot',
+    ptName: 'Alperce',
     category: 'Fruits',
     prep6m: 'Sem caroço em metades maduras ou escalfado.',
     canonicalIds: ['apricot'],
@@ -324,7 +324,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'orange',
     name: 'Laranja do Algarve',
-    ptName: 'Orange',
+    ptName: 'Laranja do Algarve',
     category: 'Fruits',
     prep6m: 'Gomos sem pele nem sementes (ou em sumo para cozinhar).',
     canonicalIds: ['orange'],
@@ -332,7 +332,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'lemon',
     name: 'Limão',
-    ptName: 'Lemon',
+    ptName: 'Limão',
     category: 'Fruits',
     prep6m: 'Umas gotas espremidas sobre peixe, legumes ou abacate.',
     canonicalIds: ['lemon'],
@@ -340,7 +340,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'melon',
     name: 'Melão / Meloa',
-    ptName: 'Melon',
+    ptName: 'Melão / Meloa',
     category: 'Fruits',
     prep6m: 'Bem maduro e suculento, em fatias finas e compridas.',
     canonicalIds: ['melon'],
@@ -348,7 +348,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'watermelon',
     name: 'Melancia',
-    ptName: 'Watermelon',
+    ptName: 'Melancia',
     category: 'Fruits',
     prep6m: 'Sem pevides, em tiras retangulares finas.',
     canonicalIds: ['watermelon'],
@@ -356,7 +356,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'papaya',
     name: 'Papaia',
-    ptName: 'Papaya',
+    ptName: 'Papaia',
     category: 'Fruits',
     prep6m: 'Descascada em tiras maduras macias ou esmagada.',
     canonicalIds: ['papaya'],
@@ -364,7 +364,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'nectarine',
     name: 'Nectarina',
-    ptName: 'Nectarine',
+    ptName: 'Nectarina',
     category: 'Fruits',
     prep6m: 'Muito madura descascada em gomos ou cozida.',
     canonicalIds: ['nectarine'],
@@ -372,7 +372,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'pineapple',
     name: 'Ananás dos Açores',
-    ptName: 'Pineapple',
+    ptName: 'Ananás dos Açores',
     category: 'Fruits',
     prep6m: 'Bem maduro sem centro duro, em palitos finos ou picado.',
     canonicalIds: ['pineapple'],
@@ -380,7 +380,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'fig',
     name: 'Figo fresco',
-    ptName: 'Fresh Fig',
+    ptName: 'Figo fresco',
     category: 'Fruits',
     prep6m: 'Cortado em quartos bem maduros e macios.',
     canonicalIds: ['fig'],
@@ -388,7 +388,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'grapes',
     name: 'Uvas',
-    ptName: 'Grapes',
+    ptName: 'Uvas',
     category: 'Fruits',
     prep6m: 'Sempre cortadas em quartos ao comprido ou esmagadas (nunca inteiras).',
     canonicalIds: ['grapes', 'grape'],
@@ -396,7 +396,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cherries',
     name: 'Cerejas',
-    ptName: 'Cherries',
+    ptName: 'Cerejas',
     category: 'Fruits',
     prep6m: 'Sem caroço, cortadas em quartos e achatadas.',
     canonicalIds: ['cherries'],
@@ -404,7 +404,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'dates',
     name: 'Tâmaras (em pasta)',
-    ptName: 'Dates',
+    ptName: 'Tâmaras (em pasta)',
     category: 'Fruits',
     prep6m: 'Sem caroço, hidratadas e trituradas em bolinhas ou bolos sem açúcar.',
     canonicalIds: ['dates', 'prunes'],
@@ -414,7 +414,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'hake_white_fish',
     name: 'Pescada / Dourada',
-    ptName: 'Hake / Sea Bream',
+    ptName: 'Pescada / Dourada',
     category: 'Proteins & Iron',
     allergen: 'fish',
     prep6m: 'Lascas húmidas bem verificadas para garantir zero espinhas.',
@@ -423,7 +423,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'codfish',
     name: 'Bacalhau demolhado (sem sal)',
-    ptName: 'Desalted Cod',
+    ptName: 'Bacalhau demolhado (sem sal)',
     category: 'Proteins & Iron',
     allergen: 'fish',
     prep6m: 'Muito bem demolhado, lascado fino e verificado quanto a espinhas.',
@@ -432,7 +432,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'salmon',
     name: 'Salmão',
-    ptName: 'Salmon',
+    ptName: 'Salmão',
     category: 'Proteins & Iron',
     allergen: 'fish',
     prep6m: 'Em lascas finas sem espinhas; ideal em pequenas porções (9–12m+).',
@@ -441,7 +441,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'tuna',
     name: 'Atum ao natural (baixo sal)',
-    ptName: 'Tuna',
+    ptName: 'Atum ao natural (baixo sal)',
     category: 'Proteins & Iron',
     allergen: 'fish',
     prep6m: 'Escorrido e envolvido em patéis macios ou omelete.',
@@ -450,7 +450,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'shrimp',
     name: 'Camarão',
-    ptName: 'Shrimp / Prawns',
+    ptName: 'Camarão',
     category: 'Proteins & Iron',
     allergen: 'shellfish',
     prep6m: 'Picado finamente e misturado em pataniscas ou arroz.',
@@ -459,7 +459,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'chicken',
     name: 'Frango (coxa/peito)',
-    ptName: 'Chicken',
+    ptName: 'Frango (coxa/peito)',
     category: 'Proteins & Iron',
     prep6m: 'Desfiado em tiras húmidas ou em croquetes macios de forno.',
     canonicalIds: ['chicken_thigh'],
@@ -467,7 +467,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'turkey',
     name: 'Peru',
-    ptName: 'Turkey',
+    ptName: 'Peru',
     category: 'Proteins & Iron',
     prep6m: 'Almôndegas macias cortadas ao meio ou tiras húmidas.',
     canonicalIds: ['ground_turkey'],
@@ -475,7 +475,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'beef',
     name: 'Carne de vaca picada',
-    ptName: 'Beef',
+    ptName: 'Carne de vaca picada',
     category: 'Proteins & Iron',
     prep6m: 'Bem cozinhada em molho espesso ou empadão com batata-doce.',
     canonicalIds: ['ground_beef'],
@@ -483,7 +483,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'lamb',
     name: 'Borrego',
-    ptName: 'Lamb',
+    ptName: 'Borrego',
     category: 'Proteins & Iron',
     prep6m: 'Estufado lentamente e desfiado em tiras tenras.',
     canonicalIds: ['ground_lamb'],
@@ -491,7 +491,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'pork',
     name: 'Lombo de porco',
-    ptName: 'Pork Tenderloin',
+    ptName: 'Lombo de porco',
     category: 'Proteins & Iron',
     prep6m: 'Cozinhado lentamente e desfiado em tiras húmidas.',
     canonicalIds: ['pork_tenderloin'],
@@ -499,7 +499,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'red_lentils',
     name: 'Lentilhas vermelhas',
-    ptName: 'Red Lentils',
+    ptName: 'Lentilhas vermelhas',
     category: 'Proteins & Iron',
     prep6m: 'Cozidas até ficarem cremosas e fáceis de comer à colher.',
     canonicalIds: ['red_lentils'],
@@ -507,7 +507,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'green_lentils',
     name: 'Lentilhas verdes / castanhas',
-    ptName: 'Brown/Green Lentils',
+    ptName: 'Lentilhas verdes / castanhas',
     category: 'Proteins & Iron',
     prep6m: 'Cozidas muito macias e ligeiramente esmagadas.',
     canonicalIds: ['green_lentils'],
@@ -515,7 +515,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'chickpeas',
     name: 'Grão-de-bico',
-    ptName: 'Chickpeas',
+    ptName: 'Grão-de-bico',
     category: 'Proteins & Iron',
     prep6m: 'Sempre esmagado ou achatado com garfo (nunca grãos inteiros).',
     canonicalIds: ['canned_chickpeas'],
@@ -523,7 +523,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'black_beans',
     name: 'Feijão preto',
-    ptName: 'Black Beans',
+    ptName: 'Feijão preto',
     category: 'Proteins & Iron',
     prep6m: 'Achatado ou em puré cremoso.',
     canonicalIds: ['black_beans'],
@@ -531,7 +531,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'white_beans',
     name: 'Feijão-branco / Frade',
-    ptName: 'White Beans',
+    ptName: 'Feijão-branco / Frade',
     category: 'Proteins & Iron',
     prep6m: 'Achatado ou triturado no caldo verde/sopa para dar ferro e cremosidade.',
     canonicalIds: ['white_beans'],
@@ -539,7 +539,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'kidney_beans',
     name: 'Feijão-encarnado',
-    ptName: 'Red Kidney Beans',
+    ptName: 'Feijão-encarnado',
     category: 'Proteins & Iron',
     prep6m: 'Esmagado em estufados ou hambúrgueres macios.',
     canonicalIds: ['kidney_beans'],
@@ -547,7 +547,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'hummus',
     name: 'Húmus caseiro (sem sal)',
-    ptName: 'Hummus',
+    ptName: 'Húmus caseiro (sem sal)',
     category: 'Proteins & Iron',
     allergen: 'sesame',
     prep6m: 'Barrado finamente em tiras de pão ou legumes cozidos.',
@@ -556,7 +556,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'hemp_seeds',
     name: 'Sementes de cânhamo',
-    ptName: 'Hemp Hearts',
+    ptName: 'Sementes de cânhamo',
     category: 'Proteins & Iron',
     prep6m: 'Polvilhadas sobre abacate ou banana para dar aderência e ómega-3.',
     canonicalIds: ['hemp_seeds'],
@@ -564,7 +564,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'chia_seeds',
     name: 'Sementes de chia (hidratadas)',
-    ptName: 'Chia Seeds',
+    ptName: 'Sementes de chia (hidratadas)',
     category: 'Proteins & Iron',
     prep6m: 'Sempre hidratadas previamente em iogurte ou papa (nunca secas).',
     canonicalIds: ['chia_seeds'],
@@ -572,7 +572,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'liver_pate',
     name: 'Fígado de frango',
-    ptName: 'Chicken Liver',
+    ptName: 'Fígado de frango',
     category: 'Proteins & Iron',
     prep6m: 'Triturado em pasta macia (máximo 1x/semana pelo teor em vitamina A).',
     canonicalIds: ['chicken_liver'],
@@ -582,7 +582,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'oats',
     name: 'Flocos de aveia',
-    ptName: 'Rolled Oats',
+    ptName: 'Flocos de aveia',
     category: 'Grains',
     prep6m: 'Em papas cremosas, panquecas, queques ou para ligar almôndegas.',
     canonicalIds: ['rolled_oats'],
@@ -590,7 +590,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'rice',
     name: 'Arroz carolino / basmati',
-    ptName: 'Rice',
+    ptName: 'Arroz carolino / basmati',
     category: 'Grains',
     prep6m: 'Bem cozido e envolvido em molho ou caldo de peixe para agarrar melhor.',
     canonicalIds: ['basmati_rice', 'carolino_rice'],
@@ -598,7 +598,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'brown_rice',
     name: 'Arroz integral',
-    ptName: 'Brown Rice',
+    ptName: 'Arroz integral',
     category: 'Grains',
     prep6m: 'Cozido bem macio em estufados.',
     canonicalIds: ['brown_rice'],
@@ -606,7 +606,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'pasta',
     name: 'Massa (Penne / Cotovelos)',
-    ptName: 'Pasta',
+    ptName: 'Massa (Penne / Cotovelos)',
     category: 'Grains',
     allergen: 'wheat',
     prep6m: 'Cozida bem macia; tubos penne são ótimos para a pega palmar.',
@@ -615,7 +615,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'bread',
     name: 'Pão de mistura / Broa',
-    ptName: 'Sourdough / Corn Bread',
+    ptName: 'Pão de mistura / Broa',
     category: 'Grains',
     allergen: 'wheat',
     prep6m: 'Ligeiramente tostado em tiras compridas com azeite, abacate ou açorda.',
@@ -632,7 +632,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'couscous',
     name: 'Cuscuz',
-    ptName: 'Couscous',
+    ptName: 'Cuscuz',
     category: 'Grains',
     allergen: 'wheat',
     prep6m: 'Hidratado macio e ligado com iogurte ou azeite.',
@@ -641,7 +641,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'polenta',
     name: 'Farinha de milho / Milharina',
-    ptName: 'Polenta / Cornmeal',
+    ptName: 'Farinha de milho / Milharina',
     category: 'Grains',
     prep6m: 'Em papa cremosa ou palitos assados macios.',
     canonicalIds: ['polenta'],
@@ -649,7 +649,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'millet',
     name: 'Milho-miúdo (Millet)',
-    ptName: 'Millet',
+    ptName: 'Milho-miúdo (Millet)',
     category: 'Grains',
     prep6m: 'Cozido até ficar uma papa macia.',
     canonicalIds: ['millet'],
@@ -657,7 +657,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'buckwheat',
     name: 'Trigo-sarraceno',
-    ptName: 'Buckwheat',
+    ptName: 'Trigo-sarraceno',
     category: 'Grains',
     prep6m: 'Em panquecas ou papas cremosas (sem glúten).',
     canonicalIds: ['buckwheat'],
@@ -665,7 +665,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'barley',
     name: 'Cevada',
-    ptName: 'Pearl Barley',
+    ptName: 'Cevada',
     category: 'Grains',
     allergen: 'wheat',
     prep6m: 'Cozida até ficar bem tenra em caldos.',
@@ -674,7 +674,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'farro',
     name: 'Espelta',
-    ptName: 'Spelt / Farro',
+    ptName: 'Espelta',
     category: 'Grains',
     allergen: 'wheat',
     prep6m: 'Cozida macia e ligeiramente esmagada.',
@@ -683,7 +683,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'rice_cakes',
     name: 'Tortitas de milho/arroz sem sal',
-    ptName: 'Unsalted Rice Cakes',
+    ptName: 'Tortitas de milho/arroz sem sal',
     category: 'Grains',
     prep6m: 'Com abacate esmagado ou iogurte natural.',
     canonicalIds: ['rice_cakes'],
@@ -693,7 +693,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'olive_oil',
     name: 'Azeite virgem extra',
-    ptName: 'Extra-Virgin Olive Oil',
+    ptName: 'Azeite virgem extra',
     category: 'Dairy & Fats',
     prep6m: 'Fio em cru na sopa e legumes no final (recomendação DGS).',
     canonicalIds: ['olive_oil'],
@@ -701,7 +701,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'coconut_milk',
     name: 'Leite de coco',
-    ptName: 'Coconut Milk',
+    ptName: 'Leite de coco',
     category: 'Dairy & Fats',
     prep6m: 'Em caril suave e estufados cremosos.',
     canonicalIds: ['coconut_milk'],
@@ -709,7 +709,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'greek_yogurt',
     name: 'Iogurte grego natural (sem açúcar)',
-    ptName: 'Plain Greek Yogurt',
+    ptName: 'Iogurte grego natural (sem açúcar)',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Iogurte natural gordo sem açúcar em colher pré-carregada.',
@@ -727,7 +727,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cheddar',
     name: 'Queijo flamengo / cheddar suave',
-    ptName: 'Mild Cheddar / Flamengo',
+    ptName: 'Queijo flamengo / cheddar suave',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Ralado em pataniscas, queques salgados ou massa morna (baixo sal).',
@@ -736,7 +736,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'mozzarella',
     name: 'Queijo mozzarella fresco',
-    ptName: 'Fresh Mozzarella',
+    ptName: 'Queijo mozzarella fresco',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Ralado ou derretido em pratos mornos.',
@@ -745,7 +745,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'unsalted_butter',
     name: 'Manteiga sem sal',
-    ptName: 'Unsalted Butter',
+    ptName: 'Manteiga sem sal',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Em purés, papas ou legumes cozidos.',
@@ -754,7 +754,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'kefir',
     name: 'Kefir natural',
-    ptName: 'Plain Kefir',
+    ptName: 'Kefir natural',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Em copo aberto ou misturado com fruta esmagada.',
@@ -763,7 +763,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cottage_cheese',
     name: 'Queijo fresco sem sal',
-    ptName: 'Fresh Cheese',
+    ptName: 'Queijo fresco sem sal',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Esmagado com garfo para comer à colher ou barrar.',
@@ -772,7 +772,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'ghee',
     name: 'Manteiga clarificada (Ghee)',
-    ptName: 'Ghee',
+    ptName: 'Manteiga clarificada (Ghee)',
     category: 'Dairy & Fats',
     allergen: 'dairy',
     prep6m: 'Para saltear legumes suavemente.',
@@ -781,7 +781,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cinnamon',
     name: 'Canela do Ceilão',
-    ptName: 'Cinnamon',
+    ptName: 'Canela do Ceilão',
     category: 'Dairy & Fats',
     prep6m: 'Pitada em papas, maçã assada e queques para adoçar naturalmente.',
     canonicalIds: ['ground_cinnamon'],
@@ -791,7 +791,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'egg',
     name: 'Ovo bem cozinhado',
-    ptName: 'Egg',
+    ptName: 'Ovo bem cozinhado',
     category: 'Allergens',
     allergen: 'egg',
     prep6m: 'Em tiras de omelete bem passada, ovo cozido esmagado ou queques.',
@@ -800,7 +800,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'peanut_butter',
     name: 'Manteiga de amendoim (diluída)',
-    ptName: 'Peanut Butter',
+    ptName: 'Manteiga de amendoim (diluída)',
     category: 'Allergens',
     allergen: 'peanut',
     prep6m: 'Diluir sempre 1 c. chá em água morna, papa ou iogurte (nunca pura em grumo).',
@@ -809,7 +809,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'almond_butter',
     name: 'Manteiga de amêndoa (diluída)',
-    ptName: 'Almond Butter',
+    ptName: 'Manteiga de amêndoa (diluída)',
     category: 'Allergens',
     allergen: 'tree_nut',
     prep6m: 'Misturar 1 c. chá em papas de aveia mornas ou iogurte.',
@@ -818,7 +818,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'cashew_butter',
     name: 'Manteiga de caju (diluída)',
-    ptName: 'Cashew Butter',
+    ptName: 'Manteiga de caju (diluída)',
     category: 'Allergens',
     allergen: 'tree_nut',
     prep6m: 'Diluir 1/2 c. chá em puré de fruta ou papa.',
@@ -827,7 +827,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'walnut_ground',
     name: 'Noz moída finamente',
-    ptName: 'Ground Walnuts',
+    ptName: 'Noz moída finamente',
     category: 'Allergens',
     allergen: 'tree_nut',
     prep6m: 'Apenas em farinha fina dentro de papas ou queques (nunca inteira).',
@@ -836,7 +836,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'soy_tofu',
     name: 'Tofu macio (sem sal)',
-    ptName: 'Soft Tofu',
+    ptName: 'Tofu macio (sem sal)',
     category: 'Allergens',
     allergen: 'soy',
     prep6m: 'Em tiras macias cozidas a vapor (evitar molho de soja antes dos 12m).',
@@ -845,7 +845,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'edamame_mashed',
     name: 'Edamame esmagado',
-    ptName: 'Mashed Edamame',
+    ptName: 'Edamame esmagado',
     category: 'Allergens',
     allergen: 'soy',
     prep6m: 'Sem vagem e esmagado completamente em pasta (nunca grãos inteiros).',
@@ -854,7 +854,7 @@ export const FIRST_FOODS_CATALOG: FirstFoodItem[] = [
   {
     id: 'tahini_sesame',
     name: 'Tahini / Pasta de sésamo',
-    ptName: 'Tahini',
+    ptName: 'Tahini / Pasta de sésamo',
     category: 'Allergens',
     allergen: 'sesame',
     prep6m: 'Diluir 1/2 c. chá com água morna e limão em puré ou húmus.',

@@ -2,6 +2,7 @@ import { useMemo, useState, type FormEvent } from 'react';
 import {
   CalendarCheck,
   Check,
+  Copy,
   Plus,
   ShieldAlert,
   Sparkles,
@@ -62,6 +63,7 @@ export function FirstFoodsView({
   const [customName, setCustomName] = useState('');
   const [customCategory, setCustomCategory] =
     useState<FirstFoodCategory>('Fruits');
+  const [exportedReport, setExportedReport] = useState(false);
 
   const foodPlanMatches = useMemo(() => {
     const map = new Map<string, Array<{ label: string; recipeId: string }>>();
@@ -108,6 +110,9 @@ export function FirstFoodsView({
   const triedAllergensCount = TOP_9_ALLERGENS.filter(
     (a) => allergenExposures[a] > 0,
   ).length;
+  const followUpAllergens = TOP_9_ALLERGENS.filter(
+    (a) => allergenExposures[a] > 0 && allergenExposures[a] < 3,
+  );
 
   const totalCount = FIRST_FOODS_CATALOG.length + customFirstFoods.length;
   const triedCount =
@@ -119,6 +124,49 @@ export function FirstFoodsView({
   ).length;
 
   const progressPct = totalCount > 0 ? Math.round((triedCount / totalCount) * 100) : 0;
+
+  const handleExportSummary = async () => {
+    const triedNames = FIRST_FOODS_CATALOG.filter((f) => Boolean(triedFoods[f.id])).map(
+      (f) => {
+        const entry = triedFoods[f.id];
+        const react =
+          entry.reaction === 'loved'
+            ? 'Adorou'
+            : entry.reaction === 'watch'
+              ? 'Vigiar'
+              : entry.reaction === 'neutral'
+                ? 'Aceitou'
+                : '';
+        return `- ${f.name} (${entry.triedAt}${react ? `, ${react}` : ''})`;
+      },
+    );
+    const customNames = customFirstFoods
+      .filter((c) => Boolean(triedFoods[c.id]))
+      .map((c) => `- ${c.name} (${triedFoods[c.id].triedAt})`);
+    const allergenLines = TOP_9_ALLERGENS.map(
+      (a) => `- ${ALLERGEN_LABELS[a]}: ${allergenExposures[a]}/3 exposições`,
+    );
+
+    const summary = [
+      `MesaPequena — Registo de Introdução Alimentar (${new Date().toISOString().slice(0, 10)})`,
+      `Total provados: ${triedCount}/${totalCount}`,
+      ``,
+      `9 Principais Alergénios:`,
+      ...allergenLines,
+      ``,
+      `Alimentos já provados:`,
+      ...triedNames,
+      ...customNames,
+    ].join('\n');
+
+    try {
+      await navigator.clipboard.writeText(summary);
+      setExportedReport(true);
+      window.setTimeout(() => setExportedReport(false), 2500);
+    } catch {
+      setExportedReport(false);
+    }
+  };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -216,17 +264,51 @@ export function FirstFoodsView({
               );
             })}
           </div>
+
+          {followUpAllergens.length > 0 && (
+            <p
+              data-testid="allergen-followup-reminder"
+              className="mt-2 rounded-lg bg-[#FDF0EB] px-2.5 py-1.5 text-[11px] font-semibold text-[#B84C27]"
+            >
+              Repetição recomendada (2.ª/3.ª dose):{' '}
+              {followUpAllergens
+                .map((a) => `${ALLERGEN_LABELS[a].split(' ')[0]} (${allergenExposures[a]}/3)`)
+                .join(' · ')}
+            </p>
+          )}
         </div>
 
-        {untriedInPlanCount > 0 && (
-          <p className="mt-2.5 flex items-center gap-1.5 text-xs font-medium text-[#2F6F4E]">
-            <Sparkles className="h-3.5 w-3.5 shrink-0" />
-            <span>
-              <strong>{untriedInPlanCount}</strong> alimentos novos já estão na
-              ementa desta semana!
-            </span>
-          </p>
-        )}
+        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
+          {untriedInPlanCount > 0 ? (
+            <p className="flex items-center gap-1.5 text-xs font-medium text-[#2F6F4E]">
+              <Sparkles className="h-3.5 w-3.5 shrink-0" />
+              <span>
+                <strong>{untriedInPlanCount}</strong> novos na ementa desta semana
+              </span>
+            </p>
+          ) : (
+            <span />
+          )}
+
+          <button
+            type="button"
+            data-testid="export-first-foods-btn"
+            onClick={handleExportSummary}
+            className="inline-flex items-center gap-1 rounded-xl bg-white px-2.5 py-1.5 text-[11px] font-bold text-[#2F6F4E] shadow-xs hover:bg-[#FAF8F5]"
+          >
+            {exportedReport ? (
+              <>
+                <Check className="h-3.5 w-3.5" />
+                Resumo copiado!
+              </>
+            ) : (
+              <>
+                <Copy className="h-3.5 w-3.5" />
+                Exportar Resumo
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Filter Pills */}

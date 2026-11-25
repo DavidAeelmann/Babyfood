@@ -5,6 +5,7 @@ import type {
   DayPlan,
   EnabledSlots,
   HouseholdConfig,
+  Recipe,
   TriedFoodEntry,
 } from '../types/recipe';
 
@@ -27,9 +28,13 @@ export interface PersistedState {
   customFirstFoods: CustomFirstFood[];
   favoriteIds: string[];
   blockedIds: string[];
+  customRecipes: Recipe[];
 }
 
 export function resolveAssetUrl(relativePath: string): string {
+  if (/^(https?:|data:|blob:)/i.test(relativePath)) {
+    return relativePath;
+  }
   const base = import.meta.env.BASE_URL || './';
   const cleanBase = base.endsWith('/') ? base : `${base}/`;
   const cleanPath = relativePath.replace(/^\/+/, '');
@@ -54,6 +59,7 @@ export function getDefaultPersistedState(): PersistedState {
     customFirstFoods: [],
     favoriteIds: [],
     blockedIds: [],
+    customRecipes: [],
   };
 }
 
@@ -111,6 +117,7 @@ export function loadPersistedState(): PersistedState {
         : [],
       favoriteIds: Array.isArray(parsed.favoriteIds) ? parsed.favoriteIds : [],
       blockedIds: Array.isArray(parsed.blockedIds) ? parsed.blockedIds : [],
+      customRecipes: Array.isArray(parsed.customRecipes) ? parsed.customRecipes : [],
     };
   } catch {
     return getDefaultPersistedState();

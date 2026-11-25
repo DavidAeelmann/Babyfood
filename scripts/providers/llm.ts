@@ -9,20 +9,55 @@ export function getLlmProvider(): LlmProvider {
   return 'gemini';
 }
 
-export function buildWeeklyPrompt(weekId: string): string {
-  return [
+export interface WeeklyPromptPreferences {
+  favorites?: string[];
+  blocked?: string[];
+  likedIngredients?: string[];
+  dislikedIngredients?: string[];
+}
+
+export function buildWeeklyPrompt(
+  weekId: string,
+  preferences?: WeeklyPromptPreferences,
+): string {
+  const lines = [
     `Generate a complete weekly Portuguese family & baby/toddler-safe meal plan in European Portuguese (PT-PT) for ISO week "${weekId}".`,
     `Requirements:`,
     `1. Write ALL recipe titles, ingredient names, step instructions, and age_adaptations in natural European Portuguese (PT-PT — e.g. pequeno-almoço, lanche, curgete, brócolos, grão-de-bico, pescada, bacalhau demolhado, requeijão).`,
-    `2. Return 34 to 40 unique recipes adapted to a Portuguese household with toddlers (12-24m) and babies (6-12m): 7 planned_ids for dinners, 7+ dinner swap options, 6+ lunch_ids (including Portuguese soups like caldo verde sem chouriço/sal e sopa de legumes, omeletes, pastéis no forno), 6+ breakfast_ids (papas de aveia, panquecas sem açúcar, tostas com requeijão), and 6+ snack_ids (queques saudáveis, bolinhas de aveia e tâmara, zero açúcar adicionado ou mel).`,
+    `2. Return 38 to 64 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): 7 planned_ids for dinners, 10+ dinner swap options, 8+ lunch_ids (including Portuguese soups like caldo verde sem chouriço/sal, canja sem sal, sopa de legumes, pataniscas no forno, pastéis no forno), 8+ breakfast_ids (papas de aveia, papas de maizena sem açúcar, panquecas sem açúcar, pão de mistura com requeijão/abacate), and 8+ snack_ids (queques saudáveis, bolinhas de aveia e tâmara, marmelo assado, zero açúcar adicionado ou mel).`,
     `3. Use realistic weeknight prep/cook times (<= 45 min total) and strong ingredient overlap across recipes (shared canonical_id slugs like sweet_potato, broccoli_florets, carrot, garlic_clove, yellow_onion, olive_oil, baby_spinach, rice, hake_white_fish, chicken_breast) so the grocery list is compact.`,
     `4. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
     `5. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
-    `6. Every recipe must have base_servings: 4, min_age_months: 6, and ZERO honey ("mel") anywhere when min_age_months < 12.`,
+    `6. Every recipe must have base_servings: 4, min_age_months: 6, and ZERO honey ("mel") or added sugar anywhere when min_age_months < 12.`,
     `7. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce is added.`,
     `8. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash).`,
-    `9. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
-  ].join('\n');
+    `9. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn kernels / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
+  ];
+
+  if (preferences) {
+    if (preferences.favorites && preferences.favorites.length > 0) {
+      lines.push(
+        `10. HOUSEHOLD FAVORITES (include similar dishes, flavor profiles, and cooking styles): ${preferences.favorites.join(', ')}.`,
+      );
+    }
+    if (preferences.likedIngredients && preferences.likedIngredients.length > 0) {
+      lines.push(
+        `11. PREFERRED INGREDIENTS (lean toward using these frequently): ${preferences.likedIngredients.join(', ')}.`,
+      );
+    }
+    if (preferences.blocked && preferences.blocked.length > 0) {
+      lines.push(
+        `12. HOUSEHOLD BLOCKED (DO NOT include these dishes or close variations): ${preferences.blocked.join(', ')}.`,
+      );
+    }
+    if (preferences.dislikedIngredients && preferences.dislikedIngredients.length > 0) {
+      lines.push(
+        `13. AVOID / MINIMIZE INGREDIENTS linked to blocked recipes: ${preferences.dislikedIngredients.join(', ')}.`,
+      );
+    }
+  }
+
+  return lines.join('\n');
 }
 
 async function callGemini(prompt: string): Promise<WeekData> {

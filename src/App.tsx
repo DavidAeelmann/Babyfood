@@ -7,6 +7,7 @@ import { FirstFoodsView } from './components/FirstFoodsView';
 import { HouseholdBar } from './components/HouseholdBar';
 import { MealPickerModal } from './components/MealPickerModal';
 import { PlanView } from './components/PlanView';
+import { PreferencesModal } from './components/PreferencesModal';
 import { ShareModal } from './components/ShareModal';
 import { ShopView } from './components/ShopView';
 import { useMealPlanner } from './hooks/useMealPlanner';
@@ -25,6 +26,7 @@ export function App() {
     syncNotice,
     dismissSyncNotice,
     weekData,
+    allRecipes,
     state,
     plannedRecipes,
     weeklyBreakfasts,
@@ -46,6 +48,7 @@ export function App() {
     clearSlot,
     assignSlotMeal,
     addRandomSlotMeal,
+    addCustomRecipe,
     getPickerOptionsForSlot,
     toggleFavorite,
     toggleBlocked,
@@ -69,6 +72,7 @@ export function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [firstFoodsModalOpen, setFirstFoodsModalOpen] = useState(false);
+  const [preferencesModalOpen, setPreferencesModalOpen] = useState(false);
   const [pickerTarget, setPickerTarget] = useState<{
     dayIndex: number;
     slot: MealSlotType;
@@ -255,6 +259,7 @@ export function App() {
             onToggleBlocked={toggleBlocked}
             onToggleSlotEnabled={toggleSlotEnabled}
             onOpenShare={() => setShareModalOpen(true)}
+            onOpenPreferences={() => setPreferencesModalOpen(true)}
           />
         )}
 
@@ -320,6 +325,7 @@ export function App() {
           slot={pickerTarget.slot}
           recipes={getPickerOptionsForSlot(pickerTarget.slot)}
           favoriteIds={state.favoriteIds}
+          excludedAllergens={state.household.excludedAllergens}
           currentRecipeId={
             state.weekGrid[pickerTarget.dayIndex]?.[pickerTarget.slot]
           }
@@ -327,7 +333,21 @@ export function App() {
             assignSlotMeal(pickerTarget.dayIndex, pickerTarget.slot, recipeId);
             setPickerTarget(null);
           }}
+          onAddCustomRecipe={addCustomRecipe}
           onClose={() => setPickerTarget(null)}
+        />
+      )}
+
+      {preferencesModalOpen && (
+        <PreferencesModal
+          allRecipes={allRecipes}
+          recipeMap={recipeMap}
+          favoriteIds={state.favoriteIds}
+          blockedIds={state.blockedIds}
+          onToggleFavorite={toggleFavorite}
+          onToggleBlocked={toggleBlocked}
+          onOpenCook={handleOpenCook}
+          onClose={() => setPreferencesModalOpen(false)}
         />
       )}
 

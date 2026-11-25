@@ -253,20 +253,33 @@ async function main() {
   await page.waitForSelector('[data-testid="hands-free-split-banner"]');
   await page.click('[data-testid="close-hands-free-btn"]');
 
-  // 4. Verify First Foods Modal from HouseholdBar badge
+  // 4. Verify First Foods Modal from HouseholdBar badge + Allergen Follow-Up Reminder & Export
   await page.click('[data-testid="household-first-foods-badge"]');
   await page.waitForSelector('[data-testid="first-foods-modal"]');
   await page.waitForSelector('[data-testid="allergen-exposure-sesame"]');
+  await page.waitForSelector('[data-testid="allergen-followup-reminder"]');
+  await page.waitForSelector('[data-testid="export-first-foods-btn"]');
   await assertNoOverflow(page, 'First Foods Modal (100 Foods & Top-9 Allergens)');
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_first_foods_390x844.png'),
     fullPage: false,
   });
   await page.click('[data-testid="close-first-foods-modal"]');
+  console.log('✓ First Foods Modal allergen follow-up reminder & export verified');
 
-  // 5. Verify Favorite appears first in Lunch/Dinner + picker, then swap Dinner & check Shop
+  // 5. Verify Preferences Modal (Favoritas & Bloqueadas + Unblock), Picker Search/Filters/Custom Recipe
   await page.click('[data-testid="tab-plan"]');
   await page.click('[data-testid="view-mode-week"]');
+  await page.click('[data-testid="open-preferences-btn"]');
+  await page.waitForSelector('[data-testid="preferences-modal"]');
+  await assertNoOverflow(page, 'Preferences Modal (Favoritas & Bloqueadas)');
+  await page.waitForSelector('[data-testid="unblock-btn-banana-oat-baby-muffins"]');
+  await page.click('[data-testid="unblock-btn-banana-oat-baby-muffins"]');
+  await page.click('[data-testid="prefs-tab-favorites"]');
+  await page.waitForSelector('[data-testid="prefs-row-lemon-herb-baked-salmon"]');
+  await page.click('[data-testid="close-preferences-modal"]');
+  console.log('✓ Preferences Modal unblocked banana-oat-baby-muffins & displayed favorites');
+
   await page.click('[data-testid="choose-btn-0-lunch"]');
   await page.waitForSelector('[data-testid="meal-picker-modal"]');
   const firstPickerId = await page.getAttribute(
@@ -277,8 +290,23 @@ async function main() {
     throw new Error(`Expected favorited salmon at top of Lunch picker, got ${firstPickerId}`);
   }
   await page.waitForSelector('[data-testid="picker-fav-badge-lemon-herb-baked-salmon"]');
-  await page.click('[data-testid="close-meal-picker-btn"]');
-  console.log('✓ Favorited recipe appears first in Lunch/Dinner + picker');
+
+  // Test search filter + custom family recipe creation
+  await page.fill('[data-testid="picker-search-input"]', 'bacalhau');
+  const filteredMatches = await page.locator('[data-testid^="picker-option-"]').count();
+  if (filteredMatches < 1) {
+    throw new Error('Expected Bacalhau search in Meal Picker to return matches');
+  }
+  await page.fill('[data-testid="picker-search-input"]', '');
+  await page.click('[data-testid="toggle-custom-recipe-form-btn"]');
+  await page.fill('[data-testid="custom-recipe-title-input"]', 'Sopa Especial da Família');
+  await page.click('[data-testid="submit-custom-recipe-btn"]');
+  await page.waitForSelector('[data-testid="week-slot-0-lunch"]');
+  const customLunchText = await page.textContent('[data-testid="week-slot-0-lunch"]');
+  if (!customLunchText?.includes('Sopa Especial da Família')) {
+    throw new Error(`Expected custom family recipe in Day 0 lunch, got ${customLunchText}`);
+  }
+  console.log('✓ Meal Picker search & custom family recipe creation verified');
 
   const beforeTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
   await page.click('[data-testid="resim-btn-0-dinner"]');

@@ -54,6 +54,7 @@ interface PlanViewProps {
   onToggleBlocked: (recipeId: string) => void;
   onToggleSlotEnabled: (slot: MealSlotType) => void;
   onOpenShare: () => void;
+  onOpenPreferences: () => void;
 }
 
 const SLOT_PILLS: Array<{
@@ -208,6 +209,7 @@ export function PlanView({
   onToggleBlocked,
   onToggleSlotEnabled,
   onOpenShare,
+  onOpenPreferences,
 }: PlanViewProps) {
   const [viewMode, setViewMode] = useState<'week' | 'cards'>('week');
   const [slotsExpanded, setSlotsExpanded] = useState(false);
@@ -222,11 +224,18 @@ export function PlanView({
           <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
             Ementa Semanal
           </h2>
-          <p className="text-xs text-[#5C6862]">
-            {favoriteIds.length > 0 || blockedIds.length > 0
-              ? `${favoriteIds.length} fav · ${blockedIds.length} bloq.`
-              : 'Toque + para escolher · ❤️ em Cozinhar'}
-          </p>
+          <button
+            type="button"
+            data-testid="open-preferences-btn"
+            onClick={onOpenPreferences}
+            className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-[#F2EFE9] px-2.5 py-0.5 text-[11px] font-semibold text-[#5C6862] transition-colors hover:bg-[#E7E2D8] hover:text-[#1C2420]"
+          >
+            <span>
+              {favoriteIds.length > 0 || blockedIds.length > 0
+                ? `${favoriteIds.length} fav · ${blockedIds.length} bloq. (Gerir)`
+                : 'Preferências · + Escolher'}
+            </span>
+          </button>
         </div>
 
         <div className="flex items-center gap-1.5 shrink-0">
