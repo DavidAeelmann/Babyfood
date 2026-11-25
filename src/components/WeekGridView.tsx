@@ -12,6 +12,7 @@ import {
   UtensilsCrossed,
 } from 'lucide-react';
 import { DAY_LABELS } from '../lib/constants';
+import { resolveAssetUrl } from '../lib/storage';
 import type { DayPlan, EnabledSlots, MealSlotType, Recipe } from '../types/recipe';
 
 interface WeekGridViewProps {
@@ -206,28 +207,39 @@ function SwipeableSlotRow({
         }}
         className="relative flex items-center gap-2 bg-white px-3 py-2"
       >
-        <span
-          title={label}
-          className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${pillClass}`}
-        >
-          <Icon className="h-3.5 w-3.5" />
-        </span>
-
         <button
           type="button"
           onClick={() => onOpenCook(recipe.id)}
-          className="min-w-0 flex-1 text-left"
+          className="flex min-w-0 flex-1 items-center gap-2.5 text-left"
         >
-          <span className="block text-[10px] font-bold uppercase tracking-wide text-[#8A948E]">
-            {label}
-          </span>
-          <span
-            className={`block truncate text-xs font-semibold ${
-              isBlocked ? 'text-[#B84C27] line-through' : 'text-[#1C2420]'
-            }`}
-          >
-            {recipe.title}
-          </span>
+          <div className="relative h-10 w-12 shrink-0 overflow-hidden rounded-lg bg-[#F2EFE9] border border-[#E7E2D8]">
+            <img
+              src={resolveAssetUrl(recipe.image_url)}
+              alt={recipe.title}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+            <span
+              title={label}
+              className={`absolute bottom-0.5 right-0.5 flex h-4 w-4 items-center justify-center rounded-sm shadow-xs ${pillClass}`}
+            >
+              <Icon className="h-2.5 w-2.5" />
+            </span>
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <span className="block text-[10px] font-bold uppercase tracking-wide text-[#8A948E]">
+              {label}
+            </span>
+            <span
+              data-testid={`week-slot-title-${dayIdx}-${slot}`}
+              className={`block truncate text-xs font-semibold ${
+                isBlocked ? 'text-[#B84C27] line-through' : 'text-[#1C2420]'
+              }`}
+            >
+              {recipe.title}
+            </span>
+          </div>
         </button>
 
         {/* + Choose / Block / Re-simulate */}

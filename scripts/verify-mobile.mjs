@@ -91,9 +91,15 @@ async function main() {
   await page.waitForSelector('[data-testid="week-slot-0-breakfast"]');
   console.log('✓ Add Random restored a meal into the blank slot');
 
+  // Verify WeekGridView renders meal thumbnail images on compact slot rows
+  const gridThumbCount = await page.locator('[data-testid="week-grid-view"] img').count();
+  if (gridThumbCount < 28) {
+    throw new Error(`Expected >= 28 meal thumbnails in WeekGridView, found ${gridThumbCount}`);
+  }
+
   // Block Day 0 snack, and verify + picker opens with medium images & excludes blocked
   const blockedSnackTitle = await page.textContent(
-    '[data-testid="week-slot-0-snack"] button span:nth-child(2)',
+    '[data-testid="week-slot-title-0-snack"]',
   );
   await page.click('[data-testid="block-btn-0-snack"]');
   await page.click('[data-testid="choose-btn-0-snack"]');
