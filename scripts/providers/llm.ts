@@ -63,15 +63,17 @@ export function buildWeeklyPrompt(
   return lines.join('\n');
 }
 
-function stripAdditionalProperties(node: unknown): unknown {
+function sanitizeSchemaForGemini(node: unknown): unknown {
   if (Array.isArray(node)) {
-    return node.map(stripAdditionalProperties);
+    return node.map(sanitizeSchemaForGemini);
   }
   if (node && typeof node === 'object') {
     const out: Record<string, unknown> = {};
     for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
-      if (k === 'additionalProperties') continue;
-      out[k] = stripAdditionalProperties(v);
+      if (k === 'additionalProperties' || k === 'minItems' || k === 'maxItems') {
+        continue;
+      }
+      out[k] = sanitizeSchemaForGemini(v);
     }
     return out;
   }
@@ -95,7 +97,7 @@ async function callGemini(prompt: string): Promise<WeekData> {
       generationConfig: {
         temperature: 0.4,
         responseMimeType: 'application/json',
-        responseJsonSchema: stripAdditionalProperties(weekGenerationJsonSchema),
+        responseJsonSchema: sanitizeSchemaForGemini(weekGenerationJsonSchema),
       },
     }),
   });
