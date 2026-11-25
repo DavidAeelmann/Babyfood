@@ -100,17 +100,28 @@ async function discoverGeminiModels(apiKey: string): Promise<string[]> {
         (name) =>
           name.includes('gemini') &&
           name.includes('flash') &&
+          !name.includes('2.0') &&
+          !name.includes('2.5') &&
+          !name.includes('omni') &&
           !name.includes('image') &&
           !name.includes('audio') &&
           !name.includes('tts') &&
           !name.includes('thinking') &&
-          !name.includes('live'),
+          !name.includes('live') &&
+          !name.includes('latest'),
       );
+    const parseVersion = (s: string) => {
+      const m = s.match(/gemini-(\d+(?:\.\d+)?)/);
+      return m ? Number.parseFloat(m[1]) : 0;
+    };
     return all.sort((a, b) => {
-      const score = (s: string) =>
-        (s.includes('lite') ? 2 : 0) +
-        (s.includes('exp') || s.includes('preview') ? 4 : 0);
-      return score(a) - score(b);
+      const liteDiff = Number(a.includes('lite')) - Number(b.includes('lite'));
+      if (liteDiff !== 0) return liteDiff;
+      const previewDiff =
+        Number(a.includes('exp') || a.includes('preview')) -
+        Number(b.includes('exp') || b.includes('preview'));
+      if (previewDiff !== 0) return previewDiff;
+      return parseVersion(b) - parseVersion(a);
     });
   } catch {
     return [];
@@ -129,7 +140,7 @@ async function callGemini(prompt: string): Promise<WeekData> {
   } else {
     const discovered = await discoverGeminiModels(apiKey);
     console.log(`Discovered Gemini Flash models: ${discovered.join(', ') || '(none)'}`);
-    candidateModels = Array.from(new Set(['gemini-3.8-flash', ...discovered])).slice(0, 4);
+    candidateModels = Array.from(new Set(['gemini-3.8-flash', ...discovered])).slice(0, 6);
   }
 
   const sanitizedSchema = sanitizeSchemaForGemini(weekGenerationJsonSchema);
@@ -143,7 +154,7 @@ async function callGemini(prompt: string): Promise<WeekData> {
         res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          signal: AbortSignal.timeout(60_000),
+          signal: AbortSignal.timeout(120_000),
           body: JSON.stringify({
             contents: [{ role: 'user', parts: [{ text: prompt }] }],
             generationConfig: {
