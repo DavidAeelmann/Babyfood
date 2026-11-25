@@ -53,11 +53,12 @@ export function useMealPlanner() {
           }
 
           // Week rollover or first load: reset plan, locks, and recipe checkoffs,
-          // while preserving householdConfig, hidePantryStaples, and customItems.
+          // while preserving householdConfig, hidePantryStaples, customItems, and triedFoods.
           return {
             ...prev,
             weekId: data.week_id,
             plannedIds: [...data.planned_ids],
+            includedSnackIds: [...(data.snack_ids ?? [])],
             lockedIndices: [],
             checkedGroceries: {},
             prepChecked: {},
@@ -85,6 +86,20 @@ export function useMealPlanner() {
     return map;
   }, [weekData]);
 
+  const snackIdSet = useMemo(() => {
+    return new Set(weekData?.snack_ids ?? []);
+  }, [weekData]);
+
+  const weeklySnacks = useMemo(() => {
+    return (weekData?.snack_ids ?? [])
+      .map((id) => recipeMap.get(id))
+      .filter((r): r is Recipe => Boolean(r));
+  }, [weekData, recipeMap]);
+
+  const includedSnacks = useMemo(() => {
+    return weeklySnacks.filter((s) => state.includedSnackIds.includes(s.id));
+  }, [weeklySnacks, state.includedSnackIds]);
+
   const plannedRecipes = useMemo(() => {
     return state.plannedIds
       .map((id) => recipeMap.get(id))
@@ -92,8 +107,11 @@ export function useMealPlanner() {
   }, [state.plannedIds, recipeMap]);
 
   const groceryItems = useMemo(() => {
-    return aggregateGroceries(plannedRecipes, state.household);
-  }, [plannedRecipes, state.household]);
+    return aggregateGroceries(
+      [...plannedRecipes, ...includedSnacks],
+      state.household,
+    );
+  }, [plannedRecipes, includedSnacks, state.household]);
 
   const isRecipeSafe = useCallback(
     (recipe: Recipe) => {
@@ -155,25 +173,25 @@ export function useMealPlanner() {
       setState((prev) => {
         const currentId = prev.plannedIds[dayIndex];
         const inPlan = new Set(prev.plannedIds);
-        const safeBench = weekData.recipes.filter(
+        const dinnerPool = weekData.recipes.filter((r) => !snackIdSet.has(r.id));
+        const safeBench = dinnerPool.filter(
           (r) => !inPlan.has(r.id) && isRecipeSafe(r),
         );
-        const anyBench = weekData.recipes.filter((r) => !inPlan.has(r.id));
+        const anyBench = dinnerPool.filter((r) => !inPlan.has(r.id));
         const pool = safeBench.length > 0 ? safeBench : anyBench;
 
         if (pool.length === 0) return prev;
 
-        // Deterministic rotation through bench so repeated taps cycle predictably
-        const currentIdxInAll = weekData.recipes.findIndex((r) => r.id === currentId);
+        const currentIdxInAll = dinnerPool.findIndex((r) => r.id === currentId);
         const candidate =
-          pool.find((r) => weekData.recipes.indexOf(r) > currentIdxInAll) ?? pool[0];
+          pool.find((r) => dinnerPool.indexOf(r) > currentIdxInAll) ?? pool[0];
 
         const nextPlanned = [...prev.plannedIds];
         nextPlanned[dayIndex] = candidate.id;
         return { ...prev, plannedIds: nextPlanned };
       });
     },
-    [weekData, isRecipeSafe],
+    [weekData, snackIdSet, isRecipeSafe],
   );
 
   const shuffleUnlocked = useCallback(() => {
@@ -183,11 +201,12 @@ export function useMealPlanner() {
       const lockedIds = new Set(
         prev.plannedIds.filter((_, idx) => lockedSet.has(idx)),
       );
+      const dinnerPool = weekData.recipes.filter((r) => !snackIdSet.has(r.id));
 
-      const safeCandidates = weekData.recipes.filter(
+      const safeCandidates = dinnerPool.filter(
         (r) => !lockedIds.has(r.id) && isRecipeSafe(r),
       );
-      const fallbackCandidates = weekData.recipes.filter(
+      const fallbackCandidates = dinnerPool.filter(
         (r) => !lockedIds.has(r.id) && !safeCandidates.includes(r),
       );
 
@@ -207,7 +226,7 @@ export function useMealPlanner() {
 
       return { ...prev, plannedIds: nextPlanned };
     });
-  }, [weekData, isRecipeSafe]);
+  }, [weekData, snackIdSet, isRecipeSafe]);
 
   const toggleGroceryItem = useCallback((key: string) => {
     setState((prev) => ({
@@ -357,12 +376,23 @@ export function useMealPlanner() {
     });
   }, []);
 
+  const toggleSnackIncluded = useCallback((snackId: string) => {
+    setState((prev) => {
+      const exists = prev.includedSnackIds.includes(snackId);
+      const next = exists
+        ? prev.includedSnackIds.filter((id) => id !== snackId)
+        : [...prev.includedSnackIds, snackId];
+      return { ...prev, includedSnackIds: next };
+    });
+  }, []);
+
   return {
     loading,
     error,
     weekData,
     state,
     plannedRecipes,
+    weeklySnacks,
     groceryItems,
     isRecipeSafe,
     setAdults,
@@ -371,6 +401,7 @@ export function useMealPlanner() {
     toggleLock,
     swapMeal,
     shuffleUnlocked,
+    toggleSnackIncluded,
     toggleGroceryItem,
     clearCheckedGroceries,
     setHidePantryStaples,

@@ -44,6 +44,21 @@ async function main() {
 
   // 1. Plan view screenshot & overflow check
   await assertNoOverflow(page, 'Plan View');
+  await page.waitForSelector('[data-testid="weekly-snacks-section"]');
+  const snackBtnTextBefore = await page.textContent(
+    '[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]',
+  );
+  await page.click('[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]');
+  const snackBtnTextAfter = await page.textContent(
+    '[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]',
+  );
+  if (snackBtnTextBefore === snackBtnTextAfter) {
+    throw new Error('Expected snack shop toggle to change state');
+  }
+  // Toggle back on so banana & rolled oats are in Shop
+  await page.click('[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]');
+  console.log(`✓ Weekly Healthy Snacks section & In Shop toggle verified`);
+
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_plan_390x844.png'),
     fullPage: false,

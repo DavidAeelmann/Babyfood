@@ -10,6 +10,10 @@
     "turkey-veggie-meatballs-mash",
     "sheet-pan-cod-tomatoes"
   ],
+  "snack_ids": [
+    "banana-oat-baby-muffins",
+    "sweet-potato-oat-cookies"
+  ],
   "recipes": [
     {
       "id": "lemon-herb-baked-salmon",
@@ -487,6 +491,97 @@
         "4y_plus": {
           "cut_and_texture": "Standard small pasta bowl.",
           "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "banana-oat-baby-muffins",
+      "title": "Soft Banana Oat Mini Muffins",
+      "image_url": "meals/banana-oat-baby-muffins.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg", "dairy"],
+      "ingredients": [
+        { "canonical_id": "banana", "name": "Very ripe bananas", "quantity": 3, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 180, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "egg", "name": "Eggs", "quantity": 2, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 120, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 180°C and line a 12-cup mini muffin tin. Blend rolled oats into a coarse oat flour.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Mash bananas until smooth, whisk in eggs, Greek yogurt, olive oil, and cinnamon, then fold in oat flour.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Fill half the muffin cups with plain batter for baby & toddler before adding any adult mix-ins (like dark chocolate chips or chopped walnuts) to the remaining batter.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Bake 16–18 minutes until springy and golden. Cool completely before serving.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Serve plain muffin halved into soft finger-length strips for easy palmar grasp.",
+          "serving_note": "Zero added sugar, salt, or honey; naturally sweetened with ripe banana."
+        },
+        "9_12m": {
+          "cut_and_texture": "Tear plain muffin into 1.5 cm soft bite-sized pieces.",
+          "serving_note": "Zero added sugar or honey. Great make-ahead breakfast or snack."
+        },
+        "12_24m": {
+          "cut_and_texture": "Serve whole mini muffin or halved.",
+          "serving_note": "Freezes well for up to 2 months."
+        },
+        "2_4y": {
+          "cut_and_texture": "Whole mini muffins as an afternoon snack.",
+          "serving_note": "Serve with plain yogurt or fruit."
+        },
+        "4y_plus": {
+          "cut_and_texture": "2 mini muffins for snack or lunchbox.",
+          "serving_note": "Optional adult mix-ins if desired."
+        }
+      }
+    },
+    {
+      "id": "sweet-potato-oat-cookies",
+      "title": "Chewy Sweet Potato & Oat Cookies",
+      "image_url": "meals/sweet-potato-oat-cookies.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes (steamed & mashed)", "quantity": 250, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 160, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "banana", "name": "Ripe banana", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "ground_cinnamon", "name": "Ground cinnamon", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 180°C and line a baking sheet with parchment. Mash steamed sweet potato and ripe banana together until smooth.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Stir in rolled oats, olive oil, and cinnamon until a soft, scoopable cookie dough forms.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Scoop half the dough onto the tray as plain baby-safe soft cookies before folding in any adult extras (like raisins or flaky sea salt) into the rest.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Flatten cookies gently to 1 cm thick and bake 14–16 minutes until set and lightly golden.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Break soft plain cookie into two wide finger-length strips; texture is soft and gums easily.",
+          "serving_note": "Zero added sugar, salt, or honey; dairy-free & egg-free."
+        },
+        "9_12m": {
+          "cut_and_texture": "Break into soft 1.5 cm bite-sized pieces.",
+          "serving_note": "Zero added sugar or honey."
+        },
+        "12_24m": {
+          "cut_and_texture": "Serve whole soft cookie or halved.",
+          "serving_note": "Great on-the-go stroller snack."
+        },
+        "2_4y": {
+          "cut_and_texture": "Whole soft breakfast cookies.",
+          "serving_note": "Pair with milk or yogurt."
+        },
+        "4y_plus": {
+          "cut_and_texture": "1–2 cookies for afternoon snack.",
+          "serving_note": "Store airtight for up to 4 days."
         }
       }
     }

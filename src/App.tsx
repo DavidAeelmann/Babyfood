@@ -15,6 +15,7 @@ export function App() {
     weekData,
     state,
     plannedRecipes,
+    weeklySnacks,
     groceryItems,
     setAdults,
     toggleBracket,
@@ -22,6 +23,7 @@ export function App() {
     toggleLock,
     swapMeal,
     shuffleUnlocked,
+    toggleSnackIncluded,
     toggleGroceryItem,
     clearCheckedGroceries,
     setHidePantryStaples,
@@ -135,6 +137,8 @@ export function App() {
         {activeTab === 'plan' && (
           <PlanView
             plannedRecipes={plannedRecipes}
+            weeklySnacks={weeklySnacks}
+            includedSnackIds={state.includedSnackIds}
             lockedIndices={state.lockedIndices}
             activeBrackets={state.household.activeBrackets}
             excludedAllergens={state.household.excludedAllergens}
@@ -143,6 +147,7 @@ export function App() {
             onToggleLock={toggleLock}
             onSwapMeal={swapMeal}
             onShuffleUnlocked={shuffleUnlocked}
+            onToggleSnackIncluded={toggleSnackIncluded}
           />
         )}
 

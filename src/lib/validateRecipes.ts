@@ -310,6 +310,16 @@ export function validateWeekData(data: WeekData): ValidationResult {
     }
   }
 
+  for (const sid of data.snack_ids ?? []) {
+    if (!recipeIdSet.has(sid)) {
+      issues.push({
+        recipeId: sid,
+        rule: 'schema',
+        message: `snack_id "${sid}" not found in recipes array.`,
+      });
+    }
+  }
+
   return {
     valid: issues.length === 0,
     issues,

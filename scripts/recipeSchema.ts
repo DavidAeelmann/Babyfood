@@ -13,7 +13,7 @@ const ageAdaptationSchema = {
 export const weekGenerationJsonSchema = {
   type: 'object',
   additionalProperties: false,
-  required: ['week_id', 'generated_at', 'planned_ids', 'recipes'],
+  required: ['week_id', 'generated_at', 'planned_ids', 'snack_ids', 'recipes'],
   properties: {
     week_id: { type: 'string' },
     generated_at: { type: 'string' },
@@ -23,10 +23,16 @@ export const weekGenerationJsonSchema = {
       minItems: 7,
       maxItems: 7,
     },
+    snack_ids: {
+      type: 'array',
+      items: { type: 'string' },
+      minItems: 2,
+      maxItems: 3,
+    },
     recipes: {
       type: 'array',
       minItems: 12,
-      maxItems: 14,
+      maxItems: 16,
       items: {
         type: 'object',
         additionalProperties: false,
