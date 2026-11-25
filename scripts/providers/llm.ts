@@ -86,35 +86,55 @@ async function callGemini(prompt: string): Promise<WeekData> {
     throw new Error('GEMINI_API_KEY / API_KEY is not set. Add it to your environment or repository secrets.');
   }
 
-  const model = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  const candidateModels = process.env.GEMINI_MODEL
+    ? [process.env.GEMINI_MODEL]
+    : ['gemini-3.8-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.4,
-        responseMimeType: 'application/json',
-        responseJsonSchema: sanitizeSchemaForGemini(weekGenerationJsonSchema),
-      },
-    }),
-  });
+  const sanitizedSchema = sanitizeSchemaForGemini(weekGenerationJsonSchema);
+  let lastError = 'Unknown Gemini error';
 
-  if (!res.ok) {
-    const errBody = await res.text();
-    throw new Error(`Gemini API error (${res.status}): ${errBody}`);
+  for (const model of candidateModels) {
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: {
+            temperature: 0.4,
+            responseMimeType: 'application/json',
+            responseJsonSchema: sanitizedSchema,
+          },
+        }),
+      });
+
+      if (res.ok) {
+        const data = (await res.json()) as {
+          candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
+        };
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!text) {
+          throw new Error(`Gemini (${model}) returned an empty response.`);
+        }
+        return JSON.parse(text) as WeekData;
+      }
+
+      const errBody = await res.text();
+      lastError = `Gemini API error (${res.status} on ${model}): ${errBody}`;
+      if (res.status === 503 || res.status === 429) {
+        console.warn(`${model} temporary ${res.status} (attempt ${attempt}/2), retrying/falling back...`);
+        await new Promise((r) => setTimeout(r, 3000 * attempt));
+        continue;
+      }
+      if (res.status === 404) {
+        break; // try next fallback model
+      }
+      throw new Error(lastError);
+    }
   }
 
-  const data = (await res.json()) as {
-    candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
-  };
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) {
-    throw new Error('Gemini returned an empty response.');
-  }
-  return JSON.parse(text) as WeekData;
+  throw new Error(lastError);
 }
 
 async function callOpenAI(prompt: string): Promise<WeekData> {
