@@ -80,21 +80,57 @@ function sanitizeSchemaForGemini(node: unknown): unknown {
   return node;
 }
 
+async function discoverGeminiModels(apiKey: string): Promise<string[]> {
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+    );
+    if (!res.ok) return [];
+    const data = (await res.json()) as {
+      models?: Array<{
+        name?: string;
+        supportedGenerationMethods?: string[];
+      }>;
+    };
+    const all = (data.models ?? [])
+      .filter((m) => m.supportedGenerationMethods?.includes('generateContent'))
+      .map((m) => (m.name ?? '').replace(/^models\//, ''))
+      .filter((name) => name.includes('gemini') && !name.includes('embedding') && !name.includes('tts'));
+    // Prefer flash / latest stable models first
+    return all.sort((a, b) => {
+      const score = (s: string) =>
+        (s.includes('flash') ? 0 : 10) +
+        (s.includes('lite') ? 2 : 0) +
+        (s.includes('exp') || s.includes('preview') ? 5 : 0);
+      return score(a) - score(b);
+    });
+  } catch {
+    return [];
+  }
+}
+
 async function callGemini(prompt: string): Promise<WeekData> {
   const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
   if (!apiKey) {
     throw new Error('GEMINI_API_KEY / API_KEY is not set. Add it to your environment or repository secrets.');
   }
 
-  const candidateModels = process.env.GEMINI_MODEL
-    ? [process.env.GEMINI_MODEL]
-    : ['gemini-3.8-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
+  let candidateModels: string[];
+  if (process.env.GEMINI_MODEL) {
+    candidateModels = [process.env.GEMINI_MODEL];
+  } else {
+    const discovered = await discoverGeminiModels(apiKey);
+    console.log(`Available Gemini text models: ${discovered.join(', ') || '(none discovered)'}`);
+    candidateModels = Array.from(
+      new Set(['gemini-3.8-flash', ...discovered]),
+    );
+  }
 
   const sanitizedSchema = sanitizeSchemaForGemini(weekGenerationJsonSchema);
   let lastError = 'Unknown Gemini error';
 
   for (const model of candidateModels) {
-    for (let attempt = 1; attempt <= 2; attempt += 1) {
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -117,18 +153,20 @@ async function callGemini(prompt: string): Promise<WeekData> {
         if (!text) {
           throw new Error(`Gemini (${model}) returned an empty response.`);
         }
+        console.log(`✓ Generated response using ${model}.`);
         return JSON.parse(text) as WeekData;
       }
 
       const errBody = await res.text();
       lastError = `Gemini API error (${res.status} on ${model}): ${errBody}`;
       if (res.status === 503 || res.status === 429) {
-        console.warn(`${model} temporary ${res.status} (attempt ${attempt}/2), retrying/falling back...`);
-        await new Promise((r) => setTimeout(r, 3000 * attempt));
+        console.warn(`${model} temporary ${res.status} (attempt ${attempt}/3), waiting before retry...`);
+        await new Promise((r) => setTimeout(r, 4000 * attempt));
         continue;
       }
-      if (res.status === 404) {
-        break; // try next fallback model
+      if (res.status === 404 || res.status === 400) {
+        console.warn(`${model} returned ${res.status}, trying next model...`);
+        break;
       }
       throw new Error(lastError);
     }
