@@ -22,7 +22,15 @@
     "pao-mistura-abacate-queijo-fresco",
     "ovos-mexidos-cremosos-tomate-pao",
     "papas-aveia-adormecida-framboesas",
-    "panquecas-abobora-aveia-sem-acucar"
+    "panquecas-abobora-aveia-sem-acucar",
+    "papas-aveia-forno-pera-mirtilos",
+    "pudim-chia-manga-leite",
+    "omelete-tiras-espinafres-queijo",
+    "rabanada-saudavel-ovo-canela",
+    "tosta-manteiga-amendoim-banana",
+    "waffles-aveia-banana-sem-acucar",
+    "batido-manga-mirtilos-espinafres",
+    "papa-trigo-sarraceno-maca-canela"
   ],
   "lunch_ids": [
     "sopa-legumes-portuguesa-grao",
@@ -38,7 +46,13 @@
     "sopa-peixe-massinha-hortela",
     "acorda-tomate-coentros-ovo",
     "pataniscas-bacalhau-curgete-forno",
-    "creme-abobora-curgete-requeijao"
+    "creme-abobora-curgete-requeijao",
+    "creme-feijao-verde-batata-doce-ovo",
+    "sopa-brocolos-alho-frances-pescada",
+    "omelete-curgete-queijo-ervas",
+    "wrap-macio-frango-abacate-queijo",
+    "bolonhesa-lentilhas-castanhas-arroz",
+    "pasta-salmao-ervilhas-iogurte"
   ],
   "snack_ids": [
     "banana-oat-baby-muffins",
@@ -52,7 +66,15 @@
     "bolo-cenoura-aveia-queques",
     "palitos-queijo-fresco-pera-rocha",
     "bolachas-macias-amendoa-banana",
-    "queques-espinafres-queijo-forno"
+    "queques-espinafres-queijo-forno",
+    "banana-bread-caseiro-sem-acucar",
+    "scones-saudaveis-aveia-maca",
+    "palitos-pepino-tomate-queijo-fresco",
+    "mousse-abacate-banana-cacau-suave",
+    "broinhas-batata-doce-sem-acucar",
+    "barrinhas-aveia-maca-tamara",
+    "muffins-curgete-limao-sesamo",
+    "bolachas-abobora-aveia-noz"
   ],
   "recipes": [
     {
@@ -6916,6 +6938,3469 @@
           "cut_and_texture": "Lanche salgado familiar.",
           "serving_note": "Servir com tomate ou fruta.",
           "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "almondegas-lentilhas-curgete-forno",
+      "title": "Almôndegas de Lentilhas e Curgete no Forno com Esparguete",
+      "image_url": "meals/almondegas-lentilhas-curgete-forno.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 15,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "brown_lentils",
+          "name": "Lentilhas cozidas escorridas",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete ralada e espremida",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovo",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Esparguete ou massa",
+          "quantity": 280,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate natural",
+          "quantity": 250,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Esmague as lentilhas e envolva com a curgete espremida, o ovo e 3 colheres de aveia/farinha; molde bolinhas e asse 20 minutos a 200°C.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Coza a massa 10 minutos e aqueça a polpa de tomate com azeite.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve as porções das crianças antes de salgar o molho de tomate.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Almôndegas cortadas em tiras largas ou esmagadas com massa muito cozida.",
+          "serving_note": "Zero sal; ricas em ferro vegetal.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Almôndegas partidas ao meio e cortadas em cubos macios.",
+          "serving_note": "Fácil de segurar.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Metades de almôndega macias com esparguete cortado.",
+          "serving_note": "Molho sem sal.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "2_4y": {
+          "cut_and_texture": "3 almôndegas com esparguete e tomate.",
+          "serving_note": "Muito apreciado por toddlers.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar completa.",
+          "serving_note": "Polvilhar orégãos e queijo ralado opcional.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "jardineira-vitela-batata-ervilhas",
+      "title": "Jardineira Suave de Vitela com Cenoura e Ervilhas",
+      "image_url": "meals/jardineira-vitela-batata-ervilhas.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "lean_beef",
+          "name": "Vitela macia em cubos pequenos",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "white_potato",
+          "name": "Batata aos cubos",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenouras em rodelas",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "peas",
+          "name": "Ervilhas congeladas",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Frozen",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate",
+          "quantity": 180,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Estufe a vitela com polpa de tomate e 250 ml de água tapado 20 minutos até amaciar.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Junte batata, cenoura e ervilhas e cozinhe mais 12 minutos até desfazerem facilmente.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a taça do bebé e das crianças antes de temperar com sal.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Vitela desfiada fina com batata, cenoura e ervilhas bem esmagadas no caldo.",
+          "serving_note": "Esmagar todas as ervilhas; zero sal.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Carne desfiada curta, ervilhas achatadas e cubinhos macios de batata.",
+          "serving_note": "Verificar maciez da carne.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Cubinhos tenros com ervilhas amassadas.",
+          "serving_note": "Fonte excelente de ferro heme.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Tigela de jardineira caseira macia.",
+          "serving_note": "Servir com arroz ou pão.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar clássica.",
+          "serving_note": "Juntar salsa fresca.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "strogonoff-suave-frango-iogurte",
+      "title": "Strogonoff Suave de Frango e Cogumelos com Iogurte Grego",
+      "image_url": "meals/strogonoff-suave-frango-iogurte.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chicken_breast",
+          "name": "Peito de frango em tiras",
+          "quantity": 480,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "mushrooms",
+          "name": "Cogumelos frescos laminados",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego natural sem açúcar",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rice",
+          "name": "Arroz basmati ou carolino",
+          "quantity": 260,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza o arroz 14 minutos em água sem sal. Salteie o frango e os cogumelos em azeite durante 10 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Desligue o lume e envolva o iogurte grego para criar um molho cremoso sem natas.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire as porções das crianças antes de adicionar sal e mostarda aos adultos.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras macias de frango ou desfiado com arroz cremoso e cogumelos bem picados.",
+          "serving_note": "Zero sal; iogurte substitui natas.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos tenros de frango e arroz cremoso.",
+          "serving_note": "Cogumelos bem cozidos e picados.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Pedaços macios com molho cremoso.",
+          "serving_note": "Prato muito suave para toddlers.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Frango cremoso com arroz branco.",
+          "serving_note": "Acompanhar com brócolos cozidos.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Adicionar salsa e pimenta.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "arroz-tamboril-coentros-suave",
+      "title": "Arroz Malandrinho de Tamboril, Tomate e Coentros",
+      "image_url": "meals/arroz-tamboril-coentros-suave.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 12,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "hake_white_fish",
+          "name": "Cubos de tamboril ou pescada firme",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rice",
+          "name": "Arroz carolino",
+          "quantity": 260,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate natural",
+          "quantity": 200,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "red_bell_pepper",
+          "name": "Pimento vermelho em tiras finas",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Refogue o pimento em azeite, junte a polpa de tomate e 750 ml de água e deixe ferver 5 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Adicione o arroz por 8 minutos, depois o tamboril em cubos por mais 7 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve as taças das crianças antes de temperar com sal e coentros.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tamboril em lascas finas sem espinha envolto em arroz bem húmido.",
+          "serving_note": "Peixe firme excelente para bebés; zero sal.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Lascas macias de peixe com arroz malandrinho.",
+          "serving_note": "Fácil de colher à mão ou colher.",
+          "cut_shape": "flaked-fine"
+        },
+        "12_24m": {
+          "cut_and_texture": "Cubinhos muito macios de tamboril com arroz.",
+          "serving_note": "Confirmar sempre ausência de cartilagem.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Tigela de arroz de tamboril suave.",
+          "serving_note": "Servir morno.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Arroz português clássico.",
+          "serving_note": "Juntar coentros frescos.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "rolo-carne-cenoura-pure",
+      "title": "Rolo de Carne Macio com Cenoura e Puré de Batata-Doce",
+      "image_url": "meals/rolo-carne-cenoura-pure.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 15,
+      "cook_minutes": 30,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "lean_beef",
+          "name": "Carne picada de vaca ou peru",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura finamente ralada",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovo",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina (liga sem pão)",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Batata-doce para puré",
+          "quantity": 550,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture carne, cenoura ralada, ovo e aveia. SEPARAÇÃO DE TEMPERO: Molde um rolo pequeno sem sal para o bebé/criança antes de salgar o grande.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 2,
+          "text": "Asse a 190°C durante 30 minutos; coza e esmague a batata-doce com azeite em puré cremoso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Fatie ambos e sirva com o puré de batata-doce.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Fatia pequena sem sal cortada em tiras húmidas + puré de batata-doce.",
+          "serving_note": "Textura macia pela cenoura e aveia.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos macios do rolo sem sal e puré.",
+          "serving_note": "Ótimo para agarrar.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Fatia fina em pedaços de garfo com puré.",
+          "serving_note": "Rico em ferro e vitamina A.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Fatia macia de rolo com puré laranja.",
+          "serving_note": "Congela muito bem em fatias.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar completa.",
+          "serving_note": "Acompanhar com salada.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "bolonhesa-peru-cogumelos-massa",
+      "title": "Massa Esparguete à Bolonhesa de Peru e Legumes",
+      "image_url": "meals/bolonhesa-peru-cogumelos-massa.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "ground_turkey",
+          "name": "Carne picada de peru",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura ralada",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete ralada",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate natural",
+          "quantity": 300,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Esparguete ou laços",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Refogue o peru picado com cenoura e curgete raladas em azeite 6 minutos; junte a polpa de tomate e cozinhe 14 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Coza a massa 10 minutos sem sal.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire as porções das crianças antes de adicionar sal e orégãos aos adultos.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Massa fusilli ou penne bem cozida com carne picada macia e legumes desfeitos no molho.",
+          "serving_note": "Massas grandes ajudam na pega palmar.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Massa cortada com carne solta húmida.",
+          "serving_note": "Legumes escondidos no molho.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Esparguete cortado com bolonhesa suave.",
+          "serving_note": "Campeão entre toddlers.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Prato de esparguete colorido.",
+          "serving_note": "Servir morno.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar clássica.",
+          "serving_note": "Polvilhar parmesão opcional.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "quiche-sem-massa-atum-espinafres",
+      "title": "Tarte Salgada no Forno de Atum, Espinafres e Requeijão",
+      "image_url": "meals/quiche-sem-massa-atum-espinafres.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "fish",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 6,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "canned_tuna_water",
+          "name": "Atum ao natural escorrido",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Espinafres picados",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ricotta_requeijao",
+          "name": "Requeijão ou queijo fresco",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cherry_tomatoes",
+          "name": "Tomate cherry cortado",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Bata os ovos com o requeijão, envolva atum, espinafres e tomate em quartos. SEPARAÇÃO DE TEMPERO: Verta numa forma pequena sem sal para bebé antes de temperar o restante.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 2,
+          "text": "Leve ao forno a 180°C durante 25 minutos até firmar e dourar.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Deixe repousar 5 minutos antes de cortar em fatias ou tiras.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras macias de tarte sem sal; tomates cortados em quartos e amassados no cozimento.",
+          "serving_note": "Textura esponjosa fácil de mastigar.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos com tomate cozido em quartos.",
+          "serving_note": "Ótima para comer à mão.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "12_24m": {
+          "cut_and_texture": "Fatia fina cortada em cubos com tomate em quartos.",
+          "serving_note": "Prática fria ou quente.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "2_4y": {
+          "cut_and_texture": "Triângulo de tarte salgada.",
+          "serving_note": "Servir com salada ou sopa.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Tempere com orégãos.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "hamburgueres-grao-beterraba-forno",
+      "title": "Hambúrgueres Macios de Grão e Beterraba no Forno",
+      "image_url": "meals/hamburgueres-grao-beterraba-forno.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 12,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chickpeas",
+          "name": "Grão-de-bico cozido",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "beetroot",
+          "name": "Beterraba cozida ralada",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tahini_sesame",
+          "name": "Pasta de sésamo (tahini)",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Batata-doce em palitos para assar",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture o grão-de-bico com beterraba, tahini e aveia até formar massa cor-de-rosa.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Molde 2 mini-hambúrgueres sem sal antes de temperar o resto da mistura.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Asse os hambúrgueres e os palitos de batata-doce a 190°C durante 18 minutos.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Grão totalmente triturado em hambúrguer macio cortado em tiras largas + palitos de batata-doce.",
+          "serving_note": "Textura macia e grão esmagado.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Pedacinhos macios esmagados de hambúrguer cor-de-rosa.",
+          "serving_note": "Cor divertida para bebés.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Mini-hambúrguer partido ao meio esmagado.",
+          "serving_note": "Alergénio sésamo via tahini.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Hambúrguer colorido com palitos de batata-doce.",
+          "serving_note": "Muito atrativo para toddlers.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Hambúrguer em pão ou prato com salada.",
+          "serving_note": "Servir com iogurte e limão.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "frango-cuscuz-brocolos-limao",
+      "title": "Frango Salteado com Cuscuz Macio, Brócolos e Limão",
+      "image_url": "meals/frango-cuscuz-brocolos-limao.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 12,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chicken_breast",
+          "name": "Peito de frango em tiras finas",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "couscous",
+          "name": "Cuscuz fino",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Brócolos em floretes pequenos",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Limão",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza os brócolos a vapor 8 minutos; hidrate o cuscuz com água a ferver sem sal e azeite durante 5 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Cozinhe as tiras de frango em azeite e sumo de limão durante 8 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve a porção das crianças antes de temperar com sal.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras macias de frango e floretes inteiros bem cozidos com cuscuz húmido.",
+          "serving_note": "Brócolos fáceis de segurar pelo pé.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos de frango, floretes picados e cuscuz em montinhos.",
+          "serving_note": "Prato rápido de 22 min.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras de frango e brócolos macios com cuscuz.",
+          "serving_note": "O limão realça o sabor sem sal.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Prato colorido pronto em 20 min.",
+          "serving_note": "Muito fácil para jantar de semana.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Ervas frescas e sal a gosto.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "salmao-arroz-feijao-tomate",
+      "title": "Salmão Grelhado com Arroz de Feijão Encarnado e Tomate",
+      "image_url": "meals/salmao-arroz-feijao-tomate.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "salmon_fillet",
+          "name": "Lombos de salmão",
+          "quantity": 480,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rice",
+          "name": "Arroz agulha ou carolino",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "red_kidney_beans",
+          "name": "Feijão encarnado cozido sem sal",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate",
+          "quantity": 180,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Ferva a polpa de tomate com 500 ml de água, junte o arroz e o feijão escorrido e cozinhe 15 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Grelhe os lombos de salmão em azeite durante 4 minutos de cada lado.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a porção das crianças antes de salgar o salmão e o arroz.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Salmão em lascas finas sem espinhas e feijão bem esmagado no arroz húmido.",
+          "serving_note": "Esmagar o feijão para evitar grãos redondos inteiros.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Lascas de salmão e feijão achatado com arroz.",
+          "serving_note": "Rico em ómega-3 e ferro.",
+          "cut_shape": "flaked-fine"
+        },
+        "12_24m": {
+          "cut_and_texture": "Lascas macias com arroz de feijão esmagado.",
+          "serving_note": "Servir morno.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Posta pequena em lascas com arroz de feijão.",
+          "serving_note": "Clássico português adorado por crianças.",
+          "cut_shape": "flaked-fine"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar completa.",
+          "serving_note": "Acompanhar com salada.",
+          "cut_shape": "flaked-fine"
+        }
+      }
+    },
+    {
+      "id": "filetes-pescada-forno-pure-ervilhas",
+      "title": "Filetes de Pescada no Forno com Puré Verde de Ervilhas",
+      "image_url": "meals/filetes-pescada-forno-pure-ervilhas.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "hake_white_fish",
+          "name": "Filetes de pescada",
+          "quantity": 520,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "peas",
+          "name": "Ervilhas doces congeladas",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Frozen",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "white_potato",
+          "name": "Batatas cozidas",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Limão",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Regue os filetes com limão e azeite e asse a 190°C por 15 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Coza batata e ervilhas 12 minutos e triture com azeite num puré verde vibrante.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve as porções das crianças antes de temperar com sal.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Pescada em lascas finas com puré de ervilhas esmagadas e batata.",
+          "serving_note": "Ervilhas totalmente trituradas em puré seguro.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Lascas de pescada para mergulhar no puré verde.",
+          "serving_note": "Confirmar ausência de espinhas.",
+          "cut_shape": "flaked-fine"
+        },
+        "12_24m": {
+          "cut_and_texture": "Filete macio em lascas com puré verde.",
+          "serving_note": "Cor verde divertida para toddlers.",
+          "cut_shape": "flaked-fine"
+        },
+        "2_4y": {
+          "cut_and_texture": "Filete dourado com puré de ervilha.",
+          "serving_note": "Textura leve e doce.",
+          "cut_shape": "flaked-fine"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Juntar hortelã ao puré se quiser.",
+          "cut_shape": "flaked-fine"
+        }
+      }
+    },
+    {
+      "id": "feijoada-branca-suave-legumes",
+      "title": "Feijoada Branca Suave de Abóbora, Couve e Cenoura",
+      "image_url": "meals/feijoada-branca-suave-legumes.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 12,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "white_beans",
+          "name": "Feijão branco cozido sem sal",
+          "quantity": 420,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "butternut_squash",
+          "name": "Abóbora em cubos",
+          "quantity": 280,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "kale_greens",
+          "name": "Couve-lombarda picada",
+          "quantity": 140,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura em rodelas",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate",
+          "quantity": 200,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Estufe abóbora, cenoura e couve com tomate e 250 ml de água por 15 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Junte o feijão branco cozido e cozinhe mais 5 minutos para apurar.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a taça das crianças antes de temperar com sal.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Feijão branco bem esmagado com abóbora em puré grosseiro.",
+          "serving_note": "Zero sal e feijão esmagado.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Feijões achatados e cubinhos macios de abóbora.",
+          "serving_note": "Refeição vegetal rica em ferro.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Feijão ligeiramente esmagado com legumes macios.",
+          "serving_note": "Pode servir com arroz branco.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Tigela colorida de feijoada suave.",
+          "serving_note": "Comer à colher com arroz.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Prato familiar reconfortante.",
+          "serving_note": "Servir com arroz.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "espirais-frango-pesto-curgete",
+      "title": "Massa Espirais com Frango, Curgete e Pesto Suave de Manjericão",
+      "image_url": "meals/espirais-frango-pesto-curgete.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 15,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Massa espirais (fusilli)",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "chicken_breast",
+          "name": "Peito de frango aos cubinhos",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete em meias-luas finas",
+          "quantity": 220,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Manjericão ou espinafres para pesto",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza as espirais 10 minutos. Triture folhas verdes com 3 colheres de azeite em pesto sem sal nem queijo.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Salteie o frango e a curgete em azeite 8 minutos até ficarem bem macios.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Envolva tudo no pesto verde e separe as doses das crianças antes de salgar ou pôr queijo.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Espirais bem cozidas com frango desfiado e meias-luas macias de curgete.",
+          "serving_note": "Pesto caseiro sem sal nem pinhões inteiros.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Espirais cortadas ao meio com cubinhos macios de frango.",
+          "serving_note": "Cor verde muito apelativa.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Espirais inteiras fáceis de espetar com o garfo.",
+          "serving_note": "Rápido em 25 min.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Massa verde com frango e curgete.",
+          "serving_note": "Muito prática para marmita.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Juntar queijo ralado aos adultos.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "peixe-espada-batata-doce-feijao-verde",
+      "title": "Peixe Cozido ou Grelhado com Batata-Doce e Feijão-Verde",
+      "image_url": "meals/peixe-espada-batata-doce-feijao-verde.webp",
+      "meal_slot": "dinner",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "hake_white_fish",
+          "name": "Filetes de solha ou pescada",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Batata-doce aos cubos",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "green_beans",
+          "name": "Feijão-verde sem fios",
+          "quantity": 220,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 3,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza a vapor a batata-doce e o feijão-verde por 14 minutos até ficarem bem tenros.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Cozinhe o peixe a vapor ou numa frigideira com azeite por 6 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a dose das crianças com azeite em cru antes de salgar.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Lascas finas de peixe branco com palitos de batata-doce e feijão-verde cozido.",
+          "serving_note": "Zero sal; verificar espinhas.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Lascas de peixe e cubos macios de legumes.",
+          "serving_note": "Fácil de agarrar.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Filete macio partido com feijão-verde.",
+          "serving_note": "Refeição portuguesa clássica e leve.",
+          "cut_shape": "flaked-fine"
+        },
+        "2_4y": {
+          "cut_and_texture": "Prato colorido simples.",
+          "serving_note": "Regar com azeite e limão.",
+          "cut_shape": "flaked-fine"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Sal e alho salteado opcional.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "creme-feijao-verde-batata-doce-ovo",
+      "title": "Creme de Feijão-Verde e Batata-Doce com Ovo Cozido",
+      "image_url": "meals/creme-feijao-verde-batata-doce-ovo.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "green_beans",
+          "name": "Feijão-verde limpo",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Batata-doce",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Cebola",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos cozidos",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza o feijão-verde, a batata-doce e a cebola em 600 ml de água por 20 minutos; coza os ovos 10 minutos à parte.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Triture a sopa até ficar cremosa e junte azeite em cru.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Encha a tigela do bebé com ovo picado/esmagado antes de salgar a sopa.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme espesso com gema e clara bem cozidas esmagadas por cima.",
+          "serving_note": "Zero sal; azeite adicionado em cru.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Sopa cremosa com pedacinhos de ovo cozido.",
+          "serving_note": "Almoço completo num só prato.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tigela morna com gomos de ovo cozido.",
+          "serving_note": "Excelente textura.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "2_4y": {
+          "cut_and_texture": "Creme verde-alaranjado com ovo.",
+          "serving_note": "Servir com torradinhas.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Sopa rápida para o dia a dia.",
+          "cut_shape": "quartered-lengthwise"
+        }
+      }
+    },
+    {
+      "id": "sopa-brocolos-alho-frances-pescada",
+      "title": "Sopa Cremosa de Brócolos, Alho-Francês e Pescada",
+      "image_url": "meals/sopa-brocolos-alho-frances-pescada.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "broccoli_florets",
+          "name": "Brócolos",
+          "quantity": 260,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "leek",
+          "name": "Alho-francês (parte branca) em rodelas",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "white_potato",
+          "name": "Batata",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "hake_white_fish",
+          "name": "Lombos de pescada",
+          "quantity": 280,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza batata, alho-francês e brócolos 15 minutos e triture num creme suave com azeite.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Escalfe a pescada à parte 7 minutos e desfaça em lascas.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva a sopa do bebé com lascas de pescada antes de salgar.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme verde com pescada em lascas finas sem espinhas.",
+          "serving_note": "Alho-francês dá sabor adocicado natural.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Sopa espessa com pedacinhos de pescada macia.",
+          "serving_note": "Fácil de comer à colher.",
+          "cut_shape": "flaked-fine"
+        },
+        "12_24m": {
+          "cut_and_texture": "Creme de brócolos com lascas de peixe.",
+          "serving_note": "Muito nutritivo.",
+          "cut_shape": "flaked-fine"
+        },
+        "2_4y": {
+          "cut_and_texture": "Tigela de sopa verde com peixe.",
+          "serving_note": "Acompanhar com pão torrado.",
+          "cut_shape": "flaked-fine"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar completa.",
+          "serving_note": "Pimenta e sementes opcionais.",
+          "cut_shape": "flaked-fine"
+        }
+      }
+    },
+    {
+      "id": "omelete-curgete-queijo-ervas",
+      "title": "Omelete Macia de Curgete, Queijo Fresco e Ervas",
+      "image_url": "meals/omelete-curgete-queijo-ervas.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 5,
+      "cook_minutes": 8,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 6,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete ralada",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "fresh_cheese_pt",
+          "name": "Queijo fresco picado",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Salteie a curgete ralada em azeite 3 minutos até amaciar.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Junte os ovos batidos e o queijo fresco sem sal; cozinhe uma mini-omelete para bebé antes de salgar o resto.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Cozinhe bem dos dois lados durante 4 minutos até ficar totalmente coagulada.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Omelete bem passada cortada em tiras da largura de 2 dedos.",
+          "serving_note": "Zero sal; ovo totalmente cozinhado.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadradinhos macios fáceis de pegar com os dedos.",
+          "serving_note": "Almoço relâmpago de 13 min.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras finas ou triângulos pequenos.",
+          "serving_note": "Pode acompanhar com tomate em quartos.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Meia omelete dobrada.",
+          "serving_note": "Ótima na marmita.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Omelete familiar com salada.",
+          "serving_note": "Tempere com orégãos.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "wrap-macio-frango-abacate-queijo",
+      "title": "Enroladinhos Macios de Frango Desfiado e Abacate",
+      "image_url": "meals/wrap-macio-frango-abacate-queijo.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 8,
+      "cook_minutes": 8,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chicken_breast",
+          "name": "Peito de frango desfiado cozido",
+          "quantity": 320,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "avocado",
+          "name": "Abacate maduro esmagado",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tortilla_wraps",
+          "name": "Tortilhas macias de trigo",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "ricotta_requeijao",
+          "name": "Requeijão para barrar",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza ou aqueça o frango desfiado e envolva com abacate esmagado e requeijão numa pasta cremosa.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Recheie 1 tortilha sem sal para as crianças antes de temperar o resto com limão/sal.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Enrole firme e corte em rodelas macias ou metades.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Para 6-9m, ofereça apenas o recheio cremoso de frango desfiado e abacate ou tiras de pão macio barrado.",
+          "serving_note": "Tortilhas podem colar ao palato antes dos 9m.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Pequenos triângulos de tortilha levemente tostada ou pasta com pão.",
+          "serving_note": "Frango muito fino e húmido.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Rodelas finas de enroladinho fáceis de segurar.",
+          "serving_note": "Excelente para passeios.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Enroladinhos cortados ao meio.",
+          "serving_note": "Pronto em 16 min.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Wraps inteiros familiares.",
+          "serving_note": "Juntar alface para adultos.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "bolonhesa-lentilhas-castanhas-arroz",
+      "title": "Estufado Rápido de Lentilhas, Cenoura e Arroz",
+      "image_url": "meals/bolonhesa-lentilhas-castanhas-arroz.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 8,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "brown_lentils",
+          "name": "Lentilhas cozidas",
+          "quantity": 360,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura ralada",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tomato_passata",
+          "name": "Polpa de tomate",
+          "quantity": 220,
+          "unit": "ml",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rice",
+          "name": "Arroz basmati ou carolino",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza o arroz 14 minutos em água sem sal. Estufe cenoura, lentilhas e tomate em azeite por 12 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve as porções das crianças antes de adicionar sal e cominhos aos adultos.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Sirva morno com fio de azeite.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Lentilhas ligeiramente esmagadas com arroz bem húmido e cenoura cozida.",
+          "serving_note": "Zero sal; ótima fonte de ferro vegetal.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Arroz e lentilhas macias fáceis de pegar à colher.",
+          "serving_note": "Azeite ajuda a unir o arroz.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tigela simples para praticar autonomia.",
+          "serving_note": "Muito económico e rápido.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Arroz com estufado de lentilhas.",
+          "serving_note": "Servir com iogurte natural opcional.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Juntar ovo estrelado/cozido opcional.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "pasta-salmao-ervilhas-iogurte",
+      "title": "Massa Fria ou Morna de Salmão, Ervilhas e Iogurte",
+      "image_url": "meals/pasta-salmao-ervilhas-iogurte.webp",
+      "meal_slot": "lunch",
+      "prep_minutes": 8,
+      "cook_minutes": 14,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish",
+        "dairy",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Massa laços ou penne",
+          "quantity": 280,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "salmon_fillet",
+          "name": "Lombos de salmão em lascas",
+          "quantity": 340,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "peas",
+          "name": "Ervilhas doces cozidas",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Frozen",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego natural",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Limão",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza a massa 10 minutos juntando as ervilhas nos últimos 4 minutos; coza o salmão à parte 8 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Envolva a massa morna ou fria com lascas de salmão, iogurte grego e gotas de limão.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a taça das crianças com ervilhas esmagadas antes de salgar.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Massa macia cortada, lascas finas de salmão e ervilhas bem esmagadas no iogurte.",
+          "serving_note": "Nunca dar ervilhas inteiras.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Laços partidos com ervilhas achatadas e salmão.",
+          "serving_note": "Ótimo almoço de lancheira.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Massa com ervilhas amassadas e salmão.",
+          "serving_note": "Sabor fresco e suave.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Salada de massa cremosa de salmão.",
+          "serving_note": "Excelente em dias quentes.",
+          "cut_shape": "flaked-fine"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Tempere com endro ou salsa.",
+          "cut_shape": "flaked-fine"
+        }
+      }
+    },
+    {
+      "id": "papas-aveia-forno-pera-mirtilos",
+      "title": "Papas de Aveia no Forno com Pera Rocha e Mirtilos Esmagados",
+      "image_url": "meals/papas-aveia-forno-pera-mirtilos.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 8,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "pear",
+          "name": "Peras Rocha em cubinhos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "blueberries",
+          "name": "Mirtilos frescos ou congelados",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "milk",
+          "name": "Leite ou bebida vegetal s/ açúcar",
+          "quantity": 300,
+          "unit": "ml",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture aveia, ovos, leite, canela, pera picada e mirtilos esmagados num tabuleiro pequeno.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Asse a 180°C durante 25 minutos até dourar e firmar como um bolo macio.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero açúcares adicionados; corte em quadrados ou tiras para toda a semana.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Corte em tiras macias fáceis de segurar; mirtilos já cozidos e esmagados.",
+          "serving_note": "Zero açúcares.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadrados macios em cubos de pinça com mirtilos amassados.",
+          "serving_note": "Dura 4 dias no frigorífico.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Quadrados de aveia no forno com mirtilos esmagados.",
+          "serving_note": "Prático nas manhãs de semana.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Fatia quente com iogurte natural.",
+          "serving_note": "Muito adorado por crianças.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Servir com iogurte.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "pudim-chia-manga-leite",
+      "title": "Pudim Cremoso de Chia com Puré de Manga e Aveia",
+      "image_url": "meals/pudim-chia-manga-leite.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 5,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chia_seeds",
+          "name": "Sementes de chia",
+          "quantity": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "milk",
+          "name": "Leite ou leite de coco diluído",
+          "quantity": 450,
+          "unit": "ml",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "mango",
+          "name": "Manga bem madura triturada",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture bem a chia no leite e deixe hidratar no frigorífico pelo menos 3 horas ou de véspera (mexendo aos 15 minutos para não ganhar grumos).",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Cubra com o puré fresco de manga madura antes de servir.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva simples ao bebé sem adoçantes.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Pudim sempre bem hidratado (nunca seco) com puré liso de manga.",
+          "serving_note": "Rico em cálcio e ómega-3.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Taça fresca de chia hidratada e manga doce.",
+          "serving_note": "Fácil de comer à colher.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Copinho de pudim com cubinhos macios de manga.",
+          "serving_note": "Preparar à noite poupa tempo.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Pudim tropical amarelo.",
+          "serving_note": "Muito fresco.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Taça familiar.",
+          "serving_note": "Juntar granola para adultos.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "omelete-tiras-espinafres-queijo",
+      "title": "Omelete Rápida em Tiras de Espinafres e Queijo Fresco",
+      "image_url": "meals/omelete-tiras-espinafres-queijo.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 4,
+      "cook_minutes": 6,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 6,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Espinafres frescos finamente picados",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "fresh_cheese_pt",
+          "name": "Queijo fresco esmagado",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Bata os ovos com espinafres bem picadinhos e queijo fresco. SEPARAÇÃO DE TEMPERO: Cozinhe a parte do bebé sem sal primeiro.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 2,
+          "text": "Cozinhe numa frigideira com azeite 3 minutos de cada lado até ficar firme e fofa.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "Corte em tiras largas fáceis de segurar.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras compridas de omelete bem passada sem sal.",
+          "serving_note": "Excelente fonte de ferro e proteína matinal.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos de omelete macia.",
+          "serving_note": "Treina a pinça logo de manhã.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras ou rolinhos de omelete.",
+          "serving_note": "Acompanhar com fruta.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Omelete verde saborosa.",
+          "serving_note": "Pronto em 10 min.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Tempere com sal e pimenta.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "rabanada-saudavel-ovo-canela",
+      "title": "Torradas Francesas Saudáveis de Ovo, Leite e Canela",
+      "image_url": "meals/rabanada-saudavel-ovo-canela.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 5,
+      "cook_minutes": 8,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "whole_wheat_bread",
+          "name": "Fatias de pão de mistura",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "milk",
+          "name": "Leite ou bebida vegetal s/ açúcar",
+          "quantity": 120,
+          "unit": "ml",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cinnamon",
+          "name": "Canela em pó",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Bata os ovos com o leite e a canela. Mergulhe as fatias de pão dos dois lados.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Doure numa frigideira antiaderente levemente untada 3 minutos de cada lado até o ovo cozinhar por completo.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva sem açúcar ao bebé/criança com banana ou morango esmagado.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras macias da largura de 2 dedos bem passadas.",
+          "serving_note": "Sem açúcar; ovo 100% cozinhado.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadradinhos macios fáceis de pegar.",
+          "serving_note": "Ótimo pequeno-almoço de fim de semana.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras douradas com fruta fresca.",
+          "serving_note": "Adorada pelos toddlers.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Fatias inteiras cortadas em triângulos.",
+          "serving_note": "Servir com iogurte natural.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Juntar fruta e canela extra.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "tosta-manteiga-amendoim-banana",
+      "title": "Tosta Macia com Manteiga de Amendoim e Banana em Tiras",
+      "image_url": "meals/tosta-manteiga-amendoim-banana.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 5,
+      "cook_minutes": 3,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat",
+        "peanut"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "whole_wheat_bread",
+          "name": "Fatias de pão de forma ou mistura",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "peanut_butter",
+          "name": "Manteiga 100% amendoim (sem sal)",
+          "quantity": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Bananas maduras",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Toste ligeiramente o pão e barre uma camada fina de manteiga de amendoim (diluída num pingo de leite/água morna para bebés <9m).",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Esmague ou disponha rodelas bem finas de banana por cima.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Corte em tiras finas para bebés ou metades para crianças.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Camada MUITO fina de manteiga de amendoim diluída no pão tostado com banana esmagada.",
+          "serving_note": "Nunca dar colherada espessa de manteiga de amendoim.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadrados macios com camada fina de amendoim e banana.",
+          "serving_note": "Ajuda na exposição ao alergénio amendoim.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras de tosta com banana fatiada.",
+          "serving_note": "Rápido em 8 minutos.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Meias tostas douradas.",
+          "serving_note": "Energético e sem açúcar.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Tostas familiares completas.",
+          "serving_note": "Juntar sementes de chia opcional.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "waffles-aveia-banana-sem-acucar",
+      "title": "Waffles Caseiros de Aveia, Banana e Iogurte (Sem Açúcar)",
+      "image_url": "meals/waffles-aveia-banana-sem-acucar.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 6,
+      "cook_minutes": 10,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "banana",
+          "name": "Bananas muito maduras",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia moída",
+          "quantity": 140,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte natural sem açúcar",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture todos os ingredientes num batido espesso até ficar homogéneo.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Cozinhe na máquina de waffles (ou frigideira) 4 minutos até ficarem dourados mas macios por dentro.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero açúcar; congele as sobras para aquecer na torradeira durante a semana.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Waffle macio cortado em palitos largos fáceis de agarrar.",
+          "serving_note": "Textura macia (não crocante demais).",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadrados macios do tamanho de pinça.",
+          "serving_note": "Fáceis de levar em passeio.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Metades ou tiras de waffle com iogurte.",
+          "serving_note": "Favorito dos toddlers.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Waffle inteiro com fruta fresca.",
+          "serving_note": "Pronto em 16 min.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Fruta e canela a gosto.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "batido-manga-mirtilos-espinafres",
+      "title": "Batido Cremoso de Manga, Mirtilos, Espinafres e Aveia",
+      "image_url": "meals/batido-manga-mirtilos-espinafres.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 5,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "mango",
+          "name": "Manga madura ou congelada",
+          "quantity": 1.5,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "blueberries",
+          "name": "Mirtilos triturados no batido",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Espinafres frescos",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina",
+          "quantity": 40,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte natural ou kefir sem açúcar",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture todos os ingredientes no liquidificador com 150 ml de água até obter um batido totalmente liso sem mirtilos inteiros.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva ao bebé numa taça de colher ou copo com palhinha sem adoçar.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Sirva em papa espessa à colher com os mirtilos 100% triturados.",
+          "serving_note": "Zero sementes ou bagas inteiras.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Taça cremosa ou copo aberto/palhinha com mirtilos desfeitos.",
+          "serving_note": "Espinafres crus bem triturados.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Batido espesso com palhinha ou de colher e mirtilos totalmente triturados.",
+          "serving_note": "Forma prática de comer verdes.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Copo de batido colorido com fruta e mirtilos totalmente triturados.",
+          "serving_note": "Ótimo para manhãs apressadas.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Batido familiar fresco.",
+          "serving_note": "Adicionar gelo ou chia opcional.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "papa-trigo-sarraceno-maca-canela",
+      "title": "Papa Quente de Aveia e Maçã Cozida com Sementes de Linhaça",
+      "image_url": "meals/papa-trigo-sarraceno-maca-canela.webp",
+      "meal_slot": "breakfast",
+      "prep_minutes": 5,
+      "cook_minutes": 8,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "apple",
+          "name": "Maçãs doces raladas",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "milk",
+          "name": "Leite ou bebida vegetal s/ açúcar",
+          "quantity": 550,
+          "unit": "ml",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cinnamon",
+          "name": "Canela em pó",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Cozinhe a aveia, a maçã ralada, o leite e a canela em lume brando durante 8 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva morno ao bebé sem sal nem açúcar adicionado.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Papa cremosa morna com maçã ralada muito macia.",
+          "serving_note": "Zero sal nem açúcar.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Papa espessa fácil de agarrar na colher.",
+          "serving_note": "Maçã cozida adoça naturalmente.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Taça quentinha de aveia e maçã.",
+          "serving_note": "Rica em fibra solúvel.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Papas matinais clássicas.",
+          "serving_note": "Polvilhar com sementes de linhaça moída.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Porção familiar normal.",
+          "serving_note": "Fruta extra por cima.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "banana-bread-caseiro-sem-acucar",
+      "title": "Pão de Banana Caseiro Fofo (Zero Açúcar Adicionado)",
+      "image_url": "meals/banana-bread-caseiro-sem-acucar.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 10,
+      "cook_minutes": 32,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "banana",
+          "name": "Bananas muito maduras",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "oat_flour",
+          "name": "Farinha de aveia ou trigo integral",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite suave",
+          "quantity": 4,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "cinnamon",
+          "name": "Canela em pó",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Esmague as bananas em puré, misture os ovos e o azeite, depois envolva a farinha, canela e 1 c. chá de fermento.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Asse numa forma de bolo inglês a 180°C durante 32 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero açúcar; fatie depois de arrefecer e congele fatias individuais.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Fatia fina macia cortada em tiras largas.",
+          "serving_note": "Húmido e seguro sem frutos inteiros.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos macios do tamanho de pinça.",
+          "serving_note": "Ótimo para passeios e creche.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Meia fatia macia de pão de banana.",
+          "serving_note": "Adoçado só com banana madura.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Fatia para a lancheira escolar.",
+          "serving_note": "Pode barrar com manteiga de amendoim.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Fatia familiar completa.",
+          "serving_note": "Servir com iogurte.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "scones-saudaveis-aveia-maca",
+      "title": "Scones Macios de Aveia, Iogurte e Maçã Ralada",
+      "image_url": "meals/scones-saudaveis-aveia-maca.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 10,
+      "cook_minutes": 16,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy",
+        "wheat"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "oat_flour",
+          "name": "Farinha de trigo ou aveia",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte natural sem açúcar",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "apple",
+          "name": "Maçã doce finamente ralada",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite suave",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture farinha, 1 c. chá de fermento, maçã ralada, azeite e iogurte sem amassar em excesso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Molde 8 pequenos scones num tabuleiro e asse a 190°C durante 16 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero sal nem açúcares adicionados; macios por dentro.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Scone aberto ao meio em tiras macias.",
+          "serving_note": "Textura leve e húmida pela maçã.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Pedaços macios fáceis de mastigar.",
+          "serving_note": "Lanche ótimo com queijo fresco.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Mini scone inteiro partido a meio.",
+          "serving_note": "Sem açúcar refinado.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "1 scone com fruta ou iogurte.",
+          "serving_note": "Lancheira portuguesa saudável.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Scones mornos familiares.",
+          "serving_note": "Excelente ao lanche da tarde.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "palitos-pepino-tomate-queijo-fresco",
+      "title": "Pratinho Fresco de Pepino, Tomate em Quartos e Queijo",
+      "image_url": "meals/palitos-pepino-tomate-queijo-fresco.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 6,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "cucumber",
+          "name": "Pepino fresco",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cherry_tomatoes",
+          "name": "Tomate cherry maduro",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "fresh_cheese_pt",
+          "name": "Queijo fresco baixo sal",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Descasque o pepino (ou corte em tiras finas macias/coza a vapor 3m para bebés mais novos) e corte TODOS os tomates cherry em quartos no sentido do comprimento.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Corte o queijo fresco em palitos sem sal para as crianças e regue com azeite.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras de pepino ligeiramente cozido a vapor (macio), tomate cherry em quartos esmagados e queijo fresco em tiras.",
+          "serving_note": "Tomates SEMPRE em quartos longitudinais.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "9_12m": {
+          "cut_and_texture": "Tomate cherry em quartos, cubinhos de pepino macio descascado e queijo fresco.",
+          "serving_note": "Regra de corte rigorosa para tomates.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tomate cherry em quartos com palitos finos de pepino e queijo.",
+          "serving_note": "Lanche fresco em 6 min.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "2_4y": {
+          "cut_and_texture": "Palitos crocantes de pepino, tomate em quartos e queijo.",
+          "serving_note": "Ideal no verão.",
+          "cut_shape": "quartered-lengthwise"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Lanche fresco familiar.",
+          "serving_note": "Tempere os adultos com orégãos e flor de sal.",
+          "cut_shape": "quartered-lengthwise"
+        }
+      }
+    },
+    {
+      "id": "mousse-abacate-banana-cacau-suave",
+      "title": "Creme Doce Natural de Abacate e Banana (ou Alfarroba)",
+      "image_url": "meals/mousse-abacate-banana-cacau-suave.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 5,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "avocado",
+          "name": "Abacate bem maduro",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Bananas maduras",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cinnamon",
+          "name": "Alfarroba em pó ou canela (zero cafeína)",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture o abacate com as bananas maduras e a alfarroba/canela até virar um creme sedoso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva de imediato em pequenas taças de colher sem açúcares adicionados.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme liso com sabor achocolatado de alfarroba (sem cafeína nem açúcar).",
+          "serving_note": "Rico em gorduras boas.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Creme espesso de colher.",
+          "serving_note": "Excelente alternativa saudável.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Taça fresca com fruta picada.",
+          "serving_note": "Pronto em 5 min.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Mousse caseira sem açúcar.",
+          "serving_note": "As crianças adoram a textura.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Sobremesa ou lanche rápido familiar.",
+          "serving_note": "Polvilhar coco ralado opcional.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "broinhas-batata-doce-sem-acucar",
+      "title": "Broinhas Fofas de Batata-Doce, Laranja e Aveia",
+      "image_url": "meals/broinhas-batata-doce-sem-acucar.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 12,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "sweet_potato",
+          "name": "Puré de batata-doce assada",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina moída",
+          "quantity": 140,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "orange",
+          "name": "Sumo e raspa de laranja",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovo",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "cinnamon",
+          "name": "Canela em pó",
+          "quantity": 1,
+          "unit": "tsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture puré de batata-doce morno, aveia, raspa/sumo de laranja, ovo e canela até formar massa macia.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Molde pequenas broinhas ovais num tabuleiro e leve ao forno a 180°C durante 18 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Tradicional português adaptado com zero açúcar adicionado.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Broinha macia partida ao meio em tiras fáceis de agarrar.",
+          "serving_note": "Zero açúcar; textura fofa.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Pedaços macios do tamanho de pinça.",
+          "serving_note": "Aroma suave de laranja e canela.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Broinha inteira pequena muito macia.",
+          "serving_note": "Ótima na lancheira.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "1–2 broinhas de batata-doce.",
+          "serving_note": "Lanche sazonal de outono/inverno.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Lanche tradicional da família.",
+          "serving_note": "Acompanhar com chá ou leite.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "barrinhas-aveia-maca-tamara",
+      "title": "Barrinhas Macias de Aveia, Maçã e Tâmara no Forno",
+      "image_url": "meals/barrinhas-aveia-maca-tamara.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 160,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "apple",
+          "name": "Maçã ralada ou cozida em puré",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "medjool_dates",
+          "name": "Tâmaras sem caroço demolhadas",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite suave ou óleo de coco",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture as tâmaras demolhadas com o puré de maçã e o azeite até formar pasta doce; envolva a aveia fina.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Espalhe num tabuleiro pequeno e leve ao forno a 180°C por 18 minutos; corte em barrinhas quando amornar.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero açúcares refinados nem frutos duros.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Barrinha macia larga para agarrar com a palma da mão.",
+          "serving_note": "Certificar maciez (não deixar endurecer).",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadradinhos macios cortados para pinça.",
+          "serving_note": "Práticas para transportar fora de casa.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Barrinha macia inteira.",
+          "serving_note": "Dura 5 dias em frasco fechado.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Barra energética caseira para crianças.",
+          "serving_note": "Sem aditivos.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Snack familiar prático.",
+          "serving_note": "Pode juntar sementes para >4a.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "muffins-curgete-limao-sesamo",
+      "title": "Miniqueques Fofos de Curgete, Limão e Tahini (Sésamo)",
+      "image_url": "meals/muffins-curgete-limao-sesamo.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "wheat",
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete finamente ralada",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Bananas maduras esmagadas",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "eggs",
+          "name": "Ovos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "oat_flour",
+          "name": "Farinha de trigo ou aveia",
+          "quantity": 130,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tahini_sesame",
+          "name": "Pasta de sésamo (tahini)",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture banana esmagada, ovos, tahini, curgete ralada, raspa de limão e farinha com 1 c. chá de fermento.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Distribua por formas pequenas e asse a 180°C durante 18 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Introduz o alergénio sésamo de forma segura e saborosa sem açúcar.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Queque fofo partido em tiras compridas.",
+          "serving_note": "Ótimo para manter exposição ao alergénio sésamo.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos macios fáceis de pegar.",
+          "serving_note": "Curgete mantém o queque húmido.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Miniqueque inteiro.",
+          "serving_note": "Lanche equilibrado de tarde.",
+          "cut_shape": "pincer-dice"
+        },
+        "2_4y": {
+          "cut_and_texture": "Queque suave de limão e curgete.",
+          "serving_note": "Fica ótimo no congelador.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Lanche leve familiar.",
+          "serving_note": "Servir com chá ou iogurte.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "bolachas-abobora-aveia-noz",
+      "title": "Bolachinhas Macias de Abóbora, Aveia e Noz Moída",
+      "image_url": "meals/bolachas-abobora-aveia-noz.webp",
+      "meal_slot": "snack",
+      "prep_minutes": 8,
+      "cook_minutes": 15,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "tree_nut"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "butternut_squash",
+          "name": "Puré de abóbora assada ou cozida",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina",
+          "quantity": 110,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "walnut_ground",
+          "name": "Miolo de noz finamente moído",
+          "quantity": 50,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Banana bem madura",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Esmague a banana e envolva com o puré de abóbora, aveia fina e noz moída em pó (sem pedaços duros).",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Forme bolachas grossas num tabuleiro e asse a 180°C durante 15 minutos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Zero açúcares adicionados e zero frutos secos inteiros.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Bolacha macia cortada em tiras largas; noz apenas finamente moída.",
+          "serving_note": "Ajuda na exposição segura a frutos de casca rija.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Pedaços macios que se desfazem na mão.",
+          "serving_note": "Sem pedaços rijos.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Bolachinha macia de abóbora.",
+          "serving_note": "Ideal para lanches de outono.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "2 bolachinhas de abóbora.",
+          "serving_note": "Lanche nutritivo rico em ómega-3.",
+          "cut_shape": "smashed-flat"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Snack familiar caseiro.",
+          "serving_note": "Servir com leite ou fruta.",
+          "cut_shape": "smashed-flat"
         }
       }
     }

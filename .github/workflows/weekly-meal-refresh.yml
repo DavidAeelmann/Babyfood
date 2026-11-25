@@ -14,6 +14,11 @@ on:
         required: false
         default: false
         type: boolean
+      backfill_images:
+        description: 'Gerar fotos AI reais para receitas sem foto real (até MAX_IMAGES)'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -36,6 +41,7 @@ jobs:
         run: npm ci
 
       - name: Generate weekly meal plan and photos (when API key is configured)
+        if: ${{ inputs.backfill_images != true }}
         env:
           LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
           API_KEY: ${{ secrets.API_KEY }}
@@ -53,6 +59,21 @@ jobs:
           else
             npm run generate-week
           fi
+
+      - name: Backfill AI food photos for missing/illustrated recipes
+        if: ${{ inputs.backfill_images == true && inputs.dry_run != true }}
+        env:
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+          API_KEY: ${{ secrets.API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          MAX_IMAGES: '20'
+        run: |
+          if [ -z "$API_KEY" ] && [ -z "$GEMINI_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
+            echo "::notice::Nenhuma API key configurada para backfill de imagens."
+            exit 0
+          fi
+          npm run backfill-images
 
       - name: Run deterministic recipe validator
         run: npm run generate-week -- --validate-only

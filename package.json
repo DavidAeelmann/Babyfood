@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate-week": "tsx scripts/generate-week.ts"
+    "generate-week": "tsx scripts/generate-week.ts",
+    "backfill-images": "tsx scripts/backfill-images.ts"
   },
   "dependencies": {
     "lucide-react": "^0.511.0",

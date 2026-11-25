@@ -104,6 +104,29 @@ async function main() {
   if (pickerImgCount === 0) {
     throw new Error('Expected medium-sized images in Meal Picker Modal');
   }
+  const brokenPickerImgs = await page.evaluate(async () => {
+    const imgs = Array.from(document.querySelectorAll('[data-testid="meal-picker-modal"] img'));
+    const failed = [];
+    // Verify top visible thumbnails actually decoded
+    for (const img of imgs.slice(0, 4)) {
+      if (!img.complete || img.naturalWidth === 0) {
+        failed.push(`visible-not-loaded:${img.getAttribute('src')}`);
+      }
+    }
+    // Verify every lazy thumbnail resolves cleanly via HTTP 200
+    await Promise.all(
+      imgs.map(async (img) => {
+        const res = await fetch(img.src);
+        if (!res.ok) {
+          failed.push(`http-${res.status}:${img.getAttribute('src')}`);
+        }
+      }),
+    );
+    return failed;
+  });
+  if (brokenPickerImgs.length > 0) {
+    throw new Error(`Broken images in Meal Picker Modal: ${brokenPickerImgs.join(', ')}`);
+  }
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_meal_picker_390x844.png'),
     fullPage: false,
