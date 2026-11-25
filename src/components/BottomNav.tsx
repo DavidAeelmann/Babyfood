@@ -22,18 +22,18 @@ export function BottomNav({
     badge?: number;
     badgeTone?: 'terracotta' | 'sage';
   }> = [
-    { key: 'plan', label: 'Plan', icon: CalendarDays },
+    { key: 'plan', label: 'Ementa', icon: CalendarDays },
     {
       key: 'shop',
-      label: 'Shop',
+      label: 'Compras',
       icon: ShoppingBasket,
       badge: remainingShopCount > 0 ? remainingShopCount : undefined,
       badgeTone: 'terracotta',
     },
-    { key: 'cook', label: 'Cook', icon: ChefHat },
+    { key: 'cook', label: 'Cozinhar', icon: ChefHat },
     {
       key: 'intro',
-      label: 'First Foods',
+      label: 'Alimentos',
       icon: Sprout,
       badge: untriedInPlanCount > 0 ? untriedInPlanCount : undefined,
       badgeTone: 'sage',
@@ -42,7 +42,7 @@ export function BottomNav({
 
   return (
     <nav
-      aria-label="Primary navigation"
+      aria-label="Navegação principal"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E7E2D8] bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md"
     >
       <div className="mx-auto grid max-w-md grid-cols-4">

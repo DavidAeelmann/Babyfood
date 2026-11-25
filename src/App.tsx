@@ -170,7 +170,7 @@ export function App() {
         <div className="text-center">
           <div className="mx-auto mb-3 h-9 w-9 animate-spin rounded-full border-3 border-[#E0DAD0] border-t-[#2F6F4E]" />
           <p className="text-sm font-semibold text-[#5C6862]">
-            Loading this week&apos;s meal plan…
+            A carregar a ementa desta semana…
           </p>
         </div>
       </div>
@@ -182,10 +182,10 @@ export function App() {
       <div className="flex min-h-screen items-center justify-center bg-[#FAF8F5] px-4">
         <div className="max-w-sm rounded-2xl border border-[#E7E2D8] bg-white p-5 text-center shadow-xs">
           <h1 className="text-base font-bold text-[#1C2420]">
-            Could not load meal plan
+            Não foi possível carregar a ementa
           </h1>
           <p className="mt-1 text-xs text-[#5C6862]">
-            {error ?? 'Missing week-current.json'}
+            {error ?? 'Ficheiro week-current.json em falta'}
           </p>
         </div>
       </div>
@@ -219,7 +219,7 @@ export function App() {
             <button
               type="button"
               onClick={dismissSyncNotice}
-              aria-label="Dismiss sync notice"
+              aria-label="Fechar aviso de sincronização"
               className="rounded-md p-1 hover:bg-white/60"
             >
               <X className="h-3.5 w-3.5" />

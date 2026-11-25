@@ -36,7 +36,7 @@ export function MealCard({
   const matchingAllergens = recipe.allergens.filter((a) =>
     excludedAllergens.includes(a),
   );
-  const dayLabel = DAY_LABELS[dayIndex] ?? `Day ${dayIndex + 1}`;
+  const dayLabel = DAY_LABELS[dayIndex] ?? `Dia ${dayIndex + 1}`;
   const showBabyNewFoods =
     untriedFoods.length > 0 &&
     (activeBrackets.includes('6_9m') || activeBrackets.includes('9_12m'));
@@ -82,13 +82,13 @@ export function MealCard({
                 key={key}
                 className="rounded-full bg-[#E8F2EC] px-2 py-0.5 text-[11px] font-semibold text-[#2F6F4E]"
               >
-                {BRACKET_META[key].shortLabel} adapted
+                {BRACKET_META[key].shortLabel} adaptado
               </span>
             ))}
             {showBabyNewFoods && (
               <span className="inline-flex items-center gap-1 rounded-full bg-[#FEF5E6] px-2 py-0.5 text-[11px] font-semibold text-[#9C5C00]">
                 <Sprout className="h-3 w-3" />
-                New:{' '}
+                Novo:{' '}
                 {untriedFoods
                   .slice(0, 2)
                   .map((f) => f.name)
@@ -99,7 +99,7 @@ export function MealCard({
             {matchingAllergens.length > 0 && (
               <span className="inline-flex items-center gap-1 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[11px] font-semibold text-[#B84C27]">
                 <ShieldAlert className="h-3 w-3" />
-                Contains {matchingAllergens.map((a) => ALLERGEN_LABELS[a]).join(', ')}
+                Contém {matchingAllergens.map((a) => ALLERGEN_LABELS[a]).join(', ')}
               </span>
             )}
           </div>
@@ -114,7 +114,7 @@ export function MealCard({
               type="button"
               onClick={onOpenPicker}
               disabled={isLocked}
-              aria-label={`Choose ${dayLabel} dinner`}
+              aria-label={`Escolher jantar de ${dayLabel}`}
               className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E] hover:bg-[#E8F2EC] disabled:opacity-35"
             >
               <Plus className="h-4 w-4" />
@@ -125,7 +125,7 @@ export function MealCard({
               type="button"
               onClick={onToggleBlocked}
               aria-pressed={isBlocked}
-              aria-label={`Block ${recipe.title}`}
+              aria-label={`Bloquear ${recipe.title}`}
               className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
                 isBlocked
                   ? 'bg-[#B84C27] text-white'
@@ -143,7 +143,7 @@ export function MealCard({
             data-testid={`lock-btn-${dayIndex}`}
             onClick={onToggleLock}
             aria-pressed={isLocked}
-            aria-label={isLocked ? `Unlock ${dayLabel}` : `Lock ${dayLabel}`}
+            aria-label={isLocked ? `Desbloquear ${dayLabel}` : `Bloquear ${dayLabel}`}
             className={`inline-flex min-h-[40px] items-center gap-1.5 rounded-xl px-3 text-xs font-semibold transition-colors ${
               isLocked
                 ? 'bg-[#1C2420] text-white'
@@ -153,12 +153,12 @@ export function MealCard({
             {isLocked ? (
               <>
                 <Lock className="h-3.5 w-3.5" />
-                Locked
+                Bloqueado
               </>
             ) : (
               <>
                 <Unlock className="h-3.5 w-3.5" />
-                Lock Day
+                Bloquear Dia
               </>
             )}
           </button>
@@ -168,11 +168,11 @@ export function MealCard({
             data-testid={`swap-btn-${dayIndex}`}
             onClick={onSwap}
             disabled={isLocked}
-            aria-label={`Swap ${dayLabel} meal`}
+            aria-label={`Trocar refeição de ${dayLabel}`}
             className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-[#E0DAD0] bg-white px-3 text-xs font-semibold text-[#1C2420] transition-colors hover:bg-[#F2EFE9] disabled:opacity-40"
           >
             <RefreshCw className="h-3.5 w-3.5 text-[#2F6F4E]" />
-            Swap
+            Trocar
           </button>
         </div>
       </div>

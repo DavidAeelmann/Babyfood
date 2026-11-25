@@ -14,10 +14,10 @@ interface MealPickerModalProps {
 }
 
 const SLOT_LABELS: Record<MealSlotType, string> = {
-  breakfast: 'Breakfast (Breakfast & Snack options)',
-  snack: 'Snack (Breakfast & Snack options)',
-  lunch: 'Lunch (Full Meal options)',
-  dinner: 'Dinner (Full Meal options)',
+  breakfast: 'Pequeno-almoço (Pequenos-almoços e Lanches)',
+  snack: 'Lanche (Pequenos-almoços e Lanches)',
+  lunch: 'Almoço (Refeições principais)',
+  dinner: 'Jantar (Refeições principais)',
 };
 
 export function MealPickerModal({
@@ -29,14 +29,14 @@ export function MealPickerModal({
   onSelectRecipe,
   onClose,
 }: MealPickerModalProps) {
-  const dayLabel = DAY_LABELS[dayIndex] ?? `Day ${dayIndex + 1}`;
+  const dayLabel = DAY_LABELS[dayIndex] ?? `Dia ${dayIndex + 1}`;
   const favSet = new Set(favoriteIds);
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`Choose ${slot} for ${dayLabel}`}
+      aria-label={`Escolher ${slot} para ${dayLabel}`}
       data-testid="meal-picker-modal"
       className="fixed inset-0 z-50 flex flex-col bg-[#FAF8F5]"
     >
@@ -46,7 +46,7 @@ export function MealPickerModal({
             {dayLabel}
           </p>
           <h2 className="text-sm font-extrabold text-[#1C2420]">
-            Choose {SLOT_LABELS[slot]}
+            Escolher {SLOT_LABELS[slot]}
           </h2>
         </div>
 
@@ -54,7 +54,7 @@ export function MealPickerModal({
           type="button"
           data-testid="close-meal-picker-btn"
           onClick={onClose}
-          aria-label="Close meal picker"
+          aria-label="Fechar seletor de refeição"
           className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F2EFE9] text-[#5C6862] hover:text-[#1C2420]"
         >
           <X className="h-4 w-4" />
@@ -64,7 +64,7 @@ export function MealPickerModal({
       <div className="flex-1 overflow-y-auto px-4 py-3">
         {recipes.length === 0 ? (
           <div className="rounded-2xl border border-[#E7E2D8] bg-white p-6 text-center text-xs text-[#5C6862]">
-            All recipes for this meal type are currently blocked. Unblock a recipe to choose it here.
+            Todas as receitas deste tipo de refeição estão bloqueadas. Desbloqueie uma receita para a poder escolher aqui.
           </div>
         ) : (
           <div className="mx-auto max-w-md space-y-2.5">
@@ -103,13 +103,13 @@ export function MealPickerModal({
                           className="inline-flex items-center gap-1 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[10px] font-bold text-[#D96B43]"
                         >
                           <Heart className="h-2.5 w-2.5" fill="currentColor" />
-                          Favorite
+                          Favorito
                         </span>
                       )}
                       {isCurrent && (
                         <span className="inline-flex items-center gap-1 rounded-full bg-[#2F6F4E] px-2 py-0.5 text-[10px] font-bold text-white">
                           <Sparkles className="h-2.5 w-2.5" />
-                          Current
+                          Atual
                         </span>
                       )}
                       <span className="inline-flex items-center gap-0.5 text-[11px] font-semibold text-[#5C6862]">

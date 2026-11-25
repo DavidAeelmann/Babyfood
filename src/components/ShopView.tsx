@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { Check, Eye, EyeOff, Plus, Share2, Trash2 } from 'lucide-react';
-import { AISLE_ORDER } from '../lib/constants';
+import { AISLE_LABELS, AISLE_ORDER } from '../lib/constants';
 import { formatQuantity, groupGroceriesByAisle } from '../lib/groceryAggregator';
 import type { Aisle, CustomGroceryItem, GroceryItem } from '../types/recipe';
 
@@ -83,10 +83,10 @@ export function ShopView({
         <div className="flex items-center justify-between gap-2">
           <div>
             <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
-              Grocery List
+              Lista de Compras
             </h2>
             <p className="tabular-nums text-xs text-[#5C6862]">
-              {totalCount - checkedCount} of {totalCount} items left
+              Faltam {totalCount - checkedCount} de {totalCount} artigos
             </p>
           </div>
 
@@ -97,7 +97,7 @@ export function ShopView({
             className="inline-flex min-h-[38px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white shadow-xs hover:bg-[#25593E]"
           >
             <Share2 className="h-3.5 w-3.5" />
-            <span>Share with Partner</span>
+            <span>Partilhar com Parceiro</span>
           </button>
         </div>
 
@@ -118,7 +118,7 @@ export function ShopView({
               <Eye className="h-3.5 w-3.5" />
             )}
             <span>
-              {hidePantryStaples ? `Show Pantry (${pantryCount})` : 'Hide Pantry'}
+              {hidePantryStaples ? `Mostrar Despensa (${pantryCount})` : 'Ocultar Despensa'}
             </span>
           </button>
 
@@ -128,7 +128,7 @@ export function ShopView({
               onClick={onClearChecked}
               className="min-h-[34px] whitespace-nowrap rounded-xl border border-[#E0DAD0] bg-white px-2.5 text-xs font-semibold text-[#5C6862] hover:bg-[#F2EFE9]"
             >
-              Uncheck ({checkedCount})
+              Desmarcar ({checkedCount})
             </button>
           )}
         </div>
@@ -143,25 +143,25 @@ export function ShopView({
           type="text"
           value={customName}
           onChange={(e) => setCustomName(e.target.value)}
-          placeholder="Add custom item (e.g. Bananas)"
-          aria-label="Custom grocery item name"
+          placeholder="Adicionar artigo (ex. Bananas)"
+          aria-label="Nome do artigo personalizado"
           className="min-h-[40px] min-w-0 flex-1 rounded-xl bg-[#FAF8F5] px-3 text-sm text-[#1C2420] placeholder:text-[#8A948E] focus:outline-2 focus:outline-[#2F6F4E]"
         />
         <select
           value={customAisle}
           onChange={(e) => setCustomAisle(e.target.value as Aisle)}
-          aria-label="Custom item aisle"
+          aria-label="Corredor do artigo"
           className="min-h-[40px] rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
         >
           {AISLE_ORDER.map((aisle) => (
             <option key={aisle} value={aisle}>
-              {aisle}
+              {AISLE_LABELS[aisle]}
             </option>
           ))}
         </select>
         <button
           type="submit"
-          aria-label="Add custom item"
+          aria-label="Adicionar artigo"
           className="inline-flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-xl bg-[#2F6F4E] text-white hover:bg-[#25593E]"
         >
           <Plus className="h-4 w-4" />
@@ -177,7 +177,7 @@ export function ShopView({
           >
             <div className="flex items-center justify-between border-b border-[#F2EFE9] bg-[#FAF8F5] px-3.5 py-2">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C6862]">
-                {aisle}
+                {AISLE_LABELS[aisle]}
               </h3>
               <span className="tabular-nums text-[11px] font-semibold text-[#8A948E]">
                 {recipeItems.length + aisleCustom.length}
@@ -218,12 +218,12 @@ export function ShopView({
                           </span>
                           {item.is_pantry_staple && (
                             <span className="shrink-0 rounded bg-[#F2EFE9] px-1.5 py-0.5 text-[10px] font-medium text-[#5C6862]">
-                              Pantry
+                              Despensa
                             </span>
                           )}
                         </div>
                         <p className="truncate text-[11px] text-[#8A948E]">
-                          {item.meals.length} {item.meals.length === 1 ? 'meal' : 'meals'}
+                          {item.meals.length} {item.meals.length === 1 ? 'refeição' : 'refeições'}
                         </p>
                       </div>
 
@@ -267,13 +267,13 @@ export function ShopView({
                       {item.name}
                     </span>
                     <span className="rounded bg-[#FDF0EB] px-1.5 py-0.5 text-[10px] font-medium text-[#B84C27]">
-                      Custom
+                      Extra
                     </span>
                   </button>
                   <button
                     type="button"
                     onClick={() => onRemoveCustomItem(item.id)}
-                    aria-label={`Remove ${item.name}`}
+                    aria-label={`Remover ${item.name}`}
                     className="mr-2 flex h-9 w-9 items-center justify-center rounded-lg text-[#8A948E] hover:bg-[#F2EFE9] hover:text-[#B84C27]"
                   >
                     <Trash2 className="h-4 w-4" />

@@ -23,17 +23,17 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
         </span>
         <div>
           <h3 className="text-sm font-bold text-[#1C2420]">
-            Child Texture &amp; Serving Prep
+            Preparação &amp; Corte por Idade
           </h3>
           <p className="text-[11px] text-[#44594E]">
-            Showing only your selected household age brackets
+            A mostrar apenas as faixas etárias selecionadas acima
           </p>
         </div>
       </div>
 
       {orderedActive.length === 0 ? (
         <p className="rounded-xl bg-white/80 p-3 text-xs text-[#5C6862]">
-          No child age brackets selected. Tap a bracket pill above (e.g. 6–9m or 2–4y) to view tailored cut &amp; texture instructions.
+          Nenhuma idade selecionada. Toque numa faixa etária acima (ex. 6–9m ou 2–4a) para ver as instruções de corte e textura.
         </p>
       ) : (
         <div className="space-y-2.5">
@@ -52,7 +52,7 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
                     {BRACKET_META[key].label}
                   </span>
                   <span className="text-[11px] font-medium text-[#5C6862]">
-                    {BRACKET_META[key].weight}× portion
+                    {BRACKET_META[key].weight}× dose
                   </span>
                 </div>
 
@@ -63,7 +63,7 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
                       {ad.cut_and_texture}
                     </p>
                     <p className="mt-1 text-[11px] leading-relaxed text-[#5C6862]">
-                      <strong className="font-semibold text-[#2F6F4E]">Note:</strong>{' '}
+                      <strong className="font-semibold text-[#2F6F4E]">Nota:</strong>{' '}
                       {ad.serving_note}
                     </p>
                   </div>

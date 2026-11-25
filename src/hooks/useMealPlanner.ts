@@ -180,9 +180,9 @@ export function useMealPlanner() {
 
         if (shared) {
           if (shared.w === data.week_id) {
-            setSyncNotice(`Synced shared plan & grocery list (${data.week_id})`);
+            setSyncNotice(`Ementa e lista de compras sincronizadas (${data.week_id})`);
           } else {
-            setSyncNotice(`Shared link was for ${shared.w}; loaded current week (${data.week_id})`);
+            setSyncNotice(`O link partilhado era de ${shared.w}; carregada a semana atual (${data.week_id})`);
           }
           window.history.replaceState(
             null,
@@ -194,7 +194,7 @@ export function useMealPlanner() {
         setLoading(false);
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to load meal plan');
+          setError(err instanceof Error ? err.message : 'Erro ao carregar a ementa semanal');
           setLoading(false);
         }
       }

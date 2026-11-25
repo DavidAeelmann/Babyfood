@@ -8,7 +8,7 @@ import {
   Sprout,
   Trash2,
 } from 'lucide-react';
-import { ALLERGEN_LABELS, DAY_LABELS } from '../lib/constants';
+import { ALLERGEN_LABELS, DAY_LABELS, FIRST_FOOD_CATEGORY_LABELS } from '../lib/constants';
 import {
   FIRST_FOODS_CATALOG,
   FIRST_FOOD_CATEGORIES,
@@ -42,9 +42,9 @@ const REACTION_OPTIONS: Array<{
   label: string;
   activeClass: string;
 }> = [
-  { key: 'loved', label: 'Loved', activeClass: 'bg-[#2F6F4E] text-white' },
-  { key: 'neutral', label: 'Okay', activeClass: 'bg-[#5C6862] text-white' },
-  { key: 'watch', label: 'Watch', activeClass: 'bg-[#D96B43] text-white' },
+  { key: 'loved', label: 'Adorou', activeClass: 'bg-[#2F6F4E] text-white' },
+  { key: 'neutral', label: 'Aceitou', activeClass: 'bg-[#5C6862] text-white' },
+  { key: 'watch', label: 'Vigiar', activeClass: 'bg-[#D96B43] text-white' },
 ];
 
 export function FirstFoodsView({
@@ -85,12 +85,12 @@ export function FirstFoodsView({
             dayIdx < 7
               ? DAY_LABELS[dayIdx]
               : recipe.meal_slot === 'breakfast'
-                ? 'Breakfast'
+                ? 'Peq.-almoço'
                 : recipe.meal_slot === 'lunch'
-                  ? 'Lunch'
+                  ? 'Almoço'
                   : recipe.meal_slot === 'snack'
-                    ? 'Snack'
-                    : 'Meal';
+                    ? 'Lanche'
+                    : 'Refeição';
           matches.push({ label, recipeId: recipe.id });
         }
       }
@@ -163,10 +163,10 @@ export function FirstFoodsView({
             </span>
             <div>
               <h2 className="text-base font-bold text-[#1C2420]">
-                100 First Foods &amp; Top-9 Allergens
+                100 Primeiros Alimentos &amp; Alergénios
               </h2>
               <p className="text-xs text-[#44594E]">
-                Introdução alimentar tracker
+                Registo de introdução alimentar
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ export function FirstFoodsView({
             data-testid="first-foods-progress"
             className="tabular-nums shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#2F6F4E]"
           >
-            {triedCount}/{totalCount} tried
+            {triedCount}/{totalCount} provados
           </span>
         </div>
 
@@ -190,10 +190,10 @@ export function FirstFoodsView({
         <div className="mt-3 rounded-xl bg-white/85 p-2.5">
           <div className="mb-1.5 flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#1C2420]">
-              Top-9 Allergens ({triedAllergensCount}/9)
+              9 Principais Alergénios ({triedAllergensCount}/9)
             </span>
             <span className="text-[10px] font-medium text-[#5C6862]">
-              3-day exposure goal
+              Objetivo: 3 exposições
             </span>
           </div>
           <div className="flex flex-wrap gap-1">
@@ -222,8 +222,8 @@ export function FirstFoodsView({
           <p className="mt-2.5 flex items-center gap-1.5 text-xs font-medium text-[#2F6F4E]">
             <Sparkles className="h-3.5 w-3.5 shrink-0" />
             <span>
-              <strong>{untriedInPlanCount}</strong> untried foods are already in
-              this week&apos;s plan!
+              <strong>{untriedInPlanCount}</strong> alimentos novos já estão na
+              ementa desta semana!
             </span>
           </p>
         )}
@@ -233,11 +233,11 @@ export function FirstFoodsView({
       <div className="no-scrollbar mb-3 flex items-center gap-1.5 overflow-x-auto pb-1">
         {(
           [
-            { key: 'all', label: 'All (100)' },
-            { key: 'to_try', label: 'To Try' },
-            { key: 'in_plan', label: `In Plan (${untriedInPlanCount})` },
-            { key: 'tried', label: 'Tried' },
-            { key: 'allergens', label: 'Allergens' },
+            { key: 'all', label: 'Todos (100)' },
+            { key: 'to_try', label: 'Por Provar' },
+            { key: 'in_plan', label: `Na Ementa (${untriedInPlanCount})` },
+            { key: 'tried', label: 'Provados' },
+            { key: 'allergens', label: 'Alergénios' },
           ] as Array<{ key: FilterMode; label: string }>
         ).map((tab) => {
           const active = filter === tab.key;
@@ -268,25 +268,25 @@ export function FirstFoodsView({
           type="text"
           value={customName}
           onChange={(e) => setCustomName(e.target.value)}
-          placeholder="Add custom food (e.g. Chuchu)"
-          aria-label="Custom first food name"
+          placeholder="Adicionar alimento (ex. Chuchu)"
+          aria-label="Nome do alimento personalizado"
           className="min-h-[40px] min-w-0 flex-1 rounded-xl bg-[#FAF8F5] px-3 text-sm text-[#1C2420] placeholder:text-[#8A948E] focus:outline-2 focus:outline-[#2F6F4E]"
         />
         <select
           value={customCategory}
           onChange={(e) => setCustomCategory(e.target.value as FirstFoodCategory)}
-          aria-label="Custom first food category"
+          aria-label="Categoria do alimento personalizado"
           className="min-h-[40px] rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
         >
           {FIRST_FOOD_CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>
-              {cat}
+              {FIRST_FOOD_CATEGORY_LABELS[cat]}
             </option>
           ))}
         </select>
         <button
           type="submit"
-          aria-label="Add custom first food"
+          aria-label="Adicionar alimento personalizado"
           className="inline-flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-xl bg-[#2F6F4E] text-white hover:bg-[#25593E]"
         >
           <Plus className="h-4 w-4" />
@@ -296,7 +296,7 @@ export function FirstFoodsView({
       {/* Category Lists */}
       {categoriesWithItems.length === 0 ? (
         <div className="rounded-2xl border border-[#E7E2D8] bg-white p-6 text-center text-xs text-[#5C6862]">
-          No foods match this filter yet.
+          Ainda não existem alimentos para este filtro.
         </div>
       ) : (
         <div className="space-y-4">
@@ -307,7 +307,7 @@ export function FirstFoodsView({
             >
               <div className="flex items-center justify-between border-b border-[#F2EFE9] bg-[#FAF8F5] px-3.5 py-2">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C6862]">
-                  {category}
+                  {FIRST_FOOD_CATEGORY_LABELS[category]}
                 </h3>
                 <span className="tabular-nums text-[11px] font-semibold text-[#8A948E]">
                   {catalogItems.length + customItems.length}
@@ -333,7 +333,7 @@ export function FirstFoodsView({
                           data-testid={`first-food-toggle-${food.id}`}
                           onClick={() => onToggleFood(food.id)}
                           aria-pressed={isTried}
-                          aria-label={`Mark ${food.name} as ${isTried ? 'not tried' : 'tried'}`}
+                          aria-label={`Marcar ${food.name} como ${isTried ? 'não provado' : 'provado'}`}
                           className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border-2 transition-colors ${
                             isTried
                               ? 'border-[#2F6F4E] bg-[#2F6F4E] text-white'
@@ -352,9 +352,11 @@ export function FirstFoodsView({
                             >
                               {food.name}
                             </span>
-                            <span className="text-xs text-[#8A948E]">
-                              ({food.ptName})
-                            </span>
+                            {food.ptName && food.ptName !== food.name && (
+                              <span className="text-xs text-[#8A948E]">
+                                ({food.ptName})
+                              </span>
+                            )}
                             {food.allergen && (
                               <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[10px] font-semibold text-[#B84C27]">
                                 <ShieldAlert className="h-2.5 w-2.5" />
@@ -371,7 +373,7 @@ export function FirstFoodsView({
                             <div className="mt-2 flex flex-wrap items-center gap-1">
                               <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#2F6F4E]">
                                 <CalendarCheck className="h-3 w-3" />
-                                In plan:
+                                Na ementa:
                               </span>
                               {planDays.map((m, idx) => (
                                 <button
@@ -410,7 +412,7 @@ export function FirstFoodsView({
                                   onClick={() => onIncrementExposure(food.id)}
                                   className="tabular-nums rounded-full bg-[#E8F2EC] px-2.5 py-0.5 text-[11px] font-bold text-[#2F6F4E]"
                                 >
-                                  Day {exposures}/3 +
+                                  Dia {exposures}/3 +
                                 </button>
                               )}
 
@@ -448,7 +450,7 @@ export function FirstFoodsView({
                       <button
                         type="button"
                         onClick={() => onRemoveCustomFood(item.id)}
-                        aria-label={`Remove ${item.name}`}
+                        aria-label={`Remover ${item.name}`}
                         className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8A948E] hover:bg-[#F2EFE9] hover:text-[#B84C27]"
                       >
                         <Trash2 className="h-4 w-4" />

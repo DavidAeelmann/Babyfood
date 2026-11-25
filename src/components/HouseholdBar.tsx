@@ -43,11 +43,11 @@ export function HouseholdBar({
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 shrink-0">
             <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#2F6F4E] text-xs font-extrabold text-white">
-              LT
+              MP
             </span>
             <div className="flex items-center gap-1.5">
               <h1 className="whitespace-nowrap text-[15px] font-bold tracking-tight text-[#1C2420]">
-                LittleTable
+                MesaPequena
               </h1>
               {weekId && (
                 <span className="whitespace-nowrap rounded-md bg-[#F2EFE9] px-1.5 py-0.5 text-[10px] font-semibold text-[#5C6862]">
@@ -68,7 +68,7 @@ export function HouseholdBar({
               type="button"
               onClick={() => setShowAllergens((v) => !v)}
               aria-expanded={showAllergens}
-              aria-label="Filter allergens"
+              aria-label="Filtrar alergénios"
               className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors ${
                 excludedCount > 0
                   ? 'border-[#D96B43] bg-[#FDF0EB] text-[#B84C27]'
@@ -76,7 +76,7 @@ export function HouseholdBar({
               }`}
             >
               <ShieldAlert className="h-3.5 w-3.5" />
-              <span>{excludedCount > 0 ? `${excludedCount} excl.` : 'Allergens'}</span>
+              <span>{excludedCount > 0 ? `${excludedCount} excl.` : 'Alergénios'}</span>
             </button>
           </div>
         </div>
@@ -86,13 +86,13 @@ export function HouseholdBar({
           <div className="inline-flex shrink-0 items-center rounded-full border border-[#E0DAD0] bg-white p-0.5">
             <span className="flex items-center gap-1 pl-2 pr-1 text-[11px] font-semibold text-[#5C6862]">
               <Users className="h-3 w-3" />
-              Adults
+              Adultos
             </span>
             <button
               type="button"
               onClick={() => onSetAdults(household.adults - 1)}
               disabled={household.adults <= 1}
-              aria-label="Decrease adults"
+              aria-label="Diminuir adultos"
               className="flex h-7 w-7 items-center justify-center rounded-full text-[#1C2420] hover:bg-[#F2EFE9] disabled:opacity-35"
             >
               <Minus className="h-3.5 w-3.5" />
@@ -107,7 +107,7 @@ export function HouseholdBar({
               type="button"
               onClick={() => onSetAdults(household.adults + 1)}
               disabled={household.adults >= 4}
-              aria-label="Increase adults"
+              aria-label="Aumentar adultos"
               className="flex h-7 w-7 items-center justify-center rounded-full text-[#1C2420] hover:bg-[#F2EFE9] disabled:opacity-35"
             >
               <Plus className="h-3.5 w-3.5" />
@@ -117,7 +117,7 @@ export function HouseholdBar({
           <div
             className="no-scrollbar flex flex-1 items-center gap-1.5 overflow-x-auto py-0.5"
             role="group"
-            aria-label="Child age brackets"
+            aria-label="Faixas etárias das crianças"
           >
             {BRACKET_KEYS.map((key) => {
               const active = household.activeBrackets.includes(key);
@@ -151,7 +151,7 @@ export function HouseholdBar({
           >
             <Sprout className="h-3.5 w-3.5 shrink-0" />
             <span>
-              Foods: {triedFoodsCount}/{totalFoodsCount} · Allergens:{' '}
+              Alimentos: {triedFoodsCount}/{totalFoodsCount} · Alergénios:{' '}
               {triedAllergensCount}/9
             </span>
           </button>
@@ -161,7 +161,7 @@ export function HouseholdBar({
         {showAllergens && (
           <div className="mt-2.5 rounded-xl border border-[#E7E2D8] bg-white p-2.5">
             <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#5C6862]">
-              Exclude Allergens (auto-filters swaps)
+              Excluir Alergénios (filtra trocas automaticamente)
             </p>
             <div className="flex flex-wrap gap-1.5">
               {ALLERGEN_KEYS.map((allergen) => {

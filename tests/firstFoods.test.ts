@@ -30,7 +30,7 @@ describe('100 First Foods & Top-9 Allergens Tracker', () => {
 });
 
 describe('parseStepTimers', () => {
-  it('extracts single and range minute durations cleanly', () => {
+  it('extracts single and range minute durations cleanly (EN & PT-PT)', () => {
     const timers = parseStepTimers(
       'Roast 15 minutes, then bake 10–12 minutes until golden.',
       2,
@@ -38,5 +38,13 @@ describe('parseStepTimers', () => {
     expect(timers).toHaveLength(2);
     expect(timers[0]).toMatchObject({ label: '15 min', seconds: 900 });
     expect(timers[1]).toMatchObject({ label: '10–12 min', seconds: 720 });
+
+    const ptTimers = parseStepTimers(
+      'Cozinhe durante 12 minutos em lume brando e deixe repousar 5 min.',
+      3,
+    );
+    expect(ptTimers).toHaveLength(2);
+    expect(ptTimers[0]).toMatchObject({ label: '12 min', seconds: 720 });
+    expect(ptTimers[1]).toMatchObject({ label: '5 min', seconds: 300 });
   });
 });

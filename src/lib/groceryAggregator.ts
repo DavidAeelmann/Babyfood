@@ -1,4 +1,4 @@
-import { ADULT_WEIGHT, AISLE_ORDER, BRACKET_META } from './constants';
+import { ADULT_WEIGHT, AISLE_ORDER, BRACKET_META, UNIT_LABELS } from './constants';
 import type {
   Aisle,
   GroceryItem,
@@ -57,7 +57,7 @@ export function formatQuantity(quantity: number, unit: MetricUnit): string {
   const formatted = Number.isInteger(quantity)
     ? quantity.toString()
     : quantity.toFixed(1).replace(/\.0$/, '');
-  return `${formatted} ${unit}`;
+  return `${formatted} ${UNIT_LABELS[unit] ?? unit}`;
 }
 
 export function aggregateGroceries(

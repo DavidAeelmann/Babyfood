@@ -5,7 +5,7 @@ export interface ParsedStepTimer {
 }
 
 const DURATION_REGEX =
-  /(\d+)(?:\s*[–-]\s*(\d+))?\s*(minutes?|mins?|min|seconds?|secs?|sec)\b/gi;
+  /(\d+)(?:\s*[–-]\s*(\d+))?\s*(minutos?|minutes?|mins?|min|segundos?|seconds?|secs?|seg|sec)\b/gi;
 
 export function parseStepTimers(stepText: string, stepOrder: number): ParsedStepTimer[] {
   const timers: ParsedStepTimer[] = [];

@@ -160,8 +160,9 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
     try {
       window.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(
-        `Step ${currentStep.order}. ${currentStep.text}`,
+        `Passo ${currentStep.order}. ${currentStep.text}`,
       );
+      utter.lang = 'pt-PT';
       window.speechSynthesis.speak(utter);
     } catch {
       // Ignore speech synthesis failures
@@ -193,19 +194,29 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
     const rec = new speechCtor();
     rec.continuous = true;
     rec.interimResults = false;
-    rec.lang = 'en-US';
+    rec.lang = 'pt-PT';
     rec.onresult = (event) => {
       const lastResult = event.results[event.results.length - 1];
       const transcript = (lastResult?.[0]?.transcript ?? '').toLowerCase().trim();
       setLastVoiceCmd(transcript);
 
-      if (transcript.includes('next')) {
+      if (transcript.includes('seguinte') || transcript.includes('próximo') || transcript.includes('next')) {
         goNext();
-      } else if (transcript.includes('back') || transcript.includes('previous')) {
+      } else if (
+        transcript.includes('anterior') ||
+        transcript.includes('voltar') ||
+        transcript.includes('back') ||
+        transcript.includes('previous')
+      ) {
         goPrev();
-      } else if (transcript.includes('repeat')) {
+      } else if (transcript.includes('repetir') || transcript.includes('repeat')) {
         speakCurrentStep();
-      } else if (transcript.includes('start timer') && parsedTimers[0]) {
+      } else if (
+        (transcript.includes('iniciar temporizador') ||
+          transcript.includes('começar temporizador') ||
+          transcript.includes('start timer')) &&
+        parsedTimers[0]
+      ) {
         toggleTimer(parsedTimers[0].id, parsedTimers[0].seconds);
       }
     };
@@ -242,7 +253,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Hands-Free Cook Mode"
+      aria-label="Modo Mãos Livres na Cozinha"
       data-testid="hands-free-modal"
       className="fixed inset-0 z-50 flex flex-col bg-[#141A17] text-white"
     >
@@ -250,7 +261,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
       <div className="flex items-center justify-between gap-2 border-b border-white/15 px-4 py-3">
         <div className="min-w-0">
           <p className="text-[11px] font-bold uppercase tracking-wider text-[#90CFA9]">
-            Step {stepIdx + 1} of {steps.length}
+            Passo {stepIdx + 1} de {steps.length}
           </p>
           <h2 className="truncate text-sm font-bold text-white">{recipe.title}</h2>
         </div>
@@ -259,7 +270,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
           <button
             type="button"
             onClick={speakCurrentStep}
-            aria-label="Read step aloud"
+            aria-label="Ler passo em voz alta"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20"
           >
             <Volume2 className="h-4 w-4" />
@@ -279,7 +290,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
           >
             {voiceActive ? <Mic className="h-4 w-4" /> : <MicOff className="h-4 w-4" />}
             <span>
-              {!speechCtor ? 'Voice N/A' : voiceActive ? 'Listening' : 'Voice'}
+              {!speechCtor ? 'Voz N/D' : voiceActive ? 'A ouvir' : 'Voz'}
             </span>
           </button>
 
@@ -287,7 +298,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
             type="button"
             data-testid="close-hands-free-btn"
             onClick={onClose}
-            aria-label="Exit Hands-Free Mode"
+            aria-label="Sair do Modo Mãos Livres"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25"
           >
             <X className="h-5 w-5" />
@@ -317,7 +328,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
           >
             <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider">
               <ShieldAlert className="h-4 w-4" />
-              Seasoning Split Point — Portion Baby Food First!
+              Ponto de Separação — Reserve a dose do bebé antes de salgar!
             </p>
           </div>
         )}
@@ -379,7 +390,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
                   <button
                     type="button"
                     onClick={() => resetTimer(t.id, t.seconds)}
-                    aria-label={`Reset ${t.label} timer`}
+                    aria-label={`Reiniciar temporizador ${t.label}`}
                     className="ml-1 flex h-8 w-8 items-center justify-center rounded-full bg-black/25 text-white hover:bg-black/40"
                   >
                     <RotateCcw className="h-4 w-4" />
@@ -392,7 +403,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
 
         {lastVoiceCmd && (
           <p className="mt-4 text-xs text-white/60">
-            Heard: &ldquo;{lastVoiceCmd}&rdquo;
+            Ouvido: &ldquo;{lastVoiceCmd}&rdquo;
           </p>
         )}
       </div>
@@ -407,7 +418,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
           className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-4 text-base font-bold text-white transition-colors hover:bg-white/20 disabled:opacity-35"
         >
           <ChevronLeft className="h-5 w-5" />
-          Previous
+          Anterior
         </button>
 
         {stepIdx < steps.length - 1 ? (
@@ -417,7 +428,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
             onClick={goNext}
             className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl bg-[#2F6F4E] px-4 text-base font-bold text-white transition-colors hover:bg-[#3A845D]"
           >
-            Next
+            Seguinte
             <ChevronRight className="h-5 w-5" />
           </button>
         ) : (
@@ -427,7 +438,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
             onClick={onClose}
             className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl bg-[#D96B43] px-4 text-base font-bold text-white"
           >
-            Done Cooking
+            Concluir
           </button>
         )}
       </div>

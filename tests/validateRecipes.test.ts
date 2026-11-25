@@ -8,15 +8,15 @@ const weekPath = resolve(process.cwd(), 'public/data/week-current.json');
 const weekData = JSON.parse(readFileSync(weekPath, 'utf-8')) as WeekData;
 
 describe('validateRecipes & seeded week-current.json', () => {
-  it('validates the seeded 18-recipe week-current.json with zero issues', () => {
+  it('validates the seeded 38-recipe week-current.json with zero issues', () => {
     const result = validateWeekData(weekData);
     expect(result.issues).toEqual([]);
     expect(result.valid).toBe(true);
-    expect(weekData.recipes).toHaveLength(18);
+    expect(weekData.recipes).toHaveLength(38);
     expect(weekData.planned_ids).toHaveLength(7);
-    expect(weekData.breakfast_ids).toHaveLength(3);
-    expect(weekData.lunch_ids).toHaveLength(3);
-    expect(weekData.snack_ids).toHaveLength(2);
+    expect(weekData.breakfast_ids).toHaveLength(7);
+    expect(weekData.lunch_ids).toHaveLength(8);
+    expect(weekData.snack_ids).toHaveLength(7);
 
     for (const r of weekData.recipes) {
       expect(['breakfast', 'lunch', 'snack', 'dinner']).toContain(r.meal_slot);
@@ -64,14 +64,28 @@ describe('validateRecipes & seeded week-current.json', () => {
   });
 
   it('requires safe prep keyword for round choking hazards in infant brackets', () => {
+    const baseWithTomato =
+      weekData.recipes.find((r) =>
+        r.ingredients.some((i) => i.canonical_id.includes('cherry_tomato')),
+      ) ?? weekData.recipes[0];
     const badRecipe: Recipe = {
-      ...weekData.recipes[3], // has cherry_tomatoes
+      ...baseWithTomato,
       id: 'unsafe-tomato-recipe',
+      ingredients: [
+        {
+          canonical_id: 'cherry_tomatoes',
+          name: 'Tomate cherry',
+          quantity: 150,
+          unit: 'g',
+          aisle: 'Produce',
+          is_pantry_staple: false,
+        },
+      ],
       age_adaptations: {
-        ...weekData.recipes[3].age_adaptations,
+        ...baseWithTomato.age_adaptations,
         '6_9m': {
-          cut_and_texture: 'Serve whole tomatoes on the side.',
-          serving_note: 'Zero added salt.',
+          cut_and_texture: 'Servir tomates inteiros ao lado.',
+          serving_note: 'Sem sal adicionado.',
         },
       },
     };

@@ -24,33 +24,70 @@ const KEBAB_CASE_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 const ROUND_HAZARD_TOKENS = [
   'grape',
+  'uva',
   'cherry_tomato',
+  'tomate_cereja',
   'blueberry',
+  'mirtilo',
   'chickpea',
+  'grao_de_bico',
   'pea',
+  'ervilha',
   'corn_kernel',
+  'milho',
   'sausage',
+  'salsicha',
   'hot_dog',
   'raw_carrot',
+  'cenoura_crua',
   'whole_nut',
+  'noz_inteira',
   'popcorn',
+  'pipoca',
 ];
 
 const SAFE_PREP_KEYWORDS = [
   'quarter',
+  'quarto',
   'mash',
+  'esmag',
   'flatten',
+  'achat',
   'smash',
   'finely',
+  'finamente',
   'puree',
+  'puré',
   'grate',
+  'ralad',
   'soft',
+  'maci',
   'strip',
+  'tira',
   'shred',
+  'desfi',
   'mince',
+  'picad',
   'halve',
+  'metade',
   'crush',
+  'amass',
+  'tritur',
+  'saltead',
 ];
+
+function matchesHazardToken(canonicalId: string, name: string, token: string): boolean {
+  const idParts = canonicalId.toLowerCase().split('_');
+  const tokenParts = token.toLowerCase().split('_');
+  if (tokenParts.length === 1) {
+    if (idParts.includes(tokenParts[0])) return true;
+  } else if (canonicalId.toLowerCase().includes(token.toLowerCase())) {
+    return true;
+  }
+  const normalizedName = name.toLowerCase().replace(/[-_]/g, ' ');
+  const phrase = token.replace(/_/g, ' ');
+  return new RegExp(`(^|\\s)${phrase}(s)?($|\\s|,|\\.|\\))`, 'i').test(normalizedName);
+}
 
 const INFANT_BRACKETS: BracketKey[] = ['6_9m', '9_12m', '12_24m'];
 
@@ -139,15 +176,15 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
         });
       }
 
-      // Hard safety: zero honey if min_age_months < 12
+      // Hard safety: zero honey/mel if min_age_months < 12
       if (
         recipe.min_age_months < 12 &&
-        (/\bhoney\b/i.test(ing.canonical_id) || /\bhoney\b/i.test(ing.name))
+        (/\b(honey|mel)\b/i.test(ing.canonical_id) || /\b(honey|mel)\b/i.test(ing.name))
       ) {
         issues.push({
           recipeId,
           rule: 'safety_honey',
-          message: `Honey is forbidden in "${recipe.title}" when min_age_months (${recipe.min_age_months}) < 12.`,
+          message: `Honey/mel is forbidden in "${recipe.title}" when min_age_months (${recipe.min_age_months}) < 12.`,
         });
       }
     }
@@ -174,11 +211,11 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
           message: `Step order mismatch at index ${idx}: expected ${idx + 1}, got ${step.order}.`,
         });
       }
-      if (recipe.min_age_months < 12 && /\bhoney\b/i.test(step.text)) {
+      if (recipe.min_age_months < 12 && /\b(honey|mel)\b/i.test(step.text)) {
         issues.push({
           recipeId,
           rule: 'safety_honey',
-          message: `Step ${step.order} mentions honey while min_age_months < 12.`,
+          message: `Step ${step.order} mentions honey/mel while min_age_months < 12.`,
         });
       }
     });
@@ -228,10 +265,8 @@ export function validateRecipe(recipe: Recipe): ValidationIssue[] {
   // 4. Hard safety: round choking hazards must have explicit safe prep in infant/toddler brackets
   if (Array.isArray(recipe.ingredients) && recipe.age_adaptations) {
     const hazardIngredients = recipe.ingredients.filter((ing) =>
-      ROUND_HAZARD_TOKENS.some(
-        (token) =>
-          ing.canonical_id.includes(token) ||
-          ing.name.toLowerCase().includes(token.replace('_', ' ')),
+      ROUND_HAZARD_TOKENS.some((token) =>
+        matchesHazardToken(ing.canonical_id, ing.name, token),
       ),
     );
 

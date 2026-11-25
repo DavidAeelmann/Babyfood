@@ -166,7 +166,7 @@ async function main() {
     path: resolve(ARTIFACT_DIR, 'mobile_share_qr_390x844.png'),
     fullPage: false,
   });
-  await page.click('[data-testid="share-modal"] button[aria-label="Close share modal"]');
+  await page.click('[data-testid="share-modal"] button[aria-label="Fechar janela de partilha"]');
   console.log('✓ Share with Partner QR modal & #s= link verified');
 
   // Verify #s= URL hydration in a brand-new clean browser context

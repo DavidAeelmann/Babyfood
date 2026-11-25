@@ -12,9 +12,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
-        name: 'Family & Baby Meal Planner',
-        short_name: 'BabyMeal',
-        description: 'Weekly family meal planner with baby & toddler texture adaptations and offline grocery list.',
+        name: 'MesaPequena — Ementa Família & Bebé',
+        short_name: 'MesaPequena',
+        description:
+          'Planeador semanal de refeições em família com adaptações por idade para bebés e lista de compras offline.',
         theme_color: '#2F6F4E',
         background_color: '#FAF8F5',
         display: 'standalone',

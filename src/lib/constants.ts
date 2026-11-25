@@ -4,6 +4,7 @@ import type {
   BracketKey,
   CutShape,
   EnabledSlots,
+  FirstFoodCategory,
   HouseholdConfig,
   MealSlotType,
 } from '../types/recipe';
@@ -15,34 +16,34 @@ export const BRACKET_META: Record<
   { label: string; shortLabel: string; weight: number; summary: string }
 > = {
   '6_9m': {
-    label: '6–9 mo',
+    label: '6–9 meses',
     shortLabel: '6–9m',
     weight: 0.25,
-    summary: 'Soft finger-length strips or mashed, zero added salt or honey',
+    summary: 'Tiras macias do tamanho de um dedo ou esmagado, zero sal ou mel',
   },
   '9_12m': {
-    label: '9–12 mo',
+    label: '9–12 meses',
     shortLabel: '9–12m',
     weight: 0.30,
-    summary: 'Pincer-grasp soft bite-sized pieces, zero added salt or honey',
+    summary: 'Pedaços macios para pega em pinça, zero sal ou mel',
   },
   '12_24m': {
-    label: '12–24 mo',
+    label: '12–24 meses',
     shortLabel: '12–24m',
     weight: 0.40,
-    summary: 'Forkable soft pieces, quartered rounds, minimal salt',
+    summary: 'Pedaços macios de garfo, redondos cortados em quartos, sal mínimo',
   },
   '2_4y': {
-    label: '2–4 yr',
-    shortLabel: '2–4y',
+    label: '2–4 anos',
+    shortLabel: '2–4a',
     weight: 0.55,
-    summary: 'Kid-sized cuts, mild spice option',
+    summary: 'Cortes à medida da criança, especiarias suaves',
   },
   '4y_plus': {
-    label: '4+ yr',
-    shortLabel: '4y+',
+    label: '4+ anos',
+    shortLabel: '4a+',
     weight: 0.70,
-    summary: 'Standard small plate',
+    summary: 'Prato pequeno familiar',
   },
 };
 
@@ -63,16 +64,25 @@ export const AISLE_ORDER: Aisle[] = [
   'Pantry',
 ];
 
+export const AISLE_LABELS: Record<Aisle, string> = {
+  Produce: 'Frutas e Legumes',
+  'Meat & Fish': 'Talho e Peixaria',
+  'Dairy & Eggs': 'Lacticínios e Ovos',
+  Bakery: 'Padaria',
+  Frozen: 'Congelados',
+  Pantry: 'Mercearia',
+};
+
 export const ALLERGEN_LABELS: Record<Allergen, string> = {
-  dairy: 'Milk / Dairy',
-  egg: 'Egg',
-  peanut: 'Peanut',
-  tree_nut: 'Tree Nut',
-  fish: 'Fish',
-  shellfish: 'Shellfish',
-  soy: 'Soy',
-  wheat: 'Wheat',
-  sesame: 'Sesame',
+  dairy: 'Leite / Lacticínios',
+  egg: 'Ovo',
+  peanut: 'Amendoim',
+  tree_nut: 'Frutos de Casca Rija',
+  fish: 'Peixe',
+  shellfish: 'Marisco',
+  soy: 'Soja',
+  wheat: 'Trigo / Glúten',
+  sesame: 'Sésamo',
 };
 
 export const ALLERGEN_KEYS: Allergen[] = [
@@ -86,6 +96,15 @@ export const ALLERGEN_KEYS: Allergen[] = [
   'wheat',
   'sesame',
 ];
+
+export const FIRST_FOOD_CATEGORY_LABELS: Record<FirstFoodCategory, string> = {
+  Vegetables: 'Legumes e Hortícolas',
+  Fruits: 'Fruta',
+  'Proteins & Iron': 'Proteínas e Ferro',
+  Grains: 'Cereais e Pão',
+  'Dairy & Fats': 'Lacticínios e Gorduras',
+  Allergens: 'Alergénios Principais',
+};
 
 export const CUT_SHAPES: CutShape[] = [
   'finger-strip',
@@ -110,7 +129,7 @@ export const DEFAULT_ENABLED_SLOTS: EnabledSlots = {
   dinner: true,
 };
 
-export const DAY_LABELS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
+export const DAY_LABELS = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'] as const;
 
 export const DEFAULT_HOUSEHOLD: HouseholdConfig = {
   adults: 2,
@@ -119,3 +138,11 @@ export const DEFAULT_HOUSEHOLD: HouseholdConfig = {
 };
 
 export const METRIC_UNITS = ['g', 'ml', 'pcs', 'tbsp', 'tsp'] as const;
+
+export const UNIT_LABELS: Record<(typeof METRIC_UNITS)[number], string> = {
+  g: 'g',
+  ml: 'ml',
+  pcs: 'un',
+  tbsp: 'c. sopa',
+  tsp: 'c. chá',
+};

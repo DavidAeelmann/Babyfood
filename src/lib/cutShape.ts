@@ -5,28 +5,28 @@ export const CUT_SHAPE_META: Record<
   { label: string; shortHint: string }
 > = {
   'finger-strip': {
-    label: 'Finger Strip',
-    shortHint: '2-finger width soft strips',
+    label: 'Tiras de Dedo',
+    shortHint: 'Tiras macias da largura de 2 dedos',
   },
   'pincer-dice': {
-    label: 'Pincer Dice',
-    shortHint: '1 cm soft bite cubes',
+    label: 'Cubos Pinça',
+    shortHint: 'Cubos macios de 1 cm',
   },
   'quartered-lengthwise': {
-    label: 'Quartered',
-    shortHint: 'Rounds cut in 4 lengthwise',
+    label: 'Em Quartos',
+    shortHint: 'Redondos cortados em 4 ao comprido',
   },
   'smashed-flat': {
-    label: 'Smashed Flat',
-    shortHint: 'Flattened, never whole round',
+    label: 'Esmagado',
+    shortHint: 'Achatado com garfo, nunca inteiro',
   },
   'flaked-fine': {
-    label: 'Flaked Fine',
-    shortHint: 'Moist flakes, bone-checked',
+    label: 'Lascas Finas',
+    shortHint: 'Lascas húmidas, sem espinhas',
   },
   'fork-mash': {
-    label: 'Fork Mash',
-    shortHint: 'Thick & soft scoopable',
+    label: 'Puré / Garfo',
+    shortHint: 'Textura espessa e cremosa',
   },
 };
 
@@ -38,28 +38,50 @@ export function inferCutShape(
 
   const text = `${adaptation.cut_and_texture} ${adaptation.serving_note}`.toLowerCase();
 
-  if (text.includes('quarter')) return 'quartered-lengthwise';
-  if (text.includes('flatten') || text.includes('smash')) return 'smashed-flat';
-  if (text.includes('flake') || text.includes('shred') || text.includes('crumble')) {
+  if (text.includes('quarter') || text.includes('quarto')) return 'quartered-lengthwise';
+  if (
+    text.includes('flatten') ||
+    text.includes('smash') ||
+    text.includes('achatar') ||
+    text.includes('achatad')
+  ) {
+    return 'smashed-flat';
+  }
+  if (
+    text.includes('flake') ||
+    text.includes('shred') ||
+    text.includes('crumble') ||
+    text.includes('lasca') ||
+    text.includes('desfiad')
+  ) {
     return 'flaked-fine';
   }
   if (
     text.includes('mash') ||
     text.includes('purée') ||
     text.includes('puree') ||
+    text.includes('puré') ||
+    text.includes('esmagad') ||
     text.includes('porridge') ||
+    text.includes('papa') ||
+    text.includes('sopa') ||
     text.includes('soup')
   ) {
     return 'fork-mash';
   }
-  if (text.includes('strip') || text.includes('wedge')) return 'finger-strip';
+  if (text.includes('strip') || text.includes('wedge') || text.includes('tira')) {
+    return 'finger-strip';
+  }
   if (
     text.includes('dice') ||
     text.includes('cube') ||
+    text.includes('cubo') ||
     text.includes('1 cm') ||
     text.includes('1.5 cm') ||
     text.includes('bite') ||
-    text.includes('pincer')
+    text.includes('pedaço') ||
+    text.includes('pincer') ||
+    text.includes('pinça')
   ) {
     return 'pincer-dice';
   }

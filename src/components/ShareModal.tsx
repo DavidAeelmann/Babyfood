@@ -47,7 +47,7 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label="Share plan and grocery list with partner"
+      aria-label="Partilhar ementa e lista de compras com parceiro"
       data-testid="share-modal"
       className="fixed inset-0 z-50 flex items-end justify-center bg-[#1C2420]/60 p-4 backdrop-blur-xs sm:items-center"
     >
@@ -59,10 +59,10 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
             </span>
             <div>
               <h2 className="text-base font-bold text-[#1C2420]">
-                Share with Partner
+                Partilhar com Parceiro
               </h2>
               <p className="text-[11px] text-[#5C6862]">
-                Instant offline sync — no login required
+                Sincronização instantânea offline — sem conta
               </p>
             </div>
           </div>
@@ -70,7 +70,7 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close share modal"
+            aria-label="Fechar janela de partilha"
             className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F2EFE9] text-[#5C6862] hover:text-[#1C2420]"
           >
             <X className="h-4 w-4" />
@@ -86,11 +86,11 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
             />
           ) : (
             <div className="flex h-[210px] w-[210px] items-center justify-center text-xs text-[#5C6862]">
-              Generating QR…
+              A gerar código QR…
             </div>
           )}
           <p className="mt-2.5 text-center text-[11px] text-[#5C6862]">
-            Scan with your partner&apos;s phone camera to load this exact meal plan &amp; grocery checklist.
+            Leia com a câmara do telemóvel do seu parceiro para carregar exatamente esta ementa e lista de compras.
           </p>
         </div>
 
@@ -104,12 +104,12 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
             {copied ? (
               <>
                 <Check className="h-4 w-4" />
-                Link Copied!
+                Link Copiado!
               </>
             ) : (
               <>
                 <Copy className="h-4 w-4" />
-                Copy Magic Share Link
+                Copiar Link de Partilha
               </>
             )}
           </button>

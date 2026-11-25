@@ -61,10 +61,10 @@ const SLOT_PILLS: Array<{
   label: string;
   icon: typeof Sunrise;
 }> = [
-  { slot: 'dinner', label: 'Dinners', icon: UtensilsCrossed },
-  { slot: 'lunch', label: 'Lunches', icon: Sun },
-  { slot: 'breakfast', label: 'Breakfasts', icon: Sunrise },
-  { slot: 'snack', label: 'Snacks', icon: Cookie },
+  { slot: 'dinner', label: 'Jantares', icon: UtensilsCrossed },
+  { slot: 'lunch', label: 'Almoços', icon: Sun },
+  { slot: 'breakfast', label: 'Peq.-almoços', icon: Sunrise },
+  { slot: 'snack', label: 'Lanches', icon: Cookie },
 ];
 
 interface CompactSideSectionProps {
@@ -169,7 +169,7 @@ function CompactSideSection({
                     {showBabyNewFoods && (
                       <span className="inline-flex items-center gap-0.5 rounded-full bg-[#FEF5E6] px-2 py-0.5 text-[10px] font-semibold text-[#9C5C00]">
                         <Sprout className="h-2.5 w-2.5" />
-                        New: {untried[0].name}
+                        Novo: {untried[0].name}
                       </span>
                     )}
                   </div>
@@ -220,12 +220,12 @@ export function PlanView({
       <div className="mb-3 flex items-center justify-between gap-2">
         <div className="min-w-0">
           <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
-            Weekly Plan
+            Ementa Semanal
           </h2>
           <p className="text-xs text-[#5C6862]">
             {favoriteIds.length > 0 || blockedIds.length > 0
-              ? `${favoriteIds.length} fav · ${blockedIds.length} blocked`
-              : 'Tap + to choose · ❤️ in Cook View'}
+              ? `${favoriteIds.length} fav · ${blockedIds.length} bloq.`
+              : 'Toque + para escolher · ❤️ em Cozinhar'}
           </p>
         </div>
 
@@ -234,11 +234,11 @@ export function PlanView({
             type="button"
             data-testid="plan-share-btn"
             onClick={onOpenShare}
-            aria-label="Share with Partner"
+            aria-label="Partilhar com Parceiro"
             className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-[#E0DAD0] bg-white px-3 text-xs font-semibold text-[#1C2420] hover:bg-[#F2EFE9]"
           >
             <Share2 className="h-3.5 w-3.5 text-[#2F6F4E]" />
-            Share
+            Partilhar
           </button>
 
           <button
@@ -248,7 +248,7 @@ export function PlanView({
             className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#25593E] active:scale-[0.98]"
           >
             <Shuffle className="h-3.5 w-3.5" />
-            {viewMode === 'week' ? 'Re-simulate' : 'Shuffle'}
+            {viewMode === 'week' ? 'Re-simular' : 'Baralhar'}
           </button>
         </div>
       </div>
@@ -263,7 +263,7 @@ export function PlanView({
           className="flex w-full items-center justify-between text-xs font-semibold text-[#1C2420]"
         >
           <span>
-            Meal Slots:{' '}
+            Refeições:{' '}
             <strong className="text-[#2F6F4E]">
               {SLOT_PILLS.filter((p) => enabledSlots[p.slot])
                 .map((p) => p.label)
@@ -271,7 +271,7 @@ export function PlanView({
             </strong>
           </span>
           <span className="inline-flex items-center gap-1 text-[11px] text-[#5C6862]">
-            {activeSlotsCount}/4 active
+            {activeSlotsCount}/4 ativas
             {slotsExpanded ? (
               <ChevronUp className="h-3.5 w-3.5" />
             ) : (
@@ -319,7 +319,7 @@ export function PlanView({
           }`}
         >
           <LayoutGrid className="h-3.5 w-3.5" />
-          Week View
+          Vista Semanal
         </button>
         <button
           type="button"
@@ -332,7 +332,7 @@ export function PlanView({
           }`}
         >
           <List className="h-3.5 w-3.5" />
-          Photo Cards
+          Cartões
         </button>
       </div>
 
@@ -368,7 +368,7 @@ export function PlanView({
                           {DAY_LABELS[idx]}
                         </span>
                         <p className="text-sm font-semibold text-[#5C6862]">
-                          No dinner planned
+                          Sem jantar planeado
                         </p>
                       </div>
                       <div className="flex items-center gap-1.5">
@@ -376,7 +376,7 @@ export function PlanView({
                           type="button"
                           onClick={() => onOpenPicker(idx, 'dinner')}
                           className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E]"
-                          aria-label={`Choose ${DAY_LABELS[idx]} dinner`}
+                          aria-label={`Escolher jantar de ${DAY_LABELS[idx]}`}
                         >
                           <Plus className="h-4 w-4" />
                         </button>
@@ -386,7 +386,7 @@ export function PlanView({
                           className="inline-flex h-9 items-center gap-1 rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white"
                         >
                           <Dices className="h-3.5 w-3.5" />
-                          Add Random
+                          Aleatório
                         </button>
                       </div>
                     </div>
@@ -416,9 +416,9 @@ export function PlanView({
 
           {enabledSlots.breakfast && (
             <CompactSideSection
-              title="Healthy Weekly Breakfasts"
-              subtitle="Quick iron-rich & low-sugar mornings"
-              badgeLabel="Breakfast"
+              title="Pequenos-almoços Saudáveis"
+              subtitle="Manhãs rápidas ricas em ferro e sem açúcar adicionado"
+              badgeLabel="Peq.-almoço"
               testId="weekly-breakfasts-section"
               icon="breakfast"
               items={weeklyBreakfasts}
@@ -430,9 +430,9 @@ export function PlanView({
 
           {enabledSlots.lunch && (
             <CompactSideSection
-              title="Healthy Weekly Lunches"
-              subtitle="Quick baby-friendly lunches & soups"
-              badgeLabel="Lunch"
+              title="Almoços Rápidos & Sopas"
+              subtitle="Refeições práticas para bebés, crianças e família"
+              badgeLabel="Almoço"
               testId="weekly-lunches-section"
               icon="lunch"
               items={weeklyLunches}
@@ -444,9 +444,9 @@ export function PlanView({
 
           {enabledSlots.snack && (
             <CompactSideSection
-              title="Healthy Weekly Snacks"
-              subtitle="Batch-prep muffins & soft cookies (zero added sugar)"
-              badgeLabel="Snack"
+              title="Lanches & Biscoitos Saudáveis"
+              subtitle="Queques e snacks sem açúcar adicionado ou mel"
+              badgeLabel="Lanche"
               testId="weekly-snacks-section"
               icon="snack"
               items={weeklySnacks}

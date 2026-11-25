@@ -37,25 +37,25 @@ const SLOT_META: Array<{
 }> = [
   {
     slot: 'breakfast',
-    label: 'Breakfast',
+    label: 'Pequeno-almoço',
     icon: Sunrise,
     pillClass: 'bg-[#E8F2EC] text-[#2F6F4E]',
   },
   {
     slot: 'lunch',
-    label: 'Lunch',
+    label: 'Almoço',
     icon: Sun,
     pillClass: 'bg-[#FEF5E6] text-[#9C5C00]',
   },
   {
     slot: 'snack',
-    label: 'Snack',
+    label: 'Lanche',
     icon: Cookie,
     pillClass: 'bg-[#FDF0EB] text-[#B84C27]',
   },
   {
     slot: 'dinner',
-    label: 'Dinner',
+    label: 'Jantar',
     icon: UtensilsCrossed,
     pillClass: 'bg-[#1C2420]/10 text-[#1C2420]',
   },
@@ -150,7 +150,7 @@ function SwipeableSlotRow({
             {label}
           </span>
           <span className="block text-xs italic text-[#8A948E]">
-            Blank — swipe cleared
+            Vazio — deslize limpo
           </span>
         </div>
 
@@ -160,7 +160,7 @@ function SwipeableSlotRow({
             data-testid={`choose-btn-${dayIdx}-${slot}`}
             onClick={onOpenPicker}
             disabled={isLocked}
-            aria-label={`Choose ${dayLabel} ${label}`}
+            aria-label={`Escolher ${label} de ${dayLabel}`}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E0DAD0] bg-white text-[#2F6F4E] hover:bg-[#E8F2EC] disabled:opacity-35"
           >
             <Plus className="h-4 w-4" />
@@ -174,7 +174,7 @@ function SwipeableSlotRow({
             className="inline-flex h-8 items-center gap-1 rounded-lg bg-[#2F6F4E] px-2.5 text-[11px] font-semibold text-white hover:bg-[#25593E] disabled:opacity-35"
           >
             <Dices className="h-3.5 w-3.5" />
-            Add Random
+            Aleatório
           </button>
         </div>
       </li>
@@ -194,8 +194,8 @@ function SwipeableSlotRow({
       {/* Subtle swipe-to-clear reveal background */}
       {Math.abs(dragX) > 10 && (
         <div className="absolute inset-0 flex items-center justify-between bg-[#FDF0EB] px-4 text-[11px] font-bold text-[#B84C27]">
-          <span>Release to clear</span>
-          <span>Release to clear</span>
+          <span>Largue para limpar</span>
+          <span>Largue para limpar</span>
         </div>
       )}
 
@@ -238,7 +238,7 @@ function SwipeableSlotRow({
             data-testid={`choose-btn-${dayIdx}-${slot}`}
             onClick={onOpenPicker}
             disabled={isLocked}
-            aria-label={`Choose ${dayLabel} ${label}`}
+            aria-label={`Escolher ${label} de ${dayLabel}`}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E] hover:bg-[#E8F2EC] disabled:opacity-35"
           >
             <Plus className="h-4 w-4" />
@@ -250,7 +250,7 @@ function SwipeableSlotRow({
             data-testid={`block-btn-${dayIdx}-${slot}`}
             onClick={() => onToggleBlocked(recipe.id)}
             aria-pressed={isBlocked}
-            aria-label={`Block ${recipe.title}`}
+            aria-label={`Bloquear ${recipe.title}`}
             className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
               isBlocked
                 ? 'bg-[#B84C27] text-white'
@@ -266,7 +266,7 @@ function SwipeableSlotRow({
             data-testid={`resim-btn-${dayIdx}-${slot}`}
             onClick={onReSimulateSlot}
             disabled={isLocked}
-            aria-label={`Re-simulate ${dayLabel} ${label}`}
+            aria-label={`Re-simular ${label} de ${dayLabel}`}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E0DAD0] bg-white text-[#2F6F4E] hover:bg-[#F2EFE9] disabled:opacity-35"
           >
             <RefreshCw className="h-3.5 w-3.5" />
@@ -296,11 +296,11 @@ export function WeekGridView({
   return (
     <div data-testid="week-grid-view" className="space-y-3">
       <p className="text-[11px] text-[#5C6862]">
-        Swipe a meal left or right to clear it · Tap <strong className="text-[#2F6F4E]">+</strong> to choose options
+        Deslize uma refeição para o lado para limpar · Toque em <strong className="text-[#2F6F4E]">+</strong> para escolher opções
       </p>
 
       {weekGrid.map((dayPlan, dayIdx) => {
-        const dayLabel = DAY_LABELS[dayIdx] ?? `Day ${dayIdx + 1}`;
+        const dayLabel = DAY_LABELS[dayIdx] ?? `Dia ${dayIdx + 1}`;
         const isLocked = lockedIndices.includes(dayIdx);
 
         return (
@@ -319,7 +319,7 @@ export function WeekGridView({
                 data-testid={`lock-day-btn-${dayIdx}`}
                 onClick={() => onToggleLock(dayIdx)}
                 aria-pressed={isLocked}
-                aria-label={isLocked ? `Unlock ${dayLabel}` : `Lock ${dayLabel}`}
+                aria-label={isLocked ? `Desbloquear ${dayLabel}` : `Bloquear ${dayLabel}`}
                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold transition-colors ${
                   isLocked
                     ? 'bg-[#1C2420] text-white'
@@ -329,12 +329,12 @@ export function WeekGridView({
                 {isLocked ? (
                   <>
                     <Lock className="h-3 w-3" />
-                    Day Locked
+                    Dia Bloqueado
                   </>
                 ) : (
                   <>
                     <Unlock className="h-3 w-3" />
-                    Lock Day
+                    Bloquear Dia
                   </>
                 )}
               </button>

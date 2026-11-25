@@ -64,11 +64,11 @@ export function CookView({
         <button
           type="button"
           onClick={onBackToPlan}
-          aria-label="Back to Plan"
+          aria-label="Voltar à Ementa"
           className="inline-flex h-8 shrink-0 items-center gap-1 rounded-full bg-[#F2EFE9] px-2.5 text-xs font-semibold text-[#1C2420]"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
-          Plan
+          Ementa
         </button>
         {plannedRecipes.map((r, idx) => {
           const active = r.id === recipe.id;
@@ -105,7 +105,7 @@ export function CookView({
             data-testid="cook-favorite-btn"
             onClick={() => onToggleFavorite(recipe.id)}
             aria-pressed={isFavorite}
-            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
             className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold backdrop-blur-md transition-colors ${
               isFavorite
                 ? 'bg-[#D96B43] text-white'
@@ -113,7 +113,7 @@ export function CookView({
             }`}
           >
             <Heart className="h-3.5 w-3.5" fill={isFavorite ? 'currentColor' : 'none'} />
-            {isFavorite ? 'Favorited' : 'Favorite'}
+            {isFavorite ? 'Favorito' : 'Favorito'}
           </button>
 
           <button
@@ -129,7 +129,7 @@ export function CookView({
             } disabled:opacity-75`}
           >
             <Sun className="h-3.5 w-3.5" />
-            {wakeLock.isActive ? 'Screen Awake: ON' : 'Keep Screen On'}
+            {wakeLock.isActive ? 'Ecrã Ligado' : 'Manter Ecrã Ligado'}
           </button>
         </div>
 
@@ -141,7 +141,7 @@ export function CookView({
             </span>
             <span>•</span>
             <span>
-              Prep {recipe.prep_minutes}m / Cook {recipe.cook_minutes}m
+              Prep. {recipe.prep_minutes}m / Cozedura {recipe.cook_minutes}m
             </span>
           </div>
           <h2 className="text-xl font-extrabold leading-tight">{recipe.title}</h2>
@@ -157,7 +157,7 @@ export function CookView({
           className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-2xl bg-[#1C2420] px-4 text-sm font-bold text-white shadow-xs transition-colors hover:bg-[#2C3731]"
         >
           <PlayCircle className="h-4 w-4 text-[#90CFA9]" />
-          Hands-Free Cook Mode (Timers &amp; Voice)
+          Modo Mãos Livres (Temporizadores &amp; Voz)
         </button>
 
         {/* New First Foods Pill & One-Tap Mark Meal Tried */}
@@ -169,7 +169,7 @@ export function CookView({
             <div className="min-w-0">
               <p className="flex items-center gap-1 text-xs font-bold text-[#9C5C00]">
                 <Sprout className="h-3.5 w-3.5 shrink-0" />
-                New foods in this meal:
+                Novos alimentos nesta refeição:
               </p>
               <p className="truncate text-xs text-[#6F4300]">
                 {untriedFoods.map((f) => f.name).join(', ')}
@@ -181,7 +181,7 @@ export function CookView({
               onClick={() => onMarkMealFoodsTried(recipe)}
               className="shrink-0 rounded-xl bg-[#2F6F4E] px-3 py-2 text-xs font-bold text-white hover:bg-[#25593E]"
             >
-              Mark Tried
+              Marcar Provados
             </button>
           </div>
         )}
@@ -197,10 +197,10 @@ export function CookView({
           <div className="mb-2.5 flex items-center justify-between">
             <h3 className="flex items-center gap-1.5 text-sm font-bold text-[#1C2420]">
               <Utensils className="h-4 w-4 text-[#2F6F4E]" />
-              Scaled Ingredients
+              Ingredientes Ajustados
             </h3>
             <span className="tabular-nums rounded-full bg-[#F2EFE9] px-2.5 py-0.5 text-[11px] font-semibold text-[#5C6862]">
-              {scaleFactor.toFixed(2)}× recipe
+              {scaleFactor.toFixed(2)}× receita
             </span>
           </div>
 
@@ -253,7 +253,7 @@ export function CookView({
 
         {/* Cooking Steps with High-Contrast Seasoning Split Banner */}
         <div className="space-y-3">
-          <h3 className="text-sm font-bold text-[#1C2420]">Cooking Steps</h3>
+          <h3 className="text-sm font-bold text-[#1C2420]">Passo a Passo</h3>
 
           {recipe.steps.map((step) => {
             if (step.is_seasoning_split_point) {
@@ -269,7 +269,7 @@ export function CookView({
                     </span>
                     <span className="inline-flex items-center gap-1 rounded-full bg-[#D96B43] px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wide text-white">
                       <ShieldAlert className="h-3 w-3" />
-                      Seasoning Split Point
+                      Ponto de Separação do Sal
                     </span>
                   </div>
                   <p className="text-sm font-semibold leading-relaxed text-[#7A2A10]">
