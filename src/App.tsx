@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { BottomNav, type TabKey } from './components/BottomNav';
 import { CookView } from './components/CookView';
+import { FirstFoodsView } from './components/FirstFoodsView';
 import { HouseholdBar } from './components/HouseholdBar';
 import { PlanView } from './components/PlanView';
 import { ShopView } from './components/ShopView';
 import { useMealPlanner } from './hooks/useMealPlanner';
+import { FIRST_FOODS_CATALOG } from './lib/firstFoods';
 
 export function App() {
   const {
@@ -27,6 +29,11 @@ export function App() {
     toggleCustomItem,
     removeCustomItem,
     togglePrepIngredient,
+    getUntriedFoodsInRecipe,
+    toggleFirstFood,
+    setFirstFoodReaction,
+    addCustomFirstFood,
+    removeCustomFirstFood,
   } = useMealPlanner();
 
   const [activeTab, setActiveTab] = useState<TabKey>('plan');
@@ -63,6 +70,17 @@ export function App() {
     state.checkedGroceries,
     state.customItems,
   ]);
+
+  const untriedInPlanCount = useMemo(() => {
+    const plannedCanonical = new Set(
+      plannedRecipes.flatMap((r) => r.ingredients.map((i) => i.canonical_id)),
+    );
+    return FIRST_FOODS_CATALOG.filter(
+      (food) =>
+        !state.triedFoods[food.id] &&
+        food.canonicalIds.some((cid) => plannedCanonical.has(cid)),
+    ).length;
+  }, [plannedRecipes, state.triedFoods]);
 
   const handleOpenCook = (recipeId: string) => {
     setSelectedRecipeId(recipeId);
@@ -120,6 +138,7 @@ export function App() {
             lockedIndices={state.lockedIndices}
             activeBrackets={state.household.activeBrackets}
             excludedAllergens={state.household.excludedAllergens}
+            getUntriedFoodsInRecipe={getUntriedFoodsInRecipe}
             onOpenCook={handleOpenCook}
             onToggleLock={toggleLock}
             onSwapMeal={swapMeal}
@@ -155,12 +174,26 @@ export function App() {
             onBackToPlan={() => handleSelectTab('plan')}
           />
         )}
+
+        {activeTab === 'intro' && (
+          <FirstFoodsView
+            plannedRecipes={plannedRecipes}
+            triedFoods={state.triedFoods}
+            customFirstFoods={state.customFirstFoods}
+            onToggleFood={toggleFirstFood}
+            onSetReaction={setFirstFoodReaction}
+            onAddCustomFood={addCustomFirstFood}
+            onRemoveCustomFood={removeCustomFirstFood}
+            onOpenCook={handleOpenCook}
+          />
+        )}
       </main>
 
       <BottomNav
         activeTab={activeTab}
         onSelectTab={handleSelectTab}
         remainingShopCount={remainingShopCount}
+        untriedInPlanCount={untriedInPlanCount}
       />
     </div>
   );

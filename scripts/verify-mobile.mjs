@@ -133,6 +133,24 @@ async function main() {
   }
   console.log(`✓ Shop recalculated with ${rowTestIds.length} unique canonical_id rows`);
 
+  // 5. Verify First Foods tab (introdução alimentar)
+  await page.click('[data-testid="tab-intro"]');
+  await page.waitForSelector('[data-testid="first-foods-progress"]');
+  await assertNoOverflow(page, 'First Foods View');
+
+  const beforeProgress = await page.textContent('[data-testid="first-foods-progress"]');
+  await page.click('[data-testid="first-food-toggle-sweet_potato"]');
+  const afterProgress = await page.textContent('[data-testid="first-foods-progress"]');
+  if (beforeProgress === afterProgress) {
+    throw new Error('Expected First Foods progress to update when marking Sweet Potato tried');
+  }
+  console.log(`✓ First Foods progress updated: ${beforeProgress} -> ${afterProgress}`);
+
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_first_foods_390x844.png'),
+    fullPage: false,
+  });
+
   await browser.close();
   console.log('ALL MOBILE VERIFICATION CHECKS PASSED');
 }

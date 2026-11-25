@@ -1,7 +1,7 @@
-import { Clock, Lock, RefreshCw, ShieldAlert, Unlock } from 'lucide-react';
+import { Clock, Lock, RefreshCw, ShieldAlert, Sprout, Unlock } from 'lucide-react';
 import { ALLERGEN_LABELS, BRACKET_META, DAY_LABELS } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
-import type { Allergen, BracketKey, Recipe } from '../types/recipe';
+import type { Allergen, BracketKey, FirstFoodItem, Recipe } from '../types/recipe';
 
 interface MealCardProps {
   recipe: Recipe;
@@ -9,6 +9,7 @@ interface MealCardProps {
   isLocked: boolean;
   activeBrackets: BracketKey[];
   excludedAllergens: Allergen[];
+  untriedFoods?: FirstFoodItem[];
   onOpenCook: () => void;
   onToggleLock: () => void;
   onSwap: () => void;
@@ -20,6 +21,7 @@ export function MealCard({
   isLocked,
   activeBrackets,
   excludedAllergens,
+  untriedFoods = [],
   onOpenCook,
   onToggleLock,
   onSwap,
@@ -29,6 +31,9 @@ export function MealCard({
     excludedAllergens.includes(a),
   );
   const dayLabel = DAY_LABELS[dayIndex] ?? `Day ${dayIndex + 1}`;
+  const showBabyNewFoods =
+    untriedFoods.length > 0 &&
+    (activeBrackets.includes('6_9m') || activeBrackets.includes('9_12m'));
 
   return (
     <article
@@ -64,7 +69,7 @@ export function MealCard({
             {recipe.title}
           </h2>
 
-          {/* Active child bracket badges + allergen warning */}
+          {/* Active child bracket badges + allergen warning + new first foods */}
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             {activeBrackets.map((key) => (
               <span
@@ -74,6 +79,17 @@ export function MealCard({
                 {BRACKET_META[key].shortLabel} adapted
               </span>
             ))}
+            {showBabyNewFoods && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#FEF5E6] px-2 py-0.5 text-[11px] font-semibold text-[#9C5C00]">
+                <Sprout className="h-3 w-3" />
+                New:{' '}
+                {untriedFoods
+                  .slice(0, 2)
+                  .map((f) => f.name)
+                  .join(', ')}
+                {untriedFoods.length > 2 ? ` +${untriedFoods.length - 2}` : ''}
+              </span>
+            )}
             {matchingAllergens.length > 0 && (
               <span className="inline-flex items-center gap-1 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[11px] font-semibold text-[#B84C27]">
                 <ShieldAlert className="h-3 w-3" />

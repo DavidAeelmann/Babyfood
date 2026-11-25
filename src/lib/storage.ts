@@ -1,5 +1,10 @@
 import { DEFAULT_HOUSEHOLD } from './constants';
-import type { CustomGroceryItem, HouseholdConfig } from '../types/recipe';
+import type {
+  CustomFirstFood,
+  CustomGroceryItem,
+  HouseholdConfig,
+  TriedFoodEntry,
+} from '../types/recipe';
 
 const STORAGE_KEY = 'littletable_planner_v1';
 
@@ -12,6 +17,8 @@ export interface PersistedState {
   hidePantryStaples: boolean;
   customItems: CustomGroceryItem[];
   prepChecked: Record<string, Record<string, boolean>>;
+  triedFoods: Record<string, TriedFoodEntry>;
+  customFirstFoods: CustomFirstFood[];
 }
 
 export function resolveAssetUrl(relativePath: string): string {
@@ -31,6 +38,8 @@ export function getDefaultPersistedState(): PersistedState {
     hidePantryStaples: false,
     customItems: [],
     prepChecked: {},
+    triedFoods: {},
+    customFirstFoods: [],
   };
 }
 
@@ -66,6 +75,13 @@ export function loadPersistedState(): PersistedState {
         parsed.prepChecked && typeof parsed.prepChecked === 'object'
           ? parsed.prepChecked
           : {},
+      triedFoods:
+        parsed.triedFoods && typeof parsed.triedFoods === 'object'
+          ? parsed.triedFoods
+          : {},
+      customFirstFoods: Array.isArray(parsed.customFirstFoods)
+        ? parsed.customFirstFoods
+        : [],
     };
   } catch {
     return getDefaultPersistedState();

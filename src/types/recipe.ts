@@ -84,3 +84,35 @@ export interface CustomGroceryItem {
   aisle: Aisle;
   checked: boolean;
 }
+
+export type FirstFoodCategory =
+  | 'Vegetables'
+  | 'Fruits'
+  | 'Proteins & Iron'
+  | 'Grains'
+  | 'Dairy & Fats'
+  | 'Allergens';
+
+export interface FirstFoodItem {
+  id: string;
+  name: string;
+  ptName: string;
+  category: FirstFoodCategory;
+  allergen?: Allergen;
+  prep6m: string;
+  canonicalIds: string[];
+}
+
+export type TriedFoodReaction = 'loved' | 'neutral' | 'watch';
+
+export interface TriedFoodEntry {
+  triedAt: string;
+  reaction?: TriedFoodReaction;
+}
+
+export interface CustomFirstFood {
+  id: string;
+  name: string;
+  category: FirstFoodCategory;
+}
+

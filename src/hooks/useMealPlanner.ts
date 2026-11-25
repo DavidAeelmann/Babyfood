@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FIRST_FOODS_CATALOG } from '../lib/firstFoods';
 import { aggregateGroceries } from '../lib/groceryAggregator';
 import {
   loadPersistedState,
@@ -10,7 +11,10 @@ import type {
   Aisle,
   Allergen,
   BracketKey,
+  FirstFoodCategory,
+  FirstFoodItem,
   Recipe,
+  TriedFoodReaction,
   WeekData,
 } from '../types/recipe';
 
@@ -276,6 +280,83 @@ export function useMealPlanner() {
     });
   }, []);
 
+  const getUntriedFoodsInRecipe = useCallback(
+    (recipe: Recipe): FirstFoodItem[] => {
+      const recipeCanonicalIds = new Set(
+        recipe.ingredients.map((i) => i.canonical_id),
+      );
+      return FIRST_FOODS_CATALOG.filter(
+        (food) =>
+          !state.triedFoods[food.id] &&
+          food.canonicalIds.some((cid) => recipeCanonicalIds.has(cid)),
+      );
+    },
+    [state.triedFoods],
+  );
+
+  const toggleFirstFood = useCallback((foodId: string) => {
+    setState((prev) => {
+      const next = { ...prev.triedFoods };
+      if (next[foodId]) {
+        delete next[foodId];
+      } else {
+        next[foodId] = {
+          triedAt: new Date().toISOString().slice(0, 10),
+        };
+      }
+      return { ...prev, triedFoods: next };
+    });
+  }, []);
+
+  const setFirstFoodReaction = useCallback(
+    (foodId: string, reaction: TriedFoodReaction) => {
+      setState((prev) => {
+        const existing = prev.triedFoods[foodId] ?? {
+          triedAt: new Date().toISOString().slice(0, 10),
+        };
+        return {
+          ...prev,
+          triedFoods: {
+            ...prev.triedFoods,
+            [foodId]: {
+              ...existing,
+              reaction: existing.reaction === reaction ? undefined : reaction,
+            },
+          },
+        };
+      });
+    },
+    [],
+  );
+
+  const addCustomFirstFood = useCallback(
+    (name: string, category: FirstFoodCategory) => {
+      const trimmed = name.trim();
+      if (!trimmed) return;
+      const id = `custom_food_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+      setState((prev) => ({
+        ...prev,
+        customFirstFoods: [
+          ...prev.customFirstFoods,
+          { id, name: trimmed, category },
+        ],
+      }));
+    },
+    [],
+  );
+
+  const removeCustomFirstFood = useCallback((id: string) => {
+    setState((prev) => {
+      const nextTried = { ...prev.triedFoods };
+      delete nextTried[id];
+      return {
+        ...prev,
+        customFirstFoods: prev.customFirstFoods.filter((f) => f.id !== id),
+        triedFoods: nextTried,
+      };
+    });
+  }, []);
+
   return {
     loading,
     error,
@@ -297,5 +378,10 @@ export function useMealPlanner() {
     toggleCustomItem,
     removeCustomItem,
     togglePrepIngredient,
+    getUntriedFoodsInRecipe,
+    toggleFirstFood,
+    setFirstFoodReaction,
+    addCustomFirstFood,
+    removeCustomFirstFood,
   };
 }

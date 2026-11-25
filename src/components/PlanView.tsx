@@ -1,12 +1,13 @@
 import { Shuffle } from 'lucide-react';
 import { MealCard } from './MealCard';
-import type { Allergen, BracketKey, Recipe } from '../types/recipe';
+import type { Allergen, BracketKey, FirstFoodItem, Recipe } from '../types/recipe';
 
 interface PlanViewProps {
   plannedRecipes: Recipe[];
   lockedIndices: number[];
   activeBrackets: BracketKey[];
   excludedAllergens: Allergen[];
+  getUntriedFoodsInRecipe: (recipe: Recipe) => FirstFoodItem[];
   onOpenCook: (recipeId: string) => void;
   onToggleLock: (dayIndex: number) => void;
   onSwapMeal: (dayIndex: number) => void;
@@ -18,6 +19,7 @@ export function PlanView({
   lockedIndices,
   activeBrackets,
   excludedAllergens,
+  getUntriedFoodsInRecipe,
   onOpenCook,
   onToggleLock,
   onSwapMeal,
@@ -55,6 +57,7 @@ export function PlanView({
             isLocked={lockedIndices.includes(idx)}
             activeBrackets={activeBrackets}
             excludedAllergens={excludedAllergens}
+            untriedFoods={getUntriedFoodsInRecipe(recipe)}
             onOpenCook={() => onOpenCook(recipe.id)}
             onToggleLock={() => onToggleLock(idx)}
             onSwap={() => onSwapMeal(idx)}
