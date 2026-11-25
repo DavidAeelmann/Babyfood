@@ -27,7 +27,7 @@ export function buildWeeklyPrompt(
     `Generate a complete weekly Portuguese family & baby/toddler-safe meal plan in European Portuguese (PT-PT) for ISO week "${weekId}".`,
     `Requirements:`,
     `1. Write ALL recipe titles, ingredient names, step instructions, and age_adaptations in natural European Portuguese (PT-PT — e.g. pequeno-almoço, lanche, curgete, brócolos, grão-de-bico, pescada, bacalhau demolhado, requeijão).`,
-    `2. Return 22 to 28 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): 7 planned_ids for dinners, 5 dinner swap options, 4 lunch_ids (including Portuguese soups like caldo verde sem chouriço/sal, canja sem sal, sopa de legumes, pataniscas no forno), 4 breakfast_ids (papas de aveia, papas de maizena sem açúcar, panquecas sem açúcar, pão de mistura com requeijão/abacate), and 4 snack_ids (queques saudáveis, bolinhas de aveia e tâmara, marmelo assado, zero açúcar adicionado ou mel).`,
+    `2. Return 16 to 20 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): 7 planned_ids for dinners, 3 dinner swap options, 2 lunch_ids (Portuguese soups/meals), 2 breakfast_ids, and 2 snack_ids (zero sugar or honey).`,
     `3. Use realistic weeknight prep/cook times (<= 45 min total) and strong ingredient overlap across recipes (shared canonical_id slugs like sweet_potato, broccoli_florets, carrot, garlic_clove, yellow_onion, olive_oil, baby_spinach, rice, hake_white_fish, chicken_breast) so the grocery list is compact.`,
     `4. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
     `5. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
@@ -84,6 +84,7 @@ async function discoverGeminiModels(apiKey: string): Promise<string[]> {
   try {
     const res = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`,
+      { signal: AbortSignal.timeout(15_000) },
     );
     if (!res.ok) return [];
     const data = (await res.json()) as {
@@ -95,13 +96,20 @@ async function discoverGeminiModels(apiKey: string): Promise<string[]> {
     const all = (data.models ?? [])
       .filter((m) => m.supportedGenerationMethods?.includes('generateContent'))
       .map((m) => (m.name ?? '').replace(/^models\//, ''))
-      .filter((name) => name.includes('gemini') && !name.includes('embedding') && !name.includes('tts'));
-    // Prefer flash / latest stable models first
+      .filter(
+        (name) =>
+          name.includes('gemini') &&
+          name.includes('flash') &&
+          !name.includes('image') &&
+          !name.includes('audio') &&
+          !name.includes('tts') &&
+          !name.includes('thinking') &&
+          !name.includes('live'),
+      );
     return all.sort((a, b) => {
       const score = (s: string) =>
-        (s.includes('flash') ? 0 : 10) +
         (s.includes('lite') ? 2 : 0) +
-        (s.includes('exp') || s.includes('preview') ? 5 : 0);
+        (s.includes('exp') || s.includes('preview') ? 4 : 0);
       return score(a) - score(b);
     });
   } catch {
@@ -120,30 +128,36 @@ async function callGemini(prompt: string): Promise<WeekData> {
     candidateModels = [process.env.GEMINI_MODEL];
   } else {
     const discovered = await discoverGeminiModels(apiKey);
-    console.log(`Available Gemini text models: ${discovered.join(', ') || '(none discovered)'}`);
-    candidateModels = Array.from(
-      new Set(['gemini-3.8-flash', ...discovered]),
-    );
+    console.log(`Discovered Gemini Flash models: ${discovered.join(', ') || '(none)'}`);
+    candidateModels = Array.from(new Set(['gemini-3.8-flash', ...discovered])).slice(0, 4);
   }
 
   const sanitizedSchema = sanitizeSchemaForGemini(weekGenerationJsonSchema);
   let lastError = 'Unknown Gemini error';
 
   for (const model of candidateModels) {
-    for (let attempt = 1; attempt <= 3; attempt += 1) {
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ role: 'user', parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.4,
-            responseMimeType: 'application/json',
-            responseJsonSchema: sanitizedSchema,
-          },
-        }),
-      });
+      let res: Response;
+      try {
+        res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: AbortSignal.timeout(60_000),
+          body: JSON.stringify({
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.4,
+              responseMimeType: 'application/json',
+              responseJsonSchema: sanitizedSchema,
+            },
+          }),
+        });
+      } catch (err) {
+        lastError = `Gemini fetch failed (${model}): ${err instanceof Error ? err.message : String(err)}`;
+        console.warn(lastError);
+        break;
+      }
 
       if (res.ok) {
         const data = (await res.json()) as {
@@ -160,8 +174,8 @@ async function callGemini(prompt: string): Promise<WeekData> {
       const errBody = await res.text();
       lastError = `Gemini API error (${res.status} on ${model}): ${errBody}`;
       if (res.status === 503 || res.status === 429) {
-        console.warn(`${model} temporary ${res.status} (attempt ${attempt}/3), waiting before retry...`);
-        await new Promise((r) => setTimeout(r, 4000 * attempt));
+        console.warn(`${model} temporary ${res.status} (attempt ${attempt}/2), waiting 3s...`);
+        await new Promise((r) => setTimeout(r, 3000));
         continue;
       }
       if (res.status === 404 || res.status === 400) {
