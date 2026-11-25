@@ -1,0 +1,494 @@
+{
+  "week_id": "2026-W48",
+  "generated_at": "2026-11-25T06:00:00Z",
+  "planned_ids": [
+    "lemon-herb-baked-salmon",
+    "creamy-red-lentil-dal",
+    "roast-chicken-root-veg-traybake",
+    "spinach-ricotta-penne",
+    "mild-chickpea-coconut-curry",
+    "turkey-veggie-meatballs-mash",
+    "sheet-pan-cod-tomatoes"
+  ],
+  "recipes": [
+    {
+      "id": "lemon-herb-baked-salmon",
+      "title": "Lemon Herb Baked Salmon & Sweet Potato",
+      "image_url": "meals/lemon-herb-baked-salmon.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["fish"],
+      "ingredients": [
+        { "canonical_id": "salmon_fillet", "name": "Salmon fillets", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 600, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "dried_thyme", "name": "Dried thyme", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 200°C. Cut sweet potatoes into thick wedges and toss with 1 tbsp olive oil and dried thyme on a lined baking tray. Roast 15 minutes.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Place salmon fillets on the tray, drizzle with remaining olive oil, minced garlic, and lemon juice. Add broccoli florets around the salmon and bake 12 minutes until salmon flakes easily.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Set aside baby and toddler portions of salmon, sweet potato, and steamed-soft broccoli before salting.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season remaining adult portions with flaky sea salt and black pepper, then serve warm with lemon wedges.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Flake salmon finely, checking carefully for pin bones. Serve soft sweet potato wedges as finger-length strips or lightly mashed with olive oil.",
+          "serving_note": "Zero added salt. Steam broccoli until easily squished between two fingers."
+        },
+        "9_12m": {
+          "cut_and_texture": "Flake salmon into pea-sized moist flakes and dice roasted sweet potato into soft 1 cm cubes.",
+          "serving_note": "Zero added salt. Offer small soft broccoli florets for pincer grasp."
+        },
+        "12_24m": {
+          "cut_and_texture": "Flake salmon into forkable chunks; cut sweet potato and broccoli into bite-sized pieces.",
+          "serving_note": "A light squeeze of lemon adds brightness without needing salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Serve a small fillet portion with roasted sweet potato wedges and broccoli trees.",
+          "serving_note": "Light pinch of salt and pepper; serve dipping yogurt on the side if desired."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small plate with whole salmon portion, wedges, and broccoli.",
+          "serving_note": "Seasoned to taste with lemon and herbs."
+        }
+      }
+    },
+    {
+      "id": "creamy-red-lentil-dal",
+      "title": "Creamy Red Lentil & Sweet Potato Dal",
+      "image_url": "meals/creamy-red-lentil-dal.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "coconut_milk", "name": "Full-fat coconut milk", "quantity": 400, "unit": "ml", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 3, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 2, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Rinse basmati rice and cook in 600 ml water until fluffy. Meanwhile, sauté diced onion and minced garlic in olive oil for 4 minutes.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Stir in ground cumin, rinsed red lentils, 1 cm sweet potato cubes, coconut milk, and 350 ml water. Simmer 18 minutes until lentils are creamy and sweet potato is fork-tender.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "Fold in baby spinach until wilted.", "is_seasoning_split_point": false },
+        { "order": 4, "text": "SEASONING SPLIT: Portion out baby and toddler servings of dal and rice before adding salt or chili.", "is_seasoning_split_point": true },
+        { "order": 5, "text": "Season the remaining pot with salt and chili flakes for adults and serve warm.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Mash sweet potato cubes slightly into the thick lentil purée; finely chop wilted spinach leaves.",
+          "serving_note": "Zero added salt. Serve warm on a pre-loaded spoon or mixed with soft rice."
+        },
+        "9_12m": {
+          "cut_and_texture": "Keep dal thick enough to scoop; ensure sweet potato is soft 1 cm cubes and spinach is finely ribboned.",
+          "serving_note": "Zero added salt. Great iron-rich meal paired with soft rice."
+        },
+        "12_24m": {
+          "cut_and_texture": "Serve spoonable dal over basmati rice with soft sweet potato chunks.",
+          "serving_note": "Minimal salt; mild cumin flavor is baby-friendly."
+        },
+        "2_4y": {
+          "cut_and_texture": "Serve in a shallow bowl with rice on the side for dipping or mixing.",
+          "serving_note": "Mildly seasoned; add a dollop of plain yogurt if too warm."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small bowl of dal and rice.",
+          "serving_note": "Lightly salted; optional mild spice."
+        }
+      }
+    },
+    {
+      "id": "roast-chicken-root-veg-traybake",
+      "title": "Herb Roast Chicken & Root Veg Traybake",
+      "image_url": "meals/roast-chicken-root-veg-traybake.webp",
+      "prep_minutes": 12,
+      "cook_minutes": 30,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        { "canonical_id": "chicken_thigh", "name": "Boneless skinless chicken thighs", "quantity": 650, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 450, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 4, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "dried_thyme", "name": "Dried thyme", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 200°C. Toss carrot batons, sweet potato cubes, wedged onion, and smashed garlic with olive oil and thyme on a large roasting pan.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Nestle chicken thighs among the vegetables and roast 28–30 minutes until chicken reaches 74°C and carrots are very tender.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Remove baby and toddler chicken thighs and soft-roasted vegetables to a plate before salting.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Sprinkle sea salt and cracked pepper over adult portions and drizzle with pan juices.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Shred moist dark-meat chicken into soft strips; serve soft-roasted carrot and sweet potato as finger-length mashable strips.",
+          "serving_note": "Zero added salt. Confirm carrots squish easily between thumb and forefinger."
+        },
+        "9_12m": {
+          "cut_and_texture": "Finely shred or dice chicken into 1 cm moist pieces; dice soft carrots and sweet potato.",
+          "serving_note": "Zero added salt. Moisten shredded chicken with a spoon of pan juices."
+        },
+        "12_24m": {
+          "cut_and_texture": "Cut chicken into bite-sized tender cubes; halve carrot batons lengthwise.",
+          "serving_note": "Minimal salt; pan juices keep meat tender."
+        },
+        "2_4y": {
+          "cut_and_texture": "Serve sliced chicken thigh with roasted root veggie chunks.",
+          "serving_note": "Lightly seasoned."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Whole or halved chicken thigh with roasted vegetables.",
+          "serving_note": "Standard small plate."
+        }
+      }
+    },
+    {
+      "id": "spinach-ricotta-penne",
+      "title": "Spinach, Ricotta & Cherry Tomato Penne",
+      "image_url": "meals/spinach-ricotta-penne.webp",
+      "prep_minutes": 8,
+      "cook_minutes": 15,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["dairy", "wheat"],
+      "ingredients": [
+        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 360, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "ricotta_cheese", "name": "Whole-milk ricotta", "quantity": 250, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 180, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "cherry_tomatoes", "name": "Cherry tomatoes", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Boil penne in unsalted water until very tender (about 11 minutes), reserving 100 ml pasta water before draining.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Meanwhile, sauté halved cherry tomatoes and minced garlic in olive oil for 6 minutes until tomatoes burst and soften. Toss in baby spinach to wilt.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "Toss warm pasta with ricotta, tomato-spinach mixture, and splashes of pasta water until creamy.", "is_seasoning_split_point": false },
+        { "order": 4, "text": "SEASONING SPLIT: Portion out baby and toddler bowls before salting or adding black pepper.", "is_seasoning_split_point": true },
+        { "order": 5, "text": "Season adult bowls with salt, black pepper, and extra olive oil.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Crush and quarter all cherry tomatoes thoroughly so no round skins remain; finely chop wilted spinach. Serve whole soft penne tubes coated in ricotta.",
+          "serving_note": "Zero added salt. Penne tubes are easy for babies to palm-grasp."
+        },
+        "9_12m": {
+          "cut_and_texture": "Quarter cherry tomatoes into small soft pieces; halve penne lengthwise or into bite-sized pieces.",
+          "serving_note": "Zero added salt. Ricotta clings well to pasta for easy self-feeding."
+        },
+        "12_24m": {
+          "cut_and_texture": "Ensure every cherry tomato is quartered; chop penne into forkable halves.",
+          "serving_note": "Minimal salt; naturally sweet burst tomatoes."
+        },
+        "2_4y": {
+          "cut_and_texture": "Halved or quartered cherry tomatoes with whole penne.",
+          "serving_note": "Lightly salted and peppered."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard pasta bowl with halved tomatoes.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "mild-chickpea-coconut-curry",
+      "title": "Mild Chickpea, Carrot & Coconut Curry",
+      "image_url": "meals/mild-chickpea-coconut-curry.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        { "canonical_id": "canned_chickpeas", "name": "No-salt-added chickpeas", "quantity": 480, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "coconut_milk", "name": "Full-fat coconut milk", "quantity": 400, "unit": "ml", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "baby_spinach", "name": "Baby spinach", "quantity": 120, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 300, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 1.5, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Cook basmati rice in 600 ml water. In a wide skillet, sauté finely diced onion, garlic, and thin carrot rounds in olive oil for 5 minutes.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Add cumin, drained chickpeas, and coconut milk. Simmer 15 minutes until carrots are very soft and sauce thickens.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "Stir in baby spinach until wilted.", "is_seasoning_split_point": false },
+        { "order": 4, "text": "SEASONING SPLIT: Dish out baby and toddler portions before salting.", "is_seasoning_split_point": true },
+        { "order": 5, "text": "Season adult curry with salt, lime juice, and optional chili, then serve over rice.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Mash chickpeas completely with a fork into the coconut sauce (never serve whole chickpeas) and mash soft carrot pieces.",
+          "serving_note": "Zero added salt. Mix with soft rice for easy scooping."
+        },
+        "9_12m": {
+          "cut_and_texture": "Flatten every chickpea between your fingers or mash coarsely; dice soft carrots into 0.5 cm pieces.",
+          "serving_note": "Zero added salt. Flattened chickpeas are safe for pincer grasp."
+        },
+        "12_24m": {
+          "cut_and_texture": "Lightly smash chickpeas so none are whole round spheres; cut carrots into soft bite-sized quarters.",
+          "serving_note": "Minimal salt; creamy coconut sauce is gentle."
+        },
+        "2_4y": {
+          "cut_and_texture": "Serve whole soft chickpeas with rice and veggies.",
+          "serving_note": "Mild curry flavor; offer yogurt if needed."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small bowl of chickpea curry and rice.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "turkey-veggie-meatballs-mash",
+      "title": "Turkey & Carrot Meatballs with Sweet Potato Mash",
+      "image_url": "meals/turkey-veggie-meatballs-mash.webp",
+      "prep_minutes": 15,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg"],
+      "ingredients": [
+        { "canonical_id": "ground_turkey", "name": "Lean ground turkey", "quantity": 550, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 650, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots (finely grated)", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 60, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "egg", "name": "Egg", "quantity": 1, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 200°C. Mix ground turkey, finely grated carrot, rolled oats, beaten egg, minced garlic, and dried herbs. Roll into soft meatballs and bake 18–20 minutes until cooked through.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Boil peeled sweet potato cubes 15 minutes until tender; steam broccoli florets during the last 5 minutes. Mash sweet potatoes with olive oil.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Plate baby and toddler meatballs, mash, and broccoli before salting.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult sweet potato mash and meatballs with sea salt and black pepper.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Cut meatballs into soft halves or thick strips; serve mashed sweet potato and very soft steamed broccoli florets.",
+          "serving_note": "Zero added salt. Grated carrot keeps meatballs moist and easy to gum."
+        },
+        "9_12m": {
+          "cut_and_texture": "Crumble or dice meatballs into 1 cm soft bites; serve with mash and small broccoli pieces.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Quarter meatballs into forkable pieces alongside mash and broccoli.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Halved meatballs with sweet potato mash and broccoli.",
+          "serving_note": "Lightly seasoned."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Whole meatballs, mash, and broccoli.",
+          "serving_note": "Standard small plate."
+        }
+      }
+    },
+    {
+      "id": "sheet-pan-cod-tomatoes",
+      "title": "Sheet-Pan Herb Cod, Zucchini & Crusty Bread",
+      "image_url": "meals/sheet-pan-cod-tomatoes.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["fish", "wheat"],
+      "ingredients": [
+        { "canonical_id": "cod_fillet", "name": "Fresh cod fillets", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "cherry_tomatoes", "name": "Cherry tomatoes", "quantity": 250, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "zucchini", "name": "Zucchini", "quantity": 400, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "sourdough_bread", "name": "Crusty sourdough loaf", "quantity": 250, "unit": "g", "aisle": "Bakery", "is_pantry_staple": false },
+        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Preheat oven to 200°C. Toss sliced zucchini and halved cherry tomatoes with 1 tbsp olive oil and minced garlic on a sheet pan. Roast 8 minutes.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Nestle cod fillets onto the pan, drizzle with remaining olive oil and lemon juice, and bake 10–12 minutes until cod flakes easily.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Remove baby and toddler portions of cod, zucchini, and tomatoes before salting.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult portions with sea salt and pepper, and serve with warm sliced sourdough for dipping in the juices.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Flake cod finely (check for bones); quarter and mash burst cherry tomatoes completely; cut soft zucchini into finger-length strips.",
+          "serving_note": "Zero added salt. Offer a lightly toasted sourdough strip dipped in tomato-olive oil juices."
+        },
+        "9_12m": {
+          "cut_and_texture": "Flake cod into moist bites; quarter cherry tomatoes into small soft pieces; dice zucchini.",
+          "serving_note": "Zero added salt. Small soft bread cubes."
+        },
+        "12_24m": {
+          "cut_and_texture": "Quarter cherry tomatoes; serve flaky cod chunks, soft zucchini coins, and torn bread.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Halved cherry tomatoes with flaky cod, zucchini, and toasted sourdough.",
+          "serving_note": "Lightly seasoned."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small plate with cod, roasted veggies, and bread.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "beef-lentil-bolognese",
+      "title": "Hidden-Lentil Beef Bolognese & Penne",
+      "image_url": "meals/beef-lentil-bolognese.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["wheat"],
+      "ingredients": [
+        { "canonical_id": "ground_beef", "name": "Lean ground beef", "quantity": 450, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 120, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "crushed_tomatoes", "name": "No-salt-added crushed tomatoes", "quantity": 400, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots (finely grated)", "quantity": 150, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "yellow_onion", "name": "Yellow onion", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 360, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Sauté finely diced onion, garlic, and grated carrot in olive oil for 4 minutes. Add ground beef and brown, breaking into fine crumbles.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Stir in rinsed red lentils, crushed tomatoes, and 250 ml water. Simmer 20 minutes until lentils dissolve into a thick, rich sauce. Cook penne in unsalted water.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Toss baby and toddler pasta with plain bolognese sauce before salting.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult bolognese with sea salt, black pepper, and fresh basil.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Ensure beef is finely crumbled and lentils are completely soft; coat whole cooked penne tubes in sauce.",
+          "serving_note": "Zero added salt. High-iron beef + lentil combination."
+        },
+        "9_12m": {
+          "cut_and_texture": "Halve penne into bite-sized pieces tossed thickly in meaty lentil sauce.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Cut penne into forkable halves with generous sauce.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Whole penne with beef-lentil bolognese.",
+          "serving_note": "Lightly salted."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small bowl of pasta bolognese.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "teriyaki-ginger-chicken-bowls",
+      "title": "Ginger Chicken, Broccoli & Rice Bowls",
+      "image_url": "meals/teriyaki-ginger-chicken-bowls.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["soy"],
+      "ingredients": [
+        { "canonical_id": "chicken_thigh", "name": "Boneless skinless chicken thighs", "quantity": 600, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "basmati_rice", "name": "Basmati rice", "quantity": 320, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots", "quantity": 200, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "soy_sauce", "name": "Low-sodium soy sauce", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Cook basmati rice in 640 ml water. Steam broccoli florets and thin carrot rounds for 7–8 minutes until fork-tender.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Sauté diced chicken thighs and minced garlic in olive oil for 8–10 minutes until golden and cooked through (74°C) with zero soy sauce yet.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Remove all baby and toddler portions of plain garlic chicken, rice, broccoli, and soft carrots BEFORE adding soy sauce.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Pour low-sodium soy sauce over the remaining adult chicken in the skillet, toss 1 minute to glaze, and serve in bowls.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Shred plain garlic chicken into soft strips; serve very soft steamed broccoli florets and mashed/strip carrots with rice.",
+          "serving_note": "Zero soy sauce or added salt (soy sauce is added only after the split)."
+        },
+        "9_12m": {
+          "cut_and_texture": "Finely dice plain chicken, soft carrots, and broccoli into 1 cm pincer-grasp bites.",
+          "serving_note": "Zero soy sauce or added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Cut plain chicken into bite-sized pieces alongside rice and soft veggies.",
+          "serving_note": "Keep unsalted or add just a single drop of soy sauce."
+        },
+        "2_4y": {
+          "cut_and_texture": "Kid-sized chicken pieces glazed lightly with soy sauce, rice, and veggies.",
+          "serving_note": "Mild ginger-garlic flavor."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small teriyaki-style chicken bowl.",
+          "serving_note": "Serve with glazed chicken and steamed veggies."
+        }
+      }
+    },
+    {
+      "id": "cheesy-broccoli-salmon-pasta",
+      "title": "Creamy Cheddar, Broccoli & Salmon Pasta",
+      "image_url": "meals/cheesy-broccoli-salmon-pasta.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["fish", "dairy", "wheat"],
+      "ingredients": [
+        { "canonical_id": "salmon_fillet", "name": "Salmon fillets", "quantity": 450, "unit": "g", "aisle": "Meat & Fish", "is_pantry_staple": false },
+        { "canonical_id": "pasta_penne", "name": "Penne pasta", "quantity": 340, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "broccoli_florets", "name": "Broccoli florets", "quantity": 300, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "greek_yogurt", "name": "Plain whole-milk Greek yogurt", "quantity": 180, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "cheddar_cheese", "name": "Mild cheddar (grated)", "quantity": 80, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Boil penne in unsalted water for 10 minutes, adding broccoli florets for the final 4 minutes. Reserve 80 ml pasta water and drain.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Meanwhile, pan-sear salmon in olive oil for 7–8 minutes until flaky; break into large flakes.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "Off the heat, stir Greek yogurt, grated cheddar, lemon juice, and pasta water into the warm pasta and broccoli, then fold in salmon.", "is_seasoning_split_point": false },
+        { "order": 4, "text": "SEASONING SPLIT: Dish out baby and toddler portions before adding salt or black pepper.", "is_seasoning_split_point": true },
+        { "order": 5, "text": "Season adult bowls with black pepper and a pinch of salt.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Flake salmon finely (check for bones); serve whole soft penne tubes and soft broccoli florets coated in yogurt-cheddar sauce.",
+          "serving_note": "Zero added salt. Creamy yogurt sauce cools pasta quickly."
+        },
+        "9_12m": {
+          "cut_and_texture": "Halve penne and chop broccoli into 1 cm soft bites with flaked salmon.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Cut penne into forkable pieces with tender broccoli and salmon chunks.",
+          "serving_note": "Minimal salt; cheddar adds natural savoriness."
+        },
+        "2_4y": {
+          "cut_and_texture": "Whole penne with broccoli florets and salmon.",
+          "serving_note": "Lightly peppered."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard small pasta bowl.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    }
+  ]
+}

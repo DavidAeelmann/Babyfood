@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-canvas: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F2EFE9;
+  --color-ink: #1C2420;
+  --color-ink-muted: #5C6862;
+  --color-sage: #2F6F4E;
+  --color-sage-soft: #E8F2EC;
+  --color-terracotta: #D96B43;
+  --color-terracotta-soft: #FDF0EB;
+  --color-amber-warm: #B86E00;
+  --color-amber-soft: #FEF5E6;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide horizontal scrollbar on compact pill bars while keeping touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
