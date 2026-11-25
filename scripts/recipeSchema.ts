@@ -35,24 +35,24 @@ export const weekGenerationJsonSchema = {
       type: 'array',
       items: { type: 'string' },
       minItems: 2,
-      maxItems: 3,
+      maxItems: 14,
     },
     lunch_ids: {
       type: 'array',
       items: { type: 'string' },
       minItems: 2,
-      maxItems: 3,
+      maxItems: 14,
     },
     snack_ids: {
       type: 'array',
       items: { type: 'string' },
       minItems: 2,
-      maxItems: 3,
+      maxItems: 14,
     },
     recipes: {
       type: 'array',
       minItems: 16,
-      maxItems: 20,
+      maxItems: 64,
       items: {
         type: 'object',
         additionalProperties: false,

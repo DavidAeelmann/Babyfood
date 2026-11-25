@@ -4,8 +4,11 @@ import type { WeekData } from '../../src/types/recipe';
 export type LlmProvider = 'gemini' | 'openai';
 
 export function getLlmProvider(): LlmProvider {
-  const raw = (process.env.LLM_PROVIDER || 'gemini').toLowerCase();
+  const raw = (process.env.LLM_PROVIDER || '').toLowerCase();
   if (raw === 'openai') return 'openai';
+  if (raw === 'gemini') return 'gemini';
+  const apiKey = process.env.OPENAI_API_KEY || process.env.API_KEY || '';
+  if (process.env.OPENAI_API_KEY || apiKey.startsWith('sk-')) return 'openai';
   return 'gemini';
 }
 
@@ -24,7 +27,7 @@ export function buildWeeklyPrompt(
     `Generate a complete weekly Portuguese family & baby/toddler-safe meal plan in European Portuguese (PT-PT) for ISO week "${weekId}".`,
     `Requirements:`,
     `1. Write ALL recipe titles, ingredient names, step instructions, and age_adaptations in natural European Portuguese (PT-PT — e.g. pequeno-almoço, lanche, curgete, brócolos, grão-de-bico, pescada, bacalhau demolhado, requeijão).`,
-    `2. Return 38 to 64 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): 7 planned_ids for dinners, 10+ dinner swap options, 8+ lunch_ids (including Portuguese soups like caldo verde sem chouriço/sal, canja sem sal, sopa de legumes, pataniscas no forno, pastéis no forno), 8+ breakfast_ids (papas de aveia, papas de maizena sem açúcar, panquecas sem açúcar, pão de mistura com requeijão/abacate), and 8+ snack_ids (queques saudáveis, bolinhas de aveia e tâmara, marmelo assado, zero açúcar adicionado ou mel).`,
+    `2. Return 22 to 28 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): 7 planned_ids for dinners, 5 dinner swap options, 4 lunch_ids (including Portuguese soups like caldo verde sem chouriço/sal, canja sem sal, sopa de legumes, pataniscas no forno), 4 breakfast_ids (papas de aveia, papas de maizena sem açúcar, panquecas sem açúcar, pão de mistura com requeijão/abacate), and 4 snack_ids (queques saudáveis, bolinhas de aveia e tâmara, marmelo assado, zero açúcar adicionado ou mel).`,
     `3. Use realistic weeknight prep/cook times (<= 45 min total) and strong ingredient overlap across recipes (shared canonical_id slugs like sweet_potato, broccoli_florets, carrot, garlic_clove, yellow_onion, olive_oil, baby_spinach, rice, hake_white_fish, chicken_breast) so the grocery list is compact.`,
     `4. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
     `5. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
@@ -60,10 +63,25 @@ export function buildWeeklyPrompt(
   return lines.join('\n');
 }
 
+function stripAdditionalProperties(node: unknown): unknown {
+  if (Array.isArray(node)) {
+    return node.map(stripAdditionalProperties);
+  }
+  if (node && typeof node === 'object') {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
+      if (k === 'additionalProperties') continue;
+      out[k] = stripAdditionalProperties(v);
+    }
+    return out;
+  }
+  return node;
+}
+
 async function callGemini(prompt: string): Promise<WeekData> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
   if (!apiKey) {
-    throw new Error('GEMINI_API_KEY is not set. Add it to your environment or .env file.');
+    throw new Error('GEMINI_API_KEY / API_KEY is not set. Add it to your environment or repository secrets.');
   }
 
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
@@ -77,7 +95,7 @@ async function callGemini(prompt: string): Promise<WeekData> {
       generationConfig: {
         temperature: 0.4,
         responseMimeType: 'application/json',
-        responseJsonSchema: weekGenerationJsonSchema,
+        responseJsonSchema: stripAdditionalProperties(weekGenerationJsonSchema),
       },
     }),
   });
@@ -98,9 +116,9 @@ async function callGemini(prompt: string): Promise<WeekData> {
 }
 
 async function callOpenAI(prompt: string): Promise<WeekData> {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY || process.env.API_KEY;
   if (!apiKey) {
-    throw new Error('OPENAI_API_KEY is not set. Add it to your environment or .env file.');
+    throw new Error('OPENAI_API_KEY / API_KEY is not set. Add it to your environment or repository secrets.');
   }
 
   const model = process.env.OPENAI_MODEL || 'gpt-4o';

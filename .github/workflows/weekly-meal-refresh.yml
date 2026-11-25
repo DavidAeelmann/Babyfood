@@ -9,6 +9,11 @@ on:
         description: 'JSON copiado de Preferências (Favoritas & Bloqueadas) opcional'
         required: false
         type: string
+      dry_run:
+        description: 'Testar API_KEY sem substituir week-current.json'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -32,16 +37,22 @@ jobs:
 
       - name: Generate weekly meal plan and photos (when API key is configured)
         env:
-          LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'gemini' }}
+          LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+          API_KEY: ${{ secrets.API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           MEAL_PREFERENCES_JSON: ${{ inputs.preferences_json }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          if [ -z "$GEMINI_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
-            echo "::notice::GEMINI_API_KEY ou OPENAI_API_KEY ainda não configurada nos Secrets do repositório. A manter week-current.json validado."
+          if [ -z "$API_KEY" ] && [ -z "$GEMINI_API_KEY" ] && [ -z "$OPENAI_API_KEY" ]; then
+            echo "::notice::API_KEY, GEMINI_API_KEY ou OPENAI_API_KEY ainda não configurada nos Secrets do repositório."
             exit 0
           fi
-          npm run generate-week
+          if [ "$DRY_RUN" = "true" ]; then
+            npm run generate-week -- --dry-run
+          else
+            npm run generate-week
+          fi
 
       - name: Run deterministic recipe validator
         run: npm run generate-week -- --validate-only
@@ -53,6 +64,7 @@ jobs:
         run: npm run build
 
       - name: Commit and push updated week to main
+        if: ${{ inputs.dry_run != true }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
