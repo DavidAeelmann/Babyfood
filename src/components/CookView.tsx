@@ -3,6 +3,7 @@ import {
   ArrowLeft,
   Check,
   Clock,
+  Heart,
   PlayCircle,
   ShieldAlert,
   Sprout,
@@ -27,6 +28,8 @@ interface CookViewProps {
   household: HouseholdConfig;
   prepChecked: Record<string, boolean>;
   untriedFoods: FirstFoodItem[];
+  isFavorite: boolean;
+  onToggleFavorite: (recipeId: string) => void;
   onSelectRecipe: (recipeId: string) => void;
   onTogglePrepIngredient: (canonicalId: string) => void;
   onMarkMealFoodsTried: (recipe: Recipe) => void;
@@ -39,6 +42,8 @@ export function CookView({
   household,
   prepChecked,
   untriedFoods,
+  isFavorite,
+  onToggleFavorite,
   onSelectRecipe,
   onTogglePrepIngredient,
   onMarkMealFoodsTried,
@@ -93,22 +98,40 @@ export function CookView({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1C2420]/75 via-transparent to-transparent" />
 
-        {/* Screen Wake Lock Toggle */}
-        <button
-          type="button"
-          data-testid="wake-lock-btn"
-          onClick={wakeLock.toggle}
-          disabled={!wakeLock.isSupported}
-          aria-pressed={wakeLock.isActive}
-          className={`absolute top-3 right-3 inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold backdrop-blur-md transition-colors ${
-            wakeLock.isActive
-              ? 'bg-[#2F6F4E] text-white'
-              : 'bg-white/90 text-[#1C2420]'
-          } disabled:opacity-75`}
-        >
-          <Sun className="h-3.5 w-3.5" />
-          {wakeLock.isActive ? 'Screen Awake: ON' : 'Keep Screen On'}
-        </button>
+        {/* Top Header Controls: Favorite + Screen Wake Lock */}
+        <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-2">
+          <button
+            type="button"
+            data-testid="cook-favorite-btn"
+            onClick={() => onToggleFavorite(recipe.id)}
+            aria-pressed={isFavorite}
+            aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+            className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold backdrop-blur-md transition-colors ${
+              isFavorite
+                ? 'bg-[#D96B43] text-white'
+                : 'bg-white/90 text-[#1C2420]'
+            }`}
+          >
+            <Heart className="h-3.5 w-3.5" fill={isFavorite ? 'currentColor' : 'none'} />
+            {isFavorite ? 'Favorited' : 'Favorite'}
+          </button>
+
+          <button
+            type="button"
+            data-testid="wake-lock-btn"
+            onClick={wakeLock.toggle}
+            disabled={!wakeLock.isSupported}
+            aria-pressed={wakeLock.isActive}
+            className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold backdrop-blur-md transition-colors ${
+              wakeLock.isActive
+                ? 'bg-[#2F6F4E] text-white'
+                : 'bg-white/90 text-[#1C2420]'
+            } disabled:opacity-75`}
+          >
+            <Sun className="h-3.5 w-3.5" />
+            {wakeLock.isActive ? 'Screen Awake: ON' : 'Keep Screen On'}
+          </button>
+        </div>
 
         <div className="absolute inset-x-0 bottom-0 p-4 text-white">
           <div className="mb-1 flex items-center gap-2 text-xs font-semibold text-white/90">

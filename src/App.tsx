@@ -5,6 +5,7 @@ import { CookView } from './components/CookView';
 import { FirstFoodsModal } from './components/FirstFoodsModal';
 import { FirstFoodsView } from './components/FirstFoodsView';
 import { HouseholdBar } from './components/HouseholdBar';
+import { MealPickerModal } from './components/MealPickerModal';
 import { PlanView } from './components/PlanView';
 import { ShareModal } from './components/ShareModal';
 import { ShopView } from './components/ShopView';
@@ -15,6 +16,7 @@ import {
   getTriedAllergenExposures,
 } from './lib/firstFoods';
 import { buildShareUrl } from './lib/shareSync';
+import type { MealSlotType } from './types/recipe';
 
 export function App() {
   const {
@@ -41,6 +43,10 @@ export function App() {
     shuffleUnlocked,
     reSimulateSlot,
     reSimulateWeek,
+    clearSlot,
+    assignSlotMeal,
+    addRandomSlotMeal,
+    getPickerOptionsForSlot,
     toggleFavorite,
     toggleBlocked,
     toggleGroceryItem,
@@ -63,6 +69,10 @@ export function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [firstFoodsModalOpen, setFirstFoodsModalOpen] = useState(false);
+  const [pickerTarget, setPickerTarget] = useState<{
+    dayIndex: number;
+    slot: MealSlotType;
+  } | null>(null);
 
   useEffect(() => {
     if (!selectedRecipeId && plannedRecipes.length > 0) {
@@ -221,7 +231,6 @@ export function App() {
       <main>
         {activeTab === 'plan' && (
           <PlanView
-            plannedRecipes={plannedRecipes}
             weekGrid={state.weekGrid}
             enabledSlots={state.enabledSlots}
             recipeMap={recipeMap}
@@ -240,7 +249,9 @@ export function App() {
             onShuffleUnlocked={shuffleUnlocked}
             onReSimulateSlot={reSimulateSlot}
             onReSimulateWeek={reSimulateWeek}
-            onToggleFavorite={toggleFavorite}
+            onClearSlot={clearSlot}
+            onAddRandomSlot={addRandomSlotMeal}
+            onOpenPicker={(dayIndex, slot) => setPickerTarget({ dayIndex, slot })}
             onToggleBlocked={toggleBlocked}
             onToggleSlotEnabled={toggleSlotEnabled}
             onOpenShare={() => setShareModalOpen(true)}
@@ -270,6 +281,8 @@ export function App() {
             household={state.household}
             prepChecked={state.prepChecked[activeCookRecipe.id] ?? {}}
             untriedFoods={getUntriedFoodsInRecipe(activeCookRecipe)}
+            isFavorite={state.favoriteIds.includes(activeCookRecipe.id)}
+            onToggleFavorite={toggleFavorite}
             onSelectRecipe={setSelectedRecipeId}
             onTogglePrepIngredient={(cid) =>
               togglePrepIngredient(activeCookRecipe.id, cid)
@@ -300,6 +313,23 @@ export function App() {
         remainingShopCount={remainingShopCount}
         untriedInPlanCount={untriedInPlanCount}
       />
+
+      {pickerTarget && (
+        <MealPickerModal
+          dayIndex={pickerTarget.dayIndex}
+          slot={pickerTarget.slot}
+          recipes={getPickerOptionsForSlot(pickerTarget.slot)}
+          favoriteIds={state.favoriteIds}
+          currentRecipeId={
+            state.weekGrid[pickerTarget.dayIndex]?.[pickerTarget.slot]
+          }
+          onSelectRecipe={(recipeId) => {
+            assignSlotMeal(pickerTarget.dayIndex, pickerTarget.slot, recipeId);
+            setPickerTarget(null);
+          }}
+          onClose={() => setPickerTarget(null)}
+        />
+      )}
 
       {shareModalOpen && shareUrl && (
         <ShareModal

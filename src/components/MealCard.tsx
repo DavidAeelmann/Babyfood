@@ -1,4 +1,4 @@
-import { Ban, Clock, Heart, Lock, RefreshCw, ShieldAlert, Sprout, Unlock } from 'lucide-react';
+import { Ban, Clock, Lock, Plus, RefreshCw, ShieldAlert, Sprout, Unlock } from 'lucide-react';
 import { ALLERGEN_LABELS, BRACKET_META, DAY_LABELS } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
 import type { Allergen, BracketKey, FirstFoodItem, Recipe } from '../types/recipe';
@@ -7,7 +7,6 @@ interface MealCardProps {
   recipe: Recipe;
   dayIndex: number;
   isLocked: boolean;
-  isFavorite?: boolean;
   isBlocked?: boolean;
   activeBrackets: BracketKey[];
   excludedAllergens: Allergen[];
@@ -15,7 +14,7 @@ interface MealCardProps {
   onOpenCook: () => void;
   onToggleLock: () => void;
   onSwap: () => void;
-  onToggleFavorite?: () => void;
+  onOpenPicker?: () => void;
   onToggleBlocked?: () => void;
 }
 
@@ -23,7 +22,6 @@ export function MealCard({
   recipe,
   dayIndex,
   isLocked,
-  isFavorite = false,
   isBlocked = false,
   activeBrackets,
   excludedAllergens,
@@ -31,7 +29,7 @@ export function MealCard({
   onOpenCook,
   onToggleLock,
   onSwap,
-  onToggleFavorite,
+  onOpenPicker,
   onToggleBlocked,
 }: MealCardProps) {
   const totalMinutes = recipe.prep_minutes + recipe.cook_minutes;
@@ -111,19 +109,15 @@ export function MealCard({
       {/* Action Footer */}
       <div className="flex items-center justify-between gap-2 border-t border-[#F2EFE9] px-3.5 py-2">
         <div className="flex items-center gap-1">
-          {onToggleFavorite && (
+          {onOpenPicker && (
             <button
               type="button"
-              onClick={onToggleFavorite}
-              aria-pressed={isFavorite}
-              aria-label={`Favorite ${recipe.title}`}
-              className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
-                isFavorite
-                  ? 'bg-[#FDF0EB] text-[#D96B43]'
-                  : 'bg-[#F2EFE9] text-[#5C6862]'
-              }`}
+              onClick={onOpenPicker}
+              disabled={isLocked}
+              aria-label={`Choose ${dayLabel} dinner`}
+              className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E] hover:bg-[#E8F2EC] disabled:opacity-35"
             >
-              <Heart className="h-4 w-4" fill={isFavorite ? 'currentColor' : 'none'} />
+              <Plus className="h-4 w-4" />
             </button>
           )}
           {onToggleBlocked && (
@@ -164,7 +158,7 @@ export function MealCard({
             ) : (
               <>
                 <Unlock className="h-3.5 w-3.5" />
-                Lock
+                Lock Day
               </>
             )}
           </button>

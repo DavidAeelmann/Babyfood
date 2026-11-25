@@ -144,16 +144,16 @@ export function useMealPlanner() {
           const hasValidPlan =
             !isRollover &&
             prev.plannedIds.length === 7 &&
-            prev.plannedIds.every((id) => validIds.has(id));
+            prev.plannedIds.every((id) => id === '' || validIds.has(id));
 
           const hasValidGrid =
             prev.weekGrid.length === 7 &&
             prev.weekGrid.every(
               (d) =>
-                validIds.has(d.breakfast) &&
-                validIds.has(d.lunch) &&
-                validIds.has(d.snack) &&
-                validIds.has(d.dinner),
+                (d.breakfast === '' || validIds.has(d.breakfast)) &&
+                (d.lunch === '' || validIds.has(d.lunch)) &&
+                (d.snack === '' || validIds.has(d.snack)) &&
+                (d.dinner === '' || validIds.has(d.dinner)),
             );
 
           if (hasValidPlan) {
@@ -348,9 +348,107 @@ export function useMealPlanner() {
   const getSlotPool = useCallback(
     (slot: MealSlotType): Recipe[] => {
       if (!weekData) return [];
-      return getRecipesBySlot(weekData, slot);
+      if (slot === 'breakfast' || slot === 'snack') {
+        return [
+          ...getRecipesBySlot(weekData, 'breakfast'),
+          ...getRecipesBySlot(weekData, 'snack'),
+        ];
+      }
+      return [
+        ...getRecipesBySlot(weekData, 'dinner'),
+        ...getRecipesBySlot(weekData, 'lunch'),
+      ];
     },
     [weekData],
+  );
+
+  const getPickerOptionsForSlot = useCallback(
+    (slot: MealSlotType): Recipe[] => {
+      const pool = getSlotPool(slot);
+      const blockedSet = new Set(state.blockedIds);
+      const favSet = new Set(state.favoriteIds);
+
+      return pool
+        .filter((r) => !blockedSet.has(r.id))
+        .sort((a, b) => {
+          const favDiff = Number(favSet.has(b.id)) - Number(favSet.has(a.id));
+          if (favDiff !== 0) return favDiff;
+          const safeDiff = Number(isRecipeSafe(b)) - Number(isRecipeSafe(a));
+          if (safeDiff !== 0) return safeDiff;
+          return a.title.localeCompare(b.title);
+        });
+    },
+    [getSlotPool, state.blockedIds, state.favoriteIds, isRecipeSafe],
+  );
+
+  const clearSlot = useCallback((dayIndex: number, slot: MealSlotType) => {
+    setState((prev) => {
+      if (prev.lockedIndices.includes(dayIndex)) return prev;
+      const nextGrid = prev.weekGrid.map((day, idx) =>
+        idx === dayIndex ? { ...day, [slot]: '' } : day,
+      );
+      const nextPlanned =
+        slot === 'dinner'
+          ? prev.plannedIds.map((id, idx) => (idx === dayIndex ? '' : id))
+          : prev.plannedIds;
+      return { ...prev, weekGrid: nextGrid, plannedIds: nextPlanned };
+    });
+  }, []);
+
+  const assignSlotMeal = useCallback(
+    (dayIndex: number, slot: MealSlotType, recipeId: string) => {
+      setState((prev) => {
+        if (prev.lockedIndices.includes(dayIndex)) return prev;
+        const nextGrid = prev.weekGrid.map((day, idx) =>
+          idx === dayIndex ? { ...day, [slot]: recipeId } : day,
+        );
+        const nextPlanned =
+          slot === 'dinner'
+            ? prev.plannedIds.map((id, idx) =>
+                idx === dayIndex ? recipeId : id,
+              )
+            : prev.plannedIds;
+        return { ...prev, weekGrid: nextGrid, plannedIds: nextPlanned };
+      });
+    },
+    [],
+  );
+
+  const addRandomSlotMeal = useCallback(
+    (dayIndex: number, slot: MealSlotType) => {
+      if (!weekData) return;
+      setState((prev) => {
+        if (prev.lockedIndices.includes(dayIndex)) return prev;
+        const pool = getSlotPool(slot);
+        const blockedSet = new Set(prev.blockedIds);
+        const favSet = new Set(prev.favoriteIds);
+        const nonBlocked = pool.filter(
+          (r) => !blockedSet.has(r.id) && isRecipeSafe(r),
+        );
+        const fallback = pool.filter((r) => !blockedSet.has(r.id));
+        const finalPool =
+          nonBlocked.length > 0 ? nonBlocked : fallback.length > 0 ? fallback : pool;
+        if (finalPool.length === 0) return prev;
+
+        const weighted: Recipe[] = [];
+        for (const r of finalPool) {
+          const weight = favSet.has(r.id) ? 3 : 1;
+          for (let w = 0; w < weight; w += 1) weighted.push(r);
+        }
+        const picked = weighted[Math.floor(Math.random() * weighted.length)];
+        const nextGrid = prev.weekGrid.map((day, idx) =>
+          idx === dayIndex ? { ...day, [slot]: picked.id } : day,
+        );
+        const nextPlanned =
+          slot === 'dinner'
+            ? prev.plannedIds.map((id, idx) =>
+                idx === dayIndex ? picked.id : id,
+              )
+            : prev.plannedIds;
+        return { ...prev, weekGrid: nextGrid, plannedIds: nextPlanned };
+      });
+    },
+    [weekData, getSlotPool, isRecipeSafe],
   );
 
   const swapMeal = useCallback(
@@ -787,6 +885,10 @@ export function useMealPlanner() {
     shuffleUnlocked,
     reSimulateSlot,
     reSimulateWeek,
+    clearSlot,
+    assignSlotMeal,
+    addRandomSlotMeal,
+    getPickerOptionsForSlot,
     toggleFavorite,
     toggleBlocked,
     toggleGroceryItem,

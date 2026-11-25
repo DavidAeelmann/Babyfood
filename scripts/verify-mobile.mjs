@@ -70,16 +70,46 @@ async function main() {
   await page.click('[data-testid="lock-day-btn-0"]'); // unlock
   console.log('✓ Lock Day protects all 4 slots (breakfast, lunch, snack, dinner)');
 
-  // Test slot re-simulate, Favorite, and Block
-  const beforeBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
-  await page.click('[data-testid="resim-btn-0-breakfast"]');
-  const afterBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
-  if (beforeBreakfast === afterBreakfast) {
-    throw new Error('Expected breakfast slot re-simulate to pick another option');
+  // Confirm Favorite button was removed from Weekly Plan view and replaced with +
+  const favInPlanCount = await page.locator('[data-testid^="fav-btn-"]').count();
+  if (favInPlanCount !== 0) {
+    throw new Error(`Expected 0 favorite buttons in Weekly Plan view, found ${favInPlanCount}`);
   }
-  await page.click('[data-testid="fav-btn-0-lunch"]');
+
+  // Test horizontal swipe on Day 0 breakfast -> clears to blank state, then Add Random restores it
+  const breakfastRow = page.locator('[data-testid="week-slot-0-breakfast"]');
+  const box = await breakfastRow.boundingBox();
+  if (!box) throw new Error('Missing boundingBox for week-slot-0-breakfast');
+  await page.mouse.move(box.x + box.width * 0.6, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.1, box.y + box.height / 2, { steps: 10 });
+  await page.mouse.up();
+  await page.waitForSelector('[data-testid="empty-slot-0-breakfast"]');
+  console.log('✓ Swipe on meal cleared Day 0 breakfast to blank slot');
+
+  await page.click('[data-testid="add-random-btn-0-breakfast"]');
+  await page.waitForSelector('[data-testid="week-slot-0-breakfast"]');
+  console.log('✓ Add Random restored a meal into the blank slot');
+
+  // Block Day 0 snack, and verify + picker opens with medium images & excludes blocked
   await page.click('[data-testid="block-btn-0-snack"]');
-  console.log('✓ Week Grid 4-slot re-simulate, Favorite, and Block verified');
+  await page.click('[data-testid="choose-btn-0-snack"]');
+  await page.waitForSelector('[data-testid="meal-picker-modal"]');
+  await assertNoOverflow(page, 'Meal Picker Modal');
+  const blockedOptionVisible = await page.isVisible('[data-testid="picker-option-banana-oat-baby-muffins"]');
+  if (blockedOptionVisible) {
+    throw new Error('Expected blocked snack (banana-oat-baby-muffins) to be hidden from + picker');
+  }
+  const pickerImgCount = await page.locator('[data-testid="meal-picker-modal"] img').count();
+  if (pickerImgCount === 0) {
+    throw new Error('Expected medium-sized images in Meal Picker Modal');
+  }
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_meal_picker_390x844.png'),
+    fullPage: false,
+  });
+  await page.click('[data-testid="close-meal-picker-btn"]');
+  console.log('✓ Meal Picker (+) hides blocked items & shows medium meal photos');
 
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_week_grid_390x844.png'),
@@ -182,6 +212,10 @@ async function main() {
   }
   console.log(`✓ HouseholdBar progress badge updated: "${badgeBefore?.trim()}" -> "${badgeAfter?.trim()}"`);
 
+  // Verify Favorite button in Cook View & that Favorites sort to top of + Meal Picker
+  await page.click('[data-testid="cook-favorite-btn"]');
+  console.log('✓ Cook View Favorite toggled ON');
+
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_cook_390x844.png'),
     fullPage: false,
@@ -230,9 +264,22 @@ async function main() {
   });
   await page.click('[data-testid="close-first-foods-modal"]');
 
-  // 5. Swap a meal on Plan tab and verify zero duplicate canonical_id rows in Shop
+  // 5. Verify Favorite appears first in Lunch/Dinner + picker, then swap Dinner & check Shop
   await page.click('[data-testid="tab-plan"]');
   await page.click('[data-testid="view-mode-week"]');
+  await page.click('[data-testid="choose-btn-0-lunch"]');
+  await page.waitForSelector('[data-testid="meal-picker-modal"]');
+  const firstPickerId = await page.getAttribute(
+    '[data-testid^="picker-option-"]',
+    'data-testid',
+  );
+  if (firstPickerId !== 'picker-option-lemon-herb-baked-salmon') {
+    throw new Error(`Expected favorited salmon at top of Lunch picker, got ${firstPickerId}`);
+  }
+  await page.waitForSelector('[data-testid="picker-fav-badge-lemon-herb-baked-salmon"]');
+  await page.click('[data-testid="close-meal-picker-btn"]');
+  console.log('✓ Favorited recipe appears first in Lunch/Dinner + picker');
+
   const beforeTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
   await page.click('[data-testid="resim-btn-0-dinner"]');
   const afterTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');

@@ -4,8 +4,10 @@ import {
   ChevronUp,
   Clock,
   Cookie,
+  Dices,
   LayoutGrid,
   List,
+  Plus,
   Share2,
   Shuffle,
   Sprout,
@@ -13,7 +15,7 @@ import {
   Sunrise,
   UtensilsCrossed,
 } from 'lucide-react';
-import { BRACKET_META } from '../lib/constants';
+import { BRACKET_META, DAY_LABELS } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
 import { MealCard } from './MealCard';
 import { WeekGridView } from './WeekGridView';
@@ -28,7 +30,6 @@ import type {
 } from '../types/recipe';
 
 interface PlanViewProps {
-  plannedRecipes: Recipe[];
   weekGrid: DayPlan[];
   enabledSlots: EnabledSlots;
   recipeMap: Map<string, Recipe>;
@@ -47,7 +48,9 @@ interface PlanViewProps {
   onShuffleUnlocked: () => void;
   onReSimulateSlot: (dayIndex: number, slot: MealSlotType) => void;
   onReSimulateWeek: () => void;
-  onToggleFavorite: (recipeId: string) => void;
+  onClearSlot: (dayIndex: number, slot: MealSlotType) => void;
+  onAddRandomSlot: (dayIndex: number, slot: MealSlotType) => void;
+  onOpenPicker: (dayIndex: number, slot: MealSlotType) => void;
   onToggleBlocked: (recipeId: string) => void;
   onToggleSlotEnabled: (slot: MealSlotType) => void;
   onOpenShare: () => void;
@@ -181,7 +184,6 @@ function CompactSideSection({
 }
 
 export function PlanView({
-  plannedRecipes,
   weekGrid,
   enabledSlots,
   recipeMap,
@@ -200,7 +202,9 @@ export function PlanView({
   onShuffleUnlocked,
   onReSimulateSlot,
   onReSimulateWeek,
-  onToggleFavorite,
+  onClearSlot,
+  onAddRandomSlot,
+  onOpenPicker,
   onToggleBlocked,
   onToggleSlotEnabled,
   onOpenShare,
@@ -221,7 +225,7 @@ export function PlanView({
           <p className="text-xs text-[#5C6862]">
             {favoriteIds.length > 0 || blockedIds.length > 0
               ? `${favoriteIds.length} fav · ${blockedIds.length} blocked`
-              : 'Tap ❤️ or 🚫 to tune options'}
+              : 'Tap + to choose · ❤️ in Cook View'}
           </p>
         </div>
 
@@ -338,36 +342,75 @@ export function PlanView({
           enabledSlots={enabledSlots}
           recipeMap={recipeMap}
           lockedIndices={lockedIndices}
-          favoriteIds={favoriteIds}
           blockedIds={blockedIds}
           onOpenCook={onOpenCook}
           onReSimulateSlot={onReSimulateSlot}
+          onClearSlot={onClearSlot}
+          onAddRandomSlot={onAddRandomSlot}
+          onOpenPicker={onOpenPicker}
           onToggleLock={onToggleLock}
-          onToggleFavorite={onToggleFavorite}
           onToggleBlocked={onToggleBlocked}
         />
       ) : (
         <>
           {enabledSlots.dinner && (
             <div className="space-y-4">
-              {plannedRecipes.map((recipe, idx) => (
-                <MealCard
-                  key={`${idx}-${recipe.id}`}
-                  recipe={recipe}
-                  dayIndex={idx}
-                  isLocked={lockedIndices.includes(idx)}
-                  isFavorite={favoriteIds.includes(recipe.id)}
-                  isBlocked={blockedIds.includes(recipe.id)}
-                  activeBrackets={activeBrackets}
-                  excludedAllergens={excludedAllergens}
-                  untriedFoods={getUntriedFoodsInRecipe(recipe)}
-                  onOpenCook={() => onOpenCook(recipe.id)}
-                  onToggleLock={() => onToggleLock(idx)}
-                  onSwap={() => onSwapMeal(idx)}
-                  onToggleFavorite={() => onToggleFavorite(recipe.id)}
-                  onToggleBlocked={() => onToggleBlocked(recipe.id)}
-                />
-              ))}
+              {weekGrid.map((day, idx) => {
+                const recipe = day.dinner ? recipeMap.get(day.dinner) : undefined;
+                if (!recipe) {
+                  return (
+                    <div
+                      key={`empty-card-${idx}`}
+                      className="flex items-center justify-between rounded-2xl border border-dashed border-[#D6CFC2] bg-white p-4"
+                    >
+                      <div>
+                        <span className="text-xs font-bold uppercase text-[#8A948E]">
+                          {DAY_LABELS[idx]}
+                        </span>
+                        <p className="text-sm font-semibold text-[#5C6862]">
+                          No dinner planned
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => onOpenPicker(idx, 'dinner')}
+                          className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E]"
+                          aria-label={`Choose ${DAY_LABELS[idx]} dinner`}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => onAddRandomSlot(idx, 'dinner')}
+                          className="inline-flex h-9 items-center gap-1 rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white"
+                        >
+                          <Dices className="h-3.5 w-3.5" />
+                          Add Random
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <MealCard
+                    key={`${idx}-${recipe.id}`}
+                    recipe={recipe}
+                    dayIndex={idx}
+                    isLocked={lockedIndices.includes(idx)}
+                    isBlocked={blockedIds.includes(recipe.id)}
+                    activeBrackets={activeBrackets}
+                    excludedAllergens={excludedAllergens}
+                    untriedFoods={getUntriedFoodsInRecipe(recipe)}
+                    onOpenCook={() => onOpenCook(recipe.id)}
+                    onToggleLock={() => onToggleLock(idx)}
+                    onSwap={() => onSwapMeal(idx)}
+                    onOpenPicker={() => onOpenPicker(idx, 'dinner')}
+                    onToggleBlocked={() => onToggleBlocked(recipe.id)}
+                  />
+                );
+              })}
             </div>
           )}
 
