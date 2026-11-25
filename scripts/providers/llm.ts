@@ -33,7 +33,7 @@ export function buildWeeklyPrompt(
     `5. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
     `6. Every recipe must have base_servings: 4, min_age_months: 6, ZERO honey anywhere in ingredients, and use phrases like "sem açúcar adicionado" (never use the word honey/mel) in steps.`,
     `7. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce is added.`,
-    `8. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash).`,
+    `8. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash). Keep step and adaptation notes crisp (<= 18 words each).`,
     `9. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn kernels / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
   ];
 
@@ -147,21 +147,26 @@ async function callGemini(prompt: string): Promise<WeekData> {
   let lastError = 'Unknown Gemini error';
 
   for (const model of candidateModels) {
+    let useThinkingBudgetZero = true;
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const generationConfig: Record<string, unknown> = {
+        temperature: 0.4,
+        responseMimeType: 'application/json',
+        responseJsonSchema: sanitizedSchema,
+      };
+      if (useThinkingBudgetZero) {
+        generationConfig.thinkingConfig = { thinkingBudget: 0 };
+      }
       let res: Response;
       try {
         res = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          signal: AbortSignal.timeout(120_000),
+          signal: AbortSignal.timeout(90_000),
           body: JSON.stringify({
             contents: [{ role: 'user', parts: [{ text: prompt }] }],
-            generationConfig: {
-              temperature: 0.4,
-              responseMimeType: 'application/json',
-              responseJsonSchema: sanitizedSchema,
-            },
+            generationConfig,
           }),
         });
       } catch (err) {
@@ -184,6 +189,11 @@ async function callGemini(prompt: string): Promise<WeekData> {
 
       const errBody = await res.text();
       lastError = `Gemini API error (${res.status} on ${model}): ${errBody}`;
+      if (res.status === 400 && useThinkingBudgetZero && errBody.includes('thinking')) {
+        console.warn(`${model} rejected thinkingConfig, retrying without it...`);
+        useThinkingBudgetZero = false;
+        continue;
+      }
       if (res.status === 503 || res.status === 429) {
         console.warn(`${model} temporary ${res.status} (attempt ${attempt}/2), waiting 3s...`);
         await new Promise((r) => setTimeout(r, 3000));
