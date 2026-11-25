@@ -320,6 +320,16 @@ export function validateWeekData(data: WeekData): ValidationResult {
     }
   }
 
+  for (const lid of data.lunch_ids ?? []) {
+    if (!recipeIdSet.has(lid)) {
+      issues.push({
+        recipeId: lid,
+        rule: 'schema',
+        message: `lunch_id "${lid}" not found in recipes array.`,
+      });
+    }
+  }
+
   for (const sid of data.snack_ids ?? []) {
     if (!recipeIdSet.has(sid)) {
       issues.push({

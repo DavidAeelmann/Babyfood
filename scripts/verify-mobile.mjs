@@ -40,10 +40,34 @@ async function main() {
   });
 
   await page.goto(URL, { waitUntil: 'networkidle' });
-  await page.waitForSelector('[data-testid="meal-card-0"]');
+  await page.waitForSelector('[data-testid="week-grid-view"]');
 
-  // 1. Plan view screenshot & overflow check
-  await assertNoOverflow(page, 'Plan View');
+  // 1. Compact Week View screenshot, slot re-simulate, Favorite/Block, & overflow check
+  await assertNoOverflow(page, 'Week Grid View');
+  await page.waitForSelector('[data-testid="week-slot-0-breakfast"]');
+  await page.waitForSelector('[data-testid="week-slot-0-lunch"]');
+  await page.waitForSelector('[data-testid="week-slot-0-snack"]');
+  await page.waitForSelector('[data-testid="week-slot-0-dinner"]');
+
+  const beforeBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
+  await page.click('[data-testid="resim-btn-0-breakfast"]');
+  const afterBreakfast = await page.textContent('[data-testid="week-slot-0-breakfast"]');
+  if (beforeBreakfast === afterBreakfast) {
+    throw new Error('Expected breakfast slot re-simulate to pick another option');
+  }
+  await page.click('[data-testid="fav-btn-0-lunch"]');
+  await page.click('[data-testid="block-btn-0-snack"]');
+  console.log('✓ Week Grid 4-slot re-simulate, Favorite, and Block verified');
+
+  await page.screenshot({
+    path: resolve(ARTIFACT_DIR, 'mobile_week_grid_390x844.png'),
+    fullPage: false,
+  });
+
+  // Switch to Photo Cards view and verify breakfasts & snacks sections
+  await page.click('[data-testid="view-mode-cards"]');
+  await page.waitForSelector('[data-testid="meal-card-0"]');
+  await assertNoOverflow(page, 'Plan Photo Cards View');
   await page.waitForSelector('[data-testid="weekly-breakfasts-section"]');
   await page.waitForSelector('[data-testid="weekly-snacks-section"]');
   const snackBtnTextBefore = await page.textContent(
@@ -56,9 +80,8 @@ async function main() {
   if (snackBtnTextBefore === snackBtnTextAfter) {
     throw new Error('Expected snack shop toggle to change state');
   }
-  // Toggle back on so banana & rolled oats are in Shop
   await page.click('[data-testid="snack-shop-toggle-banana-oat-baby-muffins"]');
-  console.log(`✓ Weekly Healthy Snacks section & In Shop toggle verified`);
+  console.log('✓ Photo Cards, Weekly Breakfasts, & Weekly Snacks verified');
 
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_plan_390x844.png'),
@@ -127,16 +150,16 @@ async function main() {
     fullPage: false,
   });
 
-  // 4. Swap a meal on Plan tab and verify Shop recalculates with zero duplicate canonical_id rows
+  // 4. Swap a meal on Plan tab (Week Grid) and verify Shop recalculates with zero duplicate canonical_id rows
   await page.click('[data-testid="tab-plan"]');
-  await page.waitForSelector('[data-testid="swap-btn-0"]');
-  const beforeTitle = await page.textContent('[data-testid="meal-card-0"] h2');
-  await page.click('[data-testid="swap-btn-0"]');
-  const afterTitle = await page.textContent('[data-testid="meal-card-0"] h2');
+  await page.waitForSelector('[data-testid="resim-btn-0-dinner"]');
+  const beforeTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
+  await page.click('[data-testid="resim-btn-0-dinner"]');
+  const afterTitle = await page.textContent('[data-testid="week-slot-0-dinner"]');
   if (beforeTitle === afterTitle) {
-    throw new Error('Expected meal swap on Day 0 to change meal title');
+    throw new Error('Expected meal swap on Day 0 dinner to change meal title');
   }
-  console.log(`✓ Swapped Day 0 meal: "${beforeTitle}" -> "${afterTitle}"`);
+  console.log(`✓ Swapped Day 0 dinner: "${beforeTitle}" -> "${afterTitle}"`);
 
   await page.click('[data-testid="tab-shop"]');
   await page.waitForSelector('[data-testid^="grocery-row-"]');

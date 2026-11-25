@@ -2,6 +2,7 @@ import { DEFAULT_HOUSEHOLD } from './constants';
 import type {
   CustomFirstFood,
   CustomGroceryItem,
+  DayPlan,
   HouseholdConfig,
   TriedFoodEntry,
 } from '../types/recipe';
@@ -12,6 +13,7 @@ export interface PersistedState {
   weekId: string | null;
   household: HouseholdConfig;
   plannedIds: string[];
+  weekGrid: DayPlan[];
   includedBreakfastIds: string[];
   includedSnackIds: string[];
   lockedIndices: number[];
@@ -21,6 +23,8 @@ export interface PersistedState {
   prepChecked: Record<string, Record<string, boolean>>;
   triedFoods: Record<string, TriedFoodEntry>;
   customFirstFoods: CustomFirstFood[];
+  favoriteIds: string[];
+  blockedIds: string[];
 }
 
 export function resolveAssetUrl(relativePath: string): string {
@@ -35,6 +39,7 @@ export function getDefaultPersistedState(): PersistedState {
     weekId: null,
     household: DEFAULT_HOUSEHOLD,
     plannedIds: [],
+    weekGrid: [],
     includedBreakfastIds: [],
     includedSnackIds: [],
     lockedIndices: [],
@@ -44,6 +49,8 @@ export function getDefaultPersistedState(): PersistedState {
     prepChecked: {},
     triedFoods: {},
     customFirstFoods: [],
+    favoriteIds: [],
+    blockedIds: [],
   };
 }
 
@@ -68,6 +75,7 @@ export function loadPersistedState(): PersistedState {
           : defaults.household.excludedAllergens,
       },
       plannedIds: Array.isArray(parsed.plannedIds) ? parsed.plannedIds : [],
+      weekGrid: Array.isArray(parsed.weekGrid) ? parsed.weekGrid : [],
       includedBreakfastIds: Array.isArray(parsed.includedBreakfastIds)
         ? parsed.includedBreakfastIds
         : [],
@@ -92,6 +100,8 @@ export function loadPersistedState(): PersistedState {
       customFirstFoods: Array.isArray(parsed.customFirstFoods)
         ? parsed.customFirstFoods
         : [],
+      favoriteIds: Array.isArray(parsed.favoriteIds) ? parsed.favoriteIds : [],
+      blockedIds: Array.isArray(parsed.blockedIds) ? parsed.blockedIds : [],
     };
   } catch {
     return getDefaultPersistedState();

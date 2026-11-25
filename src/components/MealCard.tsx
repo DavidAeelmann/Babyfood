@@ -1,4 +1,4 @@
-import { Clock, Lock, RefreshCw, ShieldAlert, Sprout, Unlock } from 'lucide-react';
+import { Ban, Clock, Heart, Lock, RefreshCw, ShieldAlert, Sprout, Unlock } from 'lucide-react';
 import { ALLERGEN_LABELS, BRACKET_META, DAY_LABELS } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
 import type { Allergen, BracketKey, FirstFoodItem, Recipe } from '../types/recipe';
@@ -7,24 +7,32 @@ interface MealCardProps {
   recipe: Recipe;
   dayIndex: number;
   isLocked: boolean;
+  isFavorite?: boolean;
+  isBlocked?: boolean;
   activeBrackets: BracketKey[];
   excludedAllergens: Allergen[];
   untriedFoods?: FirstFoodItem[];
   onOpenCook: () => void;
   onToggleLock: () => void;
   onSwap: () => void;
+  onToggleFavorite?: () => void;
+  onToggleBlocked?: () => void;
 }
 
 export function MealCard({
   recipe,
   dayIndex,
   isLocked,
+  isFavorite = false,
+  isBlocked = false,
   activeBrackets,
   excludedAllergens,
   untriedFoods = [],
   onOpenCook,
   onToggleLock,
   onSwap,
+  onToggleFavorite,
+  onToggleBlocked,
 }: MealCardProps) {
   const totalMinutes = recipe.prep_minutes + recipe.cook_minutes;
   const matchingAllergens = recipe.allergens.filter((a) =>
@@ -102,13 +110,38 @@ export function MealCard({
 
       {/* Action Footer */}
       <div className="flex items-center justify-between gap-2 border-t border-[#F2EFE9] px-3.5 py-2">
-        <button
-          type="button"
-          onClick={onOpenCook}
-          className="min-h-[40px] text-xs font-semibold text-[#2F6F4E] hover:underline"
-        >
-          Open Cook View →
-        </button>
+        <div className="flex items-center gap-1">
+          {onToggleFavorite && (
+            <button
+              type="button"
+              onClick={onToggleFavorite}
+              aria-pressed={isFavorite}
+              aria-label={`Favorite ${recipe.title}`}
+              className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
+                isFavorite
+                  ? 'bg-[#FDF0EB] text-[#D96B43]'
+                  : 'bg-[#F2EFE9] text-[#5C6862]'
+              }`}
+            >
+              <Heart className="h-4 w-4" fill={isFavorite ? 'currentColor' : 'none'} />
+            </button>
+          )}
+          {onToggleBlocked && (
+            <button
+              type="button"
+              onClick={onToggleBlocked}
+              aria-pressed={isBlocked}
+              aria-label={`Block ${recipe.title}`}
+              className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
+                isBlocked
+                  ? 'bg-[#B84C27] text-white'
+                  : 'bg-[#F2EFE9] text-[#5C6862]'
+              }`}
+            >
+              <Ban className="h-4 w-4" />
+            </button>
+          )}
+        </div>
 
         <div className="flex items-center gap-1.5">
           <button

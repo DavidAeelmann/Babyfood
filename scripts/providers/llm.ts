@@ -13,7 +13,7 @@ export function buildWeeklyPrompt(weekId: string): string {
   return [
     `Generate a complete weekly family & baby-safe dinner plan for ISO week "${weekId}".`,
     `Requirements:`,
-    `1. Return 14 to 18 unique recipes: 7 planned_ids for dinners, 3 to 5 dinner swap bench recipes, 2 to 3 healthy breakfast_ids (e.g., oat porridge, egg fingers, mini pancakes with zero added sugar or honey), and 2 to 3 healthy batch-prep snack_ids (e.g., banana oat muffins, sweet potato soft cookies, or savory veggie bites with zero added sugar or honey).`,
+    `1. Return 16 to 20 unique recipes: 7 planned_ids for dinners, 3 to 5 dinner swap bench recipes, 2 to 3 healthy breakfast_ids (e.g., oat porridge, egg fingers, mini pancakes with zero added sugar or honey), 2 to 3 healthy lunch_ids (e.g., avocado toast strips, lentil soup, veggie fritters), and 2 to 3 healthy batch-prep snack_ids (e.g., banana oat muffins, sweet potato soft cookies with zero added sugar or honey).`,
     `2. Use realistic weeknight prep/cook times (<= 45 min total) and strong ingredient overlap across recipes (shared canonical_id slugs like sweet_potato, broccoli_florets, carrot, garlic_clove, yellow_onion, olive_oil, baby_spinach, basmati_rice, pasta_penne) so the grocery list is compact.`,
     `3. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
     `4. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,

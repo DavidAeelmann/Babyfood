@@ -1,16 +1,38 @@
-import { Check, Clock, Cookie, Shuffle, Sprout, Sunrise } from 'lucide-react';
+import { useState } from 'react';
+import {
+  Check,
+  Clock,
+  Cookie,
+  LayoutGrid,
+  List,
+  Shuffle,
+  Sprout,
+  Sunrise,
+} from 'lucide-react';
 import { BRACKET_META } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
 import { MealCard } from './MealCard';
-import type { Allergen, BracketKey, FirstFoodItem, Recipe } from '../types/recipe';
+import { WeekGridView } from './WeekGridView';
+import type {
+  Allergen,
+  BracketKey,
+  DayPlan,
+  FirstFoodItem,
+  MealSlotType,
+  Recipe,
+} from '../types/recipe';
 
 interface PlanViewProps {
   plannedRecipes: Recipe[];
+  weekGrid: DayPlan[];
+  recipeMap: Map<string, Recipe>;
   weeklyBreakfasts: Recipe[];
   includedBreakfastIds: string[];
   weeklySnacks: Recipe[];
   includedSnackIds: string[];
   lockedIndices: number[];
+  favoriteIds: string[];
+  blockedIds: string[];
   activeBrackets: BracketKey[];
   excludedAllergens: Allergen[];
   getUntriedFoodsInRecipe: (recipe: Recipe) => FirstFoodItem[];
@@ -18,6 +40,10 @@ interface PlanViewProps {
   onToggleLock: (dayIndex: number) => void;
   onSwapMeal: (dayIndex: number) => void;
   onShuffleUnlocked: () => void;
+  onReSimulateSlot: (dayIndex: number, slot: MealSlotType) => void;
+  onReSimulateWeek: () => void;
+  onToggleFavorite: (recipeId: string) => void;
+  onToggleBlocked: (recipeId: string) => void;
   onToggleBreakfastIncluded: (breakfastId: string) => void;
   onToggleSnackIncluded: (snackId: string) => void;
 }
@@ -177,11 +203,15 @@ function CompactSideSection({
 
 export function PlanView({
   plannedRecipes,
+  weekGrid,
+  recipeMap,
   weeklyBreakfasts,
   includedBreakfastIds,
   weeklySnacks,
   includedSnackIds,
   lockedIndices,
+  favoriteIds,
+  blockedIds,
   activeBrackets,
   excludedAllergens,
   getUntriedFoodsInRecipe,
@@ -189,78 +219,138 @@ export function PlanView({
   onToggleLock,
   onSwapMeal,
   onShuffleUnlocked,
+  onReSimulateSlot,
+  onReSimulateWeek,
+  onToggleFavorite,
+  onToggleBlocked,
   onToggleBreakfastIncluded,
   onToggleSnackIncluded,
 }: PlanViewProps) {
+  const [viewMode, setViewMode] = useState<'week' | 'cards'>('week');
+
   return (
     <section className="mx-auto max-w-md px-4 pt-4 pb-24">
+      {/* Header + View Mode Switcher */}
       <div className="mb-3.5 flex items-center justify-between gap-2">
         <div>
           <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
-            This Week&apos;s Dinners
+            Weekly Plan
           </h2>
           <p className="text-xs text-[#5C6862]">
-            Tap any meal for baby prep &amp; step-by-step cooking
+            {favoriteIds.length > 0 || blockedIds.length > 0
+              ? `${favoriteIds.length} fav · ${blockedIds.length} blocked`
+              : 'Tap ❤️ or 🚫 to tune future options'}
           </p>
         </div>
 
         <button
           type="button"
           data-testid="shuffle-unlocked-btn"
-          onClick={onShuffleUnlocked}
+          onClick={viewMode === 'week' ? onReSimulateWeek : onShuffleUnlocked}
           className="inline-flex min-h-[40px] shrink-0 items-center gap-1.5 rounded-xl bg-[#2F6F4E] px-3.5 py-2 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#25593E] active:scale-[0.98]"
         >
           <Shuffle className="h-3.5 w-3.5" />
-          Shuffle Unlocked
+          {viewMode === 'week' ? 'Re-simulate Week' : 'Shuffle Unlocked'}
         </button>
       </div>
 
-      <div className="space-y-4">
-        {plannedRecipes.map((recipe, idx) => (
-          <MealCard
-            key={`${idx}-${recipe.id}`}
-            recipe={recipe}
-            dayIndex={idx}
-            isLocked={lockedIndices.includes(idx)}
-            activeBrackets={activeBrackets}
-            excludedAllergens={excludedAllergens}
-            untriedFoods={getUntriedFoodsInRecipe(recipe)}
-            onOpenCook={() => onOpenCook(recipe.id)}
-            onToggleLock={() => onToggleLock(idx)}
-            onSwap={() => onSwapMeal(idx)}
-          />
-        ))}
+      {/* Segmented Toggle: Compact Week View vs Photo Cards */}
+      <div className="mb-4 grid grid-cols-2 rounded-xl border border-[#E7E2D8] bg-[#F2EFE9] p-1">
+        <button
+          type="button"
+          data-testid="view-mode-week"
+          onClick={() => setViewMode('week')}
+          className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
+            viewMode === 'week'
+              ? 'bg-white text-[#1C2420] shadow-xs'
+              : 'text-[#5C6862]'
+          }`}
+        >
+          <LayoutGrid className="h-3.5 w-3.5" />
+          Week View
+        </button>
+        <button
+          type="button"
+          data-testid="view-mode-cards"
+          onClick={() => setViewMode('cards')}
+          className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
+            viewMode === 'cards'
+              ? 'bg-white text-[#1C2420] shadow-xs'
+              : 'text-[#5C6862]'
+          }`}
+        >
+          <List className="h-3.5 w-3.5" />
+          Photo Cards
+        </button>
       </div>
 
-      <CompactSideSection
-        title="Healthy Weekly Breakfasts"
-        subtitle="Quick iron-rich & low-sugar mornings for baby & family"
-        badgeLabel="Breakfast"
-        testId="weekly-breakfasts-section"
-        togglePrefix="breakfast"
-        icon="breakfast"
-        items={weeklyBreakfasts}
-        includedIds={includedBreakfastIds}
-        activeBrackets={activeBrackets}
-        getUntriedFoodsInRecipe={getUntriedFoodsInRecipe}
-        onOpenCook={onOpenCook}
-        onToggleIncluded={onToggleBreakfastIncluded}
-      />
+      {viewMode === 'week' ? (
+        <WeekGridView
+          weekGrid={weekGrid}
+          recipeMap={recipeMap}
+          lockedIndices={lockedIndices}
+          favoriteIds={favoriteIds}
+          blockedIds={blockedIds}
+          onOpenCook={onOpenCook}
+          onReSimulateSlot={onReSimulateSlot}
+          onToggleLock={onToggleLock}
+          onToggleFavorite={onToggleFavorite}
+          onToggleBlocked={onToggleBlocked}
+        />
+      ) : (
+        <>
+          <div className="space-y-4">
+            {plannedRecipes.map((recipe, idx) => (
+              <MealCard
+                key={`${idx}-${recipe.id}`}
+                recipe={recipe}
+                dayIndex={idx}
+                isLocked={lockedIndices.includes(idx)}
+                isFavorite={favoriteIds.includes(recipe.id)}
+                isBlocked={blockedIds.includes(recipe.id)}
+                activeBrackets={activeBrackets}
+                excludedAllergens={excludedAllergens}
+                untriedFoods={getUntriedFoodsInRecipe(recipe)}
+                onOpenCook={() => onOpenCook(recipe.id)}
+                onToggleLock={() => onToggleLock(idx)}
+                onSwap={() => onSwapMeal(idx)}
+                onToggleFavorite={() => onToggleFavorite(recipe.id)}
+                onToggleBlocked={() => onToggleBlocked(recipe.id)}
+              />
+            ))}
+          </div>
 
-      <CompactSideSection
-        title="Healthy Weekly Snacks"
-        subtitle="Batch-prep muffins & soft cookies (zero added sugar)"
-        badgeLabel="Snack"
-        testId="weekly-snacks-section"
-        togglePrefix="snack"
-        icon="snack"
-        items={weeklySnacks}
-        includedIds={includedSnackIds}
-        activeBrackets={activeBrackets}
-        getUntriedFoodsInRecipe={getUntriedFoodsInRecipe}
-        onOpenCook={onOpenCook}
-        onToggleIncluded={onToggleSnackIncluded}
-      />
+          <CompactSideSection
+            title="Healthy Weekly Breakfasts"
+            subtitle="Quick iron-rich & low-sugar mornings for baby & family"
+            badgeLabel="Breakfast"
+            testId="weekly-breakfasts-section"
+            togglePrefix="breakfast"
+            icon="breakfast"
+            items={weeklyBreakfasts}
+            includedIds={includedBreakfastIds}
+            activeBrackets={activeBrackets}
+            getUntriedFoodsInRecipe={getUntriedFoodsInRecipe}
+            onOpenCook={onOpenCook}
+            onToggleIncluded={onToggleBreakfastIncluded}
+          />
+
+          <CompactSideSection
+            title="Healthy Weekly Snacks"
+            subtitle="Batch-prep muffins & soft cookies (zero added sugar)"
+            badgeLabel="Snack"
+            testId="weekly-snacks-section"
+            togglePrefix="snack"
+            icon="snack"
+            items={weeklySnacks}
+            includedIds={includedSnackIds}
+            activeBrackets={activeBrackets}
+            getUntriedFoodsInRecipe={getUntriedFoodsInRecipe}
+            onOpenCook={onOpenCook}
+            onToggleIncluded={onToggleSnackIncluded}
+          />
+        </>
+      )}
     </section>
   );
 }

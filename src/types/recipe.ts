@@ -54,11 +54,16 @@ export interface Recipe {
   age_adaptations: Record<BracketKey, AgeAdaptation>;
 }
 
+export type MealSlotType = 'breakfast' | 'lunch' | 'snack' | 'dinner';
+
+export type DayPlan = Record<MealSlotType, string>;
+
 export interface WeekData {
   week_id: string;
   generated_at: string;
   planned_ids: string[];
   breakfast_ids?: string[];
+  lunch_ids?: string[];
   snack_ids?: string[];
   recipes: Recipe[];
 }

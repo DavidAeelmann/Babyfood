@@ -15,6 +15,11 @@
     "spinach-cheese-egg-fingers",
     "pear-oat-yogurt-pancakes"
   ],
+  "lunch_ids": [
+    "avocado-egg-toast-strips",
+    "sweet-potato-lentil-soup",
+    "zucchini-cheddar-fritters"
+  ],
   "snack_ids": [
     "banana-oat-baby-muffins",
     "sweet-potato-oat-cookies"
@@ -720,6 +725,142 @@
         "4y_plus": {
           "cut_and_texture": "Standard pancake stack.",
           "serving_note": "Optional topping for older kids."
+        }
+      }
+    },
+    {
+      "id": "avocado-egg-toast-strips",
+      "title": "Avocado & Soft Egg Sourdough Strips",
+      "image_url": "meals/avocado-egg-toast-strips.webp",
+      "prep_minutes": 5,
+      "cook_minutes": 6,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg", "wheat"],
+      "ingredients": [
+        { "canonical_id": "avocado", "name": "Ripe avocados", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "egg", "name": "Eggs", "quantity": 4, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "sourdough_bread", "name": "Crusty sourdough loaf", "quantity": 240, "unit": "g", "aisle": "Bakery", "is_pantry_staple": false },
+        { "canonical_id": "lemon", "name": "Lemon", "quantity": 1, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Lightly toast sourdough slices and mash ripe avocado with a squeeze of lemon juice and olive oil.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Soft-scramble or hard-boil eggs until yolks are fully set (safe for 6m+).", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Spread plain mashed avocado and egg onto baby and toddler toast strips before salting or adding chili flakes.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult avocado toast with flaky sea salt, black pepper, and chili flakes.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Cut lightly toasted sourdough into 2-finger-wide strips spread thinly with mashed avocado and finely mashed egg.",
+          "serving_note": "Zero added salt. Softly toasted bread is easier to gum than gummy fresh white bread."
+        },
+        "9_12m": {
+          "cut_and_texture": "Cut toast into 1.5 cm squares with diced egg and avocado.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Quartered toast with mashed avocado and sliced egg.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Halved avocado toast with scrambled or boiled egg.",
+          "serving_note": "Lightly seasoned."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Full slice of avocado egg toast.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "sweet-potato-lentil-soup",
+      "title": "Velvety Sweet Potato & Red Lentil Soup",
+      "image_url": "meals/sweet-potato-lentil-soup.webp",
+      "prep_minutes": 8,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        { "canonical_id": "sweet_potato", "name": "Sweet potatoes", "quantity": 500, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "red_lentils", "name": "Dried red lentils", "quantity": 150, "unit": "g", "aisle": "Pantry", "is_pantry_staple": false },
+        { "canonical_id": "carrot", "name": "Carrots", "quantity": 200, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "garlic_clove", "name": "Garlic cloves", "quantity": 2, "unit": "pcs", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 1, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "ground_cumin", "name": "Ground cumin", "quantity": 1, "unit": "tsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Sauté diced sweet potato, carrot, and minced garlic in olive oil with cumin for 3 minutes.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Add rinsed red lentils and 800 ml water. Simmer 18 minutes until completely soft, then blend until velvety.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Ladle baby and toddler portions into bowls before adding salt or pepper.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult soup with sea salt, black pepper, and a swirl of yogurt or olive oil.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Serve thick, warm purée on a pre-loaded spoon or as a dip for soft toast strips.",
+          "serving_note": "Zero added salt. Rich in iron and beta-carotene."
+        },
+        "9_12m": {
+          "cut_and_texture": "Thick spoonable soup with soft bread cubes for dipping.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Warm soup bowl with a spoon.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Kid-sized soup bowl with crusty bread.",
+          "serving_note": "Lightly seasoned."
+        },
+        "4y_plus": {
+          "cut_and_texture": "Standard soup bowl.",
+          "serving_note": "Seasoned to taste."
+        }
+      }
+    },
+    {
+      "id": "zucchini-cheddar-fritters",
+      "title": "Soft Zucchini & Mild Cheddar Fritters",
+      "image_url": "meals/zucchini-cheddar-fritters.webp",
+      "prep_minutes": 10,
+      "cook_minutes": 12,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": ["egg", "dairy"],
+      "ingredients": [
+        { "canonical_id": "zucchini", "name": "Zucchini (finely grated)", "quantity": 350, "unit": "g", "aisle": "Produce", "is_pantry_staple": false },
+        { "canonical_id": "rolled_oats", "name": "Rolled oats", "quantity": 100, "unit": "g", "aisle": "Pantry", "is_pantry_staple": true },
+        { "canonical_id": "egg", "name": "Eggs", "quantity": 2, "unit": "pcs", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "cheddar_cheese", "name": "Mild cheddar (grated)", "quantity": 70, "unit": "g", "aisle": "Dairy & Eggs", "is_pantry_staple": false },
+        { "canonical_id": "olive_oil", "name": "Extra-virgin olive oil", "quantity": 2, "unit": "tbsp", "aisle": "Pantry", "is_pantry_staple": true }
+      ],
+      "steps": [
+        { "order": 1, "text": "Squeeze excess moisture from finely grated zucchini. Blend rolled oats into coarse flour.", "is_seasoning_split_point": false },
+        { "order": 2, "text": "Mix zucchini, oat flour, beaten eggs, and mild cheddar. Pan-fry small spoonfuls in olive oil 3 minutes per side until golden and soft inside.", "is_seasoning_split_point": false },
+        { "order": 3, "text": "SEASONING SPLIT: Set aside baby and toddler fritters before sprinkling flaky salt on adult fritters.", "is_seasoning_split_point": true },
+        { "order": 4, "text": "Season adult fritters with sea salt and serve with plain yogurt.", "is_seasoning_split_point": false }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Cut soft fritters into finger-length strips for easy palmar grasp.",
+          "serving_note": "Zero added salt; mild cheddar provides gentle flavor."
+        },
+        "9_12m": {
+          "cut_and_texture": "Dice fritters into 1.5 cm soft bite-sized pieces.",
+          "serving_note": "Zero added salt."
+        },
+        "12_24m": {
+          "cut_and_texture": "Halved fritters with plain yogurt for dipping.",
+          "serving_note": "Minimal salt."
+        },
+        "2_4y": {
+          "cut_and_texture": "Whole mini fritters.",
+          "serving_note": "Great lunchbox or quick lunch."
+        },
+        "4y_plus": {
+          "cut_and_texture": "2–3 fritters with yogurt dip.",
+          "serving_note": "Seasoned to taste."
         }
       }
     }
