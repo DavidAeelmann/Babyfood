@@ -28,34 +28,35 @@ export function buildWeeklyPrompt(
     `Requirements:`,
     `1. Write ALL recipe titles, ingredient names, step instructions, and age_adaptations in natural European Portuguese (PT-PT — e.g. pequeno-almoço, lanche, curgete, brócolos, grão-de-bico, pescada, bacalhau demolhado, requeijão).`,
     `2. Return 16 to 20 unique recipes adapted to a Portuguese household with toddlers (12-24m / 2-4y) and babies (6-12m): planned_ids MUST list EXACTLY 7 dinner recipe IDs, plus 3 dinner swap options, 2 lunch_ids (Portuguese soups/meals), 2 breakfast_ids, and 2 snack_ids.`,
-    `3. Use realistic weeknight prep/cook times (<= 45 min total) and strong ingredient overlap across recipes (shared canonical_id slugs like sweet_potato, broccoli_florets, carrot, garlic_clove, yellow_onion, olive_oil, baby_spinach, rice, hake_white_fish, chicken_breast) so the grocery list is compact.`,
-    `4. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
-    `5. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
-    `6. Every recipe must have base_servings: 4, min_age_months: 6, ZERO honey anywhere in ingredients, and use phrases like "sem açúcar adicionado" (never use the word honey/mel) in steps.`,
-    `7. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce is added.`,
-    `8. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash). Keep step and adaptation notes crisp (<= 18 words each).`,
-    `9. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn kernels / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
+    `3. Use realistic weeknight prep/cook times (<= 45 min total). Balance practical pantry reuse with real culinary variety: everyday aromatics, herbs, spices, and fats (olive_oil, garlic_clove, yellow_onion, lemon, cinnamon, cumin, parsley, coriander) may repeat freely across recipes, and varying rice/grain varieties (e.g. carolino_rice, basmati_rice, pasta, potato, sourdough_bread, couscous) is encouraged.`,
+    `4. INGREDIENT & PROTEIN DIVERSITY (CRITICAL): Do NOT repeat signature/distinctive ingredients or proteins excessively across a single week! Keep distinctive tubers/produce (especially sweet_potato, butternut_squash, beetroot, broccoli_florets, avocado, mango, green_peas) RARE: at most 1x across the 7 planned_ids dinners and <= 2x across all slots combined. Likewise, NEVER repeat the same fish or meat cut across the 7 planned dinners (e.g., max 1x hake/pescada, max 1x salmon, max 1x cod/bacalhau, max 1x chicken, max 1x turkey, max 1x beef, alternating fish, poultry, meat, and legumes across days).`,
+    `5. Every recipe id must be kebab-case and image_url must be "meals/{id}.webp".`,
+    `6. Metric units ONLY: g, ml, pcs, tbsp, tsp. canonical_id must be snake_case and consistent across recipes.`,
+    `7. Every recipe must have base_servings: 4, min_age_months: 6, ZERO honey anywhere in ingredients, and use phrases like "sem açúcar adicionado" (never use the word honey/mel) in steps.`,
+    `8. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce is added.`,
+    `9. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash). Keep step and adaptation notes crisp (<= 18 words each).`,
+    `10. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn kernels / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
   ];
 
   if (preferences) {
     if (preferences.favorites && preferences.favorites.length > 0) {
       lines.push(
-        `10. HOUSEHOLD FAVORITES (include similar dishes, flavor profiles, and cooking styles): ${preferences.favorites.join(', ')}.`,
+        `11. HOUSEHOLD FAVORITES (include similar dishes, flavor profiles, and cooking styles): ${preferences.favorites.join(', ')}.`,
       );
     }
     if (preferences.likedIngredients && preferences.likedIngredients.length > 0) {
       lines.push(
-        `11. PREFERRED INGREDIENTS (lean toward using these frequently): ${preferences.likedIngredients.join(', ')}.`,
+        `12. PREFERRED INGREDIENTS (lean toward using these frequently): ${preferences.likedIngredients.join(', ')}.`,
       );
     }
     if (preferences.blocked && preferences.blocked.length > 0) {
       lines.push(
-        `12. HOUSEHOLD BLOCKED (DO NOT include these dishes or close variations): ${preferences.blocked.join(', ')}.`,
+        `13. HOUSEHOLD BLOCKED (DO NOT include these dishes or close variations): ${preferences.blocked.join(', ')}.`,
       );
     }
     if (preferences.dislikedIngredients && preferences.dislikedIngredients.length > 0) {
       lines.push(
-        `13. AVOID / MINIMIZE INGREDIENTS linked to blocked recipes: ${preferences.dislikedIngredients.join(', ')}.`,
+        `14. AVOID / MINIMIZE INGREDIENTS linked to blocked recipes: ${preferences.dislikedIngredients.join(', ')}.`,
       );
     }
   }

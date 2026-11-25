@@ -6,8 +6,12 @@ import {
 } from '../lib/firstFoods';
 import { aggregateGroceries } from '../lib/groceryAggregator';
 import {
+  scoreDiversityPenalty,
+  selectDiverseSlotIds,
+  type WeekPlanEntry,
+} from '../lib/mealDiversity';
+import {
   createCustomRecipeFromInput,
-  getSamplingWeight,
   scoreRecipeAlignment,
 } from '../lib/preferences';
 import { decodeCheckedBitmask, decodeShareHash } from '../lib/shareSync';
@@ -55,9 +59,18 @@ function getRecipesBySlot(data: WeekData, slot: MealSlotType): Recipe[] {
 }
 
 function buildInitialWeekGrid(data: WeekData): DayPlan[] {
-  const bPool = getRecipesBySlot(data, 'breakfast');
-  const lPool = getRecipesBySlot(data, 'lunch');
-  const sPool = getRecipesBySlot(data, 'snack');
+  const byId = new Map(data.recipes.map((r) => [r.id, r]));
+  const pickSlotList = (slotIds: string[] | undefined, slot: MealSlotType): Recipe[] => {
+    const ordered = (slotIds ?? [])
+      .map((id) => byId.get(id))
+      .filter((r): r is Recipe => Boolean(r));
+    if (ordered.length > 0) return ordered;
+    return getRecipesBySlot(data, slot);
+  };
+
+  const bPool = pickSlotList(data.breakfast_ids, 'breakfast');
+  const lPool = pickSlotList(data.lunch_ids, 'lunch');
+  const sPool = pickSlotList(data.snack_ids, 'snack');
   const dIds = data.planned_ids ?? [];
 
   return Array.from({ length: 7 }, (_, idx) => ({
@@ -66,6 +79,30 @@ function buildInitialWeekGrid(data: WeekData): DayPlan[] {
     snack: sPool[idx % Math.max(1, sPool.length)]?.id ?? dIds[idx] ?? '',
     dinner: dIds[idx] ?? '',
   }));
+}
+
+function collectWeekEntries(
+  weekGrid: DayPlan[],
+  plannedIds: string[],
+  recipeMap: Map<string, Recipe>,
+  exclude?: { dayIndex: number; slot: MealSlotType },
+): WeekPlanEntry[] {
+  const entries: WeekPlanEntry[] = [];
+  const slots: MealSlotType[] = ['dinner', 'lunch', 'breakfast', 'snack'];
+  weekGrid.forEach((day, dayIndex) => {
+    for (const slot of slots) {
+      if (exclude && exclude.dayIndex === dayIndex && exclude.slot === slot) {
+        continue;
+      }
+      const id = slot === 'dinner' ? (plannedIds[dayIndex] ?? day.dinner) : day[slot];
+      if (!id) continue;
+      const recipe = recipeMap.get(id);
+      if (recipe) {
+        entries.push({ recipe, slot, dayIndex });
+      }
+    }
+  });
+  return entries;
 }
 
 export function useMealPlanner() {
@@ -464,12 +501,27 @@ export function useMealPlanner() {
           nonBlocked.length > 0 ? nonBlocked : fallback.length > 0 ? fallback : pool;
         if (finalPool.length === 0) return prev;
 
-        const weighted: Recipe[] = [];
-        for (const r of finalPool) {
-          const weight = getSamplingWeight(r, prev.favoriteIds, prev.blockedIds, recipeMap);
-          for (let w = 0; w < weight; w += 1) weighted.push(r);
-        }
-        const picked = weighted[Math.floor(Math.random() * weighted.length)];
+        const existingEntries = collectWeekEntries(
+          prev.weekGrid,
+          prev.plannedIds,
+          recipeMap,
+          { dayIndex, slot },
+        );
+
+        const scored = finalPool
+          .map((r) => ({
+            recipe: r,
+            score:
+              scoreRecipeAlignment(r, prev.favoriteIds, prev.blockedIds, recipeMap) +
+              scoreDiversityPenalty(r, existingEntries, slot, dayIndex),
+          }))
+          .sort((a, b) => b.score - a.score);
+
+        // Sample among top diverse tier so random clicks feel fresh without repeating rare ingredients
+        const topCutoff = scored[0].score - 4;
+        const topTier = scored.filter((item) => item.score >= topCutoff);
+        const picked = topTier[Math.floor(Math.random() * topTier.length)].recipe;
+
         const nextGrid = prev.weekGrid.map((day, idx) =>
           idx === dayIndex ? { ...day, [slot]: picked.id } : day,
         );
@@ -500,17 +552,26 @@ export function useMealPlanner() {
           (r) => !inPlan.has(r.id) && isRecipeSafe(r),
         );
         const anyBench = dinnerPool.filter((r) => !inPlan.has(r.id));
-        const pool = (safeBench.length > 0 ? safeBench : anyBench).sort(
-          (a, b) =>
-            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) -
-            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap),
+        const existingEntries = collectWeekEntries(
+          prev.weekGrid,
+          prev.plannedIds,
+          recipeMap,
+          { dayIndex, slot: 'dinner' },
         );
+        const pool = (safeBench.length > 0 ? safeBench : anyBench).sort((a, b) => {
+          const scoreB =
+            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) +
+            scoreDiversityPenalty(b, existingEntries, 'dinner', dayIndex);
+          const scoreA =
+            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap) +
+            scoreDiversityPenalty(a, existingEntries, 'dinner', dayIndex);
+          return scoreB - scoreA;
+        });
 
         if (pool.length === 0) return prev;
 
-        const currentIdxInAll = dinnerPool.findIndex((r) => r.id === currentId);
         const candidate =
-          pool.find((r) => dinnerPool.indexOf(r) > currentIdxInAll) ?? pool[0];
+          pool.find((r) => r.id !== currentId) ?? pool[0];
 
         const nextPlanned = [...prev.plannedIds];
         nextPlanned[dayIndex] = candidate.id;
@@ -528,53 +589,46 @@ export function useMealPlanner() {
     setState((prev) => {
       const lockedSet = new Set(prev.lockedIndices);
       const blockedSet = new Set(prev.blockedIds);
-      const lockedIds = new Set(
-        prev.plannedIds.filter((_, idx) => lockedSet.has(idx)),
-      );
       const dinnerPool = getSlotPool('dinner').filter(
         (r) => !blockedSet.has(r.id),
       );
+      const safePool = dinnerPool.filter((r) => isRecipeSafe(r));
+      const finalPool = safePool.length > 0 ? safePool : dinnerPool;
 
-      const safeCandidates = dinnerPool.filter(
-        (r) => !lockedIds.has(r.id) && isRecipeSafe(r),
-      );
-      const fallbackCandidates = dinnerPool.filter(
-        (r) => !lockedIds.has(r.id) && !safeCandidates.includes(r),
-      );
-
-      const sortWithBias = (list: Recipe[]) =>
-        [...list].sort((a, b) => {
-          const scoreA =
-            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap) +
-            (Math.random() - 0.5) * 4;
-          const scoreB =
-            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) +
-            (Math.random() - 0.5) * 4;
-          return scoreB - scoreA;
-        });
-
-      const pool = [
-        ...sortWithBias(safeCandidates),
-        ...sortWithBias(fallbackCandidates),
-      ];
-
-      let poolCursor = 0;
-      const nextPlanned = prev.plannedIds.map((id, idx) => {
-        if (lockedSet.has(idx)) return id;
-        const replacement = pool[poolCursor];
-        if (replacement) {
-          poolCursor += 1;
-          return replacement.id;
+      const lockedByDay = new Map<number, Recipe>();
+      const otherSlotEntries: WeekPlanEntry[] = [];
+      prev.weekGrid.forEach((day, idx) => {
+        if (lockedSet.has(idx)) {
+          const dRecipe = recipeMap.get(prev.plannedIds[idx] ?? day.dinner);
+          if (dRecipe) lockedByDay.set(idx, dRecipe);
         }
-        return id;
+        (['lunch', 'breakfast', 'snack'] as MealSlotType[]).forEach((slot) => {
+          const r = day[slot] ? recipeMap.get(day[slot]) : undefined;
+          if (r) otherSlotEntries.push({ recipe: r, slot, dayIndex: idx });
+        });
       });
+
+      const { ids: nextPlanned } = selectDiverseSlotIds({
+        pool: finalPool,
+        slot: 'dinner',
+        count: 7,
+        existingEntries: otherSlotEntries,
+        lockedByDay,
+        scoreBase: (r) =>
+          scoreRecipeAlignment(r, prev.favoriteIds, prev.blockedIds, recipeMap),
+        jitter: 4,
+      });
+
+      const resolvedPlanned = prev.plannedIds.map((oldId, idx) =>
+        lockedSet.has(idx) ? oldId : (nextPlanned[idx] || oldId),
+      );
 
       const nextGrid = prev.weekGrid.map((d, idx) => ({
         ...d,
-        dinner: nextPlanned[idx] ?? d.dinner,
+        dinner: resolvedPlanned[idx] ?? d.dinner,
       }));
 
-      return { ...prev, plannedIds: nextPlanned, weekGrid: nextGrid };
+      return { ...prev, plannedIds: resolvedPlanned, weekGrid: nextGrid };
     });
   }, [weekData, getSlotPool, isRecipeSafe, recipeMap]);
 
@@ -600,14 +654,26 @@ export function useMealPlanner() {
         const candidates =
           eligible.length > 0 ? eligible : fallback.length > 0 ? fallback : pool;
 
-        const scored = [...candidates].sort(
-          (a, b) =>
-            scoreRecipeAlignment(b, prev.favoriteIds, prev.blockedIds, recipeMap) -
-            scoreRecipeAlignment(a, prev.favoriteIds, prev.blockedIds, recipeMap),
+        const existingEntries = collectWeekEntries(
+          prev.weekGrid,
+          prev.plannedIds,
+          recipeMap,
+          { dayIndex, slot },
         );
 
-        const currentIdx = scored.findIndex((r) => r.id === currentId);
-        const picked = scored[(currentIdx + 1) % scored.length] ?? scored[0];
+        const scored = candidates
+          .map((r) => ({
+            recipe: r,
+            score:
+              scoreRecipeAlignment(r, prev.favoriteIds, prev.blockedIds, recipeMap) +
+              scoreDiversityPenalty(r, existingEntries, slot, dayIndex),
+          }))
+          .sort((a, b) => b.score - a.score);
+
+        // Pick from top diverse options within 3.5 pts of best score so repeated taps explore new dishes
+        const topCutoff = scored[0].score - 3.5;
+        const topTier = scored.filter((item) => item.score >= topCutoff);
+        const picked = topTier[Math.floor(Math.random() * topTier.length)].recipe;
 
         const nextGrid = prev.weekGrid.map((day, idx) =>
           idx === dayIndex ? { ...day, [slot]: picked.id } : day,
@@ -631,33 +697,93 @@ export function useMealPlanner() {
       const lockedSet = new Set(prev.lockedIndices);
       const blockedSet = new Set(prev.blockedIds);
 
-      const pickWeighted = (slot: MealSlotType, dayIdx: number, currentId: string) => {
-        // Lock Day protects ALL slots on locked days
-        if (lockedSet.has(dayIdx)) return currentId;
+      const getCandidatePool = (slot: MealSlotType): Recipe[] => {
         const pool = getSlotPool(slot);
-        const nonBlocked = pool.filter(
+        const nonBlockedSafe = pool.filter(
           (r) => !blockedSet.has(r.id) && isRecipeSafe(r),
         );
-        const safePool =
-          nonBlocked.length > 0
-            ? nonBlocked
-            : pool.filter((r) => !blockedSet.has(r.id));
-        const finalPool = safePool.length > 0 ? safePool : pool;
-        if (finalPool.length === 0) return currentId;
-
-        const weighted: Recipe[] = [];
-        for (const r of finalPool) {
-          const weight = getSamplingWeight(r, prev.favoriteIds, prev.blockedIds, recipeMap);
-          for (let w = 0; w < weight; w += 1) weighted.push(r);
-        }
-        return weighted[Math.floor(Math.random() * weighted.length)].id;
+        if (nonBlockedSafe.length > 0) return nonBlockedSafe;
+        const nonBlocked = pool.filter((r) => !blockedSet.has(r.id));
+        return nonBlocked.length > 0 ? nonBlocked : pool;
       };
 
-      const nextGrid = prev.weekGrid.map((day, idx) => ({
-        breakfast: pickWeighted('breakfast', idx, day.breakfast),
-        lunch: pickWeighted('lunch', idx, day.lunch),
-        snack: pickWeighted('snack', idx, day.snack),
-        dinner: pickWeighted('dinner', idx, day.dinner),
+      const scoreBase = (r: Recipe) =>
+        scoreRecipeAlignment(r, prev.favoriteIds, prev.blockedIds, recipeMap);
+
+      // Build locked maps across all 4 slots first so locked days anchor ingredient budgets
+      const lockedEntries: WeekPlanEntry[] = [];
+      const lockedMapBySlot: Record<MealSlotType, Map<number, Recipe>> = {
+        dinner: new Map(),
+        lunch: new Map(),
+        breakfast: new Map(),
+        snack: new Map(),
+      };
+
+      prev.weekGrid.forEach((day, idx) => {
+        if (!lockedSet.has(idx)) return;
+        (['dinner', 'lunch', 'breakfast', 'snack'] as MealSlotType[]).forEach(
+          (slot) => {
+            const id = slot === 'dinner' ? (prev.plannedIds[idx] ?? day.dinner) : day[slot];
+            const recipe = id ? recipeMap.get(id) : undefined;
+            if (recipe) {
+              lockedMapBySlot[slot].set(idx, recipe);
+              lockedEntries.push({ recipe, slot, dayIndex: idx });
+            }
+          },
+        );
+      });
+
+      // Plan sequentially (dinner -> lunch -> breakfast -> snack) so rare proteins and sweet_potato stay diverse week-wide
+      let accumulated: WeekPlanEntry[] = [];
+
+      const dinnersRes = selectDiverseSlotIds({
+        pool: getCandidatePool('dinner'),
+        slot: 'dinner',
+        count: 7,
+        existingEntries: lockedEntries.filter((e) => e.slot !== 'dinner'),
+        lockedByDay: lockedMapBySlot.dinner,
+        scoreBase,
+        jitter: 4,
+      });
+      accumulated = dinnersRes.entries;
+
+      const lunchesRes = selectDiverseSlotIds({
+        pool: getCandidatePool('lunch'),
+        slot: 'lunch',
+        count: 7,
+        existingEntries: accumulated.filter((e) => e.slot !== 'lunch'),
+        lockedByDay: lockedMapBySlot.lunch,
+        scoreBase,
+        jitter: 4,
+      });
+      accumulated = lunchesRes.entries;
+
+      const breakfastsRes = selectDiverseSlotIds({
+        pool: getCandidatePool('breakfast'),
+        slot: 'breakfast',
+        count: 7,
+        existingEntries: accumulated.filter((e) => e.slot !== 'breakfast'),
+        lockedByDay: lockedMapBySlot.breakfast,
+        scoreBase,
+        jitter: 4,
+      });
+      accumulated = breakfastsRes.entries;
+
+      const snacksRes = selectDiverseSlotIds({
+        pool: getCandidatePool('snack'),
+        slot: 'snack',
+        count: 7,
+        existingEntries: accumulated.filter((e) => e.slot !== 'snack'),
+        lockedByDay: lockedMapBySlot.snack,
+        scoreBase,
+        jitter: 4,
+      });
+
+      const nextGrid = prev.weekGrid.map((oldDay, idx) => ({
+        breakfast: lockedSet.has(idx) ? oldDay.breakfast : (breakfastsRes.ids[idx] || oldDay.breakfast),
+        lunch: lockedSet.has(idx) ? oldDay.lunch : (lunchesRes.ids[idx] || oldDay.lunch),
+        snack: lockedSet.has(idx) ? oldDay.snack : (snacksRes.ids[idx] || oldDay.snack),
+        dinner: lockedSet.has(idx) ? (prev.plannedIds[idx] || oldDay.dinner) : (dinnersRes.ids[idx] || oldDay.dinner),
       }));
 
       return {
@@ -666,7 +792,7 @@ export function useMealPlanner() {
         plannedIds: nextGrid.map((d) => d.dinner),
       };
     });
-  }, [weekData, getSlotPool, isRecipeSafe]);
+  }, [weekData, getSlotPool, isRecipeSafe, recipeMap]);
 
   const toggleFavorite = useCallback((recipeId: string) => {
     setState((prev) => {

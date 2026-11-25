@@ -92,13 +92,16 @@ async function main() {
   console.log('✓ Add Random restored a meal into the blank slot');
 
   // Block Day 0 snack, and verify + picker opens with medium images & excludes blocked
+  const blockedSnackTitle = await page.textContent(
+    '[data-testid="week-slot-0-snack"] button span:nth-child(2)',
+  );
   await page.click('[data-testid="block-btn-0-snack"]');
   await page.click('[data-testid="choose-btn-0-snack"]');
   await page.waitForSelector('[data-testid="meal-picker-modal"]');
   await assertNoOverflow(page, 'Meal Picker Modal');
-  const blockedOptionVisible = await page.isVisible('[data-testid="picker-option-banana-oat-baby-muffins"]');
-  if (blockedOptionVisible) {
-    throw new Error('Expected blocked snack (banana-oat-baby-muffins) to be hidden from + picker');
+  const pickerAllText = await page.textContent('[data-testid="meal-picker-modal"]');
+  if (blockedSnackTitle && pickerAllText?.includes(blockedSnackTitle.trim())) {
+    throw new Error(`Expected blocked snack (${blockedSnackTitle}) to be hidden from + picker`);
   }
   const pickerImgCount = await page.locator('[data-testid="meal-picker-modal"] img').count();
   if (pickerImgCount === 0) {
@@ -296,12 +299,12 @@ async function main() {
   await page.click('[data-testid="open-preferences-btn"]');
   await page.waitForSelector('[data-testid="preferences-modal"]');
   await assertNoOverflow(page, 'Preferences Modal (Favoritas & Bloqueadas)');
-  await page.waitForSelector('[data-testid="unblock-btn-banana-oat-baby-muffins"]');
-  await page.click('[data-testid="unblock-btn-banana-oat-baby-muffins"]');
+  await page.waitForSelector('[data-testid^="unblock-btn-"]');
+  await page.click('[data-testid^="unblock-btn-"]');
   await page.click('[data-testid="prefs-tab-favorites"]');
   await page.waitForSelector('[data-testid="prefs-row-lemon-herb-baked-salmon"]');
   await page.click('[data-testid="close-preferences-modal"]');
-  console.log('✓ Preferences Modal unblocked banana-oat-baby-muffins & displayed favorites');
+  console.log('✓ Preferences Modal unblocked snack & displayed favorites');
 
   await page.click('[data-testid="choose-btn-0-lunch"]');
   await page.waitForSelector('[data-testid="meal-picker-modal"]');
