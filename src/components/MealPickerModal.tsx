@@ -1,8 +1,9 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { Clock, Heart, Plus, Search, ShieldCheck, Sparkles, X } from 'lucide-react';
+import { APPLIANCE_META, getRecipeAppliances } from '../lib/appliances';
 import { DAY_LABELS } from '../lib/constants';
 import { resolveAssetUrl } from '../lib/storage';
-import type { Allergen, MealSlotType, Recipe } from '../types/recipe';
+import type { Allergen, ApplianceId, MealSlotType, Recipe } from '../types/recipe';
 
 interface MealPickerModalProps {
   dayIndex: number;
@@ -23,7 +24,12 @@ interface MealPickerModalProps {
   onClose: () => void;
 }
 
-type PickerFilter = 'all' | 'favorites' | 'quick' | 'allergen_safe';
+type PickerFilter =
+  | 'all'
+  | 'favorites'
+  | 'quick'
+  | 'allergen_safe'
+  | ApplianceId;
 
 const SLOT_LABELS: Record<MealSlotType, string> = {
   breakfast: 'Pequeno-almoço (Pequenos-almoços e Lanches)',
@@ -74,6 +80,12 @@ export function MealPickerModal({
         } else if (r.allergens.length > 0) {
           return false;
         }
+      }
+      if (
+        (filter === 'ninja-foodi-power' || filter === 'ninja-crispi-pro-xl') &&
+        !getRecipeAppliances(r).includes(filter)
+      ) {
+        return false;
       }
       return true;
     });
@@ -159,6 +171,8 @@ export function MealPickerModal({
               [
                 { key: 'all', label: `Todas (${recipes.length})` },
                 { key: 'favorites', label: 'Favoritas' },
+                { key: 'ninja-crispi-pro-xl', label: 'Crispi Pro XL' },
+                { key: 'ninja-foodi-power', label: 'Foodi Power' },
                 { key: 'quick', label: '≤ 20 min' },
                 { key: 'allergen_safe', label: 'Sem Alergénios' },
               ] as Array<{ key: PickerFilter; label: string }>
@@ -316,6 +330,18 @@ export function MealPickerModal({
                     <h3 className="line-clamp-2 text-sm font-bold leading-snug text-[#1C2420]">
                       {recipe.title}
                     </h3>
+                    {getRecipeAppliances(recipe).length > 0 && (
+                      <div className="mt-1 flex flex-wrap gap-1">
+                        {getRecipeAppliances(recipe).map((appId) => (
+                          <span
+                            key={appId}
+                            className="rounded-full bg-[#F2EFE9] px-2 py-0.5 text-[10px] font-semibold text-[#5C6862]"
+                          >
+                            {APPLIANCE_META[appId].shortLabel}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </button>
               );

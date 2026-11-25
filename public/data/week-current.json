@@ -1,6 +1,6 @@
 {
   "week_id": "2026-W48",
-  "generated_at": "2026-11-25T20:35:47.562Z",
+  "generated_at": "2026-11-25T20:48:44.737Z",
   "planned_ids": [
     "lemon-herb-baked-salmon",
     "arroz-de-frango-cenoura",
@@ -30,7 +30,9 @@
     "tosta-manteiga-amendoim-banana",
     "waffles-aveia-banana-sem-acucar",
     "batido-manga-mirtilos-espinafres",
-    "papa-trigo-sarraceno-maca-canela"
+    "papa-trigo-sarraceno-maca-canela",
+    "smoothie-bowl-frutos-vermelhos-foodi",
+    "massa-panquecas-espinafres-banana-foodi"
   ],
   "lunch_ids": [
     "caldo-verde-suave-feijao",
@@ -52,7 +54,10 @@
     "creme-feijao-verde-batata-doce-ovo",
     "sopa-brocolos-alho-frances-pescada",
     "wrap-macio-frango-abacate-queijo",
-    "bolonhesa-lentilhas-castanhas-arroz"
+    "bolonhesa-lentilhas-castanhas-arroz",
+    "legumes-assados-grao-crispi",
+    "nuggets-caseiros-frango-curgete-crispi",
+    "sopa-aveludada-cenoura-lentilhas-foodi"
   ],
   "snack_ids": [
     "palitos-maca-assada-canela",
@@ -61,7 +66,7 @@
     "bolachas-macias-amendoa-banana",
     "scones-saudaveis-aveia-maca",
     "barrinhas-aveia-maca-tamara",
-    "banana-bread-caseiro-sem-acucar",
+    "nice-cream-manga-banana-foodi",
     "banana-oat-baby-muffins",
     "queques-maca-canela",
     "queques-salgados-queijo-brocolos",
@@ -70,11 +75,13 @@
     "tostas-humus-cenoura",
     "bolo-cenoura-aveia-queques",
     "queques-espinafres-queijo-forno",
+    "banana-bread-caseiro-sem-acucar",
     "palitos-pepino-tomate-queijo-fresco",
     "mousse-abacate-banana-cacau-suave",
     "broinhas-batata-doce-sem-acucar",
     "muffins-curgete-limao-sesamo",
-    "bolachas-abobora-aveia-noz"
+    "bolachas-abobora-aveia-noz",
+    "humus-beterraba-tostas-foodi"
   ],
   "recipes": [
     {
@@ -10401,6 +10408,1223 @@
           "cut_and_texture": "Snack familiar caseiro.",
           "serving_note": "Servir com leite ou fruta.",
           "cut_shape": "smashed-flat"
+        }
+      }
+    },
+    {
+      "id": "salmao-crocante-aveia-crispi",
+      "title": "Salmão Crocante de Aveia e Limão na Crispi Pro XL",
+      "image_url": "meals/salmao-crocante-aveia-crispi.webp",
+      "meal_slot": "dinner",
+      "appliances": [
+        "ninja-crispi-pro-xl",
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 8,
+      "cook_minutes": 12,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "salmon_fillet",
+          "name": "Lombos de salmão sem espinhas",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia moídos na Foodi Power",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete em palitos",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Limão (raspa e sumo)",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture a aveia com raspa de limão na Ninja Foodi Power até virar panado fino e pincele os lombos de salmão com azeite.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Reserve os lombos do bebé sem sal antes de temperar os dos adultos com sal e ervas.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Disponha o salmão e os palitos de curgete no recipiente de vidro 5,7L da Ninja Crispi Pro XL e cozinhe em modo Air Fry a 190 °C durante 12 minutos.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Salmão lascado fino sem pele e curgete muito macia.",
+          "serving_note": "Ómega-3 e textura fácil de agarrar.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Lascas grandes de salmão e cubinhos de curgete.",
+          "serving_note": "Cobertura de aveia fica macia ao mastigar.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras de salmão crocante e palitos de curgete.",
+          "serving_note": "Excelente para comer à mão.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Posta pequena com crosta de aveia.",
+          "serving_note": "Sem sal na porção infantil.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Lombo inteiro com crosta dourada.",
+          "serving_note": "Servir com limão fresco.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "frango-assado-batatinhas-crispi",
+      "title": "Coxas de Frango Douradas com Batatinha e Cenoura na Crispi Pro XL",
+      "image_url": "meals/frango-assado-batatinhas-crispi.webp",
+      "meal_slot": "dinner",
+      "appliances": [
+        "ninja-crispi-pro-xl"
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 25,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "chicken_thigh",
+          "name": "Coxas ou pernas de frango sem pele",
+          "quantity": 550,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "white_potato",
+          "name": "Batatinhas em gomos macios",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenouras em palitos grossos",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "garlic_clove",
+          "name": "Dentes de alho esmagados",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Envolva o frango, as batatas e a cenoura com alho e azeite diretamente na taça de vidro XL 5,7L da Crispi Pro XL.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Separe um canto da taça sem sal para o bebé antes de salpicar os restantes pedaços com sal e orégãos.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Cozinhe na Ninja Crispi Pro XL em modo Roast a 190 °C durante 25 minutos, agitando a meio, até a carne estar bem cozinhada e os legumes tenros.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Frango desfiado fino humedecido com suco e batata esmagada.",
+          "serving_note": "Carne da coxa fica mais suculenta.",
+          "cut_shape": "flaked-fine"
+        },
+        "9_12m": {
+          "cut_and_texture": "Cubinhos de frango macio e cenoura bem cozida em cubos.",
+          "serving_note": "Verificar se a cenoura cede ao apertar.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tiras de frango assado com gomos macios.",
+          "serving_note": "Sem ossos nem cartilagens.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Pedaços de frango e batatinha dourada.",
+          "serving_note": "Prático e rápido num só vidro.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Coxas assadas com legumes.",
+          "serving_note": "Ir direto da taça de vidro para a mesa.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "palitos-pescada-crocantes-crispi",
+      "title": "Palitos Crocantes de Pescada e Ervas na Crispi Pro XL",
+      "image_url": "meals/palitos-pescada-crocantes-crispi.webp",
+      "meal_slot": "dinner",
+      "appliances": [
+        "ninja-crispi-pro-xl"
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 14,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish",
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "hake_white_fish",
+          "name": "Lombos de pescada sem espinhas",
+          "quantity": 500,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Ovo batido",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Aveia fina ou pão ralado caseiro",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura em palitos",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Corte a pescada em tiras grossas, passe pelo ovo batido e depois pela aveia fina com ervas.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Não junte sal à cobertura dos palitos do bebé; tempere apenas os dos adultos após cozinhar.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Disponha na grelha da Ninja Crispi Pro XL (5,7L) com fio de azeite e ative Air Fry a 195 °C por 14 minutos.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras grandes de pescada macia sem crosta dura.",
+          "serving_note": "Confirmar ausência total de espinhas.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Palitos cortados em cubinhos macios.",
+          "serving_note": "Fácil para o treino de pinça.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Palitos de pescada crocantes inteiros.",
+          "serving_note": "Ideal com gotinhas de limão.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Douradinhos caseiros saudáveis.",
+          "serving_note": "Zero fritura em óleo.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Palitos de peixe com cenoura assada.",
+          "serving_note": "Servir com iogurte e limão.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "legumes-assados-grao-crispi",
+      "title": "Legumes Assados com Grão Crocante e Azeite na Crispi Pro XL",
+      "image_url": "meals/legumes-assados-grao-crispi.webp",
+      "meal_slot": "lunch",
+      "appliances": [
+        "ninja-crispi-pro-xl"
+      ],
+      "prep_minutes": 8,
+      "cook_minutes": 18,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "canned_chickpeas",
+          "name": "Grão-de-bico cozido escorrido",
+          "quantity": 320,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "butternut_squash",
+          "name": "Abóbora em cubos",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete em rodelas",
+          "quantity": 250,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "carrot",
+          "name": "Cenoura em palitos",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Envolva os legumes e o grão-de-bico no recipiente de vidro 5,7L da Crispi Pro XL com azeite.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a porção do bebé antes de polvilhar com sal e cominhos para a família.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Asse em modo Air Fry / Roast a 190 °C durante 18 minutos até os legumes caramelizarem.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Grão-de-bico sempre esmagado e abóbora desfeita ao garfo.",
+          "serving_note": "Nunca dar grão inteiro nesta idade.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Grão-de-bico esmagado ou achatado e cubos de abóbora macios.",
+          "serving_note": "Textura colorida e doce.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Grão-de-bico achatado ou em puré rústico com legumes em cubos.",
+          "serving_note": "Evitar grão muito seco no bebé.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Grão crocante com legumes assados.",
+          "serving_note": "Ótimo snack ou almoço vegetariano.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Taça de legumes assados e grão.",
+          "serving_note": "Servir com iogurte natural.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "nuggets-caseiros-frango-curgete-crispi",
+      "title": "Nuggets Caseiros de Frango e Curgete (Foodi Power + Crispi Pro XL)",
+      "image_url": "meals/nuggets-caseiros-frango-curgete-crispi.webp",
+      "meal_slot": "lunch",
+      "appliances": [
+        "ninja-foodi-power",
+        "ninja-crispi-pro-xl"
+      ],
+      "prep_minutes": 10,
+      "cook_minutes": 14,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "chicken_breast",
+          "name": "Peito de frango em cubos",
+          "quantity": 450,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "zucchini",
+          "name": "Curgete em pedaços",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Ovo",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture o frango, a curgete, metade da aveia e o ovo no processador Ninja Foodi Power até formar pasta moldável.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Molde os nuggets do bebé sem sal e tempere o resto da mistura com sal e alho em pó.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Passe na restante aveia e cozinhe na Ninja Crispi Pro XL em modo Air Fry a 190 °C durante 14 minutos.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Nugget macio cortado em tiras largas para agarrar.",
+          "serving_note": "Curgete mantém o interior húmido.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Nuggets partidos em cubinhos macios.",
+          "serving_note": "Sem fritura nem aditivos.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Nuggets inteiros macios por dentro.",
+          "serving_note": "Fáceis de congelar e reaquecer no modo Re-crisp.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Nuggets caseiros dourados.",
+          "serving_note": "Ótimos para marmita.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Nuggets crocantes com molho de iogurte.",
+          "serving_note": "Favorito garantido das crianças.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "almofadinhas-batata-atum-crispi",
+      "title": "Bolinhos Dourados de Atum e Batata na Crispi Pro XL",
+      "image_url": "meals/almofadinhas-batata-atum-crispi.webp",
+      "meal_slot": "dinner",
+      "appliances": [
+        "ninja-crispi-pro-xl"
+      ],
+      "prep_minutes": 12,
+      "cook_minutes": 15,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "fish",
+        "egg"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "canned_tuna_water",
+          "name": "Atum ao natural bem escorrido",
+          "quantity": 240,
+          "unit": "g",
+          "aisle": "Meat & Fish",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "white_potato",
+          "name": "Batata cozida esmagada",
+          "quantity": 400,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Ovo batido",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 50,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Misture a batata esmagada, o atum, o ovo e a aveia até poder moldar pequenos bolinhos achatados.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Molde os bolinhos do bebé sem sal e tempere os restantes com salsa e pimenta suave.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Pincele com azeite e cozinhe na Ninja Crispi Pro XL (2,3L ou 5,7L) em modo Air Fry a 190 °C por 15 minutos.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Bolinhos em formato de croquete comprido e macio.",
+          "serving_note": "Desfazem-se facilmente na boca.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Bolinhos desfeitos em pedacinhos.",
+          "serving_note": "Fáceis de pegar em pinça.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Bolinhos dourados de atum inteiros.",
+          "serving_note": "Podem acompanhar com legumes cozidos.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Bolinhos crocantes por fora.",
+          "serving_note": "Ótima alternativa ao bacalhau.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Bolinhos de atum com salada.",
+          "serving_note": "Pronto em 15 minutos na Crispi.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "smoothie-bowl-frutos-vermelhos-foodi",
+      "title": "Smoothie Bowl Cremoso de Framboesa, Banana e Aveia (Foodi Power)",
+      "image_url": "meals/smoothie-bowl-frutos-vermelhos-foodi.webp",
+      "meal_slot": "breakfast",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "banana",
+          "name": "Bananas maduras congeladas",
+          "quantity": 3,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "raspberries",
+          "name": "Framboesas congeladas ou frescas",
+          "quantity": 180,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego natural sem açúcar",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia finos",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coloque a banana, as framboesas, o iogurte e a aveia no copo XL Smoothie Bowl da Ninja Foodi Power.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva a taça do bebé simples e sem adoçantes antes de juntar granola aos adultos.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Selecione o programa Auto-iQ Bowl (rodando a pá integradora) durante 45 segundos até ficar creme espesso.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme espesso de colher liso e natural.",
+          "serving_note": "Sem sementes inteiras nem açúcar.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Taça cremosa para comer à colher ou pré-carregada.",
+          "serving_note": "Textura aveludada.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Smoothie bowl roxo com rodelas finas de banana.",
+          "serving_note": "Muito nutritivo.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Taça de fruta cremosa com aveia.",
+          "serving_note": "Refrescante de manhã.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Smoothie bowl familiar com sementes ou granola.",
+          "serving_note": "Feito em 1 minuto.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "sopa-aveludada-cenoura-lentilhas-foodi",
+      "title": "Creme Aveludado de Cenoura, Abóbora e Lentilhas Vermelhas (Foodi Power)",
+      "image_url": "meals/sopa-aveludada-cenoura-lentilhas-foodi.webp",
+      "meal_slot": "lunch",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 8,
+      "cook_minutes": 20,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [],
+      "ingredients": [
+        {
+          "canonical_id": "carrot",
+          "name": "Cenouras em rodelas",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "butternut_squash",
+          "name": "Abóbora-menina em cubos",
+          "quantity": 350,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "red_lentils",
+          "name": "Lentilhas vermelhas lavadas",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "yellow_onion",
+          "name": "Cebola picada",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Cozinhe a cenoura, a abóbora, a cebola e as lentilhas em água durante 20 minutos até ficarem bem macias.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Deixe arrefecer 5 minutos, transfira para o jarro Ninja Foodi Power e triture em Velocidade Variável até ficar creme sedoso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Retire a sopa do bebé com um fio de azeite cru antes de salgar a panela dos adultos.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme liso rico em ferro vegetal e betacaroteno.",
+          "serving_note": "Servir morno com fio de azeite.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Creme espesso com tiras de pão macio.",
+          "serving_note": "Ótimo almoço rápido.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Sopa aveludada que não precisa de mastigação intensa.",
+          "serving_note": "Pode juntar ovo cozido picado.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Creme alaranjado suave e doce.",
+          "serving_note": "Apreciado por crianças.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Sopa de legumes com sementes de abóbora para adultos.",
+          "serving_note": "Textura ultra fina graças à Foodi Power.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "pesto-espinafres-ervilhas-massa-foodi",
+      "title": "Massa Espirais com Pesto Cremoso de Espinafres e Ervilhas (Foodi Power)",
+      "image_url": "meals/pesto-espinafres-ervilhas-massa-foodi.webp",
+      "meal_slot": "dinner",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 6,
+      "cook_minutes": 10,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "pasta_penne",
+          "name": "Massa espirais ou penne",
+          "quantity": 300,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Espinafres baby frescos",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "peas",
+          "name": "Ervilhas doces cozidas",
+          "quantity": 150,
+          "unit": "g",
+          "aisle": "Frozen",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego ou requeijão",
+          "quantity": 80,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coza a massa e junte as ervilhas nos últimos 3 minutos de cozedura.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Triture os espinafres, metade das ervilhas cozidas, o iogurte e o azeite na Ninja Foodi Power (programa Spreads/Blend) até obter um pesto verde liso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Envolva a massa do bebé com este pesto sem sal; tempere o resto com sal e parmesão.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Espirais bem cozidas com pesto verde liso e ervilhas restantes sempre esmagadas.",
+          "serving_note": "Zero ervilhas inteiras.",
+          "cut_shape": "smashed-flat"
+        },
+        "9_12m": {
+          "cut_and_texture": "Massa cortada ao meio com molho verde e ervilhas esmagadas.",
+          "serving_note": "Rico em ferro e vitamina C.",
+          "cut_shape": "smashed-flat"
+        },
+        "12_24m": {
+          "cut_and_texture": "Espirais fáceis de espetar com ervilhas esmagadas.",
+          "serving_note": "Cor divertida para crianças.",
+          "cut_shape": "smashed-flat"
+        },
+        "2_4y": {
+          "cut_and_texture": "Massa verde cremosa com ervilhas.",
+          "serving_note": "Pronto em 15 minutos.",
+          "cut_shape": "pincer-dice"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Massa com pesto suave de espinafres.",
+          "serving_note": "Juntar queijo ralado aos adultos.",
+          "cut_shape": "pincer-dice"
+        }
+      }
+    },
+    {
+      "id": "humus-beterraba-tostas-foodi",
+      "title": "Húmus Rosa de Grão e Beterraba com Tostas Macias (Foodi Power)",
+      "image_url": "meals/humus-beterraba-tostas-foodi.webp",
+      "meal_slot": "snack",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 6,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "wheat",
+        "sesame"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "canned_chickpeas",
+          "name": "Grão-de-bico cozido escorrido",
+          "quantity": 260,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "beetroot",
+          "name": "Beterraba cozida em pedaços",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "tahini_sesame",
+          "name": "Pasta de sésamo (tahini)",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "whole_wheat_bread",
+          "name": "Fatias de pão de mistura macio",
+          "quantity": 4,
+          "unit": "pcs",
+          "aisle": "Bakery",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "lemon",
+          "name": "Limão (sumo)",
+          "quantity": 1,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": true
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 2,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coloque o grão, a beterraba cozida, o tahini, o sumo de limão e o azeite no copo da Ninja Foodi Power.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Triture em velocidade alta com 2 colheres de água até obter um húmus cor-de-rosa totalmente liso (sem grãos inteiros).",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva o húmus sem sal ao bebé barrado em tiras de pão.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Tiras de pão levemente tostado barradas com húmus liso (grão 100% triturado).",
+          "serving_note": "Apresenta sésamo e trigo em segurança.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Quadradinhos de pão barrado com húmus rosa.",
+          "serving_note": "Cor natural muito apelativa.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Tirinhas de pão macio para molhar no húmus (totalmente triturado).",
+          "serving_note": "Sem grãos inteiros.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Tostas ou palitos de pepino com húmus rosa.",
+          "serving_note": "Lanche proteico e colorido.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Húmus familiar com pitada de sal e cominhos.",
+          "serving_note": "Dura 3 dias no frigorífico.",
+          "cut_shape": "finger-strip"
+        }
+      }
+    },
+    {
+      "id": "nice-cream-manga-banana-foodi",
+      "title": "Gelado Natural Cremoso de Manga, Banana e Iogurte (Foodi Power)",
+      "image_url": "meals/nice-cream-manga-banana-foodi.webp",
+      "meal_slot": "snack",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 0,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "mango",
+          "name": "Manga madura congelada em cubos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "banana",
+          "name": "Bananas congeladas às rodelas",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego natural sem açúcar",
+          "quantity": 200,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Coloque a manga congelada, a banana e o iogurte grego no copo XL Smoothie Bowl da Ninja Foodi Power.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "Processe no programa Auto-iQ Bowl rodando o tamper até ficar com consistência de gelado cremoso.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 3,
+          "text": "SEPARAÇÃO DE TEMPERO: Sirva imediatamente em tacinhas para o bebé sem açúcares nem coberturas.",
+          "is_seasoning_split_point": true
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Creme fresco suave de fruta à colher (deixar amolecer 5 min se estiver muito frio).",
+          "serving_note": "Zero açúcar adicionado.",
+          "cut_shape": "fork-mash"
+        },
+        "9_12m": {
+          "cut_and_texture": "Gelado natural cremoso à colher.",
+          "serving_note": "Acalma gengivas na dentição.",
+          "cut_shape": "fork-mash"
+        },
+        "12_24m": {
+          "cut_and_texture": "Taça de gelado de fruta saudável.",
+          "serving_note": "Lanche favorito dos dias quentes.",
+          "cut_shape": "fork-mash"
+        },
+        "2_4y": {
+          "cut_and_texture": "Gelado de manga e banana cremoso.",
+          "serving_note": "100% fruta e iogurte.",
+          "cut_shape": "fork-mash"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Gelado natural familiar.",
+          "serving_note": "Pronto em 60 segundos na Foodi Power.",
+          "cut_shape": "fork-mash"
+        }
+      }
+    },
+    {
+      "id": "massa-panquecas-espinafres-banana-foodi",
+      "title": "Panquecas Verdes de Espinafres, Banana e Aveia (Foodi Power)",
+      "image_url": "meals/massa-panquecas-espinafres-banana-foodi.webp",
+      "meal_slot": "breakfast",
+      "appliances": [
+        "ninja-foodi-power"
+      ],
+      "prep_minutes": 5,
+      "cook_minutes": 8,
+      "base_servings": 4,
+      "min_age_months": 6,
+      "allergens": [
+        "egg",
+        "dairy"
+      ],
+      "ingredients": [
+        {
+          "canonical_id": "banana",
+          "name": "Bananas maduras",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "baby_spinach",
+          "name": "Espinafres baby frescos",
+          "quantity": 60,
+          "unit": "g",
+          "aisle": "Produce",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "egg",
+          "name": "Ovos",
+          "quantity": 2,
+          "unit": "pcs",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "rolled_oats",
+          "name": "Flocos de aveia",
+          "quantity": 120,
+          "unit": "g",
+          "aisle": "Pantry",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "greek_yogurt",
+          "name": "Iogurte grego natural",
+          "quantity": 100,
+          "unit": "g",
+          "aisle": "Dairy & Eggs",
+          "is_pantry_staple": false
+        },
+        {
+          "canonical_id": "olive_oil",
+          "name": "Azeite virgem extra",
+          "quantity": 1,
+          "unit": "tbsp",
+          "aisle": "Pantry",
+          "is_pantry_staple": true
+        }
+      ],
+      "steps": [
+        {
+          "order": 1,
+          "text": "Triture todos os ingredientes na Ninja Foodi Power durante 30 segundos até obter uma massa verde lisa e sem grumos.",
+          "is_seasoning_split_point": false
+        },
+        {
+          "order": 2,
+          "text": "SEPARAÇÃO DE TEMPERO: Cozinhe panquecas pequenas sem sal nem açúcar adicionado numa frigideira antiaderente untada com azeite.",
+          "is_seasoning_split_point": true
+        },
+        {
+          "order": 3,
+          "text": "Doure 2 minutos de cada lado em lume brando até ficarem fofas.",
+          "is_seasoning_split_point": false
+        }
+      ],
+      "age_adaptations": {
+        "6_9m": {
+          "cut_and_texture": "Panquecas verdes cortadas em tiras compridas fáceis de agarrar.",
+          "serving_note": "Espinafres totalmente triturados na massa.",
+          "cut_shape": "finger-strip"
+        },
+        "9_12m": {
+          "cut_and_texture": "Tiras ou pedacinhos macios.",
+          "serving_note": "Rico em ferro e fibra.",
+          "cut_shape": "pincer-dice"
+        },
+        "12_24m": {
+          "cut_and_texture": "Minipanquecas verdes fofas inteiras.",
+          "serving_note": "Divertidas para crianças.",
+          "cut_shape": "finger-strip"
+        },
+        "2_4y": {
+          "cut_and_texture": "Panquecas verdes do Hulk.",
+          "serving_note": "Podem congelar-se e aquecer na Crispi Pro XL.",
+          "cut_shape": "finger-strip"
+        },
+        "4y_plus": {
+          "cut_and_texture": "Pilha de panquecas com iogurte.",
+          "serving_note": "Rápido e sem farinhas refinadas.",
+          "cut_shape": "finger-strip"
         }
       }
     }

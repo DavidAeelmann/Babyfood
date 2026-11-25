@@ -9,7 +9,13 @@ import {
   Sprout,
   Sun,
   Utensils,
+  Zap,
 } from 'lucide-react';
+import {
+  APPLIANCE_META,
+  getAppliancePrepTip,
+  getRecipeAppliances,
+} from '../lib/appliances';
 import { DAY_LABELS } from '../lib/constants';
 import {
   formatQuantity,
@@ -159,6 +165,39 @@ export function CookView({
           <PlayCircle className="h-4 w-4 text-[#90CFA9]" />
           Modo Mãos Livres (Temporizadores &amp; Voz)
         </button>
+
+        {/* Ninja Foodi Power / Crispi Pro XL Prep Card */}
+        {getRecipeAppliances(recipe).length > 0 && (
+          <div
+            data-testid="cook-appliance-tips"
+            className="rounded-2xl border border-[#DCE6DF] bg-[#F5F9F6] p-3.5 space-y-2"
+          >
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="inline-flex items-center gap-1 text-xs font-extrabold text-[#2F6F4E]">
+                <Zap className="h-3.5 w-3.5" />
+                Preparação Ninja:
+              </span>
+              {getRecipeAppliances(recipe).map((appId) => (
+                <span
+                  key={appId}
+                  className="rounded-full bg-white px-2.5 py-0.5 text-[11px] font-bold text-[#1C2420] border border-[#CFE3D6]"
+                >
+                  {APPLIANCE_META[appId].label}
+                </span>
+              ))}
+            </div>
+            <div className="space-y-1.5">
+              {getRecipeAppliances(recipe).map((appId) => (
+                <p key={appId} className="text-xs leading-relaxed text-[#425048]">
+                  <span className="font-bold text-[#1C2420]">
+                    {APPLIANCE_META[appId].shortLabel}:{' '}
+                  </span>
+                  {getAppliancePrepTip(recipe, appId)}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* New First Foods Pill & One-Tap Mark Meal Tried */}
         {showBabyNewFoods && (

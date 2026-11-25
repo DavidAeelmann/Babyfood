@@ -136,12 +136,20 @@ async function main() {
   if (brokenPickerImgs.length > 0) {
     throw new Error(`Broken images in Meal Picker Modal: ${brokenPickerImgs.join(', ')}`);
   }
+  await page.click('[data-testid="picker-filter-ninja-crispi-pro-xl"]');
+  const crispiMatches = await page.locator('[data-testid^="picker-option-"]').count();
+  await page.click('[data-testid="picker-filter-ninja-foodi-power"]');
+  const foodiMatches = await page.locator('[data-testid^="picker-option-"]').count();
+  if (crispiMatches === 0 || foodiMatches === 0) {
+    throw new Error(`Expected Ninja appliance filters to match recipes (crispi=${crispiMatches}, foodi=${foodiMatches})`);
+  }
+  await page.click('[data-testid="picker-filter-all"]');
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_meal_picker_390x844.png'),
     fullPage: false,
   });
   await page.click('[data-testid="close-meal-picker-btn"]');
-  console.log('✓ Meal Picker (+) hides blocked items & shows medium meal photos');
+  console.log(`✓ Meal Picker (+) hides blocked items, filters Ninja appliances (${crispiMatches} Crispi / ${foodiMatches} Foodi) & shows photos`);
 
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_week_grid_390x844.png'),

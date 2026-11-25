@@ -52,7 +52,7 @@ export const weekGenerationJsonSchema = {
     recipes: {
       type: 'array',
       minItems: 16,
-      maxItems: 120,
+      maxItems: 140,
       items: {
         type: 'object',
         additionalProperties: false,
@@ -75,6 +75,10 @@ export const weekGenerationJsonSchema = {
           title: { type: 'string' },
           image_url: { type: 'string' },
           meal_slot: { type: 'string', enum: [...MEAL_SLOTS] },
+          appliances: {
+            type: 'array',
+            items: { type: 'string', enum: ['ninja-foodi-power', 'ninja-crispi-pro-xl'] },
+          },
           prep_minutes: { type: 'number' },
           cook_minutes: { type: 'number' },
           base_servings: { type: 'number' },

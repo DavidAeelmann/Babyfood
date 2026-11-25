@@ -31,6 +31,8 @@ export type CutShape =
 
 export type MealSlotType = 'breakfast' | 'lunch' | 'snack' | 'dinner';
 
+export type ApplianceId = 'ninja-foodi-power' | 'ninja-crispi-pro-xl';
+
 export type EnabledSlots = Record<MealSlotType, boolean>;
 
 export interface Ingredient {
@@ -59,6 +61,7 @@ export interface Recipe {
   title: string;
   image_url: string;
   meal_slot?: MealSlotType;
+  appliances?: ApplianceId[];
   prep_minutes: number;
   cook_minutes: number;
   base_servings: number;

@@ -36,6 +36,7 @@ export function buildWeeklyPrompt(
     `8. Every recipe must have exactly ONE step with is_seasoning_split_point: true, occurring BEFORE any salt or high-sodium sauce is added.`,
     `9. Every recipe must set meal_slot (dinner, lunch, breakfast, or snack) and provide age_adaptations for all 5 brackets (6_9m, 9_12m, 12_24m, 2_4y, 4y_plus) with an explicit cut_shape (finger-strip, pincer-dice, quartered-lengthwise, smashed-flat, flaked-fine, or fork-mash). Keep step and adaptation notes crisp (<= 18 words each).`,
     `10. Any round choking hazard (cherry tomatoes / tomate cherry, chickpeas / grão-de-bico, grapes / uvas, blueberries / mirtilos, peas / ervilhas, corn kernels / milho) MUST include explicit PT-PT safe prep instructions (em quartos, esmagados, achatados, triturados) in 6_9m, 9_12m, and 12_24m.`,
+    `11. HOUSEHOLD APPLIANCES: The family owns a Ninja Foodi Power (blender, food processor, smoothie bowl maker) and a Ninja Crispi Pro XL (PFAS-free 5.7L/2.3L glass air fryer with Air Fry, Roast, Bake, Max Crisp). Include several meals/snacks that take advantage of these appliances and tag optional appliances: ["ninja-foodi-power"] and/or ["ninja-crispi-pro-xl"] where applicable.`,
   ];
 
   if (preferences) {
