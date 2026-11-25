@@ -84,7 +84,7 @@ async function callGemini(prompt: string): Promise<WeekData> {
     throw new Error('GEMINI_API_KEY / API_KEY is not set. Add it to your environment or repository secrets.');
   }
 
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+  const model = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
   const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   const res = await fetch(endpoint, {
