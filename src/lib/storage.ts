@@ -24,6 +24,7 @@ export interface PersistedState {
   hidePantryStaples: boolean;
   customItems: CustomGroceryItem[];
   prepChecked: Record<string, Record<string, boolean>>;
+  stepsChecked: Record<string, Record<number, boolean>>;
   triedFoods: Record<string, TriedFoodEntry>;
   customFirstFoods: CustomFirstFood[];
   favoriteIds: string[];
@@ -55,6 +56,7 @@ export function getDefaultPersistedState(): PersistedState {
     hidePantryStaples: false,
     customItems: [],
     prepChecked: {},
+    stepsChecked: {},
     triedFoods: {},
     customFirstFoods: [],
     favoriteIds: [],
@@ -107,6 +109,10 @@ export function loadPersistedState(): PersistedState {
       prepChecked:
         parsed.prepChecked && typeof parsed.prepChecked === 'object'
           ? parsed.prepChecked
+          : {},
+      stepsChecked:
+        parsed.stepsChecked && typeof parsed.stepsChecked === 'object'
+          ? parsed.stepsChecked
           : {},
       triedFoods:
         parsed.triedFoods && typeof parsed.triedFoods === 'object'

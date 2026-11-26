@@ -12,6 +12,7 @@ import {
   Volume2,
   X,
 } from 'lucide-react';
+import { formatStepText } from '../lib/formatters';
 import {
   formatCountdown,
   parseStepTimers,
@@ -337,7 +338,7 @@ export function HandsFreeCookModal({ recipe, onClose }: HandsFreeCookModalProps)
           data-testid="hands-free-step-text"
           className="text-2xl font-bold leading-snug tracking-tight text-white sm:text-3xl"
         >
-          {currentStep.text}
+          {formatStepText(currentStep)}
         </p>
 
         {/* Inline Countdown Timers */}

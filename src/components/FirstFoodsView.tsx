@@ -202,32 +202,32 @@ export function FirstFoodsView({
 
   return (
     <section className="mx-auto max-w-md px-4 pt-4 pb-24">
-      {/* Progress Card */}
-      <div className="mb-4 rounded-2xl border border-[#CFE3D6] bg-[#E8F2EC]/70 p-4">
+      {/* Progress Card (relocated from global header) */}
+      <div className="mb-4 rounded-2xl bg-[#E8F2EC]/75 p-4 shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#2F6F4E] text-white">
               <Sprout className="h-5 w-5" />
             </span>
             <div>
-              <h2 className="text-base font-bold text-[#1C2420]">
-                100 Primeiros Alimentos &amp; Alergénios
+              <h2 className="text-base font-extrabold text-[#1C2420]">
+                100 Primeiros Alimentos
               </h2>
-              <p className="text-xs text-[#44594E]">
-                Registo de introdução alimentar
+              <p
+                data-testid="first-foods-progress"
+                className="tabular-nums text-xs font-bold text-[#2F6F4E]"
+              >
+                Alimentos: {triedCount}/{totalCount} · Alergénios: {triedAllergensCount}/9
               </p>
             </div>
           </div>
 
-          <span
-            data-testid="first-foods-progress"
-            className="tabular-nums shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#2F6F4E]"
-          >
-            {triedCount}/{totalCount} provados
+          <span className="tabular-nums shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#2F6F4E]">
+            {progressPct}%
           </span>
         </div>
 
-        <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/80">
+        <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/85">
           <div
             className="h-full rounded-full bg-[#2F6F4E] transition-all duration-300"
             style={{ width: `${progressPct}%` }}
@@ -235,7 +235,7 @@ export function FirstFoodsView({
         </div>
 
         {/* Top-9 Allergen 3-Day Exposure Tracker */}
-        <div className="mt-3 rounded-xl bg-white/85 p-2.5">
+        <div className="mt-3 rounded-xl bg-white/90 p-3">
           <div className="mb-1.5 flex items-center justify-between">
             <span className="text-[11px] font-bold uppercase tracking-wider text-[#1C2420]">
               9 Principais Alergénios ({triedAllergensCount}/9)
@@ -244,7 +244,7 @@ export function FirstFoodsView({
               Objetivo: 3 exposições
             </span>
           </div>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap gap-1.5">
             {TOP_9_ALLERGENS.map((allergen) => {
               const count = allergenExposures[allergen];
               return (
@@ -268,7 +268,7 @@ export function FirstFoodsView({
           {followUpAllergens.length > 0 && (
             <p
               data-testid="allergen-followup-reminder"
-              className="mt-2 rounded-lg bg-[#FDF0EB] px-2.5 py-1.5 text-[11px] font-semibold text-[#B84C27]"
+              className="mt-2 rounded-xl bg-[#FDF0EB] px-3 py-1.5 text-[11px] font-semibold text-[#B84C27]"
             >
               Repetição recomendada (2.ª/3.ª dose):{' '}
               {followUpAllergens
@@ -278,7 +278,7 @@ export function FirstFoodsView({
           )}
         </div>
 
-        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
           {untriedInPlanCount > 0 ? (
             <p className="flex items-center gap-1.5 text-xs font-medium text-[#2F6F4E]">
               <Sparkles className="h-3.5 w-3.5 shrink-0" />
@@ -294,7 +294,7 @@ export function FirstFoodsView({
             type="button"
             data-testid="export-first-foods-btn"
             onClick={handleExportSummary}
-            className="inline-flex items-center gap-1 rounded-xl bg-white px-2.5 py-1.5 text-[11px] font-bold text-[#2F6F4E] shadow-xs hover:bg-[#FAF8F5]"
+            className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-[#2F6F4E] shadow-[0_1px_4px_rgba(0,0,0,0.05)] hover:bg-[#FAF8F5]"
           >
             {exportedReport ? (
               <>
@@ -315,7 +315,7 @@ export function FirstFoodsView({
       <div className="no-scrollbar mb-3 flex items-center gap-1.5 overflow-x-auto pb-1">
         {(
           [
-            { key: 'all', label: 'Todos (100)' },
+            { key: 'all', label: `Todos (${totalCount})` },
             { key: 'to_try', label: 'Por Provar' },
             { key: 'in_plan', label: `Na Ementa (${untriedInPlanCount})` },
             { key: 'tried', label: 'Provados' },
@@ -332,7 +332,7 @@ export function FirstFoodsView({
               className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
                 active
                   ? 'bg-[#1C2420] text-white'
-                  : 'border border-[#E0DAD0] bg-white text-[#5C6862] hover:bg-[#F2EFE9]'
+                  : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
               }`}
             >
               {tab.label}
@@ -344,13 +344,13 @@ export function FirstFoodsView({
       {/* Add Custom Food */}
       <form
         onSubmit={handleSubmit}
-        className="mb-4 flex items-center gap-1.5 rounded-2xl border border-[#E7E2D8] bg-white p-2 shadow-xs"
+        className="mb-4 flex items-center gap-1.5 rounded-2xl bg-white p-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
       >
         <input
           type="text"
           value={customName}
           onChange={(e) => setCustomName(e.target.value)}
-          placeholder="Adicionar alimento (ex. Chuchu)"
+          placeholder="Adicionar alimento…"
           aria-label="Nome do alimento personalizado"
           className="min-h-[40px] min-w-0 flex-1 rounded-xl bg-[#FAF8F5] px-3 text-sm text-[#1C2420] placeholder:text-[#8A948E] focus:outline-2 focus:outline-[#2F6F4E]"
         />
@@ -358,7 +358,7 @@ export function FirstFoodsView({
           value={customCategory}
           onChange={(e) => setCustomCategory(e.target.value as FirstFoodCategory)}
           aria-label="Categoria do alimento personalizado"
-          className="min-h-[40px] rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
+          className="min-h-[40px] max-w-[126px] truncate rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
         >
           {FIRST_FOOD_CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>
@@ -377,17 +377,17 @@ export function FirstFoodsView({
 
       {/* Category Lists */}
       {categoriesWithItems.length === 0 ? (
-        <div className="rounded-2xl border border-[#E7E2D8] bg-white p-6 text-center text-xs text-[#5C6862]">
+        <div className="rounded-2xl bg-white p-6 text-center text-xs text-[#5C6862] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
           Ainda não existem alimentos para este filtro.
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="flex flex-col gap-3">
           {categoriesWithItems.map(({ category, catalogItems, customItems }) => (
             <div
               key={category}
-              className="overflow-hidden rounded-2xl border border-[#E7E2D8] bg-white shadow-xs"
+              className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
             >
-              <div className="flex items-center justify-between border-b border-[#F2EFE9] bg-[#FAF8F5] px-3.5 py-2">
+              <div className="flex items-center justify-between bg-[#FAF8F5]/65 px-4 py-2.5">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C6862]">
                   {FIRST_FOOD_CATEGORY_LABELS[category]}
                 </h3>
@@ -396,7 +396,7 @@ export function FirstFoodsView({
                 </span>
               </div>
 
-              <ul className="divide-y divide-[#F2EFE9]">
+              <ul className="divide-y divide-[#F2EFE9]/80">
                 {catalogItems.map((food) => {
                   const entry = triedFoods[food.id];
                   const isTried = Boolean(entry);

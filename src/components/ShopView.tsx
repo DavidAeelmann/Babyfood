@@ -78,11 +78,11 @@ export function ShopView({
   };
 
   return (
-    <section className="mx-auto max-w-md px-4 pt-4 pb-24">
+    <section className="mx-auto max-w-md px-4 pt-3 pb-24">
       <div className="mb-3 space-y-2.5">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
+            <h2 className="text-xl font-extrabold tracking-tight text-[#1C2420]">
               Lista de Compras
             </h2>
             <p className="tabular-nums text-xs text-[#5C6862]">
@@ -94,22 +94,22 @@ export function ShopView({
             type="button"
             data-testid="shop-share-btn"
             onClick={onOpenShare}
-            className="inline-flex min-h-[38px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white shadow-xs hover:bg-[#25593E]"
+            className="inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-[#2F6F4E] px-3.5 text-xs font-bold text-white shadow-[0_2px_8px_rgba(47,111,78,0.22)] hover:bg-[#25593E]"
           >
             <Share2 className="h-3.5 w-3.5" />
-            <span>Partilhar com Parceiro</span>
+            <span>Partilhar</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             data-testid="toggle-pantry-btn"
             onClick={() => onSetHidePantry(!hidePantryStaples)}
-            className={`inline-flex min-h-[34px] items-center gap-1.5 whitespace-nowrap rounded-xl border px-2.5 text-xs font-semibold transition-colors ${
+            className={`inline-flex h-8 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-xs font-semibold transition-colors ${
               hidePantryStaples
-                ? 'border-[#2F6F4E] bg-[#E8F2EC] text-[#2F6F4E]'
-                : 'border-[#E0DAD0] bg-white text-[#5C6862]'
+                ? 'bg-[#E8F2EC] text-[#2F6F4E]'
+                : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
             }`}
           >
             {hidePantryStaples ? (
@@ -126,7 +126,7 @@ export function ShopView({
             <button
               type="button"
               onClick={onClearChecked}
-              className="min-h-[34px] whitespace-nowrap rounded-xl border border-[#E0DAD0] bg-white px-2.5 text-xs font-semibold text-[#5C6862] hover:bg-[#F2EFE9]"
+              className="h-8 whitespace-nowrap rounded-full bg-[#F2EFE9] px-3 text-xs font-semibold text-[#5C6862] hover:bg-[#E7E2D8]"
             >
               Desmarcar ({checkedCount})
             </button>
@@ -137,13 +137,13 @@ export function ShopView({
       {/* Add custom item form */}
       <form
         onSubmit={handleSubmit}
-        className="mb-4 flex items-center gap-1.5 rounded-2xl border border-[#E7E2D8] bg-white p-2 shadow-xs"
+        className="mb-3 flex items-center gap-1.5 rounded-2xl bg-white p-2.5 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
       >
         <input
           type="text"
           value={customName}
           onChange={(e) => setCustomName(e.target.value)}
-          placeholder="Adicionar artigo (ex. Bananas)"
+          placeholder="Adicionar artigo…"
           aria-label="Nome do artigo personalizado"
           className="min-h-[40px] min-w-0 flex-1 rounded-xl bg-[#FAF8F5] px-3 text-sm text-[#1C2420] placeholder:text-[#8A948E] focus:outline-2 focus:outline-[#2F6F4E]"
         />
@@ -151,7 +151,7 @@ export function ShopView({
           value={customAisle}
           onChange={(e) => setCustomAisle(e.target.value as Aisle)}
           aria-label="Corredor do artigo"
-          className="min-h-[40px] rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
+          className="min-h-[40px] max-w-[136px] truncate rounded-xl bg-[#FAF8F5] px-2 text-xs font-semibold text-[#5C6862] focus:outline-2 focus:outline-[#2F6F4E]"
         >
           {AISLE_ORDER.map((aisle) => (
             <option key={aisle} value={aisle}>
@@ -169,13 +169,13 @@ export function ShopView({
       </form>
 
       {/* Aisle groups */}
-      <div className="space-y-4">
+      <div className="flex flex-col gap-3">
         {aisleGroups.map(({ aisle, recipeItems, aisleCustom }) => (
           <div
             key={aisle}
-            className="overflow-hidden rounded-2xl border border-[#E7E2D8] bg-white shadow-xs"
+            className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
           >
-            <div className="flex items-center justify-between border-b border-[#F2EFE9] bg-[#FAF8F5] px-3.5 py-2">
+            <div className="flex items-center justify-between bg-[#FAF8F5]/65 px-4 py-2.5">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#5C6862]">
                 {AISLE_LABELS[aisle]}
               </h3>
@@ -184,7 +184,7 @@ export function ShopView({
               </span>
             </div>
 
-            <ul className="divide-y divide-[#F2EFE9]">
+            <ul className="divide-y divide-[#F2EFE9]/80">
               {recipeItems.map((item) => {
                 const checked = Boolean(checkedGroceries[item.key]);
                 return (
@@ -193,13 +193,15 @@ export function ShopView({
                       type="button"
                       onClick={() => onToggleItem(item.key)}
                       aria-pressed={checked}
-                      className="flex min-h-[48px] w-full items-center gap-3 px-3.5 py-2.5 text-left transition-colors hover:bg-[#FAF8F5]"
+                      className={`flex min-h-[48px] w-full items-center gap-3 px-4 py-2.5 text-left transition-all hover:bg-[#FAF8F5] ${
+                        checked ? 'opacity-55' : ''
+                      }`}
                     >
                       <span
-                        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border-2 transition-colors ${
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors ${
                           checked
-                            ? 'border-[#2F6F4E] bg-[#2F6F4E] text-white'
-                            : 'border-[#C7C0B4] bg-white'
+                            ? 'bg-[#2F6F4E] text-white'
+                            : 'bg-[#F2EFE9] ring-1 ring-[#D6CFC2]'
                         }`}
                       >
                         {checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
@@ -217,7 +219,7 @@ export function ShopView({
                             {item.name}
                           </span>
                           {item.is_pantry_staple && (
-                            <span className="shrink-0 rounded bg-[#F2EFE9] px-1.5 py-0.5 text-[10px] font-medium text-[#5C6862]">
+                            <span className="shrink-0 rounded-full bg-[#F2EFE9] px-2 py-0.5 text-[10px] font-medium text-[#5C6862]">
                               Despensa
                             </span>
                           )}
@@ -229,7 +231,7 @@ export function ShopView({
 
                       <span
                         data-testid={`grocery-qty-${item.canonical_id}`}
-                        className={`tabular-nums shrink-0 rounded-lg px-2 py-1 text-xs font-bold ${
+                        className={`tabular-nums shrink-0 rounded-full px-2.5 py-0.5 text-xs font-bold ${
                           checked
                             ? 'bg-[#F2EFE9] text-[#8A948E] line-through'
                             : 'bg-[#E8F2EC] text-[#2F6F4E]'
@@ -243,18 +245,21 @@ export function ShopView({
               })}
 
               {aisleCustom.map((item) => (
-                <li key={item.id} className="flex min-h-[48px] items-center">
+                <li
+                  key={item.id}
+                  className={`flex min-h-[48px] items-center ${item.checked ? 'opacity-55' : ''}`}
+                >
                   <button
                     type="button"
                     onClick={() => onToggleCustomItem(item.id)}
                     aria-pressed={item.checked}
-                    className="flex min-h-[48px] flex-1 items-center gap-3 px-3.5 py-2.5 text-left hover:bg-[#FAF8F5]"
+                    className="flex min-h-[48px] flex-1 items-center gap-3 px-4 py-2.5 text-left hover:bg-[#FAF8F5]"
                   >
                     <span
-                      className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border-2 transition-colors ${
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md transition-colors ${
                         item.checked
-                          ? 'border-[#2F6F4E] bg-[#2F6F4E] text-white'
-                          : 'border-[#C7C0B4] bg-white'
+                          ? 'bg-[#2F6F4E] text-white'
+                          : 'bg-[#F2EFE9] ring-1 ring-[#D6CFC2]'
                       }`}
                     >
                       {item.checked && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
@@ -266,7 +271,7 @@ export function ShopView({
                     >
                       {item.name}
                     </span>
-                    <span className="rounded bg-[#FDF0EB] px-1.5 py-0.5 text-[10px] font-medium text-[#B84C27]">
+                    <span className="rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[10px] font-medium text-[#B84C27]">
                       Extra
                     </span>
                   </button>
@@ -274,7 +279,7 @@ export function ShopView({
                     type="button"
                     onClick={() => onRemoveCustomItem(item.id)}
                     aria-label={`Remover ${item.name}`}
-                    className="mr-2 flex h-9 w-9 items-center justify-center rounded-lg text-[#8A948E] hover:bg-[#F2EFE9] hover:text-[#B84C27]"
+                    className="mr-2 flex h-9 w-9 items-center justify-center rounded-xl text-[#8A948E] hover:bg-[#F2EFE9] hover:text-[#B84C27]"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>

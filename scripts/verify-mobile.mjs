@@ -54,6 +54,7 @@ async function main() {
   await page.click('[data-testid="slot-toggle-breakfast"]');
   await page.click('[data-testid="slot-toggle-lunch"]');
   await page.click('[data-testid="slot-toggle-snack"]');
+  await page.click('[data-testid="meal-slots-toggle-bar"]');
   await page.waitForSelector('[data-testid="week-slot-0-breakfast"]');
   await page.waitForSelector('[data-testid="week-slot-0-lunch"]');
   await page.waitForSelector('[data-testid="week-slot-0-snack"]');
@@ -70,7 +71,7 @@ async function main() {
   await page.click('[data-testid="lock-day-btn-0"]'); // unlock
   console.log('✓ Lock Day protects all 4 slots (breakfast, lunch, snack, dinner)');
 
-  // Confirm Favorite button was removed from Weekly Plan view and replaced with +
+  // Confirm Favorite button was removed from Weekly Plan view
   const favInPlanCount = await page.locator('[data-testid^="fav-btn-"]').count();
   if (favInPlanCount !== 0) {
     throw new Error(`Expected 0 favorite buttons in Weekly Plan view, found ${favInPlanCount}`);
@@ -97,11 +98,13 @@ async function main() {
     throw new Error(`Expected >= 28 meal thumbnails in WeekGridView, found ${gridThumbCount}`);
   }
 
-  // Block Day 0 snack, and verify + picker opens with medium images & excludes blocked
+  // Block Day 0 snack via overflow menu, and verify Picker opens with medium images & excludes blocked
   const blockedSnackTitle = await page.textContent(
     '[data-testid="week-slot-title-0-snack"]',
   );
+  await page.click('[data-testid="menu-btn-0-snack"]');
   await page.click('[data-testid="block-btn-0-snack"]');
+  await page.click('[data-testid="menu-btn-0-snack"]');
   await page.click('[data-testid="choose-btn-0-snack"]');
   await page.waitForSelector('[data-testid="meal-picker-modal"]');
   await assertNoOverflow(page, 'Meal Picker Modal');
@@ -169,16 +172,20 @@ async function main() {
     fullPage: false,
   });
 
-  // 2. Shop View: toggling 6_9m vs 2_4y, check item, and Share with Partner QR modal
+  // 2. Shop View: toggling 6_9m vs 2_4y via Household Bottom Sheet, check item, and Share with Partner QR modal
   await page.click('[data-testid="tab-shop"]');
   await page.waitForSelector('[data-testid="grocery-row-sweet_potato"]');
   await assertNoOverflow(page, 'Shop View');
 
   const qtyBoth = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
+  await page.click('[data-testid="household-sheet-trigger"]');
   await page.click('[data-testid="bracket-pill-2_4y"]');
+  await page.click('[data-testid="close-household-sheet-btn"]');
   const qtyBabyOnly = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
+  await page.click('[data-testid="household-sheet-trigger"]');
   await page.click('[data-testid="bracket-pill-6_9m"]');
   await page.click('[data-testid="bracket-pill-2_4y"]');
+  await page.click('[data-testid="close-household-sheet-btn"]');
   const qtyToddlerOnly = await page.textContent('[data-testid="grocery-qty-sweet_potato"]');
   console.log(`✓ Sweet potato scaled quantities: both=${qtyBoth}, 6_9m=${qtyBabyOnly}, 2_4y=${qtyToddlerOnly}`);
   if (qtyBabyOnly === qtyToddlerOnly) {
@@ -234,7 +241,9 @@ async function main() {
   await assertNoOverflow(page, 'Cook View');
 
   // Toggle 6_9m back on so both brackets + SVG cut diagrams show
+  await page.click('[data-testid="household-sheet-trigger"]');
   await page.click('[data-testid="bracket-pill-6_9m"]');
+  await page.click('[data-testid="close-household-sheet-btn"]');
   await page.waitForSelector('[data-testid="child-prep-bracket-6_9m"]');
   await page.waitForSelector('[data-testid="child-prep-bracket-2_4y"]');
   const svgCount = await page.locator('[data-testid^="cut-shape-svg-"] svg').count();
@@ -243,14 +252,18 @@ async function main() {
   }
   console.log(`✓ Inline SVG Cut-Shape Diagrams rendered (${svgCount} diagrams)`);
 
-  // Verify one-tap Mark Tried updates HouseholdBar Foods: X/100 · Allergens: Y/9 badge
-  const badgeBefore = await page.textContent('[data-testid="household-first-foods-badge"]');
+  // Verify one-tap Mark Tried updates Alimentos tab progress header
+  await page.click('[data-testid="tab-intro"]');
+  const badgeBefore = await page.textContent('[data-testid="first-foods-progress"]');
+  await page.click('[data-testid="tab-cook"]');
   await page.click('[data-testid="mark-meal-foods-tried-btn"]');
-  const badgeAfter = await page.textContent('[data-testid="household-first-foods-badge"]');
+  await page.click('[data-testid="tab-intro"]');
+  const badgeAfter = await page.textContent('[data-testid="first-foods-progress"]');
   if (badgeBefore === badgeAfter) {
-    throw new Error('Expected HouseholdBar Foods/Allergens badge to update after Mark Tried');
+    throw new Error('Expected Alimentos progress header to update after Mark Tried');
   }
-  console.log(`✓ HouseholdBar progress badge updated: "${badgeBefore?.trim()}" -> "${badgeAfter?.trim()}"`);
+  console.log(`✓ Alimentos progress header updated: "${badgeBefore?.trim()}" -> "${badgeAfter?.trim()}"`);
+  await page.click('[data-testid="tab-cook"]');
 
   // Verify Favorite button in Cook View & that Favorites sort to top of + Meal Picker
   await page.click('[data-testid="cook-favorite-btn"]');
@@ -293,19 +306,17 @@ async function main() {
   await page.waitForSelector('[data-testid="hands-free-split-banner"]');
   await page.click('[data-testid="close-hands-free-btn"]');
 
-  // 4. Verify First Foods Modal from HouseholdBar badge + Allergen Follow-Up Reminder & Export
-  await page.click('[data-testid="household-first-foods-badge"]');
-  await page.waitForSelector('[data-testid="first-foods-modal"]');
+  // 4. Verify First Foods Tab (Alimentos) + Allergen Follow-Up Reminder & Export
+  await page.click('[data-testid="tab-intro"]');
   await page.waitForSelector('[data-testid="allergen-exposure-sesame"]');
   await page.waitForSelector('[data-testid="allergen-followup-reminder"]');
   await page.waitForSelector('[data-testid="export-first-foods-btn"]');
-  await assertNoOverflow(page, 'First Foods Modal (100 Foods & Top-9 Allergens)');
+  await assertNoOverflow(page, 'First Foods Tab (100 Foods & Top-9 Allergens)');
   await page.screenshot({
     path: resolve(ARTIFACT_DIR, 'mobile_first_foods_390x844.png'),
     fullPage: false,
   });
-  await page.click('[data-testid="close-first-foods-modal"]');
-  console.log('✓ First Foods Modal allergen follow-up reminder & export verified');
+  console.log('✓ First Foods Tab allergen follow-up reminder & export verified');
 
   // 5. Verify Preferences Modal (Favoritas & Bloqueadas + Unblock), Picker Search/Filters/Custom Recipe
   await page.click('[data-testid="tab-plan"]');
@@ -320,6 +331,7 @@ async function main() {
   await page.click('[data-testid="close-preferences-modal"]');
   console.log('✓ Preferences Modal unblocked snack & displayed favorites');
 
+  await page.click('[data-testid="menu-btn-0-lunch"]');
   await page.click('[data-testid="choose-btn-0-lunch"]');
   await page.waitForSelector('[data-testid="meal-picker-modal"]');
   const firstPickerId = await page.getAttribute(

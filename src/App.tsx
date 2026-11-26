@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { CheckCircle2, X } from 'lucide-react';
 import { BottomNav, type TabKey } from './components/BottomNav';
 import { CookView } from './components/CookView';
-import { FirstFoodsModal } from './components/FirstFoodsModal';
 import { FirstFoodsView } from './components/FirstFoodsView';
 import { HouseholdBar } from './components/HouseholdBar';
 import { MealPickerModal } from './components/MealPickerModal';
@@ -11,11 +10,6 @@ import { PreferencesModal } from './components/PreferencesModal';
 import { ShareModal } from './components/ShareModal';
 import { ShopView } from './components/ShopView';
 import { useMealPlanner } from './hooks/useMealPlanner';
-import {
-  FIRST_FOODS_CATALOG,
-  TOP_9_ALLERGENS,
-  getTriedAllergenExposures,
-} from './lib/firstFoods';
 import { buildShareUrl } from './lib/shareSync';
 import type { MealSlotType } from './types/recipe';
 
@@ -35,7 +29,6 @@ export function App() {
     activeSlotRecipes,
     groceryItems,
     recipeMap,
-    totalCatalogFoodsCount,
     setAdults,
     toggleBracket,
     toggleAllergen,
@@ -59,6 +52,7 @@ export function App() {
     toggleCustomItem,
     removeCustomItem,
     togglePrepIngredient,
+    toggleCookStep,
     getUntriedFoodsInRecipe,
     toggleFirstFood,
     incrementFoodExposure,
@@ -71,7 +65,6 @@ export function App() {
   const [activeTab, setActiveTab] = useState<TabKey>('plan');
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null);
   const [shareModalOpen, setShareModalOpen] = useState(false);
-  const [firstFoodsModalOpen, setFirstFoodsModalOpen] = useState(false);
   const [preferencesModalOpen, setPreferencesModalOpen] = useState(false);
   const [pickerTarget, setPickerTarget] = useState<{
     dayIndex: number;
@@ -109,29 +102,6 @@ export function App() {
     state.checkedGroceries,
     state.customItems,
   ]);
-
-  const untriedInPlanCount = useMemo(() => {
-    const activeCanonical = new Set(
-      activeSlotRecipes.flatMap((r) => r.ingredients.map((i) => i.canonical_id)),
-    );
-    return FIRST_FOODS_CATALOG.filter(
-      (food) =>
-        !state.triedFoods[food.id] &&
-        food.canonicalIds.some((cid) => activeCanonical.has(cid)),
-    ).length;
-  }, [activeSlotRecipes, state.triedFoods]);
-
-  const triedFoodsCount = useMemo(() => {
-    return (
-      FIRST_FOODS_CATALOG.filter((f) => Boolean(state.triedFoods[f.id])).length +
-      state.customFirstFoods.filter((c) => Boolean(state.triedFoods[c.id])).length
-    );
-  }, [state.triedFoods, state.customFirstFoods]);
-
-  const triedAllergensCount = useMemo(() => {
-    const exposures = getTriedAllergenExposures(state.triedFoods);
-    return TOP_9_ALLERGENS.filter((a) => exposures[a] > 0).length;
-  }, [state.triedFoods]);
 
   const shareUrl = useMemo(() => {
     if (!shareModalOpen || !weekData || typeof window === 'undefined') return '';
@@ -184,7 +154,7 @@ export function App() {
   if (error || !weekData) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#FAF8F5] px-4">
-        <div className="max-w-sm rounded-2xl border border-[#E7E2D8] bg-white p-5 text-center shadow-xs">
+        <div className="max-w-sm rounded-2xl bg-white p-5 text-center shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
           <h1 className="text-base font-bold text-[#1C2420]">
             Não foi possível carregar a ementa
           </h1>
@@ -201,10 +171,6 @@ export function App() {
       <HouseholdBar
         household={state.household}
         weekId={weekData.week_id}
-        triedFoodsCount={triedFoodsCount}
-        totalFoodsCount={totalCatalogFoodsCount}
-        triedAllergensCount={triedAllergensCount}
-        onOpenFirstFoods={() => setFirstFoodsModalOpen(true)}
         onSetAdults={setAdults}
         onToggleBracket={toggleBracket}
         onToggleAllergen={toggleAllergen}
@@ -215,7 +181,7 @@ export function App() {
           data-testid="sync-notice-banner"
           className="mx-auto mt-2 max-w-md px-4"
         >
-          <div className="flex items-center justify-between gap-2 rounded-xl border border-[#CFE3D6] bg-[#E8F2EC] px-3 py-2 text-xs font-semibold text-[#2F6F4E]">
+          <div className="flex items-center justify-between gap-2 rounded-2xl bg-[#E8F2EC] px-3.5 py-2.5 text-xs font-semibold text-[#2F6F4E]">
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 shrink-0" />
               {syncNotice}
@@ -224,7 +190,7 @@ export function App() {
               type="button"
               onClick={dismissSyncNotice}
               aria-label="Fechar aviso de sincronização"
-              className="rounded-md p-1 hover:bg-white/60"
+              className="rounded-lg p-1 hover:bg-white/60"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -285,12 +251,16 @@ export function App() {
             plannedRecipes={plannedRecipes}
             household={state.household}
             prepChecked={state.prepChecked[activeCookRecipe.id] ?? {}}
+            stepsChecked={state.stepsChecked[activeCookRecipe.id] ?? {}}
             untriedFoods={getUntriedFoodsInRecipe(activeCookRecipe)}
             isFavorite={state.favoriteIds.includes(activeCookRecipe.id)}
             onToggleFavorite={toggleFavorite}
             onSelectRecipe={setSelectedRecipeId}
             onTogglePrepIngredient={(cid) =>
               togglePrepIngredient(activeCookRecipe.id, cid)
+            }
+            onToggleCookStep={(stepOrder) =>
+              toggleCookStep(activeCookRecipe.id, stepOrder)
             }
             onMarkMealFoodsTried={markRecipeFoodsTried}
             onBackToPlan={() => handleSelectTab('plan')}
@@ -316,7 +286,6 @@ export function App() {
         activeTab={activeTab}
         onSelectTab={handleSelectTab}
         remainingShopCount={remainingShopCount}
-        untriedInPlanCount={untriedInPlanCount}
       />
 
       {pickerTarget && (
@@ -355,21 +324,6 @@ export function App() {
         <ShareModal
           shareUrl={shareUrl}
           onClose={() => setShareModalOpen(false)}
-        />
-      )}
-
-      {firstFoodsModalOpen && (
-        <FirstFoodsModal
-          plannedRecipes={activeSlotRecipes}
-          triedFoods={state.triedFoods}
-          customFirstFoods={state.customFirstFoods}
-          onToggleFood={toggleFirstFood}
-          onIncrementExposure={incrementFoodExposure}
-          onSetReaction={setFirstFoodReaction}
-          onAddCustomFood={addCustomFirstFood}
-          onRemoveCustomFood={removeCustomFirstFood}
-          onOpenCook={handleOpenCook}
-          onClose={() => setFirstFoodsModalOpen(false)}
         />
       )}
     </div>

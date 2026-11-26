@@ -44,7 +44,7 @@ export function MealCard({
   return (
     <article
       data-testid={`meal-card-${dayIndex}`}
-      className="overflow-hidden rounded-2xl border border-[#E7E2D8] bg-white shadow-xs transition-shadow hover:shadow-sm"
+      className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_4px_16px_rgba(0,0,0,0.07)]"
     >
       {/* Tappable Photo + Header area */}
       <button
@@ -59,7 +59,7 @@ export function MealCard({
             loading={dayIndex < 2 ? 'eager' : 'lazy'}
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
-          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-2.5">
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between p-3">
             <span className="rounded-full bg-[#1C2420]/80 px-2.5 py-1 text-xs font-bold tracking-wide text-white backdrop-blur-xs">
               {dayLabel}
             </span>
@@ -70,7 +70,7 @@ export function MealCard({
           </div>
         </div>
 
-        <div className="px-3.5 pt-3 pb-2">
+        <div className="p-4 pb-3">
           <h2 className="text-[16px] font-bold leading-snug text-[#1C2420]">
             {recipe.title}
           </h2>
@@ -80,13 +80,13 @@ export function MealCard({
             {activeBrackets.map((key) => (
               <span
                 key={key}
-                className="rounded-full bg-[#E8F2EC] px-2 py-0.5 text-[11px] font-semibold text-[#2F6F4E]"
+                className="rounded-full bg-[#E8F2EC] px-2.5 py-0.5 text-[11px] font-semibold text-[#2F6F4E]"
               >
                 {BRACKET_META[key].shortLabel} adaptado
               </span>
             ))}
             {showBabyNewFoods && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#FEF5E6] px-2 py-0.5 text-[11px] font-semibold text-[#9C5C00]">
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#FEF5E6] px-2.5 py-0.5 text-[11px] font-semibold text-[#9C5C00]">
                 <Sprout className="h-3 w-3" />
                 Novo:{' '}
                 {untriedFoods
@@ -97,7 +97,7 @@ export function MealCard({
               </span>
             )}
             {matchingAllergens.length > 0 && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#FDF0EB] px-2 py-0.5 text-[11px] font-semibold text-[#B84C27]">
+              <span className="inline-flex items-center gap-1 rounded-full bg-[#FDF0EB] px-2.5 py-0.5 text-[11px] font-semibold text-[#B84C27]">
                 <ShieldAlert className="h-3 w-3" />
                 Contém {matchingAllergens.map((a) => ALLERGEN_LABELS[a]).join(', ')}
               </span>
@@ -107,15 +107,15 @@ export function MealCard({
       </button>
 
       {/* Action Footer */}
-      <div className="flex items-center justify-between gap-2 border-t border-[#F2EFE9] px-3.5 py-2">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center justify-between gap-2 bg-[#FAF8F5]/55 px-4 py-2.5">
+        <div className="flex items-center gap-1.5">
           {onOpenPicker && (
             <button
               type="button"
               onClick={onOpenPicker}
               disabled={isLocked}
               aria-label={`Escolher jantar de ${dayLabel}`}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E] hover:bg-[#E8F2EC] disabled:opacity-35"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F2EFE9] text-[#2F6F4E] transition-colors hover:bg-[#E8F2EC] disabled:opacity-35"
             >
               <Plus className="h-4 w-4" />
             </button>
@@ -129,7 +129,7 @@ export function MealCard({
               className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors ${
                 isBlocked
                   ? 'bg-[#B84C27] text-white'
-                  : 'bg-[#F2EFE9] text-[#5C6862]'
+                  : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
               }`}
             >
               <Ban className="h-4 w-4" />
@@ -144,7 +144,7 @@ export function MealCard({
             onClick={onToggleLock}
             aria-pressed={isLocked}
             aria-label={isLocked ? `Desbloquear ${dayLabel}` : `Bloquear ${dayLabel}`}
-            className={`inline-flex min-h-[40px] items-center gap-1.5 rounded-xl px-3 text-xs font-semibold transition-colors ${
+            className={`inline-flex min-h-[38px] items-center gap-1.5 rounded-xl px-3 text-xs font-semibold transition-colors ${
               isLocked
                 ? 'bg-[#1C2420] text-white'
                 : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
@@ -169,9 +169,9 @@ export function MealCard({
             onClick={onSwap}
             disabled={isLocked}
             aria-label={`Trocar refeição de ${dayLabel}`}
-            className="inline-flex min-h-[40px] items-center gap-1.5 rounded-xl border border-[#E0DAD0] bg-white px-3 text-xs font-semibold text-[#1C2420] transition-colors hover:bg-[#F2EFE9] disabled:opacity-40"
+            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl bg-[#E8F2EC] px-3 text-xs font-semibold text-[#2F6F4E] transition-colors hover:bg-[#DCEADF] disabled:opacity-40"
           >
-            <RefreshCw className="h-3.5 w-3.5 text-[#2F6F4E]" />
+            <RefreshCw className="h-3.5 w-3.5" />
             Trocar
           </button>
         </div>

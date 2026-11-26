@@ -74,7 +74,7 @@ export function PreferencesModal({
       data-testid="preferences-modal"
       className="fixed inset-0 z-50 flex flex-col bg-[#FAF8F5]"
     >
-      <div className="flex items-center justify-between border-b border-[#E7E2D8] bg-white px-4 py-3">
+      <div className="flex items-center justify-between bg-white px-4 py-3 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-wider text-[#2F6F4E]">
             Preferências da Família ({allRecipes.length} receitas)
@@ -96,7 +96,7 @@ export function PreferencesModal({
       </div>
 
       <div className="mx-auto w-full max-w-md px-4 pt-3">
-        <div className="mb-3 rounded-2xl border border-[#CFE3D6] bg-[#E8F2EC]/70 p-3 text-xs text-[#2F6F4E]">
+        <div className="mb-3 rounded-2xl bg-[#E8F2EC]/75 p-4 text-xs text-[#2F6F4E]">
           <p className="flex items-start gap-2 font-medium leading-relaxed">
             <Sparkles className="mt-0.5 h-4 w-4 shrink-0" />
             <span>
@@ -108,7 +108,7 @@ export function PreferencesModal({
               type="button"
               data-testid="export-preferences-btn"
               onClick={handleExportPreferences}
-              className="mt-2 inline-flex items-center gap-1.5 rounded-xl bg-white px-3 py-1.5 text-[11px] font-bold text-[#2F6F4E] shadow-xs hover:bg-[#FAF8F5]"
+              className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-[#2F6F4E] shadow-[0_1px_4px_rgba(0,0,0,0.05)] hover:bg-[#FAF8F5]"
             >
               {copiedJson ? (
                 <>
@@ -125,14 +125,14 @@ export function PreferencesModal({
           )}
         </div>
 
-        <div className="mb-3 grid grid-cols-2 rounded-xl border border-[#E7E2D8] bg-[#F2EFE9] p-1">
+        <div className="mb-3 grid grid-cols-2 rounded-xl bg-[#F2EFE9] p-1">
           <button
             type="button"
             data-testid="prefs-tab-blocked"
             onClick={() => setTab('blocked')}
             className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
               tab === 'blocked'
-                ? 'bg-white text-[#B84C27] shadow-xs'
+                ? 'bg-white text-[#B84C27] shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
                 : 'text-[#5C6862]'
             }`}
           >
@@ -145,7 +145,7 @@ export function PreferencesModal({
             onClick={() => setTab('favorites')}
             className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
               tab === 'favorites'
-                ? 'bg-white text-[#D96B43] shadow-xs'
+                ? 'bg-white text-[#D96B43] shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
                 : 'text-[#5C6862]'
             }`}
           >
@@ -156,9 +156,9 @@ export function PreferencesModal({
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 pb-6">
-        <div className="mx-auto max-w-md space-y-2.5">
+        <div className="mx-auto flex max-w-md flex-col gap-3">
           {items.length === 0 ? (
-            <div className="rounded-2xl border border-[#E7E2D8] bg-white p-6 text-center text-xs text-[#5C6862]">
+            <div className="rounded-2xl bg-white p-6 text-center text-xs text-[#5C6862] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
               {tab === 'blocked'
                 ? 'Nenhuma receita bloqueada de momento. Pode bloquear pratos na Vista Semanal.'
                 : 'Ainda sem favoritas. Abra uma receita em Cozinhar e toque em Favorito.'}
@@ -168,7 +168,7 @@ export function PreferencesModal({
               <div
                 key={recipe.id}
                 data-testid={`prefs-row-${recipe.id}`}
-                className="flex items-center gap-3 rounded-2xl border border-[#E7E2D8] bg-white p-2.5"
+                className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
               >
                 <button
                   type="button"
@@ -198,7 +198,7 @@ export function PreferencesModal({
                     type="button"
                     data-testid={`unblock-btn-${recipe.id}`}
                     onClick={() => onToggleBlocked(recipe.id)}
-                    className="inline-flex min-h-[38px] shrink-0 items-center gap-1 rounded-xl border border-[#CFE3D6] bg-[#E8F2EC] px-3 text-xs font-bold text-[#2F6F4E] hover:bg-[#D5E9DD]"
+                    className="inline-flex min-h-[38px] shrink-0 items-center gap-1 rounded-xl bg-[#E8F2EC] px-3 text-xs font-bold text-[#2F6F4E] hover:bg-[#D5E9DD]"
                   >
                     <RotateCcw className="h-3.5 w-3.5" />
                     Desbloquear

@@ -51,7 +51,7 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
       data-testid="share-modal"
       className="fixed inset-0 z-50 flex items-end justify-center bg-[#1C2420]/60 p-4 backdrop-blur-xs sm:items-center"
     >
-      <div className="w-full max-w-sm rounded-3xl border border-[#E7E2D8] bg-white p-5 shadow-xl">
+      <div className="w-full max-w-sm rounded-3xl bg-white p-5 shadow-xl">
         <div className="mb-3 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#E8F2EC] text-[#2F6F4E]">
@@ -77,7 +77,7 @@ export function ShareModal({ shareUrl, onClose }: ShareModalProps) {
           </button>
         </div>
 
-        <div className="my-4 flex flex-col items-center justify-center rounded-2xl border border-[#E7E2D8] bg-[#FAF8F5] p-4">
+        <div className="my-4 flex flex-col items-center justify-center rounded-2xl bg-[#FAF8F5] p-4">
           {svgMarkup ? (
             <div
               data-testid="share-qr-svg"

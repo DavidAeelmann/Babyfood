@@ -222,6 +222,7 @@ export function useMealPlanner() {
             lockedIndices: [],
             checkedGroceries: {},
             prepChecked: {},
+            stepsChecked: {},
           };
         });
 
@@ -891,6 +892,22 @@ export function useMealPlanner() {
     });
   }, []);
 
+  const toggleCookStep = useCallback((recipeId: string, stepOrder: number) => {
+    setState((prev) => {
+      const recipeSteps = prev.stepsChecked[recipeId] ?? {};
+      return {
+        ...prev,
+        stepsChecked: {
+          ...prev.stepsChecked,
+          [recipeId]: {
+            ...recipeSteps,
+            [stepOrder]: !recipeSteps[stepOrder],
+          },
+        },
+      };
+    });
+  }, []);
+
   const getUntriedFoodsInRecipe = useCallback(
     (recipe: Recipe): FirstFoodItem[] => {
       return getRecipeMatchingFirstFoods(recipe).filter(
@@ -1072,6 +1089,7 @@ export function useMealPlanner() {
     toggleCustomItem,
     removeCustomItem,
     togglePrepIngredient,
+    toggleCookStep,
     getUntriedFoodsInRecipe,
     toggleFirstFood,
     incrementFoodExposure,

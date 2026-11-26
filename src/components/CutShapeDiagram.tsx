@@ -14,7 +14,7 @@ export function CutShapeDiagram({ shape }: CutShapeDiagramProps) {
       title={`${meta.label}: ${meta.shortHint}`}
       className="flex shrink-0 flex-col items-center gap-1"
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#DCEADF] bg-[#FAF8F5]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FAF8F5]">
         <svg
           width="48"
           height="48"

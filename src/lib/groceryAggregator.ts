@@ -1,4 +1,5 @@
 import { ADULT_WEIGHT, AISLE_ORDER, BRACKET_META, UNIT_LABELS } from './constants';
+import { formatCulinaryNumber } from './formatters';
 import type {
   Aisle,
   GroceryItem,
@@ -50,13 +51,11 @@ export function roundMetricQuantity(quantity: number, unit: MetricUnit): number 
     if (quantity < 100) return Math.round(quantity / 5) * 5;
     return Math.round(quantity / 10) * 10;
   }
-  return Math.max(0.5, Math.round(quantity * 2) / 2);
+  return Math.max(0.25, Math.round(quantity * 4) / 4);
 }
 
 export function formatQuantity(quantity: number, unit: MetricUnit): string {
-  const formatted = Number.isInteger(quantity)
-    ? quantity.toString()
-    : quantity.toFixed(1).replace(/\.0$/, '');
+  const formatted = formatCulinaryNumber(quantity);
   return `${formatted} ${UNIT_LABELS[unit] ?? unit}`;
 }
 

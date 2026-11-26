@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
+  Check,
   ChevronDown,
-  ChevronUp,
   Clock,
   Cookie,
   Dices,
@@ -10,6 +10,7 @@ import {
   Plus,
   Share2,
   Shuffle,
+  SlidersHorizontal,
   Sprout,
   Sun,
   Sunrise,
@@ -62,10 +63,10 @@ const SLOT_PILLS: Array<{
   label: string;
   icon: typeof Sunrise;
 }> = [
-  { slot: 'dinner', label: 'Jantares', icon: UtensilsCrossed },
-  { slot: 'lunch', label: 'Almoços', icon: Sun },
   { slot: 'breakfast', label: 'Peq.-almoços', icon: Sunrise },
+  { slot: 'lunch', label: 'Almoços', icon: Sun },
   { slot: 'snack', label: 'Lanches', icon: Cookie },
+  { slot: 'dinner', label: 'Jantares', icon: UtensilsCrossed },
 ];
 
 interface CompactSideSectionProps {
@@ -94,10 +95,10 @@ function CompactSideSection({
   if (items.length === 0) return null;
 
   return (
-    <div className="mt-7" data-testid={testId}>
-      <div className="mb-3 flex items-center gap-2">
+    <div className="mt-6" data-testid={testId}>
+      <div className="mb-3 flex items-center gap-2.5">
         <span
-          className={`flex h-7 w-7 items-center justify-center rounded-lg ${
+          className={`flex h-7 w-7 items-center justify-center rounded-xl ${
             icon === 'breakfast'
               ? 'bg-[#E8F2EC] text-[#2F6F4E]'
               : 'bg-[#FEF5E6] text-[#9C5C00]'
@@ -119,7 +120,7 @@ function CompactSideSection({
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="flex flex-col gap-3">
         {items.map((item) => {
           const totalMinutes = item.prep_minutes + item.cook_minutes;
           const untried = getUntriedFoodsInRecipe(item);
@@ -130,12 +131,12 @@ function CompactSideSection({
           return (
             <article
               key={item.id}
-              className="overflow-hidden rounded-2xl border border-[#E7E2D8] bg-white shadow-xs"
+              className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
             >
               <button
                 type="button"
                 onClick={() => onOpenCook(item.id)}
-                className="flex w-full items-center gap-3 p-3 text-left"
+                className="flex w-full items-center gap-3 p-4 text-left"
               >
                 <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-[#F2EFE9]">
                   <img
@@ -155,10 +156,10 @@ function CompactSideSection({
                       {totalMinutes}m
                     </span>
                   </div>
-                  <h4 className="mt-1 truncate text-sm font-bold text-[#1C2420]">
+                  <h4 className="mt-1 line-clamp-2 text-sm font-bold leading-snug text-[#1C2420]">
                     {item.title}
                   </h4>
-                  <div className="mt-1 flex flex-wrap gap-1">
+                  <div className="mt-1.5 flex flex-wrap gap-1">
                     {activeBrackets.slice(0, 2).map((key) => (
                       <span
                         key={key}
@@ -212,118 +213,151 @@ export function PlanView({
   onOpenPreferences,
 }: PlanViewProps) {
   const [viewMode, setViewMode] = useState<'week' | 'cards'>('week');
-  const [slotsExpanded, setSlotsExpanded] = useState(false);
+  const [slotsMenuOpen, setSlotsMenuOpen] = useState(false);
 
   const activeSlotsCount = Object.values(enabledSlots).filter(Boolean).length;
+  const prefsCount = favoriteIds.length + blockedIds.length;
+
+  useEffect(() => {
+    if (!slotsMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSlotsMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [slotsMenuOpen]);
 
   return (
-    <section className="mx-auto max-w-md px-4 pt-3.5 pb-24">
-      {/* Header + Actions */}
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <div className="min-w-0">
-          <h2 className="text-lg font-bold tracking-tight text-[#1C2420]">
-            Ementa Semanal
-          </h2>
-          <button
-            type="button"
-            data-testid="open-preferences-btn"
-            onClick={onOpenPreferences}
-            className="mt-0.5 inline-flex items-center gap-1 rounded-full bg-[#F2EFE9] px-2.5 py-0.5 text-[11px] font-semibold text-[#5C6862] transition-colors hover:bg-[#E7E2D8] hover:text-[#1C2420]"
-          >
-            <span>
-              {favoriteIds.length > 0 || blockedIds.length > 0
-                ? `${favoriteIds.length} fav · ${blockedIds.length} bloq. (Gerir)`
-                : 'Preferências · + Escolher'}
-            </span>
-          </button>
-        </div>
+    <section className="mx-auto max-w-md px-4 pt-3 pb-24">
+      {/* Page Header Row: Unbroken title + Share icon + Primary Re-simular pill */}
+      <div className="mb-2.5 flex items-center justify-between gap-2">
+        <h2 className="whitespace-nowrap text-xl font-extrabold tracking-tight text-[#1C2420]">
+          Ementa Semanal
+        </h2>
 
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex shrink-0 items-center gap-2">
           <button
             type="button"
             data-testid="plan-share-btn"
             onClick={onOpenShare}
-            aria-label="Partilhar com Parceiro"
-            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl border border-[#E0DAD0] bg-white px-3 text-xs font-semibold text-[#1C2420] hover:bg-[#F2EFE9]"
+            aria-label="Partilhar"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F2EFE9] text-[#1C2420] transition-colors hover:bg-[#E7E2D8] active:scale-95"
           >
-            <Share2 className="h-3.5 w-3.5 text-[#2F6F4E]" />
-            Partilhar
+            <Share2 className="h-4 w-4 text-[#2F6F4E]" />
           </button>
 
           <button
             type="button"
             data-testid="shuffle-unlocked-btn"
             onClick={viewMode === 'week' ? onReSimulateWeek : onShuffleUnlocked}
-            className="inline-flex min-h-[38px] items-center gap-1.5 rounded-xl bg-[#2F6F4E] px-3 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-[#25593E] active:scale-[0.98]"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full bg-[#2F6F4E] px-3.5 text-xs font-bold text-white shadow-[0_2px_8px_rgba(47,111,78,0.24)] transition-colors hover:bg-[#25593E] active:scale-[0.98]"
           >
             <Shuffle className="h-3.5 w-3.5" />
-            {viewMode === 'week' ? 'Re-simular' : 'Baralhar'}
+            <span>{viewMode === 'week' ? 'Re-simular' : 'Baralhar'}</span>
           </button>
         </div>
       </div>
 
-      {/* Collapsible Meal Slots Bar (Dinners on by default) */}
-      <div className="mb-3 rounded-xl border border-[#E7E2D8] bg-white px-3 py-2">
+      {/* Consolidated Single-Row Filter Controls */}
+      <div className="relative mb-3 flex items-center gap-2">
+        <button
+          type="button"
+          data-testid="open-preferences-btn"
+          onClick={onOpenPreferences}
+          className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-[#F2EFE9] px-3 text-xs font-semibold text-[#5C6862] transition-colors hover:bg-[#E7E2D8] hover:text-[#1C2420]"
+        >
+          <SlidersHorizontal className="h-3.5 w-3.5" />
+          <span>Preferências</span>
+          {prefsCount > 0 && (
+            <span className="tabular-nums rounded-full bg-white px-1.5 py-0.2 text-[10px] font-bold text-[#2F6F4E]">
+              {prefsCount}
+            </span>
+          )}
+        </button>
+
         <button
           type="button"
           data-testid="meal-slots-toggle-bar"
-          onClick={() => setSlotsExpanded((v) => !v)}
-          aria-expanded={slotsExpanded}
-          className="flex w-full items-center justify-between text-xs font-semibold text-[#1C2420]"
+          onClick={() => setSlotsMenuOpen((v) => !v)}
+          aria-expanded={slotsMenuOpen}
+          className={`relative z-30 inline-flex h-8 shrink-0 items-center gap-1 rounded-full px-3 text-xs font-semibold transition-colors ${
+            activeSlotsCount > 1
+              ? 'bg-[#E8F2EC] text-[#2F6F4E] hover:bg-[#DCEADF]'
+              : 'bg-[#F2EFE9] text-[#1C2420] hover:bg-[#E7E2D8]'
+          }`}
         >
-          <span>
-            Refeições:{' '}
-            <strong className="text-[#2F6F4E]">
-              {SLOT_PILLS.filter((p) => enabledSlots[p.slot])
-                .map((p) => p.label)
-                .join(' + ')}
-            </strong>
+          <span className="tabular-nums whitespace-nowrap">
+            {activeSlotsCount === 4
+              ? 'Refeições: Todas (4/4)'
+              : `Refeições: ${activeSlotsCount}/4`}
           </span>
-          <span className="inline-flex items-center gap-1 text-[11px] text-[#5C6862]">
-            {activeSlotsCount}/4 ativas
-            {slotsExpanded ? (
-              <ChevronUp className="h-3.5 w-3.5" />
-            ) : (
-              <ChevronDown className="h-3.5 w-3.5" />
-            )}
-          </span>
+          <ChevronDown
+            className={`h-3.5 w-3.5 transition-transform duration-150 ${
+              slotsMenuOpen ? 'rotate-180' : ''
+            }`}
+          />
         </button>
 
-        {slotsExpanded && (
-          <div className="mt-2.5 flex flex-wrap gap-1.5 border-t border-[#F2EFE9] pt-2.5">
-            {SLOT_PILLS.map(({ slot, label, icon: Icon }) => {
-              const active = enabledSlots[slot];
-              return (
-                <button
-                  key={slot}
-                  type="button"
-                  data-testid={`slot-toggle-${slot}`}
-                  aria-pressed={active}
-                  onClick={() => onToggleSlotEnabled(slot)}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
-                    active
-                      ? 'bg-[#2F6F4E] text-white'
-                      : 'border border-[#E0DAD0] bg-[#FAF8F5] text-[#5C6862]'
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {label}
-                </button>
-              );
-            })}
-          </div>
+        {slotsMenuOpen && (
+          <>
+            <div
+              onClick={() => setSlotsMenuOpen(false)}
+              className="fixed inset-0 z-20"
+              aria-hidden="true"
+            />
+            <div
+              role="dialog"
+              aria-label="Selecionar refeições visíveis"
+              data-testid="meal-slots-popover"
+              className="absolute top-full right-0 left-0 z-30 mt-2 rounded-2xl bg-white p-3.5 shadow-[0_10px_28px_rgba(28,36,32,0.14)]"
+            >
+              <div className="mb-2.5 flex items-center justify-between">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#5C6862]">
+                  Refeições na ementa
+                </span>
+                <span className="text-[11px] font-semibold text-[#8A948E]">
+                  Mínimo 1 ativa
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {SLOT_PILLS.map(({ slot, label, icon: Icon }) => {
+                  const active = enabledSlots[slot];
+                  return (
+                    <button
+                      key={slot}
+                      type="button"
+                      data-testid={`slot-toggle-${slot}`}
+                      aria-pressed={active}
+                      onClick={() => onToggleSlotEnabled(slot)}
+                      className={`flex min-h-[40px] items-center justify-between rounded-xl px-3 text-xs font-semibold transition-colors ${
+                        active
+                          ? 'bg-[#2F6F4E] text-white shadow-[0_2px_6px_rgba(47,111,78,0.22)]'
+                          : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Icon className="h-3.5 w-3.5" />
+                        {label}
+                      </span>
+                      {active && <Check className="h-3.5 w-3.5" strokeWidth={2.6} />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </>
         )}
       </div>
 
       {/* Segmented Toggle: Compact Week View vs Photo Cards */}
-      <div className="mb-4 grid grid-cols-2 rounded-xl border border-[#E7E2D8] bg-[#F2EFE9] p-1">
+      <div className="mb-3 grid grid-cols-2 rounded-xl bg-[#F2EFE9] p-1">
         <button
           type="button"
           data-testid="view-mode-week"
           onClick={() => setViewMode('week')}
-          className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
+          className={`flex min-h-[34px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-all ${
             viewMode === 'week'
-              ? 'bg-white text-[#1C2420] shadow-xs'
+              ? 'bg-white text-[#1C2420] shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
               : 'text-[#5C6862]'
           }`}
         >
@@ -334,9 +368,9 @@ export function PlanView({
           type="button"
           data-testid="view-mode-cards"
           onClick={() => setViewMode('cards')}
-          className={`flex min-h-[36px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-colors ${
+          className={`flex min-h-[34px] items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-all ${
             viewMode === 'cards'
-              ? 'bg-white text-[#1C2420] shadow-xs'
+              ? 'bg-white text-[#1C2420] shadow-[0_1px_4px_rgba(0,0,0,0.06)]'
               : 'text-[#5C6862]'
           }`}
         >
@@ -363,14 +397,14 @@ export function PlanView({
       ) : (
         <>
           {enabledSlots.dinner && (
-            <div className="space-y-4">
+            <div className="flex flex-col gap-3">
               {weekGrid.map((day, idx) => {
                 const recipe = day.dinner ? recipeMap.get(day.dinner) : undefined;
                 if (!recipe) {
                   return (
                     <div
                       key={`empty-card-${idx}`}
-                      className="flex items-center justify-between rounded-2xl border border-dashed border-[#D6CFC2] bg-white p-4"
+                      className="flex items-center justify-between rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
                     >
                       <div>
                         <span className="text-xs font-bold uppercase text-[#8A948E]">
@@ -384,7 +418,7 @@ export function PlanView({
                         <button
                           type="button"
                           onClick={() => onOpenPicker(idx, 'dinner')}
-                          className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#E0DAD0] bg-[#FAF8F5] text-[#2F6F4E]"
+                          className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#F2EFE9] text-[#2F6F4E]"
                           aria-label={`Escolher jantar de ${DAY_LABELS[idx]}`}
                         >
                           <Plus className="h-4 w-4" />

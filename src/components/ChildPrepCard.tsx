@@ -15,10 +15,10 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
   return (
     <div
       data-testid="dynamic-child-prep-card"
-      className="rounded-2xl border border-[#CFE3D6] bg-[#E8F2EC]/65 p-3.5"
+      className="rounded-2xl bg-[#E8F2EC]/70 p-4"
     >
-      <div className="mb-2.5 flex items-center gap-2">
-        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#2F6F4E] text-white">
+      <div className="mb-3 flex items-center gap-2.5">
+        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#2F6F4E] text-white">
           <Baby className="h-4 w-4" />
         </span>
         <div>
@@ -26,17 +26,17 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
             Preparação &amp; Corte por Idade
           </h3>
           <p className="text-[11px] text-[#44594E]">
-            A mostrar apenas as faixas etárias selecionadas acima
+            Adaptado às faixas etárias selecionadas
           </p>
         </div>
       </div>
 
       {orderedActive.length === 0 ? (
-        <p className="rounded-xl bg-white/80 p-3 text-xs text-[#5C6862]">
-          Nenhuma idade selecionada. Toque numa faixa etária acima (ex. 6–9m ou 2–4a) para ver as instruções de corte e textura.
+        <p className="rounded-xl bg-white/85 p-3.5 text-xs text-[#5C6862]">
+          Nenhuma idade selecionada. Toque no agregado familiar no topo para escolher as faixas etárias (ex. 6–9m ou 2–4a).
         </p>
       ) : (
-        <div className="space-y-2.5">
+        <div className="flex flex-col gap-3">
           {orderedActive.map((key) => {
             const ad = adaptations[key];
             const cutShape = inferCutShape(ad, key);
@@ -45,7 +45,7 @@ export function ChildPrepCard({ activeBrackets, adaptations }: ChildPrepCardProp
               <div
                 key={key}
                 data-testid={`child-prep-bracket-${key}`}
-                className="rounded-xl border border-[#DCEADF] bg-white p-3"
+                className="rounded-xl bg-white p-3.5 shadow-[0_1px_6px_rgba(0,0,0,0.03)]"
               >
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <span className="rounded-full bg-[#2F6F4E] px-2.5 py-0.5 text-[11px] font-bold text-white">

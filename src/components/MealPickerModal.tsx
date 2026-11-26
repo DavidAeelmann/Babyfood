@@ -113,7 +113,7 @@ export function MealPickerModal({
       data-testid="meal-picker-modal"
       className="fixed inset-0 z-50 flex flex-col bg-[#FAF8F5]"
     >
-      <div className="flex items-center justify-between border-b border-[#E7E2D8] bg-white px-4 py-3">
+      <div className="flex items-center justify-between bg-white px-4 py-3 shadow-[0_1px_6px_rgba(0,0,0,0.04)]">
         <div>
           <p className="text-[11px] font-bold uppercase tracking-wider text-[#2F6F4E]">
             {dayLabel}
@@ -135,7 +135,7 @@ export function MealPickerModal({
       </div>
 
       {/* Search + Quick Filters + Add Custom Recipe button */}
-      <div className="border-b border-[#E7E2D8] bg-white px-4 py-2.5">
+      <div className="bg-white/95 px-4 py-2.5 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
         <div className="mx-auto max-w-md space-y-2">
           <div className="flex items-center gap-2">
             <div className="relative flex-1">
@@ -155,10 +155,10 @@ export function MealPickerModal({
               type="button"
               data-testid="toggle-custom-recipe-form-btn"
               onClick={() => setShowCustomForm((v) => !v)}
-              className={`inline-flex min-h-[38px] shrink-0 items-center gap-1 rounded-xl px-2.5 text-xs font-bold transition-colors ${
+              className={`inline-flex min-h-[38px] shrink-0 items-center gap-1 rounded-xl px-3 text-xs font-bold transition-colors ${
                 showCustomForm
                   ? 'bg-[#1C2420] text-white'
-                  : 'border border-[#CFE3D6] bg-[#E8F2EC] text-[#2F6F4E]'
+                  : 'bg-[#E8F2EC] text-[#2F6F4E]'
               }`}
             >
               <Plus className="h-3.5 w-3.5" />
@@ -184,10 +184,10 @@ export function MealPickerModal({
                   type="button"
                   data-testid={`picker-filter-${chip.key}`}
                   onClick={() => setFilter(chip.key)}
-                  className={`inline-flex shrink-0 items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition-colors ${
+                  className={`inline-flex shrink-0 items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold transition-colors ${
                     active
                       ? 'bg-[#2F6F4E] text-white'
-                      : 'border border-[#E0DAD0] bg-[#FAF8F5] text-[#5C6862]'
+                      : 'bg-[#F2EFE9] text-[#5C6862] hover:bg-[#E7E2D8]'
                   }`}
                 >
                   {chip.key === 'allergen_safe' && <ShieldCheck className="h-3 w-3" />}
@@ -200,12 +200,12 @@ export function MealPickerModal({
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
-        <div className="mx-auto max-w-md space-y-2.5">
+        <div className="mx-auto flex max-w-md flex-col gap-3">
           {showCustomForm && (
             <form
               onSubmit={handleCreateCustom}
               data-testid="custom-recipe-form"
-              className="rounded-2xl border border-[#CFE3D6] bg-white p-3.5 shadow-xs space-y-2.5"
+              className="space-y-2.5 rounded-2xl bg-white p-4 shadow-[0_2px_10px_rgba(0,0,0,0.04)]"
             >
               <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#2F6F4E]">
                 Nova Receita da Família
@@ -266,7 +266,7 @@ export function MealPickerModal({
           )}
 
           {filteredRecipes.length === 0 ? (
-            <div className="rounded-2xl border border-[#E7E2D8] bg-white p-6 text-center text-xs text-[#5C6862]">
+            <div className="rounded-2xl bg-white p-6 text-center text-xs text-[#5C6862] shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
               {recipes.length === 0
                 ? 'Todas as receitas deste tipo de refeição estão bloqueadas. Desbloqueie uma receita em Favoritas & Bloqueadas.'
                 : 'Nenhuma receita corresponde à pesquisa ou filtro selecionado.'}
@@ -283,10 +283,10 @@ export function MealPickerModal({
                   type="button"
                   data-testid={`picker-option-${recipe.id}`}
                   onClick={() => onSelectRecipe(recipe.id)}
-                  className={`flex w-full items-center gap-3 overflow-hidden rounded-2xl border p-2.5 text-left transition-colors ${
+                  className={`flex w-full items-center gap-3 overflow-hidden rounded-2xl p-3 text-left shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-colors ${
                     isCurrent
-                      ? 'border-[#2F6F4E] bg-[#E8F2EC]/50'
-                      : 'border-[#E7E2D8] bg-white hover:bg-[#FAF8F5]'
+                      ? 'bg-[#E8F2EC] ring-1 ring-[#2F6F4E]/30'
+                      : 'bg-white hover:bg-[#FAF8F5]'
                   }`}
                 >
                   {/* Medium-sized 4:3 meal photo */}
